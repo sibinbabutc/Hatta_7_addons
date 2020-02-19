@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report auto="False" id="purchase.report_purchase_quotation" model="purchase.order" 
+                name="purchase.quotation.inherit" rml="hatta_crm/report/request_quotation.rml"
+                string="Request for Quotation"/>
+                
+<!--         <report auto="False" id="purchase.report_purchase_order" model="purchase.order" -->
+<!--                 name="purchase.order.inherit" rml="hatta_crm/report/order.rml" -->
+<!--                 usage="default" string="Purchase Order"/> -->
+                
+<!--         <report auto="False" id="sale.report_sale_order" model="sale.order" name="sale.order.inherit" -->
+<!--                 rml="hatta_crm/report/sale_order.rml" string="Quotation / Order" -->
+<!--                 usage="default"/> -->
+        
+        <report id="purchase.report_purchase_order" 
+                model="purchase.order" 
+                name="po.report.jasper" 
+                string="Purchase Order" 
+                rml="hatta_crm/report/po_report.jrxml"/>
+        
+        <report id="sale.report_sale_order" 
+                model="sale.order" 
+                name="sale.order.inherit" 
+                string="Sale Order" 
+                rml="hatta_crm/report/so_report.jrxml"/>
+        
+        <report id="crm_report_sale_quote" 
+                model="crm.lead" 
+                name="crm.sale.quote" 
+                string="Sale Quotation(For Plain Paper)" 
+                rml="hatta_crm/report/crm_sale_quote_report.jrxml"/>
+        
+        <report id="crm_report_sale_quote_wo_header" 
+                model="crm.lead" 
+                name="crm.sale.quote.wo.header" 
+                string="Sale Quotation(For Letter Head)" 
+                rml="hatta_crm/report/crm_sale_quote_report_wo_header.jrxml"/>
+        
+        <report id="delivery_order_report" 
+                model="stock.picking.out" 
+                name="delivery_report_jasper" 
+                string="Delivery Note" 
+                rml="hatta_crm/report/delivery_report.jrxml"/>
+        
+        <report id="invoice_report" 
+                model="account.invoice" 
+                name="invoice_report_jasper" 
+                string="Customer Invoice" 
+                rml="hatta_crm/report/invoice_report.jrxml"/>
+
+	<report id="invoice_report_rml" 
+                model="account.invoice" 
+                name="invoice_report_rml" 
+                string="Customer Invoice VAT" 
+		header="False"
+                rml="hatta_crm/report/account_invoice_report.rml"/>
+                
+        <report id="quotation_status_report" 
+                model="quotation.status" 
+                name="quotation.status.jasper" 
+                string="Status Report" 
+                rml="hatta_crm/report/quotation_status_report.jrxml"/>
+    </data>
+</openerp>

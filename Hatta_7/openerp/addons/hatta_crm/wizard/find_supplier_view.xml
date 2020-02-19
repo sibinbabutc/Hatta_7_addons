@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="find_supplier_form_view" model="ir.ui.view">
+            <field name="name">find.supplier.form</field>
+            <field name="model">find.supplier</field>
+            <field name="arch" type="xml">
+                <form string="Find Supplier" version="7.0">
+                    <p class="oe_grey">
+                        This will list all the suppliers which supplies the selected manufacturer...
+                    </p>
+                    <field name="man_ids" colspan="4" nolabel="1" domain="[('is_manufac', '=', True)]"/>
+                    <footer>
+                        <button name="display_supplier" string="Find" type="object"
+                                class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_find_supplier" model="ir.actions.act_window">
+            <field name="name">Find Supplier</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">find.supplier</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="find_supplier_form_view" />
+            <field name="target">new</field>
+            <field name="multi">True</field>
+        </record>
+        
+        <menuitem name="Find Supplier(s)"
+            id="hatta_find_supplier_manufacturer" parent="hatta_crm.hatta_master_data"
+            action="action_find_supplier"
+            groups="hatta_crm.group_supp"/>
+        
+    </data>
+</openerp>

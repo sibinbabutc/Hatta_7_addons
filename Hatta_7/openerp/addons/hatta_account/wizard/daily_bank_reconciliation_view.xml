@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    
+    	<record id="daily_bank_reconciliation_wizard_form" model="ir.ui.view">
+            <field name="name">daily_bank_reconciliation.wizard.form</field>
+            <field name="model">daily.bank.reconciliation.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Daily Bank Reconciliation Report" version="7.0">
+                    <group>
+                        <field name="bank_id" domain="[('company_id', '!=', False)]" required="True"/>
+                        <field name="date"/>
+                    </group>
+                    <footer>
+                        <button name="print_report" string="Print" type="object"
+                            class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+    
+    	<record id="action_daily_bank_reconciliation_wizard" model="ir.actions.act_window">
+            <field name="name">Daily Bank Reconciliation</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">daily.bank.reconciliation.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="daily_bank_reconciliation_wizard_form" />
+            <field name="target">new</field>
+            <field name="multi">True</field>
+        </record>
+    
+    	<menuitem id="menu_daily_bank_reconciliation_wizard" action="action_daily_bank_reconciliation_wizard"
+    			name="Daily Bank Reconciliation Report"
+                parent="hatta_crm.hatta_account_report" sequence="12"/>
+    
+    </data>
+</openerp>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    
+    	<record id="local_po_report_form" model="ir.ui.view">
+          <field name="name">local.po.report.form</field>
+          <field name="model">local.po.report</field>
+          <field name="arch" type="xml">
+            <form string="LPO Report" version="7.0">
+                <group>
+                    <field name="from_date" required="True"/>
+                    <field name="to_date" required="True"/>
+                    <field name="lpo_id" required="True" context="{'lpo': True}" domain="[('transaction_type_id.local_purchase', '=', True)]"/>
+                </group>
+                <footer>
+                   <button name="print_report" string="Print" type="object" icon="STOCK_PRINT" class="oe_highlight"/>
+                    or
+                   <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+                </footer>
+            </form>
+          </field>
+       </record>
+       
+      <record id="action_local_po_report" model="ir.actions.act_window">
+         <field name="name">LPO Report</field>
+         <field name="type">ir.actions.act_window</field>
+         <field name="res_model">local.po.report</field>
+         <field name="view_type">form</field>
+         <field name="view_mode">form</field>
+         <field name="view_id" ref="local_po_report_form"/>
+         <field name="target">new</field>
+      </record>
+    	
+      <menuitem id="menu_local_po_report" action="action_local_po_report"
+    			name="LPO Report"
+                parent="hatta_crm.hatta_account_report" sequence="13"/>
+    
+    </data>
+</openerp>

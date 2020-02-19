@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="hatta_opp_create_form" model="ir.ui.view">
+          <field name="name">create.opp.form</field>
+          <field name="model">create.opp</field>
+          <field name="arch" type="xml">
+            <form string="Create Enquiry" version="7.0">
+                <group attrs="{'invisible': [('state', '!=', 'start')]}">
+                    <group>
+                        <field name="customer_rfq"/>
+                        <label for="call_no" class="oe_inline"/>
+                        <div>
+                            <field name="call_no" class="oe_inline"/>
+                            <field name="coll_no_type" class="oe_inline"/>
+                        </div>
+                        <field name="partner_id" domain="[('customer', '=', True)]"/>
+                        <field name="email" widget="email"/>
+                        <field name="phone"/>
+                    </group>
+                    <group>
+                        <field name="creation_date"/>
+                        <field name="date_closing" required="True"/>
+                        <field name="user_id"/>
+                        <field name="transaction_type_id" on_change="onchange_transaction_type(transaction_type_id)"
+                                    domain="[('model_id.model', '=', 'crm.lead')]" required="True"/>
+                        <field name="analytic_account_id" readonly="True"/>
+                        <field name="partner_seq" invisible="True"/>
+                        <field name="supplier_id" domain="[('supplier', '=', True), ('pric_supplier', '=', True)]" attrs="{'invisible': [('partner_seq', '=', False)], 'required': [('partner_seq', '!=', False)]}"/>
+                        <field name="state" invisible="True"/>
+                    </group>
+                </group>
+                <separator string="Attachments" colspan="4" attrs="{'invisible': [('state', '!=', 'start')]}"/>
+                <group attrs="{'invisible': [('state', '!=', 'start')]}">
+                    <field name="datas" filename="datas_fname"/>
+                    <field name="datas_fname" invisible="True"/>
+                </group>
+                <separator string="Notes" colspan="4" attrs="{'invisible': [('state', '!=', 'start')]}"/>
+                <field name="note" colspan="4" nolabel="1" attrs="{'invisible': [('state', '!=', 'start')]}"/>
+                <div>
+                    <label for="lead_id" string="Created Enquiry Ref." attrs="{'invisible': [('state', '!=', 'end')]}"/>
+                    <field name="lead_id" class="oe_inline" readonly="True"
+                            attrs="{'invisible': [('state', '!=', 'end')]}"
+                            context="{'form_view_ref': 'crm.crm_case_form_view_oppor'}"/>
+                </div>
+                <footer>
+                   <button icon="gtk-execute" name="check_opp"
+                                confirm="Are you sure you want to continue?"
+                                string="Create Enquiry" type="object"  default_focus="1" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'start')]}"/>
+                   <button string="Ok" type="object" special="cancel" attrs="{'invisible': [('state', '!=', 'end')]}" class="oe_highlight"/>
+                    or
+                   <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+                    
+                </footer>
+            </form>
+          </field>
+       </record>
+       
+       <record id="hatta_opp_create_action" model="ir.actions.act_window">
+          <field name="name">Create Enquiry</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">create.opp</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="hatta_opp_create_form"/>
+          <field name="target">new</field>
+       </record>
+    </data>
+</openerp>

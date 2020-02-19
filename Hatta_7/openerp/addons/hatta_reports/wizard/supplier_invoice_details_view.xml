@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+	
+		<record id="wizard_supplier_invoice_form_view" model="ir.ui.view">
+		<field name="name">wizard.supplier.invoice.form</field>
+		<field name="model">wizard.supplier.invoice</field>
+		<field name="arch" type="xml">
+			<form string="Shipping Insurance Report" version="7.0">
+				<group>
+					<field name="from_date"/>
+					<field name="to_date"/>
+				</group>
+				<group>
+					<field name="cargo_company_id"/>
+				</group>
+				<footer>
+				<button name="print_report" string="Print" type="object" icon="STOCK_PRINT" class="oe_highlight"/>
+	            	or
+	            <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+	            </footer>
+	        </form>
+	    </field>
+	</record>
+	
+	<record id="action_wizard_supplier_invoice" model="ir.actions.act_window">
+	    <field name="name">Shipping Insurance Report</field>
+	    <field name="type">ir.actions.act_window</field>
+	    <field name="res_model">wizard.supplier.invoice</field>
+	    <field name="view_type">form</field>
+	    <field name="view_mode">form</field>
+	    <field name="view_id" ref="wizard_supplier_invoice_form_view"/>
+	    <field name="target">new</field>
+    </record>
+	
+	<menuitem id="menu_wizard_supplier_invoice" action="action_wizard_supplier_invoice"
+    	 name="Shipping Insurance Report" sequence="1001" parent="hatta_reports.hatta_inv_report"/>
+	
+	</data>
+</openerp>
+	

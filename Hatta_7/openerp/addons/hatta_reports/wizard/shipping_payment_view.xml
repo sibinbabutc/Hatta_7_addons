@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+
+	<record id="shipping_payment_details_form_view" model="ir.ui.view">
+		<field name="name">shipping.payment.details.form</field>
+		<field name="model">wizard.shipping.payment.details</field>
+		<field name="arch" type="xml">
+			<form string="Shipping Payment Details Report" version="7.0">
+				<group>
+					<field name="from_date"/>
+					<field name="to_date"/>
+				</group>
+				<group>
+					<field name="carrier_id"/>
+				</group>
+				<footer>
+				<button name="print_report" string="Print" type="object" icon="STOCK_PRINT" class="oe_highlight"/>
+	            	or
+	            <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+	            </footer>
+	        </form>
+	    </field>
+	</record>
+             
+             
+    <record id="action_shipping_payment_details" model="ir.actions.act_window">
+	    <field name="name">Shipping Payment Details Report</field>
+	    <field name="type">ir.actions.act_window</field>
+	    <field name="res_model">wizard.shipping.payment.details</field>
+	    <field name="view_type">form</field>
+	    <field name="view_mode">form</field>
+	    <field name="view_id" ref="shipping_payment_details_form_view"/>
+	    <field name="target">new</field>
+    </record>
+             
+    <menuitem id="menu_shipping_payment_details" action="action_shipping_payment_details"
+    	 name="Shipping Payment Details" sequence="1000" parent="hatta_reports.hatta_inv_report"/>
+             
+	</data>
+</openerp>

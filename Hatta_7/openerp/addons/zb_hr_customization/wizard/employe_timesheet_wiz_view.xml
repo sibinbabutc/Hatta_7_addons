@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    <record id="employe_timesheet_wiz_form" model="ir.ui.view">
+            <field name="name">employe.timesheet.wiz.form</field>
+            <field name="model">employe.timesheet.wiz</field>
+            <field name="arch" type="xml">
+                <form string="Employee Timesheet Wizard">
+                    <sheet>
+                        <field name="timesheet_ids" />
+                    </sheet>
+                </form>
+            </field>
+     </record>
+     
+     <record model="ir.actions.act_window" id="employe_timesheet_wiz">
+            <field name="name">Employee Timesheet</field>
+            <field name="res_model">employe.timesheet.wiz</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        
+</data>
+</openerp>     

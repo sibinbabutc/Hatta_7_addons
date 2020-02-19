@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="purchase_status_form_view" model="ir.ui.view">
+          <field name="name">purchase.status.form</field>
+          <field name="model">purchase.analysis.report</field>
+          <field name="arch" type="xml">
+            <form string="Purchase Order Status Report" version="7.0">
+                <group>
+                    <field name="po_id"/>
+                    <field name="partner_id"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="cost_center_id"/>
+                    <field name="job_id" domain="[('name', '!=', '?')]"/>
+                </group>
+                <separator string="Sorting Option(s)" colspan="4"/>
+                <group>
+                    <field name="sort_supp"/>
+                    <field name="sort_del_date"/>
+                </group>
+                <separator string="Other Option(s)" colspan="4"/>
+                <group>
+                    <field name="pending_only"/>
+                    <field name="disp_cust_del_date"/>
+                </group>
+                <footer>
+                   <button name="print_report" string="Print" type="object" icon="STOCK_PRINT" default_focus="1" class="oe_highlight"/>
+                    or
+                   <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+                </footer>
+            </form>
+          </field>
+       </record>
+       
+       <record id="action_purchase_status" model="ir.actions.act_window">
+          <field name="name">Purchase Order Status Report</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">purchase.analysis.report</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="purchase_status_form_view"/>
+          <field name="target">new</field>
+       </record>
+       
+       <menuitem id="menu_po_status" parent="hatta_reports.hatta_inv_report"
+                    action="action_purchase_status" sequence="1" icon="STOCK_PRINT"
+                    groups="hatta_reports.group_inv_po"/>
+    </data>
+</openerp>

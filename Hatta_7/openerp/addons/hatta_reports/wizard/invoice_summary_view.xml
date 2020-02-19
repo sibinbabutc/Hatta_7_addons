@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="invoice_summary_form_view" model="ir.ui.view">
+          <field name="name">invoice.summary.form</field>
+          <field name="model">invoice.summary</field>
+          <field name="arch" type="xml">
+            <form string="Sales Invoice Summary Report" version="7.0">
+                <group>
+                    <field name="transaction_type_id" domain="[('model_id.model', '=', 'account.invoice'),('refund', '=', False)]"/>
+                    <field name="inv_id" domain="[('type', '=', 'out_invoice'), ('state', '!=', 'cancel')]"/>
+                    <field name="partner_id" domain="[('customer', '=', True)]"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </group>
+                <footer>
+                   <button name="print_report" string="Print" type="object" icon="STOCK_PRINT" default_focus="1" class="oe_highlight"/>
+                    or
+                   <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+                </footer>
+            </form>
+          </field>
+       </record>
+       
+       <record id="action_invoice_summary" model="ir.actions.act_window">
+          <field name="name">Sales Invoice Summary Report</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">invoice.summary</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="invoice_summary_form_view"/>
+          <field name="target">new</field>
+       </record>
+       
+       <menuitem id="menu_inv_summary" parent="hatta_reports.hatta_inv_report"
+                    action="action_invoice_summary" sequence="2" icon="STOCK_PRINT"
+                    groups="hatta_reports.group_inv_invoice_summ"/>
+    </data>
+</openerp>

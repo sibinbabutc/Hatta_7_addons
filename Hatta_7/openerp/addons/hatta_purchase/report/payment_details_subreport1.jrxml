@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="payment_details_subreport1" language="groovy" pageWidth="571" pageHeight="24" orientation="Landscape" columnWidth="571" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="d325b4f4-cb2d-457d-9082-a038bd4d1bac">
+	<property name="ireport.zoom" value="1.464100000000029"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="cheque_no" class="java.lang.String">
+		<fieldDescription><![CDATA[cheque_no]]></fieldDescription>
+	</field>
+	<field name="cheque_date" class="java.lang.String">
+		<fieldDescription><![CDATA[cheque_date]]></fieldDescription>
+	</field>
+	<field name="bank_details" class="java.lang.String">
+		<fieldDescription><![CDATA[bank_details]]></fieldDescription>
+	</field>
+	<field name="pay_code" class="java.lang.String">
+		<fieldDescription><![CDATA[pay_code]]></fieldDescription>
+	</field>
+	<field name="pay_name" class="java.lang.String">
+		<fieldDescription><![CDATA[pay_name]]></fieldDescription>
+	</field>
+	<field name="total_amt" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[total_amt]]></fieldDescription>
+	</field>
+	<detail>
+		<band height="24">
+			<textField pattern="dd.MM.yyyy" isBlankWhenNull="true">
+				<reportElement uuid="76d7db80-68c4-49ff-b9db-a77002ee1e5c" x="101" y="0" width="97" height="24"/>
+				<box>
+					<topPen lineWidth="0.5" lineColor="#C9C9C9"/>
+					<leftPen lineWidth="0.5" lineColor="#C9C9C9"/>
+					<bottomPen lineWidth="0.5" lineColor="#C9C9C9"/>
+					<rightPen lineWidth="0.5" lineColor="#C9C9C9"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cheque_date}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="fbb58f05-49b0-4680-b60c-c24f3457b221" x="0" y="0" width="101" height="24"/>
+				<box>
+					<topPen lineWidth="0.5" lineColor="#C9C9C9"/>
+					<leftPen lineWidth="0.5" lineColor="#C9C9C9"/>
+					<bottomPen lineWidth="0.5" lineColor="#C9C9C9"/>
+					<rightPen lineWidth="0.5" lineColor="#C9C9C9"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cheque_no}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="28a5dd36-813e-4461-8987-06b4c9fbc474" x="380" y="0" width="93" height="24"/>
+				<box>
+					<topPen lineWidth="0.5" lineColor="#C9C9C9"/>
+					<leftPen lineWidth="0.5" lineColor="#C9C9C9"/>
+					<bottomPen lineWidth="0.5" lineColor="#C9C9C9"/>
+					<rightPen lineWidth="0.5" lineColor="#C9C9C9"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pay_code}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d217ee9e-7966-4091-a8f6-14f9f456e41e" x="473" y="0" width="98" height="24"/>
+				<box>
+					<topPen lineWidth="0.5" lineColor="#C9C9C9"/>
+					<leftPen lineWidth="0.5" lineColor="#C9C9C9"/>
+					<bottomPen lineWidth="0.5" lineColor="#C9C9C9"/>
+					<rightPen lineWidth="0.5" lineColor="#C9C9C9"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pay_name}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="7de4e09a-5a26-476d-8ebc-f3b45c3a2e25" x="283" y="0" width="97" height="24"/>
+				<box>
+					<topPen lineWidth="0.5" lineColor="#C9C9C9"/>
+					<leftPen lineWidth="0.5" lineColor="#C9C9C9"/>
+					<bottomPen lineWidth="0.5" lineColor="#C9C9C9"/>
+					<rightPen lineWidth="0.5" lineColor="#C9C9C9"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bank_details}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="39b75d9f-f07f-4535-8840-d8b5cb1bed9d" x="198" y="0" width="85" height="24"/>
+				<box>
+					<topPen lineWidth="0.5" lineColor="#C9C9C9"/>
+					<leftPen lineWidth="0.5" lineColor="#C9C9C9"/>
+					<bottomPen lineWidth="0.5" lineColor="#C9C9C9"/>
+					<rightPen lineWidth="0.5" lineColor="#C9C9C9"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

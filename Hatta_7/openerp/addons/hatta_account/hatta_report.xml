@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report id="report_voucher_print" 
+                model="account.move" 
+                name="voucher.report.jasper" 
+                string="Voucher Print" 
+                rml="hatta_account/report/voucher_print.jrxml"/>
+        
+        <report id="report_voucher_print_fc" 
+                model="account.move" 
+                name="voucher.report.jasper.fc" 
+                string="Voucher Print(Foreign Currency)" 
+                rml="hatta_account/report/voucher_print_fc.jrxml"/>
+        
+        <report id="report_day_book" 
+                model="day.book.wizard" 
+                name="day.book.jasper" 
+                string="Day Book" 
+                rml="hatta_account/report/day_book.jrxml"/>
+        
+        <report id="report_subledger" 
+                model="subledger.print" 
+                name="subledger.jasper" 
+                string="Sub Ledger" 
+                rml="hatta_account/report/subledger.jrxml"/>
+        
+        <report id="report_subledger_xls" 
+                model="subledger.print" 
+                name="subledger.jasper.xls" 
+                string="Sub Ledger(Excel)" 
+                rml="hatta_account/report/subledger_xls.jrxml"/>
+        
+        <report id="report_subledger_job" 
+                model="subledger.print" 
+                name="job.subledger.jasper" 
+                string="Job Sub Ledger" 
+                rml="hatta_account/report/job_subledger.jrxml"/>
+        
+        <report id="report_general_ledger" 
+                model="general.ledger.print" 
+                name="general_ledger.jasper" 
+                string="General Ledger" 
+                rml="hatta_account/report/gen_ledger.jrxml"/>
+        
+        <report id="report_general_ledger_fc" 
+                model="general.ledger.print" 
+                name="general_ledger_fc.jasper" 
+                string="General Ledger(Foreign Currency)" 
+                rml="hatta_account/report/gen_ledger_fc.jrxml"/>
+        
+        <report id="report_cost_sheet_component" 
+                model="cost.sheet.component" 
+                name="cost_sheet_component_jasper" 
+                string="Cost Sheet Component" 
+                rml="hatta_account/report/cost_sheet_component.jrxml"/>
+        
+        <report id="report_tr_report" 
+                model="tr.report.wizard" 
+                name="tr.report.jasper" 
+                string="TR Report" 
+                rml="hatta_account/report/tr_report.jrxml"/>
+        
+        <report id="report_tr_status_report" 
+                model="tr.status.report.wizard" 
+                name="tr.status.report.jasper" 
+                string="TR Status Report" 
+                rml="hatta_account/report/tr_status_report.jrxml"/>
+        
+        <report id="report_tr_status_xls_report" 
+                model="tr.status.report.xls.wizard" 
+                name="tr.status.report.xls.jasper" 
+                string="TR Status Report" 
+                rml="hatta_account/report/tr_status_report_xls.jrxml"/>
+                
+        <report id="report_daily_bank_reconciliation_report" 
+                model="daily.bank.reconciliation.wizard" 
+                name="daily_bank_reconciliation_jasper" 
+                string="Daily Bank Reconciliation Report" 
+                rml="hatta_account/report/daily_bank_reconciliation.jrxml"/>
+                
+        <report id="report_local_po" 
+                model="local.po.report" 
+                name="local_po_report.jasper" 
+                string="LPO Report" 
+                rml="hatta_account/report/local_po_report.jrxml"/>
+                
+       	<report id="report_upcoming_payable" 
+                model="wizard.upcoming.payable" 
+                name="upcoming_payable_report.jasper" 
+                string="Upcoming Payable Report" 
+                rml="hatta_account/report/upcoming_payable_report.jrxml"/>
+                
+        <report id="report_upcoming_payable_scheduler" 
+                model="account.move.line" 
+                name="upcoming_payable_report_scheduler.jasper" 
+                string="Upcoming Payable Report of 10 Days" 
+                rml="hatta_account/report/upcoming_payable_report_scheduler.jrxml" 
+                menu="False"/>
+                
+        <report id="report_upcoming_receivable" 
+                model="wizard.upcoming.receivable" 
+                name="upcoming_receivable_report.jasper" 
+                string="Upcoming Receivable Report" 
+                rml="hatta_account/report/upcoming_receivable_report.jrxml"/>
+                
+       	<report id="report_pdc_report" 
+                model="wizard.pdc.report" 
+                name="pdc_report.jasper" 
+                string="PDC Report" 
+                rml="hatta_account/report/pdc_report.jrxml"/>
+                
+    </data>
+</openerp>

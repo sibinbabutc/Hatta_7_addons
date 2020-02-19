@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="print_bank_rec_form" model="ir.ui.view">
+			<field name="name">objectname</field>
+			<field name="model">objectname</field>
+			<field name="arch" type="xml">
+				<form string="OpenERP Version 7 Wizard" version="7.0">
+					<p class="oe_grey">
+						OpenERP Version 7 Wizard View
+					</p>
+					<group>
+						<field name="name" />
+					</group>
+					<footer>
+						<button name="name" string="Button Name" type="object"
+							class="oe_highlight" />
+						or
+						<button string="Cancel" class="oe_link" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="action_object_name" model="ir.actions.act_window">
+			<field name="name">objectname</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">objectname</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="view_id" ref="object_name_view" />
+			<field name="target">new</field>
+			<field name="multi">True</field>
+		</record>
+    </data>
+</openerp>

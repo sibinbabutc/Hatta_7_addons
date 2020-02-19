@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <menuitem id="hatta_inv_report" name="Inventory Reports" sequence="3" parent="hatta_crm.hatta_reporting"/>
+        
+        <report id="report_po_status" 
+                model="purchase.analysis.report" 
+                name="po.status.jasper" 
+                string="Purchase Status Report" 
+                rml="hatta_reports/report/purchase_status_report.jrxml"/>
+        
+        <report id="cost_sheet_analysis" 
+                model="cost.sheet.analysis" 
+                name="cost.sheet.analysis.jasper" 
+                string="Cost Analysis" 
+                rml="hatta_reports/report/cost_analysis_report.jrxml"/>
+        
+        <report id="report_purchase_order_status" 
+                model="purchase.order.status" 
+                name="purchase_order_status_jasper" 
+                string="Purchase Order Status Report" 
+                rml="hatta_reports/report/po_status_report.jrxml"/>
+        
+        <report id="report_po_summary" 
+                model="po.summary" 
+                name="po.summary.jasper" 
+                string="Purchase Summary Report" 
+                rml="hatta_reports/report/purchase_summary_report.jrxml"/>
+        
+        <report id="report_inv_summary" 
+                model="invoice.summary" 
+                name="inv.summary.jasper" 
+                string="Invoice Summary Report" 
+                rml="hatta_reports/report/invoice_summary_report.jrxml"/>
+        
+        <report id="report_purchase_inv_summary" 
+                model="purchase.invoice.summary" 
+                name="purchase.inv.summary.jasper" 
+                string="Purchase Invoice Summary Report" 
+                rml="hatta_reports/report/purchase_invoice_summary_report.jrxml"/>
+        
+        <report id="report_sale_summary" 
+                model="sale.summary" 
+                name="sale.summary.jasper" 
+                string="Sales Order Summary Report" 
+                rml="hatta_reports/report/sale_summary_report.jrxml"/>
+        
+        <report id="report_enq_status" 
+                model="crm.lead" 
+                name="enq.status.jasper" 
+                string="Enquiry Status Report" 
+                rml="hatta_reports/report/enquiry_status_report.jrxml"/>
+                
+        <report id="report_quo_send_status" 
+                model="quotation.send.status.report" 
+                name="quo.send.status.jasper" 
+                string="Quotation Send Status Report" 
+                rml="hatta_reports/report/quo_send_status_report.jrxml"/>
+        
+        <report id="report_po_datasheet" 
+                model="purchase.order" 
+                name="datasheet.jasper" 
+                string="P.O Data Sheet" 
+                rml="hatta_reports/report/datasheet_report.jrxml"/>
+        
+        <report id="report_quo_upcoming" 
+                model="quotation.upcoming.report" 
+                name="quo.upcoming.jasper" 
+                string="Upcoming Quotation Report" 
+                rml="hatta_reports/report/upcoming_quo.jrxml"/>
+        
+        <report id="report_upcoming_delivery" 
+                model="upcoming.delivery.wizard" 
+                name="upcoming.delivery.jasper" 
+                string="Upcoming Deliveries" 
+                rml="hatta_reports/report/upcoming_delivery_report.jrxml"/>
+        
+        <report id="report_delivery_done" 
+                model="upcoming.delivery.wizard" 
+                name="delivery.done.jasper" 
+                string="Deliveries Done" 
+                rml="hatta_reports/report/delivery_done_report.jrxml"/>
+                
+        <report id="report_shipping_payment_details" 
+                model="wizard.shipping.payment.details" 
+                name="shipping_payment_details_jasper" 
+                string="Shipping Payment Details" 
+                rml="hatta_reports/report/shipping_payment_details_report.jrxml"/>
+                
+        <report id="report_supplier_invoice_details" 
+                model="wizard.supplier.invoice" 
+                name="supplier_invoice_details_jasper" 
+                string="Shipping Insurance Report" 
+                rml="hatta_reports/report/supplier_invoice_details.jrxml"/>
+                
+        <report id="report_consolidated_sale_order" 
+                model="wizard.consolidated.so" 
+                name="consolidated_sale_order_jasper" 
+                string="Consolidated Sale Order Report" 
+                rml="hatta_reports/report/consolidated_sale_order.jrxml"/>
+        
+        <report id="report_sales_return_jasper" 
+                model="sales.return.report" 
+                name="sales_return_report_jasper" 
+                string="Sales Return Report" 
+                rml="hatta_reports/report/sales_return_report_jasper.jrxml"/>
+        
+        <report id="report_delivery_order_summary" 
+                model="delivery.order.summary" 
+                name="delivery_order_summary_jasper" 
+                string="Derlivery Order Summary" 
+                rml="hatta_reports/report/delivery_order_summary.jrxml"/>
+                
+        <report id="report_invoice_uploadation" 
+                model="invoice.uploadation.wizard" 
+                name="invoice_uploadation_report_jasper" 
+                string="Invoice Online Upload Status Report" 
+                rml="hatta_reports/report/invoice_uploadation_report.jrxml"/>
+                
+        <report id="report_sale_purchase_analysis" 
+                model="sale.purchase.analysis" 
+                name="sale.purchase.analysis.jasper" 
+                string="Sales and Purchases Analysis Report" 
+                rml="hatta_reports/report/sale_purchase_analysis_report.jrxml"/>
+        
+        <record id="ir_property_webkitheadernoheader" model="ir.property">
+            <field name="fields_id" ref="report_webkit.field_ir_act_report_xml_webkit_header"/>
+            <field eval="&quot;&quot;&quot;webkit_header_no_head&quot;&quot;&quot;" name="name"/>
+            <field eval="&quot;&quot;&quot;ir.header_webkit,1&quot;&quot;&quot;" name="value"/>
+        </record>
+        <record id="ir_header_webkit_no_header" model="ir.header_webkit">
+            <field eval="&quot;&quot;&quot;Portrait&quot;&quot;&quot;" name="orientation"/>
+            <field eval="&quot;&quot;&quot;A4&quot;&quot;&quot;" name="format"/>
+            <field name="footer_html"><![CDATA[<html>
+    <head>
+        <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+        <script>
+            function subst() {
+            var vars={};
+            var x=document.location.search.substring(1).split('&');
+            for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+            var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+            for(var i in x) {
+            var y = document.getElementsByClassName(x[i]);
+            for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+                }
+            }
+        </script>
+    </head>
+    <body style="border:0; margin: 0;" onload="subst()">
+    </body>
+</html>]]></field>
+            <field name="html"><![CDATA[<html>
+    <head>
+        <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+        <script>
+            function subst() {
+            var vars={};
+            var x=document.location.search.substring(1).split('&');
+            for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+            var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+            for(var i in x) {
+            var y = document.getElementsByClassName(x[i]);
+            for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+                }
+            }
+        </script>
+        <style type="text/css">
+            ${css}
+        </style>
+    </head>
+    <body style="border:0; margin: 0;" onload="subst()">
+        <table style="border-top: 1px solid black; width: 100%">
+            <tr >
+                <td></td>
+            </tr>
+        </table>
+    </body>
+</html>]]>
+</field>
+            <field eval="30.0" name="margin_top"/>
+            <field name="css" ><![CDATA[
+body {
+font-family:helvetica;
+font-size:12;
+}
+
+
+.dest_address {
+margin-left:60%;
+font-size:12;
+}
+.header {
+margin-left:0;
+text-align:left;
+width:300px;
+font-size:12;
+}
+
+.title {
+font-size:16;
+font-weight: bold;
+
+}
+
+
+.basic_table{
+text-align:center;
+border:1px solid lightGrey;
+border-collapse: collapse;
+}
+.basic_table td {
+border:1px solid lightGrey;
+font-size:12;
+
+
+}
+
+.list_table {
+border-color:black;
+text-align:center;
+border-collapse: collapse;
+
+}
+.list_table td {
+border-color:gray;
+border-top:1px solid gray;
+text-align:left;
+font-size:12;
+padding-right:3px
+padding-left:3px
+padding-top:3px
+padding-bottom:3px
+}
+
+.list_table th {
+border-bottom:2px solid black;
+text-align:left;
+font-size:12;
+font-weight:bold;
+padding-right:3px
+padding-left:3px
+}
+
+.list_tabe thead {
+    display:table-header-group;
+}
+
+
+.total {
+width:100%;
+}
+.lib {
+width:10.3%;
+}
+.tot {
+text-align:right;
+width:15%;
+}
+.lefttot {
+width:74%;
+}
+.tax {
+width:50%;
+}]]> </field>
+            <field eval="&quot;&quot;&quot;No Header&quot;&quot;&quot;" name="name"/>
+        </record>
+        
+    </data>
+    
+    <data>
+        <report auto="False" id="report_cost_sheet" model="purchase.order" name="cost.sheet"
+                rml="hatta_reports/report/cost_sheet.rml" string="Cost Sheet"
+                usage="default"/>
+        <report auto="False" id="report_convertion_report" model="crm.lead" name="convertion.report"
+                rml="hatta_reports/report/convertion_report.rml" string="Consolidated Worksheet"
+                usage="default"/>
+                
+<!--         <report auto="False" id="report_remark_report" model="crm.lead" name="remarks.report" -->
+<!--                 rml="hatta_reports/report/remarks_report.rml" string="Remarks Report" -->
+<!--                 usage="default"/> -->
+<!--         <report id="report_remark_report_jasper"  -->
+<!--                 model="crm.lead"  -->
+<!--                 name="remarks.report.jasper"  -->
+<!--                 string="Remarks Report"  -->
+<!--                 rml="hatta_reports/report/remark_report.jrxml"/> -->
+        <report auto="False" id="report_covering_letter" model="crm.lead" name="covering.letter"
+                rml="hatta_reports/report/covering_letter.rml" string="Covering Letter(COMMERCIAL)"
+                usage="default" menu="False"/>
+        <report auto="False" id="report_covering_letter_tech" model="crm.lead" name="covering.letter.tech"
+                rml="hatta_reports/report/covering_letter_tech.rml" string="Covering Letter(TECHNICAL)"
+                usage="default" menu="False"/>
+        <report auto="False" id="report_worksheet_report" model="purchase.order" name="worksheet.report"
+                rml="hatta_reports/report/rfq_worksheet_report.rml" string="Worksheet Report"
+                usage="default"/>
+        
+        <report id="stock.report_picking_list_in" 
+        	model="stock.picking.in" name="stock.picking.list.in" 
+        	string="Receipt Slip" rml="hatta_reports/report/picking_report.rml"/>
+        
+    </data>
+    <data noupdate="1">
+        
+        <report auto="False"
+                id="report_webkit_remark"
+                model="crm.lead"
+                name="webkit.remark.report"
+                file="hatta_reports/report/remark_report_webkit.mako"
+                string="Remark Report"
+                report_type="webkit"
+                webkit_header="hatta_reports.ir_header_webkit_no_header"/>
+    </data>
+</openerp>

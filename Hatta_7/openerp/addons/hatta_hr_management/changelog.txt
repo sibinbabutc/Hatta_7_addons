@@ -1,0 +1,20 @@
+Version 1.7 - 21/12/2015 by Soorya
+	* Correction in Active Contract in Employee Master.
+
+Version 1.6 - 17/12/2015 by Soorya
+	* Modification in Active Contract in Employee Master.
+
+Version 1.5 - 08/12/2015 by Soorya
+	* Active Contract in Employee Master.
+	
+Version 1.4 - 30/11/2015 by Soorya
+	* Fix in Payslip Report.
+
+Version 1.3 - 25/11/2015 by Soorya
+	* Modification in Payslip Report and Leave Salary.
+
+Version 1.2 - 24/11/2015 by Soorya
+	* Leave Salary Modification.
+
+Version 1.1 - 23/11/2015 by Soorya
+	* HR Payslip Report.

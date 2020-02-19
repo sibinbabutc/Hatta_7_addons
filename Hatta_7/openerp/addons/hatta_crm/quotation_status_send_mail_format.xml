@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<openerp>
+    <data noupdate="1">
+
+        <record id="quotation_mail_template" model="email.template">
+            <field name="name">Quotation Status Email</field>
+            <field name="email_from">Hatta ERP&lt;hatta@hatta.ae&gt;</field>
+            <field name="subject">Quotation Status Report Dated ${object.date|format_date("%d/%m/%Y")}</field>
+            <field name="email_to">hashim@hatta.ae</field>
+            <field name="lang">${object.lang}</field>
+            <field name="model_id" ref="hatta_crm.model_quotation_status"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+
+Hello,
+     <p>Following is a summary of quotations submitted on ${object.date|format_date("%d/%m/%Y")}</p>
+
+<table cellspacing="1" border="0" cellpadding="4">
+    <tr>
+        <th>T.B Submission</th><th>:    </th><td align="right">${object.tb_count}</td></tr>
+        <tr><th>Email Submission</th><th>:    </th><td>${object.email_count}</td></tr>
+       <tr> <th>Late Quote Submission</th><th>:    </th><td>${object.late_count}</td></tr>
+        <tr><th>Revised Bid</th><th>:    </th><td>${object.revised}</td></tr>
+        <tr><th>Regret</th><th>:    </th><td>${object.regret}</td></tr>
+        <tr><th>Other</th><th>:    </th><td>${object.other}</td>
+    </tr>
+</table>
+<p>Detailed report can be downloaded from attachment.</p>
+<p>
+    Thanks,
+</p>
+
+<pre>
+-- 
+OpenERP Automatic Email
+</pre>
+            ]]></field>
+        </record>
+        <!--
+
+        -->
+
+        <record model="ir.cron" id="account_analytic_cron">
+            <field name="name">Contract expiration reminder</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">weeks</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="model" eval="'account.analytic.account'"/>
+            <field name="function" eval="'cron_account_analytic_account'"/>
+            <field name="args" eval="'()'" />
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="sales_return_wizard_form" model="ir.ui.view">
+            <field name="name">sales.return.wizard.form</field>
+            <field name="model">sales.return.report</field>
+            <field name="arch" type="xml">
+                <form string="Sales Return Report" version="7.0">
+                    <group>
+                        <group>
+                            <field name="from_date"/>
+                            <field name="to_date"/>
+                            <field name="partner_id"/>
+                            <field name="report_type" required="True"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="print_report" string="Print" type="object"
+                            class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_sales_return_wizard" model="ir.actions.act_window">
+            <field name="name">Sales Return Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sales.return.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="sales_return_wizard_form"/>
+            <field name="target">new</field>
+            <field name="multi">True</field>
+        </record>
+        
+        <menuitem id="menu_sales_return_report" parent="hatta_reports.hatta_inv_report"
+                action="action_sales_return_wizard"
+                string="Sales Return Report"
+                sequence="4" groups="hatta_crm.group_sale_return"/>
+    </data>
+</openerp>

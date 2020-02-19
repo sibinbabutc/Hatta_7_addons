@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="transaction_type_selection" model="ir.ui.view">
+          <field name="name">transaction.type.selection.form</field>
+          <field name="model">purchase.type.selection</field>
+          <field name="arch" type="xml">
+            <form string="Select Transaction Type" version="7.0">
+                <group>
+                    <field name="transaction_type_id" required="True"
+                        domain="[('model_id.model', '=', 'purchase.order'),('direct_purchase', '=', True)]"/>
+                </group>
+                <footer>
+                   <button icon="gtk-execute" name="open_record" string="Continue" type="object"  default_focus="1" class="oe_highlight"/>
+                    or
+                   <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+                    
+                </footer>
+            </form>
+          </field>
+       </record>
+       
+       <record id="action_transaction_type_selection" model="ir.actions.act_window">
+          <field name="name">Transaction Type Selection</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">purchase.type.selection</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="transaction_type_selection"/>
+          <field name="target">new</field>
+       </record>
+       
+       <menuitem name="Purchase Order(SATV/General)" id="hatta_stock_po_satv_gen" parent="hatta_crm.hatta_stock_processing"
+             sequence="2" action="action_transaction_type_selection" groups="group_purchase_satv_gen"/>
+       
+    </data>
+</openerp>

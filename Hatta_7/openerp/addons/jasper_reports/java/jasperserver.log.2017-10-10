@@ -1,0 +1,306 @@
+4    [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcErrorLogger - Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Failed to parse the xml document
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Failed to parse the xml document
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:129)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:106)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:46)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:86)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:200)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:208)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.JRException: Failed to parse the xml document
+	at net.sf.jasperreports.engine.util.JRXmlUtils.parse(JRXmlUtils.java:76)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:251)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:318)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:337)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:332)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:225)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:126)
+	at sun.reflect.GeneratedMethodAccessor15.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:115)
+	... 6 more
+Caused by: org.xml.sax.SAXParseException; lineNumber: 9; columnNumber: 14; An invalid XML character (Unicode: 0xfffe) was found in the element content of the document.
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:257)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:338)
+	at net.sf.jasperreports.engine.util.JRXmlUtils.parse(JRXmlUtils.java:72)
+	... 16 more
+Caused by:
+net.sf.jasperreports.engine.JRException: Failed to parse the xml document
+	at net.sf.jasperreports.engine.util.JRXmlUtils.parse(JRXmlUtils.java:76)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:251)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:318)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:337)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:332)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:225)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:126)
+	at sun.reflect.GeneratedMethodAccessor15.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:115)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:106)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:46)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:86)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:200)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:208)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: org.xml.sax.SAXParseException; lineNumber: 9; columnNumber: 14; An invalid XML character (Unicode: 0xfffe) was found in the element content of the document.
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:257)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:338)
+	at net.sf.jasperreports.engine.util.JRXmlUtils.parse(JRXmlUtils.java:72)
+	... 16 more
+23763 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcErrorLogger - Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Failed to parse the xml document
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Failed to parse the xml document
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:129)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:106)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:46)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:86)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:200)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:208)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.JRException: Failed to parse the xml document
+	at net.sf.jasperreports.engine.util.JRXmlUtils.parse(JRXmlUtils.java:76)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:251)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:318)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:337)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:332)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:225)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:126)
+	at sun.reflect.GeneratedMethodAccessor15.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:115)
+	... 6 more
+Caused by: org.xml.sax.SAXParseException; lineNumber: 9; columnNumber: 14; An invalid XML character (Unicode: 0xfffe) was found in the element content of the document.
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:257)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:338)
+	at net.sf.jasperreports.engine.util.JRXmlUtils.parse(JRXmlUtils.java:72)
+	... 16 more
+Caused by:
+net.sf.jasperreports.engine.JRException: Failed to parse the xml document
+	at net.sf.jasperreports.engine.util.JRXmlUtils.parse(JRXmlUtils.java:76)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:251)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:318)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:337)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:332)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:225)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:126)
+	at sun.reflect.GeneratedMethodAccessor15.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:115)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:106)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:46)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:86)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:200)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:208)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: org.xml.sax.SAXParseException; lineNumber: 9; columnNumber: 14; An invalid XML character (Unicode: 0xfffe) was found in the element content of the document.
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:257)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:338)
+	at net.sf.jasperreports.engine.util.JRXmlUtils.parse(JRXmlUtils.java:72)
+	... 16 more
+93567 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcErrorLogger - Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Failed to parse the xml document
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Failed to parse the xml document
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:129)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:106)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:46)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:86)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:200)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:208)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.JRException: Failed to parse the xml document
+	at net.sf.jasperreports.engine.util.JRXmlUtils.parse(JRXmlUtils.java:76)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:251)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:318)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:337)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:332)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:225)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:126)
+	at sun.reflect.GeneratedMethodAccessor15.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:115)
+	... 6 more
+Caused by: org.xml.sax.SAXParseException; lineNumber: 9; columnNumber: 14; An invalid XML character (Unicode: 0xfffe) was found in the element content of the document.
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:257)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:338)
+	at net.sf.jasperreports.engine.util.JRXmlUtils.parse(JRXmlUtils.java:72)
+	... 16 more
+Caused by:
+net.sf.jasperreports.engine.JRException: Failed to parse the xml document
+	at net.sf.jasperreports.engine.util.JRXmlUtils.parse(JRXmlUtils.java:76)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:251)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:318)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:337)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:332)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:225)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:126)
+	at sun.reflect.GeneratedMethodAccessor15.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:115)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:106)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:46)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:86)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:200)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:208)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: org.xml.sax.SAXParseException; lineNumber: 9; columnNumber: 14; An invalid XML character (Unicode: 0xfffe) was found in the element content of the document.
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:257)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:338)
+	at net.sf.jasperreports.engine.util.JRXmlUtils.parse(JRXmlUtils.java:72)
+	... 16 more
+205340 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcErrorLogger - Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Failed to parse the xml document
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Failed to parse the xml document
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:129)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:106)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:46)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:86)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:200)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:208)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.JRException: Failed to parse the xml document
+	at net.sf.jasperreports.engine.util.JRXmlUtils.parse(JRXmlUtils.java:76)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:251)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:318)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:337)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:332)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:225)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:126)
+	at sun.reflect.GeneratedMethodAccessor15.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:115)
+	... 6 more
+Caused by: org.xml.sax.SAXParseException; lineNumber: 9; columnNumber: 14; An invalid XML character (Unicode: 0xfffe) was found in the element content of the document.
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:257)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:338)
+	at net.sf.jasperreports.engine.util.JRXmlUtils.parse(JRXmlUtils.java:72)
+	... 16 more
+Caused by:
+net.sf.jasperreports.engine.JRException: Failed to parse the xml document
+	at net.sf.jasperreports.engine.util.JRXmlUtils.parse(JRXmlUtils.java:76)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:251)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:318)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:337)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:332)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:225)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:126)
+	at sun.reflect.GeneratedMethodAccessor15.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:115)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:106)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:46)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:86)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:200)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:208)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: org.xml.sax.SAXParseException; lineNumber: 9; columnNumber: 14; An invalid XML character (Unicode: 0xfffe) was found in the element content of the document.
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:257)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:338)
+	at net.sf.jasperreports.engine.util.JRXmlUtils.parse(JRXmlUtils.java:72)
+	... 16 more
+222102 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcErrorLogger - Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Failed to parse the xml document
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Failed to parse the xml document
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:129)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:106)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:46)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:86)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:200)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:208)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.JRException: Failed to parse the xml document
+	at net.sf.jasperreports.engine.util.JRXmlUtils.parse(JRXmlUtils.java:76)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:251)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:318)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:337)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:332)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:225)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:126)
+	at sun.reflect.GeneratedMethodAccessor15.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:115)
+	... 6 more
+Caused by: org.xml.sax.SAXParseException; lineNumber: 9; columnNumber: 14; An invalid XML character (Unicode: 0xfffe) was found in the element content of the document.
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:257)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:338)
+	at net.sf.jasperreports.engine.util.JRXmlUtils.parse(JRXmlUtils.java:72)
+	... 16 more
+Caused by:
+net.sf.jasperreports.engine.JRException: Failed to parse the xml document
+	at net.sf.jasperreports.engine.util.JRXmlUtils.parse(JRXmlUtils.java:76)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:251)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:318)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:337)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:332)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:225)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:126)
+	at sun.reflect.GeneratedMethodAccessor15.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:115)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:106)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:46)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:86)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:200)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:208)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: org.xml.sax.SAXParseException; lineNumber: 9; columnNumber: 14; An invalid XML character (Unicode: 0xfffe) was found in the element content of the document.
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:257)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:338)
+	at net.sf.jasperreports.engine.util.JRXmlUtils.parse(JRXmlUtils.java:72)
+	... 16 more
+479400 [XML-RPC-0] ERROR org.apache.xmlrpc.server.XmlRpcErrorLogger - Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Failed to parse the xml document
+org.apache.xmlrpc.common.XmlRpcInvocationException: Failed to invoke method execute in class com.nantic.jasperreports.JasperServer: Failed to parse the xml document
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:129)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:106)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:46)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:86)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:200)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:208)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: net.sf.jasperreports.engine.JRException: Failed to parse the xml document
+	at net.sf.jasperreports.engine.util.JRXmlUtils.parse(JRXmlUtils.java:76)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:251)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:318)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:337)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:332)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:225)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:126)
+	at sun.reflect.GeneratedMethodAccessor15.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:115)
+	... 6 more
+Caused by: org.xml.sax.SAXParseException; lineNumber: 9; columnNumber: 14; An invalid XML character (Unicode: 0xfffe) was found in the element content of the document.
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:257)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:338)
+	at net.sf.jasperreports.engine.util.JRXmlUtils.parse(JRXmlUtils.java:72)
+	... 16 more
+Caused by:
+net.sf.jasperreports.engine.JRException: Failed to parse the xml document
+	at net.sf.jasperreports.engine.util.JRXmlUtils.parse(JRXmlUtils.java:76)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:251)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:318)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:337)
+	at net.sf.jasperreports.engine.data.JRXmlDataSource.<init>(JRXmlDataSource.java:332)
+	at com.nantic.jasperreports.JasperServer.privateExecute(JasperServer.java:225)
+	at com.nantic.jasperreports.JasperServer.execute(JasperServer.java:126)
+	at sun.reflect.GeneratedMethodAccessor15.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.invoke(ReflectiveXmlRpcHandler.java:115)
+	at org.apache.xmlrpc.server.ReflectiveXmlRpcHandler.execute(ReflectiveXmlRpcHandler.java:106)
+	at org.apache.xmlrpc.server.XmlRpcServerWorker.execute(XmlRpcServerWorker.java:46)
+	at org.apache.xmlrpc.server.XmlRpcServer.execute(XmlRpcServer.java:86)
+	at org.apache.xmlrpc.server.XmlRpcStreamServer.execute(XmlRpcStreamServer.java:200)
+	at org.apache.xmlrpc.webserver.Connection.run(Connection.java:208)
+	at org.apache.xmlrpc.util.ThreadPool$Poolable$1.run(ThreadPool.java:68)
+Caused by: org.xml.sax.SAXParseException; lineNumber: 9; columnNumber: 14; An invalid XML character (Unicode: 0xfffe) was found in the element content of the document.
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:257)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:338)
+	at net.sf.jasperreports.engine.util.JRXmlUtils.parse(JRXmlUtils.java:72)
+	... 16 more

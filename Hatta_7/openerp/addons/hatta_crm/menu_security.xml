@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <menuitem name="Phone Calls" id="crm.menu_crm_case_phone"
+            groups="group_hatta_unwanted"
+            parent="base.menu_base_partner" sequence="4"/>
+        <menuitem id="stock.menu_stock_products_moves" name="Receive/Deliver Products"
+            parent="stock.menu_stock_root" sequence="2"
+            groups="group_hatta_unwanted"/>
+        <menuitem id="stock.menu_traceability" name="Traceability" parent="stock.menu_stock_root" 
+            sequence="3" groups="group_hatta_unwanted"/>
+        <menuitem id="procurement.menu_stock_sched" name="Schedulers" parent="stock.menu_stock_root"
+            sequence="4" groups="group_hatta_unwanted"/>
+        <menuitem action="procurement.action_orderpoint_form" id="procurement.menu_stock_order_points"
+            parent="stock.menu_stock_configuration" sequence="10"
+            groups="group_hatta_unwanted"/>
+        <menuitem id="purchase.menu_procurement_management_inventory" name="Incoming Products"
+            parent="base.menu_purchase_root" sequence="4"
+            groups="group_hatta_unwanted"/>
+        <menuitem name="Messaging" id="mail.mail_feeds_main" groups="group_hatta_unwanted"
+            sequence="10"/>
+        <menuitem action="sale.action_shop_form" id="menu_action_shop_form"
+            parent="base.menu_base_config" sequence="35" groups="group_hatta_unwanted"/>
+        <menuitem action="crm.crm_case_section_act"
+            id="crm.menu_crm_case_section_act" sequence="15"
+            parent="base.menu_base_config" groups="group_hatta_unwanted"/>
+        
+        <menuitem name="Enquiry"
+            id="hatta_enq_root" sequence="2"/>
+        
+        <menuitem name="Opportunities/Enquiries"
+            id="hatta_enq_main" parent="hatta_enq_root" sequence="1"
+            groups="group_opp_main"/>
+        
+        <menuitem name="Opportunities/Enquiries"
+            id="hatta_enq_opp" action="crm.crm_case_category_act_oppor11" parent="hatta_enq_main"/>
+        
+        <menuitem name="PDF to Enquiry" id="hatta_menu_pdf_opp" parent="hatta_enq_main"
+                action="hatta_opp_create_action"/>
+        
+        <menuitem name="Send Quotation Status" id="hatta_menu_send_quo" parent="hatta_enq_main"
+                action="view_quotation_status_action"/>
+        
+        <menuitem name="Request For Quotation"
+            id="hatta_rfq_main" parent="hatta_enq_root" sequence="2"
+            groups="group_opp_rfq"/>
+        
+        <menuitem name="Request For Quotation"
+            id="hatta_rfq" parent="hatta_rfq_main"
+            action="purchase.purchase_rfq" sequence="0"/>
+        
+        <menuitem name="RFQ Table Contents"
+            id="menu_purchase_rfq_contents" parent="hatta_rfq_main" sequence="2"
+            action="action_purchase_rfq_contents"/>
+            
+<!--         <menuitem action="action_purchase_rfq_contents" id="menu_purchase_rfq_contents" string="RFQ Contents" -->
+<!--             parent="purchase.menu_procurement_management" -->
+<!--             sequence="6"/> -->
+            
+        
+        
+        <menuitem id="base.menu_partner_form" parent="base.menu_sales"
+                        action="base.action_partner_form" sequence="1"
+                        groups="group_hatta_unwanted"/>
+        
+        <menuitem name="Leads" id="crm.menu_crm_leads" parent="base.menu_sales"
+                    action="crm.crm_case_category_act_leads_all" sequence="2"
+                    groups="group_hatta_unwanted"/>
+        
+        <menuitem name="Opportunities" id="crm.menu_crm_opportunities"
+                parent="base.menu_sales" action="crm.crm_case_category_act_oppor11" sequence="3"
+                groups="group_hatta_unwanted"/>
+        
+        <menuitem id="base.menu_base_config" parent="base.menu_base_partner" name="Configuration" 
+            sequence="30" groups="group_hatta_unwanted"/>
+        
+            
+<!--         <menuitem id="base.menu_sales" name="Sales" parent="base.menu_base_partner" sequence="1" -->
+<!--             groups="group_sale_sale"/> -->
+        
+        <menuitem id="base.menu_product" name="Products" parent="base.menu_base_partner" sequence="9"
+            groups="group_hatta_unwanted"/>
+        
+<!--         <menuitem id="purchase.menu_procurement_management" name="Purchase" -->
+<!--             parent="base.menu_purchase_root" sequence="1" groups="group_hatta_unwanted"/> -->
+        
+<!--         <menuitem id="purchase.menu_procurement_management_invoice" name="Invoice Control" -->
+<!--             parent="base.menu_purchase_root" sequence="6" groups="group_hatta_unwanted"/> -->
+        
+<!--         <menuitem name="Partner Data" -->
+<!--             id="hatta_partner_data_menu_purchase" parent="base.menu_purchase_root" sequence="2" -->
+<!--             groups="group_purchase_partner"/> -->
+        
+<!--         <menuitem name="Customers" -->
+<!--             id="hatta_customer_menu_purchase" parent="hatta_partner_data_menu_purchase" -->
+<!--             action="base.action_partner_form"/> -->
+        
+<!--         <menuitem name="Suppliers" -->
+<!--             id="hatta_supplier_menu_purchase" parent="hatta_partner_data_menu_purchase" -->
+<!--             action="base.action_partner_supplier_form"/> -->
+        
+<!--         <menuitem id="purchase.menu_procurement_management_product" name="Products" -->
+<!--           parent="base.menu_purchase_root" sequence="8" groups="group_purchase_product"/> -->
+        
+        <menuitem name="Human Resources"
+            id="hr.menu_hr_root"
+            groups="base.group_hr_manager,base.group_hr_user"
+            sequence="90"/>
+        
+        <menuitem name="Knowledge"
+            id="knowledge.menu_document"
+            groups="group_hatta_unwanted"
+            sequence="116"/>
+        
+        <menuitem name="Warehouse"
+            id="menu_stock_root"
+            groups="group_hatta_unwanted"
+            sequence="70"/>
+        
+        <menuitem name="Reporting"
+            id="base.menu_reporting"
+            groups="group_hatta_unwanted"
+            sequence="170"/>
+        
+        <menuitem name="Purchases"
+            id="base.menu_purchase_root"
+            groups="group_hatta_unwanted"
+            sequence="60"/>
+        
+        <menuitem name="Invoicing"
+            id="account.menu_finance"
+            groups="base.group_no_one"
+            sequence="50"/>
+<!--         <menuitem id="base.menu_invoiced" name="Invoicing" parent="base.menu_base_partner" -->
+<!--                  sequence="5" groups="group_hatta_unwanted"/> -->
+        
+        <menuitem id="hatta_master_data_root" name="Master" sequence="1"/>
+        
+        <menuitem id="hatta_reporting" name="Reporting" sequence="50"/>
+        <menuitem id="hatta_account_report" name="Accounting Reports" sequence="2" parent="hatta_reporting"/>
+        
+        <menuitem id="hatta_master_data" name="Inventory Master" sequence="1" parent="hatta_master_data_root"/>
+        
+        <menuitem id="hatta_master_data_country" name="Country"
+                 action="base.action_country" sequence="5" parent="hatta_master_data"
+                 groups="group_country"/>
+        
+        <menuitem id="hatta_master_data_currency" name="Currency"
+                 action="base.action_currency_form" sequence="5" parent="hatta_master_data"
+                 groups="group_curr"/>
+        
+        <menuitem id="hatta_master_data_location" name="Location"
+                 action="sale.action_shop_form" sequence="5" parent="hatta_master_data"
+                 groups="group_loc"/>
+        
+        <menuitem id="hatta_master_data_salesman" name="Sales Person"
+                 action="base.action_res_users" sequence="5" parent="hatta_master_data"
+                 groups="group_sp"/>
+        
+        <menuitem name="Suppliers"
+            id="hatta_master_data_supplier" parent="hatta_master_data"
+            action="base.action_partner_supplier_form"
+            groups="group_supp"/>
+        
+        <menuitem name="Customers"
+            id="hatta_master_data_customer" parent="hatta_master_data"
+            action="base.action_partner_form"
+            groups="group_cust"/>
+        
+        <menuitem name="Product"
+            id="hatta_master_data_product" parent="hatta_master_data"
+            action="product.product_normal_action"
+            groups="group_prod"/>
+        
+        <menuitem name="Payment Terms"
+            id="hatta_master_data_pay_term" parent="hatta_master_data"
+            action="account.action_payment_term_form"
+            groups="group_pt"/>
+        
+        <menuitem name="Transaction Type" id="menu_transaction_type"
+            parent="hatta_master_data" action="hatta_account.view_transaction_type_action"
+            groups="group_tt"/>
+        
+        <menuitem name="Job Account" id="menu_job_account_master"
+            parent="hatta_master_data" action="hatta_account.view_job_account_action"
+            groups="group_ja"/>
+        
+        <menuitem id="hatta_master_acc_data" name="Accounts Master" sequence="2" parent="hatta_master_data_root"/>
+        
+        <menuitem icon="STOCK_INDENT" action="account.action_account_chart"
+            id="chart_account_master"
+            parent="hatta_master_acc_data" groups="group_acc_chart"/>
+        
+        <menuitem name="Cost Center" action="account.action_account_analytic_account_form" id="hatta_master_cost_center"
+            parent="hatta_master_acc_data" groups="group_acc_cc"/>
+        
+        <menuitem action="account.action_account_form" id="menu_action_account_form_hatta"
+            parent="hatta_master_acc_data" groups="group_acc_acc"/>
+        
+        
+        <menuitem id="hatta_gl_report" name="GL Reports" sequence="2"
+                    parent='hatta_account_report'/>
+        
+        <menuitem id="hatta_sl_report" name="SL Reports" sequence="3"
+                    parent='hatta_account_report'/>
+        
+        <menuitem id="menu_day_book_print_report" parent="hatta_gl_report"
+                    action="hatta_account.action_day_book_print" sequence="120" icon="STOCK_PRINT"/>
+        
+        <menuitem id="menu_partner_ageing_report" parent="hatta_sl_report" groups="group_partner_ageing"
+                    action="hatta_ageing_report.action_ageing_report_print" sequence="3"/>
+        
+        <menuitem id="hatta_tb_report" name="Trial Balance" sequence="2"
+                    groups="group_acc_tb" parent='hatta_gl_report' action="hatta_tb_report.action_jasper_trial_balance"/>
+        
+        <menuitem id="hatta_sl_report_print" name="Sub Ledger Report" sequence="1"
+                    groups="group_acc_sl" parent='hatta_sl_report' action="hatta_account.action_subledger_print"/>
+        
+        <menuitem id="hatta_job_sl_report_print" name="Job Sub Ledger Report" sequence="2"
+                    groups="group_acc_sl_job" parent='hatta_sl_report' action="hatta_account.action_subledger_print_job"/>
+        
+        <menuitem id="hatta_gen_ledger_print" name="General Ledger" sequence="3"
+                    groups="group_gen_ledger" parent='hatta_gl_report' action="hatta_account.action_gen_led_print_job"/>
+        
+        <menuitem 
+            id="menu_my_dashboard_reporting"
+            parent="hatta_account_report"
+            action="board.open_board_my_dash_action"
+            sequence="1"/>
+        
+        
+        <menuitem 
+            id="menu_partner_review"
+            parent="hatta_account_report"
+            action="action_partner_review_board"
+            sequence="99"/>
+        
+        
+        
+        
+        
+        
+        <menuitem id="account_followup.menu_sale_followup" parent="base.menu_sales_followup" sequence="10" 
+                  action="account_followup.action_customer_my_followup"
+                  groups="group_hatta_unwanted"/>
+        
+        <menuitem action="sale_stock.outgoing_picking_list_to_invoice" id="sale_stock.menu_action_picking_list_to_invoice"
+                  parent="base.menu_invoiced" groups="group_hatta_unwanted"
+                  sequence="20"/>
+        
+        <menuitem name="Delivery Note" id="sale_delivery_note" parent="base.menu_sales"
+                    action="stock.action_picking_tree" sequence="97"
+                    groups="group_del"/>
+        
+        <menuitem action="action_picking_tree_out_ret" id="menu_action_picking_del_ret"
+                    parent="base.menu_sales" sequence="98"
+                    groups="group_del_ret"/>
+        
+        
+        
+        <menuitem name="Sale Invoice" id="sale_invoice" parent="base.menu_sales"
+                    action="action_invoice_tree1_hatta" sequence="99"
+                    groups="group_sale_invoice"/>
+        
+        <menuitem name="Sale Return" id="sale_invoice_return" parent="hatta_crm.hatta_account_report"
+                    action="account.action_invoice_tree3" sequence="100"
+                    groups="group_sale_return"/>
+        
+        <menuitem id="sale.menu_sale_quotations"
+            action="sale.action_quotations" parent="base.menu_sales"
+            sequence="4" groups="group_Quot"/>
+        
+        <menuitem action="sale.action_orders" id="sale.menu_sale_order" parent="base.menu_sales"
+            sequence="5" groups="group_sale"/>
+            
+        <menuitem id="hatta_account.menu_day_book_print" parent="account.final_accounting_reports"
+                    action="hatta_account.action_day_book_print" sequence="120" icon="STOCK_PRINT"
+                    groups="group_day_book"/>
+    </data>
+</openerp>

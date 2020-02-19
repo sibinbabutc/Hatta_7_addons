@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <menuitem id="rejection_mangement_root" name="Inventory Management"/>
+        
+        <record model='ir.ui.view' id='view_rejection_model_form'>
+            <field name="name">view.rejection.model.form</field>
+            <field name="model">rejection.model</field>
+            <field name="arch" type="xml">
+                <form string="Rejection Management" version="7.0">
+                    <header>
+                        <button name="%(action_create_re_delivery)d" type="action"
+                                string="Re-Deliver" states="confirm"
+                                class="oe_highlight"
+                                confirm="Are You Sure You Want To Continue ?"/>
+                        <button name="cancel" string="Cancel Rejection" states="confirm"
+                                confirm="Are You Sure You Want To Continue ?"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <label for="delivery_return_id"/>
+                        <h1>
+                            <field name="delivery_return_id" required="True" readonly="True"/>
+                        </h1>
+                        <group>
+                            <group>
+                                <field name="parent_partner_id" readonly="True"/>
+                                <field name="partner_id" readonly="True"/>
+                                <field name="picking_id" readonly="True"/>
+                            </group>
+                            <group>
+                                <field name="date" readonly="True"/>
+                                <field name="sale_id" readonly="True"/>
+                                <field name="job_id" readonly="True"/>
+                                <field name="picking_type" invisible="True"/>
+                            </group>
+                        </group>
+                        <div class="oe_right oe_button_box" name="buttons">
+	                        <button name="view_re_delivery" type="object"
+	                                string="View Re-Delivery"/>
+	                    </div>
+                        <notebook>
+                            <page string="Rejection Line(s)">
+                                <group>
+                                    <field name="line_ids" colspan="4" readonly="True" nolabel="1">
+                                        <tree string="Rejection Line(s)">
+                                            <field name="product_id"/>
+                                            <field name="lot_id"/>
+                                            <field name="uom_id"/>
+                                            <field name="qty"/>
+                                            <field name="move_id" invisible="True"/>
+                                            <field name="rej_id" invisible="True"/>
+                                            <field name="rem_qty_resupply" invisible="True"/>
+                                        </tree>
+                                    </field>
+                                    <separator string="Rejection Note" colspan="4"/>
+                                    <field name="note" colspan="4" nolabel="1"
+                                            attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                </group>
+                            </page>
+                            <page string="Related Invoice(s)">
+                                <field name="invoice_ids" colspan="4" nolabel="1" readonly="True"
+                                    context="{'form_view_ref': 'account_voucher.view_invoice_customer'}"/>
+                            </page>
+                            <page string="Ralated Purchase(s)">
+                                <field name="purchase_line_ids" readonly="True">
+                                    <tree>
+                                        <field name="order_id"/>
+                                        <field name="partner_id"/>
+                                        <field name="price_unit"/>
+<!--                                         <field name="currency_id"/> -->
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Related Re-Picking">
+                                <field name="repicking_ids" readonly="True" nolabel="True"
+                                            colspan="4"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='view_rejection_model_tree'>
+            <field name="name">view.rejection.model.tree</field>
+            <field name="model">rejection.model</field>
+            <field name="arch" type="xml">
+                <tree string="Rejection Management">
+                    <field name="delivery_return_id"/>
+                    <field name="picking_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='view_rejection_model_search'>
+            <field name="name">view.rejection.model.search</field>
+            <field name="model">rejection.model</field>
+            <field name="arch" type="xml">
+                <search string="Rejection Management">
+                    <field name="picking_id"/>
+                </search>
+            </field>
+        </record>
+        
+        <record model='ir.actions.act_window' id='action_view_rejection_model'>
+            <field name="name">Inventory Management</field>
+            <field name="res_model">rejection.model</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_rejection_model_search"/>
+        </record>
+        
+        <menuitem id="rejection_management_parent" name="Inventory Management"
+                    parent="rejection_mangement_root"
+                    groups="hatta_rejection_management.rejection_management_user" sequence="1"/>
+        <menuitem id="rejection_management" name="Inventory Management"
+                    action="action_view_rejection_model"
+                    parent="rejection_management_parent"/>
+        <menuitem action="stock.action_inventory_form" id="menu_action_inventory_form"
+                    name="Add Stock"
+                    parent="rejection_management_parent" sequence="30"/>
+        
+        <menuitem id="product_inventory_menu" name="Products"
+                    parent="rejection_mangement_root"
+                    groups="account.group_account_manager"
+                    sequence="5"/>
+                    
+        <menuitem action="hatta_crm.product_stock_report_action"
+            id="menu_product_stock_report_inventory"
+            groups="account.group_account_manager"
+            parent="product_inventory_menu" sequence="3"/>
+        
+    </data>
+</openerp>

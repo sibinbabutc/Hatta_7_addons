@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <report id="hatta_salary_computation" 
+                model="hr.payslip.run" 
+                name="sal_computation_batch_jasper" 
+                string="Print Payroll" 
+                rml="hatta_hr_management/report/sal_computation.jrxml"/>
+                
+        <report id="hatta_payslip_report" 
+                model="hr.payslip" 
+                name="payslip_report_jasper" 
+                string="Payslip Report" 
+                rml="hatta_hr_management/report/payslip_report.jrxml"/>
+                
+        <report id="hatta_leave_salary_report" 
+                model="hr.payslip" 
+                name="leave_salary_report_jasper" 
+                string="Leave Salary Report" 
+                rml="hatta_hr_management/report/leave_salary_report.jrxml"/>
+        
+    </data>
+</openerp>

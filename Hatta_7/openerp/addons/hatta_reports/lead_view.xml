@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="crm_case_form_view_report_inherit1" model="ir.ui.view">
+            <field name="name">Opportunities</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="hatta_crm.crm_case_form_view_oppor_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='%(sale_crm.action_crm_make_sale)d'][last()]" position="after">
+                    <button name='%(hatta_print_covering_letter_action)d' states="draft,quote_send,revised"
+                            type="action" string="Print Covering Letter" icon="STOCK_PRINT"/>
+                </xpath>
+                <xpath expr="//field[@name='sale_id']" position="after">
+                    <field name="worksheet_date" readonly="1"/>
+                 </xpath>
+                 <xpath expr="//sheet/notebook/page[@string='Enquired Products']/field[@name='product_lines']" position="before">
+                 	<group col="4">
+                 		<field name="sort_sl_no"/>
+                 	</group>
+                 </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

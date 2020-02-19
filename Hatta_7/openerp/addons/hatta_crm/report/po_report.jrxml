@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="po_report" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" uuid="7d101565-3c99-4e65-a08b-14d1af1449f2">
+	<property name="ireport.zoom" value="1.1000000000000045"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="company_name" class="java.lang.String">
+		<parameterDescription><![CDATA[company_name]]></parameterDescription>
+	</parameter>
+	<parameter name="company_email" class="java.lang.String">
+		<parameterDescription><![CDATA[company_email]]></parameterDescription>
+	</parameter>
+	<parameter name="company_address" class="java.lang.String">
+		<parameterDescription><![CDATA[company_address]]></parameterDescription>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/prajul/git/Hatta_ERP_7/openerp-7.0-20140804-231303/openerp/addons/hatta_crm/report/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="user_name" class="java.lang.String">
+		<parameterDescription><![CDATA[user_name]]></parameterDescription>
+	</parameter>
+	<queryString language="XPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="report_name" class="java.lang.String">
+		<fieldDescription><![CDATA[report_name]]></fieldDescription>
+	</field>
+	<field name="partner_code" class="java.lang.String">
+		<fieldDescription><![CDATA[partner_code]]></fieldDescription>
+	</field>
+	<field name="title" class="java.lang.String">
+		<fieldDescription><![CDATA[title]]></fieldDescription>
+	</field>
+	<field name="partner_name" class="java.lang.String">
+		<fieldDescription><![CDATA[partner_name]]></fieldDescription>
+	</field>
+	<field name="partner_address" class="java.lang.String">
+		<fieldDescription><![CDATA[partner_address]]></fieldDescription>
+	</field>
+	<field name="partner_phone" class="java.lang.String">
+		<fieldDescription><![CDATA[partner_phone]]></fieldDescription>
+	</field>
+	<field name="partner_fax" class="java.lang.String">
+		<fieldDescription><![CDATA[partner_fax]]></fieldDescription>
+	</field>
+	<field name="po_no" class="java.lang.String">
+		<fieldDescription><![CDATA[po_no]]></fieldDescription>
+	</field>
+	<field name="ac_no" class="java.lang.String">
+		<fieldDescription><![CDATA[ac_no]]></fieldDescription>
+	</field>
+	<field name="date_order" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[date_order]]></fieldDescription>
+	</field>
+	<field name="line_of_order" class="java.lang.String">
+		<fieldDescription><![CDATA[line_of_order]]></fieldDescription>
+	</field>
+	<field name="po_contact" class="java.lang.String">
+		<fieldDescription><![CDATA[po_contact]]></fieldDescription>
+	</field>
+	<field name="supplier_quote_ref" class="java.lang.String">
+		<fieldDescription><![CDATA[supplier_quote_ref]]></fieldDescription>
+	</field>
+	<field name="supplier_quote_date" class="java.lang.String">
+		<fieldDescription><![CDATA[supplier_quote_date]]></fieldDescription>
+	</field>
+	<field name="curr_name" class="java.lang.String">
+		<fieldDescription><![CDATA[curr_name]]></fieldDescription>
+	</field>
+	<field name="curr_sym" class="java.lang.String">
+		<fieldDescription><![CDATA[curr_sym]]></fieldDescription>
+	</field>
+	<field name="supp_shipping" class="java.lang.String">
+		<fieldDescription><![CDATA[supp_shipping]]></fieldDescription>
+	</field>
+	<field name="po_lines" class="java.lang.Object">
+		<fieldDescription><![CDATA[po_lines]]></fieldDescription>
+	</field>
+	<field name="po_charge_lines" class="java.lang.Object">
+		<fieldDescription><![CDATA[po_charge_lines]]></fieldDescription>
+	</field>
+	<field name="amount_total" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[amount_total]]></fieldDescription>
+	</field>
+	<field name="note" class="java.lang.String">
+		<fieldDescription><![CDATA[note]]></fieldDescription>
+	</field>
+	<field name="end_user" class="java.lang.String">
+		<fieldDescription><![CDATA[end_user]]></fieldDescription>
+	</field>
+	<field name="pay_term" class="java.lang.String">
+		<fieldDescription><![CDATA[pay_term]]></fieldDescription>
+	</field>
+	<field name="del_date" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[del_date]]></fieldDescription>
+	</field>
+	<field name="del_schedule" class="java.lang.String">
+		<fieldDescription><![CDATA[del_schedule]]></fieldDescription>
+	</field>
+	<field name="del_address" class="java.lang.String">
+		<fieldDescription><![CDATA[del_address]]></fieldDescription>
+	</field>
+	<field name="amount_word" class="java.lang.String">
+		<fieldDescription><![CDATA[amount_word]]></fieldDescription>
+	</field>
+	<field name="payment_term_note" class="java.lang.String">
+		<fieldDescription><![CDATA[payment_term_note]]></fieldDescription>
+	</field>
+	<field name="item_no" class="java.lang.String">
+		<fieldDescription><![CDATA[item_no]]></fieldDescription>
+	</field>
+	<field name="special_note" class="java.lang.String">
+		<fieldDescription><![CDATA[special_note]]></fieldDescription>
+	</field>
+	<field name="note_line" class="java.lang.Object">
+		<fieldDescription><![CDATA[note_line]]></fieldDescription>
+	</field>
+	<field name="delivery_mode" class="java.lang.String">
+		<fieldDescription><![CDATA[delivery_mode]]></fieldDescription>
+	</field>
+	<field name="discount" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[discount]]></fieldDescription>
+	</field>
+	<field name="rounding" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[rounding]]></fieldDescription>
+	</field>
+	<field name="attn" class="java.lang.String">
+		<fieldDescription><![CDATA[attn]]></fieldDescription>
+	</field>
+	<field name="display_del_address" class="java.lang.String">
+		<fieldDescription><![CDATA[display_del_address]]></fieldDescription>
+	</field>
+	<field name="direct_delivery" class="java.lang.String">
+		<fieldDescription><![CDATA[direct_delivery]]></fieldDescription>
+	</field>
+	<field name="lpo" class="java.lang.String">
+		<fieldDescription><![CDATA[lpo]]></fieldDescription>
+	</field>
+	<field name="sp_note_duty_exemption" class="java.lang.String">
+		<fieldDescription><![CDATA[sp_note_duty_exemption]]></fieldDescription>
+	</field>
+	<field name="liquid_damage_note" class="java.lang.String">
+		<fieldDescription><![CDATA[liquid_damage_note]]></fieldDescription>
+	</field>
+	<group name="Po_group" isStartNewPage="true" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{po_no}]]></groupExpression>
+		<groupFooter>
+			<band height="43">
+				<staticText>
+					<reportElement uuid="30771bdf-07a0-4e50-afe8-b6c89075a684" positionType="Float" stretchType="RelativeToTallestObject" x="401" y="28" width="64" height="15"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total :]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="4abef275-36a9-44c3-a206-e0bba22ec04d" positionType="Float" stretchType="RelativeToTallestObject" x="465" y="28" width="91" height="15"/>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.5"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.text.DecimalFormat($F{curr_sym} + " #,##0.00").format($F{amount_total})]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement uuid="4abef275-36a9-44c3-a206-e0bba22ec04d" stretchType="RelativeToTallestObject" x="465" y="0" width="91" height="15"/>
+					<box>
+						<topPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<textFieldExpression><![CDATA[( $F{discount} != 0.00 ? new java.text.DecimalFormat($F{curr_sym} + " #,##0.00").format($F{discount}): " ")]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="30771bdf-07a0-4e50-afe8-b6c89075a684" positionType="Float" stretchType="RelativeToTallestObject" x="401" y="14" width="64" height="15" isRemoveLineWhenBlank="true">
+						<printWhenExpression><![CDATA[$F{rounding} != null & $F{rounding} != 0.00]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Rounding Off :]]></text>
+				</staticText>
+				<textField pattern="#,##0.00">
+					<reportElement uuid="4abef275-36a9-44c3-a206-e0bba22ec04d" stretchType="RelativeToTallestObject" x="465" y="14" width="91" height="15" isRemoveLineWhenBlank="true">
+						<printWhenExpression><![CDATA[$F{rounding} != null & $F{rounding} != 0.00]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{rounding}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement uuid="c697d96b-7e40-4b77-bd73-0f4687210dbf" stretchType="RelativeToTallestObject" x="0" y="0" width="401" height="43"/>
+					<box>
+						<topPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.5"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{amount_word}]]></textFieldExpression>
+				</textField>
+				<textField pattern="" isBlankWhenNull="true">
+					<reportElement uuid="4abef275-36a9-44c3-a206-e0bba22ec04d" stretchType="RelativeToTallestObject" x="401" y="0" width="64" height="15"/>
+					<box>
+						<topPen lineWidth="0.5"/>
+						<bottomPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Times New Roman" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[( $F{discount} != 0.00 ? "Discount :" : " " )]]></textFieldExpression>
+				</textField>
+			</band>
+			<band height="13">
+				<printWhenExpression><![CDATA[$F{note} != null | $F{special_note} != null]]></printWhenExpression>
+				<subreport>
+					<reportElement uuid="a7e356cb-bec1-4654-be73-953753896b89" x="1" y="0" width="554" height="13"/>
+					<subreportParameter name="payment_term_note">
+						<subreportParameterExpression><![CDATA[$F{payment_term_note}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="pay_term">
+						<subreportParameterExpression><![CDATA[$F{pay_term}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="special_note">
+						<subreportParameterExpression><![CDATA[$F{special_note}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="del_date">
+						<subreportParameterExpression><![CDATA[$F{del_date}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="end_user">
+						<subreportParameterExpression><![CDATA[$F{end_user}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="del_address">
+						<subreportParameterExpression><![CDATA[$F{del_address}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="del_schedule">
+						<subreportParameterExpression><![CDATA[$F{del_schedule}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="note">
+						<subreportParameterExpression><![CDATA[$F{note}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="delivery_mode">
+						<subreportParameterExpression><![CDATA[$F{delivery_mode}]]></subreportParameterExpression>
+					</subreportParameter>
+					<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("//note_line")]]></dataSourceExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "po_report_footer.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+			<band height="15">
+				<printWhenExpression><![CDATA[$F{sp_note_duty_exemption} != null]]></printWhenExpression>
+				<subreport>
+					<reportElement uuid="41cda570-ea33-485a-87a6-20eaf3b8682e" x="1" y="0" width="553" height="12">
+						<printWhenExpression><![CDATA[$F{note} != null | $F{sp_note_duty_exemption} != null]]></printWhenExpression>
+					</reportElement>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="company_email">
+						<subreportParameterExpression><![CDATA[$P{company_email}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="company_address">
+						<subreportParameterExpression><![CDATA[$P{company_address}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="sp_note_duty_exemption">
+						<subreportParameterExpression><![CDATA[$F{sp_note_duty_exemption}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="company_name">
+						<subreportParameterExpression><![CDATA[$P{company_name}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="note">
+						<subreportParameterExpression><![CDATA[$F{note}]]></subreportParameterExpression>
+					</subreportParameter>
+					<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("//note_line")]]></dataSourceExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "po_report_footer1.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+			<band height="18">
+				<subreport>
+					<reportElement uuid="37cd8dce-7a0f-4c39-b724-79058aa754a7" x="1" y="0" width="553" height="13">
+						<printWhenExpression><![CDATA[$F{note} != null | $F{liquid_damage_note} != null]]></printWhenExpression>
+					</reportElement>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="liquid_damage_note">
+						<subreportParameterExpression><![CDATA[$F{liquid_damage_note}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="company_email">
+						<subreportParameterExpression><![CDATA[$P{company_email}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="company_address">
+						<subreportParameterExpression><![CDATA[$P{company_address}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="company_name">
+						<subreportParameterExpression><![CDATA[$P{company_name}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="note">
+						<subreportParameterExpression><![CDATA[$F{note}]]></subreportParameterExpression>
+					</subreportParameter>
+					<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("//note_line")]]></dataSourceExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "po_report_footer2.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupFooter>
+	</group>
+	<pageHeader>
+		<band height="201">
+			<textField>
+				<reportElement uuid="191d5f67-bb57-4702-ba54-4d18b90278f1" x="0" y="0" width="555" height="30"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{company_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d3d7aa03-cec1-4a60-bf57-9c38ae33c458" x="0" y="30" width="555" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{company_address}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0beda2c7-c573-4f30-9029-3ccfcb6c0537" x="-1" y="45" width="557" height="15"/>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{company_email}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0938a18e-59ca-4a68-a236-46d77dc775b7" x="0" y="60" width="555" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{report_name}]]></textFieldExpression>
+			</textField>
+			<frame>
+				<reportElement uuid="42b173e3-2aad-4dc0-b1d4-efc724c2e431" stretchType="RelativeToBandHeight" x="357" y="98" width="198" height="103"/>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement uuid="ed4e8fd7-6b92-4cfa-b62e-0fd561be3894" positionType="Float" x="76" y="74" width="122" height="15" isRemoveLineWhenBlank="true">
+						<printWhenExpression><![CDATA[$F{direct_delivery} != "true" | $F{item_no} != null]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{item_no}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="30771bdf-07a0-4e50-afe8-b6c89075a684" positionType="Float" x="0" y="60" width="77" height="15" isRemoveLineWhenBlank="true">
+						<printWhenExpression><![CDATA[$F{direct_delivery} != "true" | $F{item_no} != null]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Line of Order :]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+					<reportElement uuid="ed4e8fd7-6b92-4cfa-b62e-0fd561be3894" positionType="Float" x="76" y="88" width="122" height="15" isRemoveLineWhenBlank="true">
+						<printWhenExpression><![CDATA[$F{direct_delivery} != "true"]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{del_date}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="30771bdf-07a0-4e50-afe8-b6c89075a684" positionType="Float" x="0" y="88" width="77" height="15" isRemoveLineWhenBlank="true">
+						<printWhenExpression><![CDATA[$F{direct_delivery} != "true"]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Del. Date]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement uuid="ed4e8fd7-6b92-4cfa-b62e-0fd561be3894" positionType="Float" x="76" y="60" width="122" height="15" isRemoveLineWhenBlank="true">
+						<printWhenExpression><![CDATA[$F{direct_delivery} != "true" | $F{item_no} != null]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{line_of_order}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="30771bdf-07a0-4e50-afe8-b6c89075a684" positionType="Float" x="0" y="74" width="77" height="15" isRemoveLineWhenBlank="true">
+						<printWhenExpression><![CDATA[$F{direct_delivery} != "true" | $F{item_no} != null]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Item No. :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="30771bdf-07a0-4e50-afe8-b6c89075a684" positionType="Float" x="0" y="0" width="77" height="15"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[PO No. :]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement uuid="2eb75a69-3437-470a-8775-dbc8b711943e" positionType="Float" x="76" y="0" width="122" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{po_no}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="30771bdf-07a0-4e50-afe8-b6c89075a684" positionType="Float" x="0" y="15" width="77" height="15" isRemoveLineWhenBlank="true">
+						<printWhenExpression><![CDATA[$F{lpo} != null]]></printWhenExpression>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[OUR REF :]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement uuid="2eb75a69-3437-470a-8775-dbc8b711943e" positionType="Float" x="76" y="15" width="122" height="15" isRemoveLineWhenBlank="true">
+						<printWhenExpression><![CDATA[$F{lpo} != null]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{lpo}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="30771bdf-07a0-4e50-afe8-b6c89075a684" positionType="Float" x="0" y="30" width="77" height="15" isRemoveLineWhenBlank="true">
+						<printWhenExpression><![CDATA[$F{ac_no} != null]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[A/C No. :]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement uuid="114f0f93-8817-43e5-8035-da62b14e3d6a" positionType="Float" x="76" y="30" width="122" height="15" isRemoveLineWhenBlank="true">
+						<printWhenExpression><![CDATA[$F{ac_no} != null]]></printWhenExpression>
+					</reportElement>
+					<box>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ac_no}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+					<reportElement uuid="f2e49514-2c7d-4d2c-a628-0586fd786e8f" positionType="Float" x="76" y="45" width="122" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{date_order}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="30771bdf-07a0-4e50-afe8-b6c89075a684" positionType="Float" x="0" y="45" width="77" height="15"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Date :]]></text>
+				</staticText>
+			</frame>
+			<frame>
+				<reportElement uuid="5bafa9e2-0d51-4bc0-b43f-cb4f2442d6e3" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="98" width="357" height="88"/>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement uuid="7f95294e-d19c-473c-b62f-eb449ea85317" positionType="Float" x="0" y="44" width="357" height="15">
+						<printWhenExpression><![CDATA[$F{partner_fax} != null]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA["FAX : " + $F{partner_fax}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement uuid="f0f4ce0a-a33e-4ca7-976f-5fd929a4220a" positionType="Float" x="0" y="14" width="357" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[( $F{title} == null ? $F{partner_name} : $F{title} + " " + $F{partner_name} )]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement uuid="7f95294e-d19c-473c-b62f-eb449ea85317" positionType="Float" x="0" y="58" width="357" height="15">
+						<printWhenExpression><![CDATA[$F{attn} != null]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA["KIND ATTN :" + $F{attn}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement uuid="04d265b1-d9a3-4bca-abe5-4c5848351ba6" positionType="Float" x="0" y="0" width="357" height="15"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{partner_code}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement uuid="763fde3f-66a1-42e8-b303-efb323daff2a" positionType="Float" x="0" y="30" width="357" height="15">
+						<printWhenExpression><![CDATA[$F{partner_phone} != null]]></printWhenExpression>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="10"/>
+					</textElement>
+					<textFieldExpression><![CDATA["TEL : " + $F{partner_phone}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="53" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="9cb97909-0dfa-4275-88c6-7d20461e464a" x="0" y="0" width="555" height="53" isRemoveLineWhenBlank="true"/>
+				<subreportParameter name="SUBREPORT_DIR">
+					<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="supplier_quote_ref">
+					<subreportParameterExpression><![CDATA[$F{supplier_quote_ref}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="supplier_quote_date">
+					<subreportParameterExpression><![CDATA[$F{supplier_quote_date}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("//po_lines")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "po_report_line.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="45">
+			<subreport>
+				<reportElement uuid="49a68811-2381-4055-80aa-34599acef403" positionType="Float" x="0" y="0" width="555" height="45" isRemoveLineWhenBlank="true"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("//po_charge_lines")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "po_report_charge.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="13">
+			<textField evaluationTime="Report">
+				<reportElement uuid="1dc9e085-b357-41e1-bbd7-d1f061b0bbf2" x="514" y="0" width="40" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4b3d0227-5261-493b-8bd6-2bc6f732090f" x="434" y="0" width="80" height="13"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="19">
+			<subreport>
+				<reportElement uuid="79a793cc-ee1b-4253-85ec-72c613942f29" x="1" y="0" width="553" height="18"/>
+				<subreportParameter name="user_name">
+					<subreportParameterExpression><![CDATA[$P{user_name}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="display_del_address">
+					<subreportParameterExpression><![CDATA[$F{display_del_address}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="pay_term">
+					<subreportParameterExpression><![CDATA[$F{pay_term}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="del_date">
+					<subreportParameterExpression><![CDATA[$F{del_date}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="end_user">
+					<subreportParameterExpression><![CDATA[$F{end_user}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="del_address">
+					<subreportParameterExpression><![CDATA[$F{del_address}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="del_schedule">
+					<subreportParameterExpression><![CDATA[$F{del_schedule}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="delivery_mode">
+					<subreportParameterExpression><![CDATA[$F{delivery_mode}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("//note_line")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "po_report_pay_term.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

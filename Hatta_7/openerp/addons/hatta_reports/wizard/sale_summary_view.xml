@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="sale_summary_form_view" model="ir.ui.view">
+          <field name="name">sale.summary.form</field>
+          <field name="model">sale.summary</field>
+          <field name="arch" type="xml">
+            <form string="Sales Order Summary Report" version="7.0">
+                <group>
+                    <field name="transaction_type_id" domain="[('model_id.model', '=', 'sale.order'),('refund', '=', False)]"/>
+                    <field name="sale_id" domain="[('state', 'not in', ['draft', 'cancel'])]"/>
+                    <field name="partner_id" domain="[('customer', '=', True)]"/>
+                    <field name="user_id"/>
+                    <field name="shop_id"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="filter_on" invisible="True"/>
+                    <field name="sort_based_on" required="True"/>
+                    <field name="report_type" required="True"/>
+                    <field name="del_but_not_inv"/>
+                    <field name="sale_cancelled"/>
+                </group>
+                <footer>
+                   <button name="print_report" string="Print" type="object" icon="STOCK_PRINT" default_focus="1" class="oe_highlight"/>
+                    or
+                   <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+                </footer>
+            </form>
+          </field>
+       </record>
+       
+       <record id="action_sale_summary" model="ir.actions.act_window">
+          <field name="name">Sales Order Summary Report</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">sale.summary</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="sale_summary_form_view"/>
+          <field name="target">new</field>
+       </record>
+       
+       <menuitem id="menu_sale_summary" parent="hatta_reports.hatta_inv_report"
+                    action="action_sale_summary" sequence="2" icon="STOCK_PRINT"
+                    groups="hatta_reports.group_sale_summ"/>
+    </data>
+</openerp>

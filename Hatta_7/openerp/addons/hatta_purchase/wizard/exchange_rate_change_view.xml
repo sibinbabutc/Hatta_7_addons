@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="exchange_rate_change_form" model="ir.ui.view">
+          <field name="name">exchange.rate.change.form</field>
+          <field name="model">exchange.rate.change</field>
+          <field name="arch" type="xml">
+            <form string="Change Exchange Rate" version="7.0">
+                <p class="oe_grey">
+                    All the amount calculation will be reseted based on the new exchange Rate.
+                    Do you want to continue ?
+                </p>
+                <group>
+                    <group>
+                        <field name="exchange_rate" required="True"/>
+                    </group>
+                </group>
+                <footer>
+                   <button icon="gtk-execute" name="change_cost" string="Apply" type="object"  default_focus="1" class="oe_highlight"/>
+                    or
+                   <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+                    
+                </footer>
+            </form>
+          </field>
+       </record>
+       
+       <record id="action_change_exchange_rate" model="ir.actions.act_window">
+          <field name="name">Change Exchange Rate</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">exchange.rate.change</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="exchange_rate_change_form"/>
+          <field name="target">new</field>
+       </record>
+    </data>
+</openerp>

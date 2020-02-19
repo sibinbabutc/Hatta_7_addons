@@ -1,0 +1,813 @@
+<openerp>
+    <data>
+        <record id="purchase_order_line_tree_rfq" model="ir.ui.view">
+            <field name="name">purchase.order.line.tree.rfq</field>
+            <field name="model">purchase.order.line</field>
+            <field name="arch" type="xml">
+                <tree string="RFQs to Select" create="false">
+                    <field name="sequence_no" readonly="True" string="SI. No"/>
+                    <field name="order_id" readonly="True"/>
+                    <field name="product_id" readonly="True" invisible="True"/>
+                    <field name="partner_id" readonly="True" string="Supplier"/>
+                    <field name="manufacturer_id" readonly="True" context="{'default_customer': False, 'default_supplier': False, 'default_is_manufac': True, 'default_is_company': True}"/>
+                    <field name="enq_customer_id" readonly="True"/>
+                    <field name="customer_enq" readonly="True" invisible="True"/>
+                    <field name="product_qty" readonly="True"/>
+                    <field name="currency_id" readonly="True"/>
+                    <field name="price_unit" string="Unit Price FC" readonly="True" on_change="onchange_unit_price_fc(price_unit, currency_id, product_qty)"/>
+                    <field name="unit_price_lc" readonly="True"/>
+                    <field name="amount_total_lc" readonly="True"/>
+                    <field name="net_dist_cost"/>
+                    <field name="date_order" invisible="True"/>
+                    <field name="state" invisible="True"/>
+                    <field name="select_line" readonly="True"/>
+                    <field name="cost_distributed" invisible="True"/>
+                    <button name="select_po_line" type="object" icon="STOCK_APPLY" string="Select Line"
+                            attrs="{'invisible': ['|', ('select_line', '!=', False), ('cost_distributed', '=', True)]}"
+                            confirm="Do you want to select this line?"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="purchase_order_line_search_rfq" model="ir.ui.view">
+            <field name="name">purchase.order.line.search.rfq</field>
+            <field name="model">purchase.order.line</field>
+            <field name="arch" type="xml">
+                <search string="Search Purchase Order">
+                    <field name="date_order" string="Date From" filter_domain="[('date_order','&gt;=',self)]"/>
+                    <field name="date_order" string="Date To" filter_domain="[('date_order','&lt;=',self)]"/>
+                    <field name="order_id"/>
+                    <field name="product_id"/>
+                    <field name="partner_id" string="Supplier" filter_domain="[('partner_id', 'child_of', self)]"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Supplier" icon="terp-partner" domain="[]" context="{'group_by' : 'partner_id'}" />
+                        <filter string="Customer" icon="terp-partner" domain="[]" context="{'group_by' : 'enq_customer_id'}" />
+                        <filter name="enq" string="Customer Enq" icon="terp-partner" domain="[]" context="{'group_by' : 'customer_enq'}" />
+                        <filter string="Date" icon="terp-partner" domain="[]" context="{'group_by' : 'date_order'}" />
+                        <filter name="product" string="Product" icon="terp-accessories-archiver" domain="[]" context="{'group_by' : 'product_id'}" />
+                        <filter name="order" icon="terp-gtk-jump-to-rtl" string="Order Reference" domain="[]" context="{'group_by' :'order_id'}"/>
+                        <filter name="status" string="Status" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by' : 'state'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+         <!-- Purchase order: Action View-->
+        <record id="purchase_rfq_selection" model="ir.actions.act_window">
+            <field name="name">RFQs To Select</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order.line</field>
+            <field name="domain">[('state','=','bid'), ('select_line', '=', False)]</field>
+            <field name="view_mode">tree,form,graph,calendar</field>
+            <field name="context">{'search_default_enq':1, 'search_default_product':1}</field>
+            <field name="search_view_id" ref="purchase_order_line_search_rfq"/>
+            <field name="view_id" ref="purchase_order_line_tree_rfq"/>
+            <field name="help" type="html">
+              <p>
+                Here you can track all the purchase order lines to select for RFQ
+              </p>
+            </field>
+        </record>
+        
+        <record id="purchase_rfq_selected" model="ir.actions.act_window">
+            <field name="name">RFQs Selected</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order.line</field>
+            <field name="domain">[('select_line', '=', True)]</field>
+            <field name="view_mode">tree,form,graph,calendar</field>
+            <field name="search_view_id" ref="purchase_order_line_search_rfq"/>
+            <field name="view_id" ref="purchase_order_line_tree_rfq"/>
+            <field name="help" type="html">
+              <p>
+                Here you can track all the purchase order lines selected for RFQ
+              </p>
+            </field>
+        </record>
+        
+        <menuitem name="RFQ Selection" id="rfq_sel_root" parent="base.menu_purchase_root"
+            sequence="2" groups="group_hatta_unwanted"/>
+        
+        <menuitem action="purchase_rfq_selection" id="menu_purchase_rfq_selection" string="RFQs To Select"
+            parent="rfq_sel_root"
+            sequence="2"/>
+        
+        <menuitem action="purchase_rfq_selected" id="menu_purchase_rfq_selected" string="RFQs Selected"
+            parent="rfq_sel_root"
+            sequence="3"/>
+        
+        <record id="purchase_order_line_tree_rfq1" model="ir.ui.view">
+            <field name="name">purchase.order.line.tree.rfq1</field>
+            <field name="model">purchase.order.line</field>
+            <field name="arch" type="xml">
+                <tree string="RFQ Bid" create="false">
+                    <field name="sequence_no" readonly="True" string="SI. No"/>
+                    <field name="order_id" readonly="True"/>
+                    <field name="product_id" readonly="True"/>
+                    <field name="partner_id" readonly="True" string="Supplier"/>
+                    <field name="enq_customer_id" readonly="True"/>
+                    <field name="customer_enq" readonly="True"/>
+                    <field name="product_qty"/>
+                    <field name="currency_id" readonly="True"/>
+                    <field name="price_unit" string="Unit Price FC" on_change="onchange_unit_price_fc(price_unit, currency_id, product_qty)"/>
+                    <field name="unit_price_lc" on_change="onchange_unit_price_lc(unit_price_lc, currency_id, product_qty)"/>
+                    <field name="amount_total_lc" readonly="True"/>
+                    <field name="date_order" invisible="False"/>
+                    <field name="cost_distributed"/>
+                    <field name="state" invisible="False"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="purchase_rfq_selection1" model="ir.actions.act_window">
+            <field name="name">RFQ Bid</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order.line</field>
+            <field name="domain">[('state','in',['draft','bid'])]</field>
+            <field name="view_mode">tree,form,graph,calendar</field>
+            <field name="context">{'search_default_order':1}</field>
+            <field name="search_view_id" ref="purchase_order_line_search_rfq"/>
+            <field name="view_id" ref="purchase_order_line_tree_rfq1"/>
+        </record>
+        
+        <menuitem action="purchase_rfq_selection1" id="menu_purchase_rfq_selection1" string="RFQ Bid"
+            parent="rfq_sel_root"
+            sequence="1"/>
+        
+        <record id="purchase_order_line_form_inherit" model="ir.ui.view">
+            <field name="model">purchase.order.line</field>
+            <field name="inherit_id" ref="hatta_purchase.purchase_order_line_form_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="before">
+                    <header>
+                        <button name="select_po_line" type="object" icon="STOCK_APPLY" string="Select Line"
+                                    attrs="{'invisible': ['|', ('select_line', '!=', False), ('state', 'in', ['draft', 'bid'])]}"
+                                    confirm="Do you want to select this line?"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,bid,confirmed,done"/>
+                    </header>
+                </xpath>
+                <xpath expr="//field[@name='price_unit']" position="attributes">
+                    <attribute name="attrs">{'readonly': ['|', ('state', 'not in', ['draft', 'sent']),('cost_distributed', '=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="before">
+                    <button name="copy_des_sale" type="object" string="Copy Description from sale order"
+                            attrs="{'invisible': [('state', '!=', 'bid')]}"/>
+                </xpath>
+                <xpath expr="//field[@name='dist_cost']" position="after">
+                    <field name="manufacturer_id" domain="[('is_manufac', '=', True)]" context="{'default_customer': False, 'default_supplier': False, 'default_is_manufac': True, 'default_is_company': True}"/>
+                    <field name="enq_customer_id" string="Customer" readonly="True"/>
+                    <field name="customer_enq" readonly="True"/>
+                    <field name="cost_distributed" readonly="True"/>
+                    <field name="sale_price" readonly="True"/>
+                    <field name="select_line" invisible="True"/>
+<!--                     <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute> -->
+                </xpath>
+                <xpath expr="//field[@name='date_planned']" position="after">
+                    <field name='order_id' readonly="True" required="False"/>
+                    <field name="price_subtotal" string="Subtotal FC"/>
+                </xpath>
+                <xpath expr="//field[@name='net_dist_cost']" position="after">
+                    <field name="partner_id" string="Supplier"/>
+                </xpath>
+                <xpath expr="//field[@name='product_id']" position="before">
+                    <field name="sequence_no"/>
+                </xpath>
+                <xpath expr="//field[@name='product_qty']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('cost_distributed', '=', True)]}</attribute>
+                    <attribute name="on_change"></attribute>
+                </xpath>
+                <xpath expr="//field[@name='product_uom']" position="after">
+                    <button name="%(action_change_qty)d" string="Update Quanity" type="action" class="oe_link" attrs="{'invisible': ['|', ('state', '!=', 'bid'),('cost_distributed', '!=', True)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="after">
+                    <separator string="Other Charges" colspan="4"/>
+                    <field name="charge_ids" context="{'exchange_rate': context.get('exchange_rate', 1.0000)}">
+                        <tree string="Other Charges" editable="bottom">
+                            <field name="charge_id" required="True" on_change="onchange_charge_id(charge_id)"/>
+                            <field name="account_id" groups="account.group_account_manager"/>
+                            <field name="amount_fc" required="True"
+                                    on_change="onchange_amount(amount_fc,amount_lc,parent.exchange_rate,True,False,True,context)"/>
+                            <field name="amount_lc" required="True" 
+                                    on_change="onchange_amount(amount_fc,amount_lc,parent.exchange_rate,False,True,True,context)"/>
+                            <field name="pay_to_cust"/>
+                        </tree>
+                    </field>
+                    <label for="remark"/>
+                    <field name="remark" colspan="4" nolable="1" widget="text_ckeditor4"/>
+                    <label for="remark_image_ids"/>
+                    <field name="remark_image_ids" widget="many2many_binary" options="{'size': '500,400'}"/>
+                </xpath>
+                <xpath expr="//page[@string='Notes']" position="after">
+                    <page string="Certificate(s)">
+                        <label for='certificate_ids'/>
+                        <field name="certificate_ids" colspan="4" nolabel="1"/>
+                    </page>
+                </xpath>
+                <xpath expr="//field['product_id']" postion="before">
+                    <field name="sequence_no" readonly="True" string="SI. No"/>
+                </xpath>
+                <xpath expr="//field[@name='product_id']" position="attributes">
+                    <attribute name="context">{'certificate_ids': certificate_ids}</attribute>
+                </xpath>
+            </field>
+        </record>
+        
+         <record id="hatta_purchase_order_form_inherit1" model="ir.ui.view">
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="hatta_purchase.purchase_order_form_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@string='Equipment Cost']/group" position='before'>
+                    <field name="charge_ids" colspan="4" nolabel="1"  context="{'exchange_rate': context.get('exchange_rate', 1.00000)}">
+                        <tree string="Other Charges" editable="bottom">
+                            <field name="charge_id" required="True" on_change="onchange_charge_id(charge_id)"/>
+                            <field name="info"/>
+                            <button name="%(exp_info_action)d" string="Add Info" type="action"/>
+                            <field name="account_id" groups="account.group_account_manager"/>
+                            <field name="amount_fc" required="True"
+                                    on_change="onchange_amount(amount_fc,amount_lc,parent.exchange_rate,True,False,True,context)"
+                                    />
+                            <field name="amount_lc" required="True" 
+                                    on_change="onchange_amount(amount_fc,amount_lc,parent.exchange_rate,False,True,True,context)"
+                                   />
+                           <field name="pay_to_cust"/>
+                        </tree>
+                    </field>
+                </xpath>
+                <xpath expr="//field[@name='total_amount_fc']" position="after">
+                    <field name="comm_fc" readonly="True"/>
+                    <field name="net_pay_supp_fc" readonly="True"/>
+                </xpath>
+                <xpath expr="//field[@name='item']" position="after">
+                    <field name="lpo_no" attrs="{'invisible': [('direct_purchase', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='item']" position="before">
+                    <field name="display_del_address" attrs="{'invisible': [('direct_purchase', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='total_amount_lc']" position="after">
+                    <field name="comm_lc" readonly="True"/>
+                    <field name="net_pay_supp_lc" readonly="True"/>
+                </xpath>
+                <xpath expr="//field[@name='enquiry_closing_date']" position="after">
+                    <field name="display_end_user_name"/>
+                    <field name="display_inquiry_name"/>
+                    <field name="over_sale_qty_check" groups="account.group_account_manager"/>
+                    <field name="direct_delivery" attrs="{'readonly': [('state', 'not in', ['draft', 'bid', 'sent'])]}"/>
+<!--                     <field name="supplier_shipping" attrs="{'readonly': [('state', 'not in', ['draft', 'bid', 'sent'])]}"/> -->
+                    <field name="direct_del_address" attrs="{'readonly': [('state', 'not in', ['draft', 'bid', 'sent'])], 'required': [('direct_delivery', '=', True)], 'invisible': [('direct_delivery', '=', False)]}"/>
+                    <field name="direct_purchase" attrs="{'readonly': ['|', ('state', '!=', 'draft'), ('lead_id', '!=', False)]}"
+                            groups="hatta_crm.group_po_direct"/>
+                </xpath>
+                <xpath expr="//field[@name='date_order']" position="after">
+                    <field name="period_id" readonly="True" invisible="True"/>
+                </xpath>
+                <xpath expr="//field[@name='lead_id']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('direct_purchase', '!=', False)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='enquiry_date']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('direct_purchase', '!=', False)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='enquiry_closing_date']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('direct_purchase', '!=', False)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='date_order']" position="attributes">
+                    <attribute name="on_change">onchange_date_order(date_order)</attribute>
+                </xpath>
+                <xpath expr="//field[@name='freight_charges']" position="attributes">
+                    <attribute name="on_change"></attribute>
+                    <attribute name="readonly">True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='freight_charges_lc']" position="attributes">
+                    <attribute name="on_change"></attribute>
+                    <attribute name="readonly">True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='fob_charges']" position="attributes">
+                    <attribute name="on_change"></attribute>
+                    <attribute name="readonly">True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='fob_charges_lc']" position="attributes">
+                    <attribute name="on_change"></attribute>
+                    <attribute name="readonly">True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='other_charges']" position="attributes">
+                    <attribute name="on_change"></attribute>
+                    <attribute name="readonly">True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='customer_id']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('direct_purchase', '!=', False)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='customer_rfq']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('direct_purchase', '!=', False)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='other_charges_lc']" position="attributes">
+                    <attribute name="on_change"></attribute>
+                    <attribute name="readonly">True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='minimum_planned_date']" position="before">
+                    <field name="delivery_term" attrs="{'readonly': [('state', 'not in', ['draft', 'bid','sent'])]}" string="Delivery Period"/>
+                    <field name="incoterm_id" attrs="{'readonly': [('state', 'not in', ['draft', 'bid','sent'])]}" string="Delivery Term"/>
+                    <field name="del_term_place" attrs="{'readonly': [('state', 'not in', ['draft', 'bid','sent'])]}"/>
+                </xpath>
+                <xpath expr="//field[@name='minimum_planned_date']" position="after">
+                    <field name="analytic_account_id" readonly="True"/>
+                </xpath>
+                <xpath expr="//field[@name='lead_id']" position="after">
+                    <field name="has_options" invisible="True"/>
+                    <field name="parent_po_id" readonly="True" attrs="{'invisible': [('parent_po_id', '=', False)]}" string="Parent RFQ"/>
+                </xpath>
+                <xpath expr="//button[@name='view_picking']" position="attributes">
+                    <attribute name="groups">hatta_crm.group_purchase_goods_receipt</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_cancel']" position="attributes">
+                    <attribute name="groups">hatta_crm.group_cancel_purchase</attribute>
+                </xpath>
+                <xpath expr="//button[@name='purchase_cancel']" position="attributes">
+                    <attribute name="groups">hatta_crm.group_cancel_purchase</attribute>
+                </xpath>
+                <xpath expr="//field[@name='margin']" position="attributes">
+                    <attribute name="readonly"></attribute>
+                    <attribute name="attrs">{'readonly': [('direct_sale_id', '=', False)]}</attribute>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="hatta_purchase_order_form_inherit" model="ir.ui.view">
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_2_stock_picking"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_line']/tree[@string='Purchase Order Lines']/field[@name='price_subtotal']" position="after">
+                    <field name="select_line" readonly="True" string="Selected"/>
+                    <field name="cost_distributed" invisible="True"/>
+                    <field name="state" invisible="True"/>
+                    <button name="select_po_line" type="object" icon="STOCK_APPLY" string="Select Line"
+                            attrs="{'invisible': ['|', ('select_line', '!=', False), ('cost_distributed', '=', True)]}"
+                            confirm="Do you want to select this line?"/>
+                </xpath>
+                <xpath expr="//button[@name='wkf_send_rfq']" position="attributes">
+                    <attribute name="states"></attribute>
+                    <attribute name="attrs">{'invisible': ['|', ('state', 'not in', ['draft', 'approved']), ('display_end_user_name', '=', False)]}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='wkf_send_rfq'][2]" position="attributes">
+                    <attribute name="states"></attribute>
+                    <attribute name="attrs">{'invisible': ['|', ('state', '!=', 'sent'), ('display_end_user_name', '=', False)]}</attribute>
+                </xpath>
+<!--                 <xpath expr="//button[@name='wkf_send_rfq'][last()]" position="attributes"> -->
+<!--                     <attribute name="states"></attribute> -->
+<!--                     <attribute name="attrs">{'invisible': ['|', ('state', '!=', 'sent'), ('display_end_user_name', '=', False)]}</attribute> -->
+<!--                 </xpath> -->
+                <xpath expr="//button[@name='wkf_send_rfq']" position="after">
+                    <button name="wkf_send_rfq" confirm="Are you sure you dont want to display end user name in report ?" string="Send by Email" type="object" context="{'send_rfq':True}" class="oe_highlight" attrs="{'invisible': ['|', ('state', 'not in', ['draft', 'approved']), ('display_end_user_name', '=', True)]}"/>
+                    <button name="wkf_send_rfq" confirm="Are you sure you dont want to display end username in report ?" string="Send by Email" type="object" context="{'send_rfq':True}" attrs="{'invisible': ['|', ('state', 'not in', ['sent']), ('display_end_user_name', '=', True)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree[@string='Purchase Order Lines']/field[@name='price_unit']" position="attributes">
+                    <attribute name="attrs">{'readonly': ['|', ('state', 'not in', ['draft']),('cost_distributed', '=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree[@string='Purchase Order Lines']/field[@name='product_qty']" position="attributes">
+                    <attribute name="attrs">{'readonly': ['|', ('state', 'not in', ['sent']),('cost_distributed', '=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree[@string='Purchase Order Lines']/field[@name='date_planned']" position="attributes">
+                    <attribute name="attrs">{'readonly': ['|', ('state', 'not in', ['draft', 'sent']),('cost_distributed', '=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree[@string='Purchase Order Lines']/field[@name='name']" position="attributes">
+                    <attribute name="attrs">{'readonly': ['|', ('state', 'not in', ['draft', 'sent']),('cost_distributed', '=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree[@string='Purchase Order Lines']/field[@name='product_id']" position="attributes">
+                    <attribute name="attrs">{'readonly': ['|', ('state', 'not in', ['draft', 'sent']),('cost_distributed', '=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree[@string='Purchase Order Lines']/field[@name='product_uom']" position="attributes">
+                    <attribute name="attrs">{'readonly': ['|', ('state', 'not in', ['draft', 'sent']),('cost_distributed', '=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//div[@name='buttons']" position="inside">
+                    <button name="view_options" string="View Options" type="object" attrs="{'invisible': ['|', ('state', '=', 'cancel'), ('has_options', '=', False)]}"/>
+                    <button name="view_sale_quotation" string="View Sale Quotation"
+                        type="object" attrs="{'invisible': [('state', '=', 'cancel')]}"
+                        groups="hatta_crm.group_sale_sale"/>
+                </xpath>
+                <xpath expr="//button[@name='purchase_confirm']" position="after">
+                    <button name="%(hatta_confirm_po_action)d" type="action" groups="hatta_crm.group_purchase"
+                        attrs="{'invisible': ['|', ('state', '!=', 'bid'), ('sale_calculated', '=', False)]}"
+                        string="Validate"/>
+                    <button name="%(hatta_confirm_po_action)d" type="action" groups="hatta_crm.group_purchase"
+                        attrs="{'invisible': ['|', ('state', '!=', 'draft'), ('direct_purchase', '=', False)]}"
+                        string="Validate"/>
+                    <button name="%(hatta_confirm_po_action)d" type="action" groups="hatta_crm.group_purchase"
+                        attrs="{'invisible': ['|', ('state', 'not in', ['draft', 'sent', 'bid', 'cancel']), ('direct_sale_id', '=', False)]}"
+                        string="Validate"/>
+                    <button name="unvalidate_po" type="object" string="Edit PO"
+                        attrs="{'invisible': [('state', '!=', 'validated')]}"/>
+                </xpath>
+                <xpath expr="//button[@name='purchase_confirm']" position="attributes">
+<!--                     <attribute name="name">%(hatta_confirm_po_action)d</attribute> -->
+<!--                     <attribute name="type">action</attribute> -->
+<!--                     <attribute name="states"></attribute> -->
+                    <attribute name="groups">purchase.group_purchase_manager</attribute>
+                    <attribute name="attrs">{'invisible': ['|', ('state', '!=', 'validated'), ('sale_calculated', '=', False)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="name">complete_name</attribute>
+                </xpath>
+                <xpath expr="//button[@name='purchase_cancel']" position="attributes">
+                    <attribute name="states">draft,sent,bid</attribute>
+                    <attribute name="string">Reject Offer</attribute>
+                </xpath>
+                <xpath expr="//button[@name='purchase_cancel']" position="attributes">
+                    <attribute name="states">draft,sent,bid</attribute>
+                    <attribute name="string">Reject Offer</attribute>
+                </xpath>
+                <xpath expr="//sheet/div[@class='oe_title']//h1/label[@string='Purchase Order ']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('state','in',('draft','sent','bid'))]}</attribute>
+                </xpath>
+                <xpath expr="//sheet/div[@class='oe_title']//h1/label[@string='Purchase Order ']" position="after">
+                    <label string="Draft Purchase Order " attrs="{'invisible': [('state','not in',('bid'))]}"/>
+                </xpath>
+                <xpath expr="//button[@name='purchase_cancel']" position="after">
+                    <button name="purchase_cancel" string="Cancel PO" confirm="Are you sure you want to cancel PO" groups="account.group_account_manager" states="validated, approved, done"/>
+                    <button name="%(hatta_option_action)d" type="action" icon="STOCK_NEW" string="Create Option"
+                            attrs="{'invisible': ['|', '|', ('state', 'not in', ['draft', 'bid', 'sent']), ('cost_distributed', '=', False), ('parent_po_id', '!=', False)]}"/>
+                </xpath>
+                <xpath expr="//button[@name='action_cancel_draft']" position="attributes">
+                    <attribute name="states">cancel</attribute>
+                </xpath>
+                <xpath expr="//button[@name='purchase_confirm']" position="after">
+                    <button name="distribute_cost" string="Distribute Cost" type="object" attrs="{'invisible': ['|', '|', '|', '|', ('can_distribute', '=', False), ('state', 'not in', ['bid']), ('bid_complete', '=', False), ('cost_distributed', '=', True), ('sale_calculated', '=', True)]}"/>
+                    <button name="cancel_distribution" string="Cancel Distribution"
+                            groups="hatta_crm.group_reedit_rfq"
+                            type="object" attrs="{'invisible': ['|', '|', ('state', 'not in', ['bid']), ('cost_distributed', '=', False), ('sale_calculated', '=', True)]}"/>
+<!--                     <button name="bid_received" string="Confirm Bid"  attrs="{'invisible': ['|', ('state', 'not in', ['draft', 'sent']), ('bid_complete', '=', True)]}"/> -->
+                    <button name="%(action_pol_mass_select)d" type="action" string="Confirm Bid"  attrs="{'invisible': ['|', '|', ('state', 'not in', ['draft', 'sent']), ('bid_complete', '=', True), ('direct_purchase', '=', True)]}"/>
+                    <button name="bid_cancel" string="Cancel Bid"  attrs="{'invisible': ['|', '|', ('state', 'not in', ['bid']), ('cost_distributed', '=', True), ('sale_calculated', '=', True)]}"/>
+                    <button name="%(action_hatta_sale_price_calc)d" string="Calculate Sale Price" type="action" attrs="{'invisible': ['|', '|', '|', ('sale_calculated', '=', True), ('state', 'not in', ['bid']), ('cost_distributed', '=', False), ('bid_complete', '=', False)]}" class="oe_highlight"/>
+                    <button name="cancel_sale_calc" string="Edit Sale Calculation" type="object"
+                            groups="hatta_crm.group_reedit_rfq"
+                            attrs="{'invisible': ['|', ('state', 'not in', ['bid']), ('sale_calculated', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//button[@name='purchase_confirm'][last()]" position="attributes">
+                    <attribute name="name">purchase_confirm_direct</attribute>
+                    <attribute name="states"></attribute>
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+<!--                 <xpathe expr="//button[@string='Cancel Order']" position="attributes"> -->
+<!--                     <attribute name='string'>Reject Offer</attribute> -->
+<!--                 </xpathe> -->
+                <xpath expr="//field[@name='company_id']" position="after">
+                    <field name="bid_complete" invisible="True"/>
+                    <field name="sale_calculated" invisible="True"/>
+                    <field name="can_distribute" invisible="True"/>
+                    <field name="direct_sale_id" invisible="True"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree" position="attributes">
+                    <attribute name="editable"></attribute>
+                </xpath>
+                <xpath expr="//sheet/group/group" position="inside">
+                    <field name="quote_send_by" attrs="{'readonly': [('state', 'not in', ['draft', 'bid', 'sent'])]}"/>
+                    <field name="quote_date" attrs="{'readonly': [('state', 'not in', ['draft', 'bid', 'sent'])]}"/>
+<!--                     <field name="supplier_invoice_date"/> -->
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree[@string='Purchase Order Lines']/field[@name='product_id']" position="before">
+                    <field name="sequence_no" readonly="True" string="SI. No"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_ref']" position="after">
+                    <field name="name" string="PO Number" readonly="True"/>
+                </xpath>
+                <xpath expr="//field[@name='warehouse_id']" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                </xpath>
+                <xpath expr="//div[@name='buttons']/button[@name='view_picking']" position="attributes">
+                    <attribute name="groups">hatta_crm.group_purchase_goods_receipt</attribute>
+                </xpath>
+                <xpath expr="//div[@name='buttons']/button[@name='invoice_open']" position="attributes">
+                    <attribute name="groups">account.group_account_invoice</attribute>
+                </xpath>
+                <xpath expr="//h1" position="after">
+                    <label for="transaction_type_id" attrs="{'invisible': [('state', 'in', ['draft', 'bid', 'sent']), ('direct_purchase', '=', False)]}"/>
+                    <h1>
+                        <field name="transaction_type_id" required="True" nolabel="1"
+                                on_change="onchange_transaction_type(transaction_type_id)"
+                                attrs="{'invisible': [('state', 'in', ['draft', 'bid', 'sent']), ('direct_purchase', '=', False)], 'readonly': ['|', ('state', 'not in', ['draft', 'bid', 'sent']), ('lead_id', '!=', False)]}"
+                                domain="[('model_id.model', '=', 'purchase.order')]"/>
+                    </h1>
+                </xpath>
+                <xpath expr="//button[@string='Confirm Order']" position="attributes">
+                    <attribute name='string'>Confirm PO</attribute>
+                    <attribute name="states">validated</attribute>
+                    <attribute name="attrs"></attribute>
+                </xpath>
+                <xpath expr="//field[@name='date_order']" position="attributes">
+                    <attribute name='string'>PO Date</attribute>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="purchase_order_tree_inherit" model="ir.ui.view">
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="before">
+                    <field name="complete_name"/>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="string">PO Number</attribute>
+                </xpath>
+                <xpath expr="//tree" position="attributes">
+                    <attribute name='colors'></attribute>
+                </xpath>
+                <xpath expr="//field[@name='date_order']" position="after">
+                    <field name="job_id"/>
+                    <field name="edit_po" invisible="True"/>
+                </xpath>
+            </field>  
+        </record>
+    
+        <record id="purchase.purchase_rfq" model="ir.actions.act_window">
+            <field name="name">Request For Quotations</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order</field>
+            <field name="context">{'search_default_group_enquiry':1}</field>
+            <field name="domain">[('state','in',('draft','bid','sent','confirmed'))]</field>
+            <field name="view_mode">tree,form,graph,calendar</field>
+            <field name="search_view_id" ref="hatta_purchase.view_purchase_order_filter_inherit"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a request for quotation.
+              </p><p>
+                The quotation contains the history of the discussion/negociation
+                you had with your supplier. Once confirmed, a request for
+                quotation is converted into a purchase order.
+              </p><p>
+                Most propositions of purchase orders are created automatically
+                by OpenERP based on inventory needs.
+              </p>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='charge_type_form'>
+            <field name="name">charge.type.form</field>
+            <field name="model">charge.type</field>
+            <field name="arch" type="xml">
+                <form string="Purchase Charge Type" version="7.0">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name" required="True"/>
+                                <field name="related_cert_id"/>
+                            </group>
+                            <group>
+                                <field name="account_id" groups="account.group_account_manager"/>
+                                <field name="charge_type" required="True"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='charge_type_tree'>
+            <field name="name">charge.type.tree</field>
+            <field name="model">charge.type</field>
+            <field name="arch" type="xml">
+                <tree string="Purchase Charge Type">
+                    <field name="name"/>
+                    <field name="charge_type"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='charge_type_search'>
+            <field name="name">charge.type.search</field>
+            <field name="model">charge.type</field>
+            <field name="arch" type="xml">
+                <search string="Purchase Charge Type">
+                    <field name="name"/>
+                    <field name="charge_type"/>
+                </search>
+            </field>
+        </record>
+        
+        <record model='ir.actions.act_window' id='charge_type_action'>
+            <field name="name">Purchase Charge Type</field>
+            <field name="res_model">charge.type</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="charge_type_search"/>
+        </record>
+        
+        <menuitem name="Purchase Charge Type" id="menu_charge_type"
+            parent="purchase.menu_purchase_config_purchase" action="charge_type_action" sequence="2"/>
+        
+        <record id="purchase.purchase_form_action" model="ir.actions.act_window">
+            <field name="name">Purchase Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order</field>
+            <field name="view_mode">tree,form,graph,calendar</field>
+            <field name="context">{}</field>
+            <field name="domain">['|', ('state','not in',('draft','sent','confirmed', 'bid')), ('edit_po', '=', True)]</field>
+            <field name="search_view_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a quotation that will be converted into a purchase order. 
+              </p><p>
+                Use this menu to search within your purchase orders by
+                references, supplier, products, etc. For each purchase order,
+                you can track the related discussion with the supplier, control
+                the products received and control the supplier invoices.
+              </p>
+            </field>
+        </record>
+        
+        <record id="purchase_order_search_inherit" model="ir.ui.view">
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field['paryner_id']" position="before">
+                    <field name="job_id"/>
+                    <field name="date_order" string="Date From" filter_domain="[('date_order','&gt;=',self)]"/>
+                    <field name="date_order" string="Date To" filter_domain="[('date_order','&lt;=',self)]"/>   
+                </xpath>
+                <xpath expr="//filter[@string='Supplier']" position="after">
+                    <filter string="Job No." icon="terp-partner" domain="[]" context="{'group_by' : 'job_id'}"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="purchase_order_line_tree_inherit" model="ir.ui.view">
+            <field name="model">purchase.order.line</field>
+            <field name="inherit_id" ref="purchase.purchase_order_line_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='product_id']" position="after">
+                    <field name="job_id"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="purchase_order_line_search_inherit" model="ir.ui.view">
+            <field name="model">purchase.order.line</field>
+            <field name="inherit_id" ref="purchase.purchase_order_line_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='order_id']" position="after">
+                    <field name="job_id"/>
+                </xpath>
+                <xpath expr="//filter[@string='Supplier']" position="after">
+                    <filter string="Job No." icon="terp-partner" domain="[]" context="{'group_by' : 'job_id'}"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="purchase_detail" model="ir.actions.act_window">
+            <field name="name">Purchase Detail</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order.line</field>
+            <field name="domain">[('order_id.state', 'not in', ['draft', 'confirmed', 'cancel', 'bid'])]</field>
+            <field name="view_mode">tree,form,graph,calendar</field>
+            <field name="search_view_id" ref="purchase_order_line_search_rfq"/>
+            <field name="view_id" ref="purchase.purchase_order_line_tree"/>
+            <field name="help" type="html">
+              <p>
+                Here you can track all the purchase order lines.
+              </p>
+            </field>
+        </record>
+        
+        <menuitem name="Stock Processing" id="hatta_stock_processing_root"
+            sequence="3"/>
+        
+        <menuitem name="Stock Processing" id="hatta_stock_processing" parent="hatta_stock_processing_root"
+            sequence="2"/>
+        
+        <menuitem name="Purchase Order" id="hatta_stock_po" parent="hatta_stock_processing"
+            sequence="2" action="purchase.purchase_form_action" groups="group_purchase"/>
+        
+        <menuitem name="Goods Receipt" id="hatta_goods_receipt" parent="hatta_stock_processing"
+            sequence="3" action="stock.action_picking_tree4" groups="group_purchase_goods_receipt"/>
+        
+        <menuitem action="action_picking_po_return" id="menu_action_picking_tree_po_return"
+                parent="hatta_stock_processing" sequence="4" groups="group_purchase_po_return"/>
+        
+        <menuitem name="Purchase Order Detail" id="hatta_po_detail" parent="hatta_stock_processing"
+            sequence="5" action="purchase_detail" groups="group_purchase_po_detail"/>
+            
+        <menuitem name="Stock Adjustment" id="hatta_stock_adjustment" parent="hatta_stock_processing"
+            sequence="6" action="stock.action_inventory_form" groups="group_purchase_stock_adjust"/>
+            
+        <menuitem name="Stock Transfer" id="hatta_stock_transfer" parent="hatta_stock_processing"
+            sequence="7" action="stock.action_picking_tree6" groups="group_purchase_stock_transfer"/>
+            
+            
+            
+       <record id="rfq_contents_tree" model="ir.ui.view">
+            <field name="name">purchase.order.line.tree.rfq.contents</field>
+            <field name="model">purchase.order.line</field>
+            <field name="arch" type="xml">
+                <tree string="RFQ Contents" create="false" edit="false" delete="false">
+                    <field name="sequence_no" readonly="True" string="SI. No"/>
+                    <field name="order_id" readonly="True"/>
+                    <field name="partner_id" readonly="True" string="Supplier"/>
+<!--                     <field name="manufacturer_id" readonly="True" context="{'default_customer': False, 'default_supplier': False, 'default_is_manufac': True, 'default_is_company': True}"/> -->
+<!--                     <field name="enq_customer_id" readonly="True"/> -->
+					<field name="product_id" readonly="True"/>
+                    <field name="name" readonly="True"/>
+                    <field name="company_id" readonly="True"/>
+                    <field name="account_analytic_id" groups="purchase.group_analytic_accounting" domain="[('type','not in',('view','template'))]"/>
+                    <field name="product_qty" readonly="True"/>
+                    <field name="product_uom" readonly="True" string="UOM"/>
+                    <field name="price_unit" string="Unit Price FC" readonly="True" on_change="onchange_unit_price_fc(price_unit, currency_id, product_qty)"/>
+                    <field name="discount" readonly="True"/>
+                    <field name="amount_total_lc" readonly="True" invisible="1"/>
+                    <field name="net_dist_cost"/>
+                    <field name="price_subtotal"/>
+                    <field name="date_order" invisible="True"/>
+                    <field name="state" invisible="True"/>
+<!--                     <field name="select_line" readonly="True"/> -->
+<!--                     <field name="cost_distributed" invisible="True"/> -->
+                </tree>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='view_rfq_contents_form'>
+            <field name="name">purchase.order.line.form.rfq.contents</field>
+            <field name="model">purchase.order.line</field>
+            <field name="arch" type="xml">
+            <form string="RFQ Contents" version="7.0" create="false" edit="false" delete="false">
+	            <header>
+	            	<field name="state" widget="statusbar" statusbar_visible="draft,bid,confirmed,done" />
+	            </header>
+	            <sheet>
+	                <group>
+		            	<group>
+	                    	<field name="sequence_no" readonly="True"/>
+	                    	<field name="product_id" readonly="True"/>
+<!--                     		<field name="name" readonly="True"/> -->
+                    		<field name="product_qty" readonly="True"/>
+                    		<field name="product_uom" readonly="True" string="UOM"/>
+                    		<field name="discount" readonly="True"/>
+		                    <field name="price_unit" string="Unit Price FC" readonly="True" 
+		                    	on_change="onchange_unit_price_fc(price_unit, currency_id, product_qty)"/>
+		                    <field name="unit_price_lc" readonly="True"/>
+		                    <field name="dist_cost" readonly="True"/>
+		            	</group>
+		            	<group>
+		            		<field name="order_id" readonly="True"/>
+		            		<field name="date_order"/>
+		            		<field name="price_subtotal"/>
+		            		<field name="amount_total_lc"/>
+		            		<field name="net_dist_cost"/>
+		            		<field name="partner_id" readonly="True" string="Supplier"/>
+		            		<field name="company_id" readonly="True"/>
+		            		<field name="account_analytic_id" groups="purchase.group_analytic_accounting" 
+                    			domain="[('type','not in',('view','template'))]"/>
+		            		
+		            	</group>
+	            	</group>
+	            	<notebook>
+	            		<page string="Description">
+	            			<field name="name" readonly="True" nolabel="1"/>
+	            		</page>
+	            	</notebook>
+	            </sheet>
+	       </form>
+	       </field>
+	     </record>
+        
+        <record id="purchase_order_line_search_rfq_contents" model="ir.ui.view">
+            <field name="name">purchase.order.line.search.rfq.contents</field>
+            <field name="model">purchase.order.line</field>
+            <field name="arch" type="xml">
+                <search string="Search RFQ Contents">
+                    <field name="date_order" string="Date From" filter_domain="[('date_order','&gt;=',self)]"/>
+                    <field name="date_order" string="Date To" filter_domain="[('date_order','&lt;=',self)]"/>
+                    <field name="order_id"/>
+                    <field name="product_id"/>
+                    <field name="partner_id" string="Supplier" filter_domain="[('partner_id', 'child_of', self)]"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Supplier" icon="terp-partner" domain="[]" context="{'group_by' : 'partner_id'}" />
+                        <filter string="Customer" icon="terp-partner" domain="[]" context="{'group_by' : 'enq_customer_id'}" />
+                        <filter name="enq" string="Customer Enq" icon="terp-partner" domain="[]" context="{'group_by' : 'customer_enq'}" />
+                        <filter string="Date" icon="terp-partner" domain="[]" context="{'group_by' : 'date_order'}" />
+                        <filter name="product" string="Product" icon="terp-accessories-archiver" domain="[]" context="{'group_by' : 'product_id'}" />
+                        <filter name="order" icon="terp-gtk-jump-to-rtl" string="Order Reference" domain="[]" context="{'group_by' :'order_id'}"/>
+                        <filter name="status" string="Status" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by' : 'state'}" />
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        <record id="action_purchase_rfq_contents" model="ir.actions.act_window">
+            <field name="name">RFQ Table Contents</field>
+            <field name="res_model">purchase.order.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="purchase_order_line_search_rfq_contents"/>
+        </record>
+        
+        <record id="action_purchase_rfq_contents_view" model="ir.actions.act_window.view">
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="rfq_contents_tree"/>
+            <field name="act_window_id" ref="action_purchase_rfq_contents"/>
+        </record>
+        
+        <record id="action_purchase_rfq_contents_form_view" model="ir.actions.act_window.view">
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_rfq_contents_form"/>
+            <field name="act_window_id" ref="action_purchase_rfq_contents"/>
+        </record>
+        
+        
+    </data>
+</openerp>

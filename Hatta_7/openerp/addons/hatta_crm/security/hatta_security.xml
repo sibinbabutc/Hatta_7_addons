@@ -1,0 +1,703 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="transaction_type" model="ir.rule">
+            <field name="name">Transaction Type Access</field>
+            <field name="model_id" ref="hatta_account.model_transaction_type"/>
+            <field name="domain_force">[('user_ids','in', user.id)]</field>
+            <field name="perm_create" eval="False"/>
+        </record>
+        
+        <record id="group_hatta_unwanted" model="res.groups">
+            <field name="name">Unwanted Menu</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
+        </record>
+        
+        <record id="group_po_direct" model="res.groups">
+            <field name="name">Create Direct Purchase</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
+        </record>
+        
+        <record id="document.ir_rule_readpublicdirectories0" model="ir.rule">
+            <field name="model_id" ref="document.model_document_directory"/>
+            <field name="domain_force">['|','|',('group_ids','in',[g.id for g in user.groups_id]), ('user_id', '=', user.id), '&amp;', ('user_id', '=', False), ('group_ids','=',False),  '|','|', ('company_id','=',False), ('company_id','child_of',[user.company_id.id]),('company_id.child_ids','child_of',[user.company_id.id])]</field>
+            <field name="name">Read public directories</field>
+            <field eval="0" name="global"/>
+            <field eval="[(6,0,[ref('base.group_user')])]" name="groups"/>
+            <field eval="1" name="perm_unlink"/>
+            <field eval="1" name="perm_write"/>
+            <field eval="1" name="perm_read"/>
+            <field eval="1" name="perm_create"/>
+        </record>
+        
+        <record model="ir.module.category" id="module_categ_enquiry">
+            <field name="name">Enquiry</field>
+            <field name="sequence">1</field>
+            <field name="visible" eval="0" />
+        </record>
+        
+        <record id="group_opp_main" model="res.groups">
+            <field name="name">Opportunities/Enquiries</field>
+            <field name="category_id" ref="module_categ_enquiry"/>
+        </record>
+        
+        <record id="group_opp_rfq" model="res.groups">
+            <field name="name">Request For Quotation</field>
+            <field name="category_id" ref="module_categ_enquiry"/>
+        </record>
+        
+        <record id="group_opp_partner_data" model="res.groups">
+            <field name="name">Partner Data</field>
+            <field name="category_id" ref="module_categ_enquiry"/>
+        </record>
+        
+        <record id="group_reedit_rfq" model="res.groups">
+            <field name="name">Edit RFQ</field>
+            <field name="category_id" ref="module_categ_enquiry"/>
+        </record>
+        
+        <record id="group_opp_product" model="res.groups">
+            <field name="name">Product</field>
+            <field name="category_id" ref="module_categ_enquiry"/>
+        </record>
+        
+        <record model="ir.module.category" id="module_purchase_categ">
+            <field name="name">Purchase</field>
+            <field name="sequence">3</field>
+            <field name="visible" eval="0" />
+        </record>
+        
+        <record id="group_purchase" model="res.groups">
+            <field name="name">Purchase Order(OIL Field)</field>
+            <field name="category_id" ref="module_purchase_categ"/>
+        </record>
+        
+        <record id="group_purchase_satv_gen" model="res.groups">
+            <field name="name">Purchase Order(SATV / General)</field>
+            <field name="category_id" ref="module_purchase_categ"/>
+        </record>
+        
+        <record id="group_purchase_goods_receipt" model="res.groups">
+            <field name="name">Goods Receipt</field>
+            <field name="category_id" ref="module_purchase_categ"/>
+        </record>
+        
+        <record id="group_purchase_po_return" model="res.groups">
+            <field name="name">Purchase Return</field>
+            <field name="category_id" ref="module_purchase_categ"/>
+        </record>
+        
+        <record id="group_purchase_po_detail" model="res.groups">
+            <field name="name">Purchase Order Detail</field>
+            <field name="category_id" ref="module_purchase_categ"/>
+        </record>
+        
+        <record id="group_purchase_stock_adjust" model="res.groups">
+            <field name="name">Stock Adjustment</field>
+            <field name="category_id" ref="module_purchase_categ"/>
+        </record>
+        
+        <record id="group_purchase_stock_transfer" model="res.groups">
+            <field name="name">Stock Transfer</field>
+            <field name="category_id" ref="module_purchase_categ"/>
+        </record>
+        
+        <record id="group_cancel_purchase" model="res.groups">
+            <field name="name">Cancel Order</field>
+            <field name="category_id" ref="module_purchase_categ"/>
+        </record>
+        
+        <record id="group_cancel_sale" model="res.groups">
+            <field name="name">Cancel Sale Order</field>
+            <field name="category_id" ref="module_purchase_categ"/>
+        </record>
+        
+        <record model="ir.module.category" id="module_master_data">
+            <field name="name">Master Data</field>
+            <field name="sequence">1</field>
+            <field name="visible" eval="0" />
+        </record>
+        
+        <record model="ir.module.category" id="module_master_country">
+            <field name="name">Country Master</field>
+            <field name="sequence">99</field>
+            <field name="parent_id" ref="module_master_data"/>
+            <field name="visible" eval="0" />
+        </record>
+        
+        <record id="group_country_view" model="res.groups">
+            <field name="name">View Only</field>
+            <field name="category_id" ref="module_master_country"/>
+        </record>
+        
+        <record id="group_country_edit" model="res.groups">
+            <field name="name">Edit</field>
+            <field name="category_id" ref="module_master_country"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_country_view'))]"/>
+        </record>
+        
+        <record id="group_country_cr" model="res.groups">
+            <field name="name">Create</field>
+            <field name="category_id" ref="module_master_country"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_country_view'))]"/>
+        </record>
+        
+        <record id="group_country_delete" model="res.groups">
+            <field name="name">Delete</field>
+            <field name="category_id" ref="module_master_country"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_country_view'))]"/>
+        </record>
+        
+        <record model="ir.module.category" id="module_master_currency">
+            <field name="name">Currency Master</field>
+            <field name="sequence">99</field>
+            <field name="parent_id" ref="module_master_data"/>
+            <field name="visible" eval="0" />
+        </record>
+        
+        <record id="group_currency_view" model="res.groups">
+            <field name="name">View Only</field>
+            <field name="category_id" ref="module_master_currency"/>
+        </record>
+        
+        <record id="group_currency_edit" model="res.groups">
+            <field name="name">Edit</field>
+            <field name="category_id" ref="module_master_currency"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_currency_view'))]"/>
+        </record>
+        
+        <record id="group_currency_cr" model="res.groups">
+            <field name="name">Create</field>
+            <field name="category_id" ref="module_master_currency"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_currency_view'))]"/>
+        </record>
+        
+        <record id="group_currency_unlink" model="res.groups">
+            <field name="name">Delete</field>
+            <field name="category_id" ref="module_master_currency"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_currency_view'))]"/>
+        </record>
+        
+        <record model="ir.module.category" id="module_master_location">
+            <field name="name">Location Master</field>
+            <field name="sequence">99</field>
+            <field name="parent_id" ref="module_master_data"/>
+            <field name="visible" eval="0" />
+        </record>
+        
+        <record id="group_location_view" model="res.groups">
+            <field name="name">View Only</field>
+            <field name="category_id" ref="module_master_location"/>
+        </record>
+        
+        <record id="group_location_edit" model="res.groups">
+            <field name="name">Edit</field>
+            <field name="category_id" ref="module_master_location"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_location_view'))]"/>
+        </record>
+        
+        <record id="group_location_cr" model="res.groups">
+            <field name="name">Create Only</field>
+            <field name="category_id" ref="module_master_location"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_location_view'))]"/>
+        </record>
+        
+        <record id="group_location_unlink" model="res.groups">
+            <field name="name">Delete</field>
+            <field name="category_id" ref="module_master_location"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_location_view'))]"/>
+        </record>
+        
+        <record model="ir.module.category" id="module_master_sp">
+            <field name="name">Salesperson Master</field>
+            <field name="sequence">99</field>
+            <field name="parent_id" ref="module_master_data"/>
+            <field name="visible" eval="0" />
+        </record>
+        
+        <record id="group_sp_view" model="res.groups">
+            <field name="name">View Only</field>
+            <field name="category_id" ref="module_master_sp"/>
+        </record>
+        
+        <record id="group_sp_edit" model="res.groups">
+            <field name="name">Edit</field>
+            <field name="category_id" ref="module_master_sp"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_sp_view'))]"/>
+        </record>
+        
+        <record id="group_sp_cr" model="res.groups">
+            <field name="name">Create Only</field>
+            <field name="category_id" ref="module_master_sp"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_sp_view'))]"/>
+        </record>
+        
+        <record id="group_sp_unlink" model="res.groups">
+            <field name="name">Delete</field>
+            <field name="category_id" ref="module_master_sp"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_sp_view'))]"/>
+        </record>
+        
+        <record model="ir.module.category" id="module_master_sup">
+            <field name="name">Supplier Master</field>
+            <field name="sequence">99</field>
+            <field name="parent_id" ref="module_master_data"/>
+            <field name="visible" eval="0" />
+        </record>
+        
+        <record id="group_sup_view" model="res.groups">
+            <field name="name">View Only</field>
+            <field name="category_id" ref="module_master_sup"/>
+        </record>
+        
+        <record id="group_sup_edit" model="res.groups">
+            <field name="name">Edit</field>
+            <field name="category_id" ref="module_master_sup"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_sup_view'))]"/>
+        </record>
+        
+        <record id="group_sup_cr" model="res.groups">
+            <field name="name">Create Only</field>
+            <field name="category_id" ref="module_master_sup"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_sup_view'))]"/>
+        </record>
+        
+        <record id="group_sup_unlink" model="res.groups">
+            <field name="name">Delete</field>
+            <field name="category_id" ref="module_master_sup"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_sup_view'))]"/>
+        </record>
+        
+        <record model="ir.module.category" id="module_master_cust">
+            <field name="name">Customers Master</field>
+            <field name="sequence">99</field>
+            <field name="parent_id" ref="module_master_data"/>
+            <field name="visible" eval="0" />
+        </record>
+        
+        <record id="group_cust_view" model="res.groups">
+            <field name="name">View Only</field>
+            <field name="category_id" ref="module_master_cust"/>
+        </record>
+        
+        <record id="group_cust_edit" model="res.groups">
+            <field name="name">Edit</field>
+            <field name="category_id" ref="module_master_cust"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_cust_view'))]"/>
+        </record>
+        
+        <record id="group_cust_cr" model="res.groups">
+            <field name="name">Create</field>
+            <field name="category_id" ref="module_master_cust"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_cust_view'))]"/>
+        </record>
+        
+        <record id="group_cust_unlink" model="res.groups">
+            <field name="name">Delete</field>
+            <field name="category_id" ref="module_master_cust"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_cust_view'))]"/>
+        </record>
+        
+        <record model="ir.module.category" id="module_master_pro">
+            <field name="name">Product Master</field>
+            <field name="sequence">99</field>
+            <field name="parent_id" ref="module_master_data"/>
+            <field name="visible" eval="0" />
+        </record>
+        
+        <record id="group_pro_view" model="res.groups">
+            <field name="name">View Only</field>
+            <field name="category_id" ref="module_master_pro"/>
+        </record>
+        
+        <record id="group_pro_edit" model="res.groups">
+            <field name="name">Edit</field>
+            <field name="category_id" ref="module_master_pro"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_pro_view'))]"/>
+        </record>
+        
+        <record id="group_pro_cr" model="res.groups">
+            <field name="name">Create</field>
+            <field name="category_id" ref="module_master_pro"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_pro_view'))]"/>
+        </record>
+        
+        <record id="group_pro_unlink" model="res.groups">
+            <field name="name">Delete</field>
+            <field name="category_id" ref="module_master_pro"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_pro_view'))]"/>
+        </record>
+        
+        <record model="ir.module.category" id="module_master_pt">
+            <field name="name">Payment Term Master</field>
+            <field name="sequence">99</field>
+            <field name="parent_id" ref="module_master_data"/>
+            <field name="visible" eval="0" />
+        </record>
+        
+        <record id="group_pt_view" model="res.groups">
+            <field name="name">View Only</field>
+            <field name="category_id" ref="module_master_pt"/>
+        </record>
+        
+        <record id="group_pt_edit" model="res.groups">
+            <field name="name">Edit</field>
+            <field name="category_id" ref="module_master_pt"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_pt_view'))]"/>
+        </record>
+        
+        <record id="group_pt_cr" model="res.groups">
+            <field name="name">Create</field>
+            <field name="category_id" ref="module_master_pt"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_pt_view'))]"/>
+        </record>
+        
+        <record id="group_pt_unlink" model="res.groups">
+            <field name="name">Delete</field>
+            <field name="category_id" ref="module_master_pt"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_pt_view'))]"/>
+        </record>
+        
+        <record model="ir.module.category" id="module_master_tt">
+            <field name="name">Transaction Type Master</field>
+            <field name="sequence">99</field>
+            <field name="parent_id" ref="module_master_data"/>
+            <field name="visible" eval="0" />
+        </record>
+        
+        <record id="group_tt_view" model="res.groups">
+            <field name="name">View Only</field>
+            <field name="category_id" ref="module_master_tt"/>
+        </record>
+        
+        <record id="group_tt_edit" model="res.groups">
+            <field name="name">Edit</field>
+            <field name="category_id" ref="module_master_tt"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_tt_view'))]"/>
+        </record>
+        
+        <record id="group_tt_cr" model="res.groups">
+            <field name="name">Create</field>
+            <field name="category_id" ref="module_master_tt"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_tt_view'))]"/>
+        </record>
+        
+        <record id="group_tt_unlink" model="res.groups">
+            <field name="name">Delete</field>
+            <field name="category_id" ref="module_master_tt"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_tt_view'))]"/>
+        </record>
+        
+        <record model="ir.module.category" id="module_master_ja">
+            <field name="name">Job Account Master</field>
+            <field name="sequence">99</field>
+            <field name="parent_id" ref="module_master_data"/>
+            <field name="visible" eval="0" />
+        </record>
+        
+        <record id="group_ja_view" model="res.groups">
+            <field name="name">View Only</field>
+            <field name="category_id" ref="module_master_ja"/>
+        </record>
+        
+        <record id="group_ja_edit" model="res.groups">
+            <field name="name">Edit</field>
+            <field name="category_id" ref="module_master_ja"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_ja_view'))]"/>
+        </record>
+        
+        <record id="group_ja_cr" model="res.groups">
+            <field name="name">Create</field>
+            <field name="category_id" ref="module_master_ja"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_ja_view'))]"/>
+        </record>
+        
+        <record id="group_ja_unlink" model="res.groups">
+            <field name="name">Delete</field>
+            <field name="category_id" ref="module_master_ja"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_ja_view'))]"/>
+        </record>
+        
+<!--         <record model="ir.module.category" id="module_master_tt"> -->
+<!--             <field name="name">Transaction Type Master</field> -->
+<!--             <field name="sequence">99</field> -->
+<!--             <field name="parent_id" ref="module_master_data"/> -->
+<!--             <field name="visible" eval="0" /> -->
+<!--         </record> -->
+        
+<!--         <record id="group_tt_view" model="res.groups"> -->
+<!--             <field name="name">View Only</field> -->
+<!--             <field name="category_id" ref="module_master_tt"/> -->
+<!--         </record> -->
+        
+<!--         <record id="group_tt_edit" model="res.groups"> -->
+<!--             <field name="name">Edit</field> -->
+<!--             <field name="category_id" ref="module_master_tt"/> -->
+<!--             <field name="implied_ids" eval="[(4,ref('hatta_crm.group_tt_view'))]"/> -->
+<!--         </record> -->
+        
+<!--         <record id="group_tt_cr" model="res.groups"> -->
+<!--             <field name="name">Create Only</field> -->
+<!--             <field name="category_id" ref="module_master_tt"/> -->
+<!--             <field name="implied_ids" eval="[(4,ref('hatta_crm.group_tt_view'))]"/> -->
+<!--         </record> -->
+        
+<!--         <record id="group_tt_create" model="res.groups"> -->
+<!--             <field name="name">Create &amp; Edit</field> -->
+<!--             <field name="category_id" ref="module_master_tt"/> -->
+<!--             <field name="implied_ids" eval="[(4,ref('hatta_crm.group_tt_edit'))]"/> -->
+<!--         </record> -->
+        
+        
+        <record model="ir.module.category" id="module_master_cc">
+            <field name="name">Cost Center Master</field>
+            <field name="sequence">99</field>
+            <field name="parent_id" ref="module_master_data"/>
+            <field name="visible" eval="0" />
+        </record>
+        
+        <record id="group_cc_view" model="res.groups">
+            <field name="name">View Only</field>
+            <field name="category_id" ref="module_master_cc"/>
+        </record>
+        
+        <record id="group_cc_edit" model="res.groups">
+            <field name="name">Edit</field>
+            <field name="category_id" ref="module_master_cc"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_cc_view'))]"/>
+        </record>
+        
+        <record id="group_cc_cr" model="res.groups">
+            <field name="name">Create Only</field>
+            <field name="category_id" ref="module_master_cc"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_cc_view'))]"/>
+        </record>
+        
+        <record id="group_cc_unlink" model="res.groups">
+            <field name="name">Delete</field>
+            <field name="category_id" ref="module_master_cc"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_cc_view'))]"/>
+        </record>
+        
+        <record model="ir.module.category" id="module_master_acc">
+            <field name="name">Account Master</field>
+            <field name="sequence">99</field>
+            <field name="parent_id" ref="module_master_data"/>
+            <field name="visible" eval="0" />
+        </record>
+        
+        <record id="group_acc_view" model="res.groups">
+            <field name="name">View Only</field>
+            <field name="category_id" ref="module_master_acc"/>
+        </record>
+        
+        <record id="group_acc_edit" model="res.groups">
+            <field name="name">Edit</field>
+            <field name="category_id" ref="module_master_acc"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_acc_view'))]"/>
+        </record>
+        
+        <record id="group_acc_cr" model="res.groups">
+            <field name="name">Create Only</field>
+            <field name="category_id" ref="module_master_acc"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_acc_view'))]"/>
+        </record>
+        
+        <record id="group_acc_unlink" model="res.groups">
+            <field name="name">Delete</field>
+            <field name="category_id" ref="module_master_acc"/>
+            <field name="implied_ids" eval="[(4,ref('hatta_crm.group_acc_view'))]"/>
+        </record>
+        
+        
+        
+        
+        
+        
+        
+        
+        <record model="ir.module.category" id="module_sale_categ">
+            <field name="name">Sale</field>
+            <field name="sequence">3</field>
+            <field name="visible" eval="0" />
+        </record>
+        
+        <record id="group_Quot" model="res.groups">
+            <field name="name">Quotation</field>
+            <field name="category_id" ref="module_sale_categ"/>
+        </record>
+        
+        <record id="group_sale" model="res.groups">
+            <field name="name">Sales Order</field>
+            <field name="category_id" ref="module_sale_categ"/>
+        </record>
+        
+        <record id="group_cancel_invoice" model="res.groups">
+            <field name="name">Cancel Invoice</field>
+            <field name="category_id" ref="module_sale_categ"/>
+        </record>
+        
+        <record id="group_del" model="res.groups">
+            <field name="name">Delivery Note</field>
+            <field name="category_id" ref="module_sale_categ"/>
+        </record>
+        
+        <record id="group_del_ret" model="res.groups">
+            <field name="name">Delivery Return</field>
+            <field name="category_id" ref="module_sale_categ"/>
+        </record>
+        
+        <record id="group_sale_invoice" model="res.groups">
+            <field name="name">Sale Invoice</field>
+            <field name="category_id" ref="module_sale_categ"/>
+        </record>
+        
+        <record id="group_sale_return" model="res.groups">
+            <field name="name">Sale Return</field>
+            <field name="category_id" ref="module_sale_categ"/>
+        </record>
+        
+        <record model="ir.module.category" id="module_inv_master">
+            <field name="name">Inventory Master</field>
+            <field name="sequence">1</field>
+            <field name="visible" eval="0" />
+        </record>
+        
+        <record id="group_country" model="res.groups">
+            <field name="name">Country Master</field>
+            <field name="category_id" ref="module_inv_master"/>
+        </record>
+        
+        <record id="group_curr" model="res.groups">
+            <field name="name">Currency Master</field>
+            <field name="category_id" ref="module_inv_master"/>
+        </record>
+        
+        <record id="group_loc" model="res.groups">
+            <field name="name">Location Master</field>
+            <field name="category_id" ref="module_inv_master"/>
+        </record>
+        
+        <record id="group_sp" model="res.groups">
+            <field name="name">Sales Person Master</field>
+            <field name="category_id" ref="module_inv_master"/>
+        </record>
+        
+        <record id="group_supp" model="res.groups">
+            <field name="name">Supplier Master</field>
+            <field name="category_id" ref="module_inv_master"/>
+        </record>
+        
+        <record id="group_cust" model="res.groups">
+            <field name="name">Customer Master</field>
+            <field name="category_id" ref="module_inv_master"/>
+        </record>
+        
+        <record id="group_prod" model="res.groups">
+            <field name="name">Product Master</field>
+            <field name="category_id" ref="module_inv_master"/>
+        </record>
+        
+        <record id="group_pt" model="res.groups">
+            <field name="name">Payment Term Master</field>
+            <field name="category_id" ref="module_inv_master"/>
+        </record>
+        
+        <record id="group_tt" model="res.groups">
+            <field name="name">Transaction Type Master</field>
+            <field name="category_id" ref="module_inv_master"/>
+        </record>
+        
+        <record id="group_ja" model="res.groups">
+            <field name="name">Job Account Master</field>
+            <field name="category_id" ref="module_inv_master"/>
+        </record>
+        
+        
+        
+        
+        <record model="ir.module.category" id="module_acc_master_categ">
+            <field name="name">Account Master</field>
+            <field name="sequence">3</field>
+            <field name="visible" eval="0" />
+        </record>
+        
+        <record id="group_acc_chart" model="res.groups">
+            <field name="name">Chart Of Account</field>
+            <field name="category_id" ref="module_acc_master_categ"/>
+        </record>
+        
+        <record id="group_acc_cc" model="res.groups">
+            <field name="name">Cost Center</field>
+            <field name="category_id" ref="module_acc_master_categ"/>
+        </record>
+        
+        <record id="group_acc_acc" model="res.groups">
+            <field name="name">Account</field>
+            <field name="category_id" ref="module_acc_master_categ"/>
+        </record>
+        
+        <record model="ir.module.category" id="module_acc_report">
+            <field name="name">Account Report</field>
+            <field name="sequence">3</field>
+            <field name="visible" eval="0" />
+        </record>
+        
+        <record id="group_acc_tb" model="res.groups">
+            <field name="name">Trial Balance</field>
+            <field name="category_id" ref="module_acc_report"/>
+        </record>
+        
+        <record id="group_acc_sl" model="res.groups">
+            <field name="name">Sub Ledger Report</field>
+            <field name="category_id" ref="module_acc_report"/>
+        </record>
+        
+        <record id="group_acc_sl_job" model="res.groups">
+            <field name="name">Job Sub Ledger Report</field>
+            <field name="category_id" ref="module_acc_report"/>
+        </record>
+        
+        <record id="group_gen_ledger" model="res.groups">
+            <field name="name">General Ledger</field>
+            <field name="category_id" ref="module_acc_report"/>
+        </record>
+        
+        <record id="group_partner_ageing" model="res.groups">
+            <field name="name">Partner Ageing</field>
+            <field name="category_id" ref="module_acc_report"/>
+        </record>
+        
+        <record id="group_day_book" model="res.groups">
+            <field name="name">Day Book</field>
+            <field name="category_id" ref="module_acc_report"/>
+        </record>
+        
+        <record model="ir.module.category" id="module_send_quotation">
+            <field name="name">Send Quotation</field>
+            <field name="sequence">1</field>
+            <field name="visible" eval="0" />
+        </record>
+        
+        <record id="group_send_quotation_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="module_send_quotation"/>
+        </record>
+        
+        <record id="group_send_quotation_man" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="module_send_quotation"/>
+            <field name="implied_ids" eval="[(4, ref('group_send_quotation_user'))]"/>
+        </record>
+                
+    </data>
+    
+    <data noupdate="1">
+    	
+    	<record model="res.groups" id="group_partner_duplicate">
+	    	<field name="name">Override Partner Duplicate Check</field>
+	    </record>
+    	
+    </data>
+    
+</openerp>

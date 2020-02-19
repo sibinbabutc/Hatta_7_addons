@@ -1,0 +1,98 @@
+Version 1.33 - 17/12/2015 by Soorya
+	* 2841. Correction in PDC Report.
+
+Version 1.33 - 14/12/2015 by Soorya
+	* 2840. PDC Receivable and PDC Payable Report.
+
+Version 1.32 - 10/12/2015 by Soorya
+	* 2837. Upcoming Payable Report and Upcoming Receivable Report.
+
+Version 1.31 - 1/12/2015 by Soorya
+	* Fix in Customer Invoice Online Upload.
+
+Version 1.30 - 30/11/2015 by Soorya
+	* Fix in LPO name_get.
+
+Version 1.29 - 27/11/2015 by Soorya
+	* Customer Invoice Online Upload.
+
+Version 1.28 - 25/11/2015 by Soorya
+	* Modification in TR Details and TR Reports.
+	
+Version 1.27 - 18/11/2015 by Soorya
+	* LPO Sale Mapping and LPO Report.
+
+Version 1.26 - 11/11/2015 by Soorya
+	* Added new model TR Model and modification in TR Report and TR Status Report.
+
+Version 1.25 - 09/11/2015 by Soorya
+	* Modification in Daily Bank Reconciliation Report.
+
+Version 1.24 - 06/11/2015 by Soorya
+	* Modification in Daily Bank Reconciliation Report.
+
+Version 1.23 - 05/11/2015 by Soorya
+	* Daily Bank Reconciliation Report.
+
+Version 1.22 - 03/11/2015 by Soorya
+	* Check Clearance menu modification.
+
+Version 1.21 - 02/11/2015 by Soorya
+	* Check Clearance.
+
+Version 1.20 - 13/10/2015 by Soorya
+	* Modified function in TR Details
+	
+Version 1.19 - 21/09/2015 by Soorya
+	* 2695.New model for entering TR Details.
+
+Version 1.18 - 18/08/2015 by Soorya
+	* Fixed bugs in Cost Sheet Component Report
+	
+Version 1.18 - 11/08/2015 by Soorya
+	* Cost Sheet Component Report
+
+Version 1.17 - 30/07/2015 by Soorya
+	* Sub Ledger Report modified for showing partner details
+
+Version 1.16 - 29/07/2015 by Soorya
+	* VOUCHER ENTRY MODULE REDESIGNED
+
+Version 1.15 - 15/06/2015 by Soorya
+	* 104. Replaced discount(%) field with discount and made corresponding
+			changes to functions of subtotal and total
+
+Version 1.14 - 11/06/2015 by Soorya
+	* Added cancellation note field in sale, invoice, purchase, incoming, delivery.
+
+Version 1.13 - 10/06/2015 by Soorya
+	* 104. Added discount amount field in sale and invoice and made corresponding
+			changes to functions of subtotal and total.
+
+Version 1.12 - 09/06/2015 by Soorya
+	* 42.Added page numbers in GENERAL LEDGER & DAY BOOK.
+
+Version 1.11 - 03/06/2015 by Soorya
+	* 78.Added related field Invoice Number. Modified tree and form view of stock.picking.in.
+
+Version 1.10 - 03/06/2015 by Soorya
+	* 87.Added constraint in account.move to check debit and credit field in account.move.line is greater than 0.00.
+	* 39.Modified name_get() of account.account to display currency after account name while selecting from many2one fields.
+
+Version 1.9 - 31/05/2015 by Shelton
+	* 26.SUBLEDGER SPOOLING BASED ON DATE RANGE
+
+Version 1.8 - 08/05/2015 by Shelton
+	* 77.PLEASE REMOVE "AED" FROM VOUCHER TYPE - Removed currency nam from journal name_get
+
+Version 1.7 - 06/05/2015 by Shelton
+	* PDC Management
+
+Version 1.6 - 06/05/2015 by Shelton
+	* Added credit, debit cols and changed initial balance string to OP.BALANCE
+
+Version 1.5 - 04/05/2015 by Shelton
+	* Added Initial Balance in General Ledger Report as line
+
+Version 1.4 - 29/04/2015 by Shelton
+	* Added Initial Balance in General Ledger Report

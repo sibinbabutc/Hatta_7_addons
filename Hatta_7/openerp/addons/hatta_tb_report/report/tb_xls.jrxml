@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="tb" language="groovy" pageWidth="1040" pageHeight="595" orientation="Landscape" columnWidth="1000" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="cccc33ed-ae7b-4a0d-ad80-3ee09a075fdc">
+	<property name="ireport.zoom" value="0.8264462809917362"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/zbeanz/workspace/juzer/addons/kiak_tb_report/report/"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="accounts" class="java.lang.Object">
+		<fieldDescription><![CDATA[accounts]]></fieldDescription>
+	</field>
+	<field name="fiscal_year" class="java.lang.String">
+		<fieldDescription><![CDATA[fiscal_year]]></fieldDescription>
+	</field>
+	<field name="total_credit" class="java.lang.String"/>
+	<field name="date" class="java.lang.String">
+		<fieldDescription><![CDATA[date]]></fieldDescription>
+	</field>
+	<field name="account" class="java.lang.String">
+		<fieldDescription><![CDATA[account]]></fieldDescription>
+	</field>
+	<field name="company" class="java.lang.String">
+		<fieldDescription><![CDATA[company]]></fieldDescription>
+	</field>
+	<field name="type" class="java.lang.String">
+		<fieldDescription><![CDATA[type]]></fieldDescription>
+	</field>
+	<field name="lang" class="java.lang.String">
+		<fieldDescription><![CDATA[lang]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="c395c541-66f3-4a5d-8e38-c35dc5d9972e" mode="Transparent" x="0" y="30" width="1000" height="20" backcolor="#FEFEFE">
+					<printWhenExpression><![CDATA[$F{lang} == "en_US"]]></printWhenExpression>
+				</reportElement>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Trial Balance]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="a2688738-932c-4ccd-ac9e-3b15b1e449fe" x="0" y="0" width="1000" height="30"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{company}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="895e5efe-9361-46ef-8bba-6c3def36a294" x="0" y="50" width="1000" height="20"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{type}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="6dc52ba4-cb11-4b4e-8e03-e37eff5fa5b5" x="0" y="30" width="1000" height="20">
+					<printWhenExpression><![CDATA[$F{lang} == "ar_AR"]]></printWhenExpression>
+				</reportElement>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ميزان المراجعة]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1fd4de4e-32d3-471b-9ddd-8b94da59b70f" x="0" y="30" width="1000" height="20">
+					<printWhenExpression><![CDATA[$F{lang} == "en_ar"]]></printWhenExpression>
+				</reportElement>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Trial Balance ميزان المراجعة]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="34">
+			<staticText>
+				<reportElement uuid="966914b3-574b-495b-9b5f-b2862a903c07" x="0" y="0" width="150" height="34">
+					<printWhenExpression><![CDATA[$F{lang} == "en_US"]]></printWhenExpression>
+				</reportElement>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fiscal Year :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d4935251-557f-479b-ae3d-4f252936fd72" x="150" y="0" width="150" height="34"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fiscal_year}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="1309bdb4-5a38-444b-9bc7-fcd2431e6e1b" x="300" y="0" width="150" height="34">
+					<printWhenExpression><![CDATA[$F{lang} == "en_US"]]></printWhenExpression>
+				</reportElement>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date Range :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="00204b3d-e37d-46ee-9a38-79e006dc1ea6" x="450" y="0" width="206" height="34"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="d9ebd957-bacf-494a-a067-c35806b69006" x="656" y="0" width="144" height="34">
+					<printWhenExpression><![CDATA[$F{lang} == "en_US"]]></printWhenExpression>
+				</reportElement>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Account Codes :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="fb4e8d32-120e-4057-80c8-87c599b2e8e3" x="800" y="0" width="200" height="34"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{account}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="47900b5d-120c-42ed-88e5-e532412c6cfb" x="0" y="0" width="150" height="34">
+					<printWhenExpression><![CDATA[$F{lang} == "ar_AR"]]></printWhenExpression>
+				</reportElement>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ السنة المالية :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dd27c784-4164-4537-b4ac-b54ed8c417b1" x="300" y="0" width="150" height="34">
+					<printWhenExpression><![CDATA[$F{lang} == "ar_AR"]]></printWhenExpression>
+				</reportElement>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[نطاق التاريخ: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="117b00cd-82e1-49b0-a415-4508505fc847" x="656" y="0" width="144" height="34">
+					<printWhenExpression><![CDATA[$F{lang} == "ar_AR"]]></printWhenExpression>
+				</reportElement>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[نطاق التاريخ:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d301c10f-c999-4a9b-ad75-e30972b114ad" x="0" y="0" width="150" height="34">
+					<printWhenExpression><![CDATA[$F{lang} == "en_ar"]]></printWhenExpression>
+				</reportElement>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fiscal Year السنة المالية :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="47a250de-671e-4a9a-952f-df69513d5ba4" x="300" y="0" width="150" height="34">
+					<printWhenExpression><![CDATA[$F{lang} == "en_ar"]]></printWhenExpression>
+				</reportElement>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date Range نطاق التاريخ :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6fa613d5-8b79-4600-842d-ae6161f2684a" x="656" y="0" width="144" height="34">
+					<printWhenExpression><![CDATA[$F{lang} == "en_ar"]]></printWhenExpression>
+				</reportElement>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Account Codes رموز الحساب :]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="46" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="456ac6c3-4a03-41e0-84ae-4cbd300052f1" x="0" y="0" width="42" height="46"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("//accounts")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "tb_subreport_xls.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="50"/>
+	</columnFooter>
+</jasperReport>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="remark_report_image" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="ea628cea-eaac-44f6-9acf-3b3766fdfce7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="org.apache.commons.codec.binary.Base64"/>
+	<field name="sequence" class="java.lang.String">
+		<fieldDescription><![CDATA[sequence]]></fieldDescription>
+	</field>
+	<field name="product_name" class="java.lang.String">
+		<fieldDescription><![CDATA[product_name]]></fieldDescription>
+	</field>
+	<field name="image" class="java.lang.String">
+		<fieldDescription><![CDATA[image]]></fieldDescription>
+	</field>
+	<variable name="image" class="java.io.InputStream">
+		<variableExpression><![CDATA[new ByteArrayInputStream(new Base64().decodeBase64($F{image}.getBytes("UTF-8")))]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="142" splitType="Stretch">
+			<textField>
+				<reportElement uuid="53bcdd33-2cc2-4dea-b369-33357ce6335c" x="0" y="24" width="555" height="20"/>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sequence} + " - " + $F{product_name}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="RealSize">
+				<reportElement uuid="2c6dd709-1f02-4db3-a49d-81ecca12aae8" stretchType="RelativeToTallestObject" x="0" y="44" width="555" height="97"/>
+				<imageExpression><![CDATA[$V{image}]]></imageExpression>
+			</image>
+		</band>
+	</detail>
+</jasperReport>

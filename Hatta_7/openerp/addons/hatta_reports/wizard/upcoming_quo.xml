@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="quotation_upcoming_report_form" model="ir.ui.view">
+          <field name="name">quotation.upcoming.form</field>
+          <field name="model">quotation.upcoming.report</field>
+          <field name="arch" type="xml">
+            <form string="Upcoming Quotations" version="7.0">
+                <group>
+                    <field name="date_from" required="True"/>
+                    <field name="date_to" required="True"/>
+                    <field name="partner_id"/>
+                </group>
+                <footer>
+                   <button name="print_report" string="Print" type="object" icon="STOCK_PRINT" default_focus="1" class="oe_highlight"/>
+                    or
+                   <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+                </footer>
+            </form>
+          </field>
+       </record>
+       
+       <record id="action_quotation_upcoming_report" model="ir.actions.act_window">
+          <field name="name">Upcoming Quotations</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">quotation.upcoming.report</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="quotation_upcoming_report_form"/>
+          <field name="target">new</field>
+       </record>
+       
+       <menuitem id="menu_upcoming_quo" parent="hatta_reports.hatta_inv_report"
+                    action="action_quotation_upcoming_report" sequence="100" icon="STOCK_PRINT"
+                    groups="hatta_reports.group_quo_upcoming_report"/>
+    </data>
+</openerp>

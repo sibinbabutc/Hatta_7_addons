@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="po_report_footer" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2ae23679-1b09-4557-b1d8-0bd4d5a88ef8">
+	<property name="ireport.zoom" value="1.1000000000000025"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="note" class="java.lang.String">
+		<parameterDescription><![CDATA[note]]></parameterDescription>
+	</parameter>
+	<parameter name="end_user" class="java.lang.String">
+		<parameterDescription><![CDATA[end_user]]></parameterDescription>
+	</parameter>
+	<parameter name="pay_term" class="java.lang.String">
+		<parameterDescription><![CDATA[pay_term]]></parameterDescription>
+	</parameter>
+	<parameter name="payment_term_note" class="java.lang.String">
+		<parameterDescription><![CDATA[payment_term_note]]></parameterDescription>
+	</parameter>
+	<parameter name="del_schedule" class="java.lang.String">
+		<parameterDescription><![CDATA[del_schedule]]></parameterDescription>
+	</parameter>
+	<parameter name="del_address" class="java.lang.String">
+		<parameterDescription><![CDATA[del_address]]></parameterDescription>
+	</parameter>
+	<parameter name="special_note" class="java.lang.String">
+		<parameterDescription><![CDATA[special_note]]></parameterDescription>
+	</parameter>
+	<parameter name="del_date" class="java.sql.Timestamp">
+		<parameterDescription><![CDATA[del_date]]></parameterDescription>
+	</parameter>
+	<parameter name="delivery_mode" class="java.lang.String">
+		<parameterDescription><![CDATA[delivery_mode]]></parameterDescription>
+	</parameter>
+	<parameter name="liquid_damage_note" class="java.lang.String">
+		<parameterDescription><![CDATA[liquid_damage_note]]></parameterDescription>
+	</parameter>
+	<queryString language="XPath">
+		<![CDATA[]]>
+	</queryString>
+	<group name="note">
+		<groupExpression><![CDATA[$P{note}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<summary>
+		<band height="52">
+			<staticText>
+				<reportElement uuid="ad95984e-38b5-4981-941f-0b9f72cb0bf5" x="326" y="11" width="209" height="20">
+					<printWhenExpression><![CDATA[$P{liquid_damage_note} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LIQUIDATED DAMAGES NOTE]]></text>
+			</staticText>
+			<ellipse>
+				<reportElement uuid="39d344e5-1092-45ed-84e9-b275eac0389a" mode="Transparent" x="326" y="4" width="228" height="31">
+					<printWhenExpression><![CDATA[$P{liquid_damage_note} != null]]></printWhenExpression>
+				</reportElement>
+			</ellipse>
+			<rectangle radius="10">
+				<reportElement uuid="e6ee2408-8798-4b95-a730-3d98702d3079" stretchType="RelativeToTallestObject" mode="Opaque" x="-1" y="35" width="555" height="16" isPrintWhenDetailOverflows="true">
+					<printWhenExpression><![CDATA[$P{liquid_damage_note} != null]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="30191927-ffdd-4878-bbda-cfc3762a7103" stretchType="RelativeToTallestObject" mode="Transparent" x="12" y="35" width="526" height="16" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$P{liquid_damage_note} != null]]></printWhenExpression>
+				</reportElement>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{liquid_damage_note}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

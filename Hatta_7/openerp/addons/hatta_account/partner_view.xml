@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_partner_form_inherit" model="ir.ui.view">
+            <field name="name">Partner</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account.view_partner_property_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='credit_limit']" position="after">
+                    <field name="analytic_account_id" domain="[('type', '=', 'normal')]"/>
+                    <field name="seq_id"/>
+                </xpath>
+                <xpath expr="//label[@for='street']" position="before">
+                    <field name="partner_ac_code"
+                        attrs="{'required': [('is_manufac', '=', False), '|', ('customer', '=', True), ('supplier', '=', True)], 'invisible': [('is_manufac', '!=', False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='website']" position="after">
+                	<field name="upload_invoice"/>
+                    <field name="partner_nick_name"/>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="on_change">onchange_partner_name(name)</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

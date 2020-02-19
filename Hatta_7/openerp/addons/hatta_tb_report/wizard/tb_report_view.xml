@@ -1,0 +1,50 @@
+<openerp>
+   <data>
+   
+       <record id="view_trial_balance_report" model="ir.ui.view">
+          <field name="name">trial.balance.report.form</field>
+          <field name="model">trial.balance.webkit</field>
+          <field name="type">form</field>
+          <field name="arch" type="xml">
+            <form string="Trial Balance" version="7.0">
+            	<group colspan="4">
+            		<label nolabel="1" string=""/>
+                  	<newline/>
+            		<field name="company_id" widget="selection"/>
+            		<field name="fiscalyear_id" domain="[('company_id','=',company_id)]" on_change="onchange_fiscalyear_id(fiscalyear_id)"/>
+            		<separator string="Account Codes" colspan="4"/>
+            		<field name="start_account_id" domain="[('type','!=','view'),('company_id','=',company_id)]" on_change="onchange_start_account_id(start_account_id)"/>
+            		<field name="end_account_id" domain="[('type','!=','view'),('company_id','=',company_id)]"/>
+            		<separator string="Dates" colspan="4"/>
+            		<field name="from_date" required="1"/>
+            		<field name="to_date" required="1"/>
+            		<separator string="" colspan="4"/>
+            		<field name="type"/>
+            		<field name="report_type" required="1"/>
+                    <field name="display_zero"/>
+                    <field name="display_view"/>
+            		<newline/>
+            		<separator string="Language Selection" colspan="4"/>
+            		<field name="language"/>
+            		<newline/>
+            		<separator string="Report Options" colspan="4"/>
+	            </group>
+                <footer>
+                    <button special="cancel" string="Cancel" icon="gtk-cancel" colspan="2"/>
+                    <button name="print_report" string="Print" type="object" icon="gtk-ok" colspan="2"/>
+                </footer>
+            </form>
+          </field>
+       </record>
+
+       <record id="action_jasper_trial_balance" model="ir.actions.act_window">
+          <field name="name">Trial Balance</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">trial.balance.webkit</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="target">new</field>
+       </record>
+
+   </data>
+</openerp>

@@ -1,0 +1,172 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_crm_product_lines,crm_product_lines,hatta_crm.model_crm_product_lines,,1,1,1,1
+access_select_qty_adjust,select_qty_adjust,model_pol_select_qty_adjust,,1,1,1,1
+access_select_qty_adjust_line,select_qty_adjust_line,model_pol_select_qty_adjust_line,,1,1,1,1
+access_sale_confirm_wizard,sale_confirm_wizard,model_sale_confirm_wizard,,1,1,1,1
+access_cost_price_update,cost_price_update,model_cost_price_update,,1,1,1,1
+access_purchase_confirm_wizard,purchase.confirm.wizard,model_purchase_confirm_wizard,,1,1,1,1
+access_create_opp,access.create.opp,model_create_opp,,1,1,1,1
+access_product_certificate,access.product.certificate,model_product_certificate,base.group_user,1,1,1,1
+access_pol_landing_cost,access_pol_landing_cost,model_pol_landing_cost,purchase.group_purchase_user,1,1,1,1
+access_charge_type,access_charge_type,model_charge_type,purchase.group_purchase_user,1,1,1,1
+access_profit_analysis,access_profit_analysis,model_profit_analysis,,1,1,1,1
+
+
+account.access_res_currency_account_manager,res.currency account manager,base.model_res_currency,account.group_account_manager,0,0,0,0
+base.access_res_currency_group_all,res_currency group_all,base.model_res_currency,,0,0,0,0
+base.access_res_currency_group_system,res_currency group_system,base.model_res_currency,base.group_system,0,0,0,0
+access_res_currency_read,res_currency group_read,base.model_res_currency,group_currency_view,1,0,0,0
+access_res_currency_write,res_currency group_write,base.model_res_currency,group_currency_edit,1,1,0,0
+access_res_currency_create,res_currency group_create,base.model_res_currency,group_currency_cr,1,0,1,0
+access_res_currency_unlink,res_currency group_unlink,base.model_res_currency,group_currency_unlink,1,0,0,1
+
+
+
+
+base.access_res_country_group_all,res_country group_user_all,base.model_res_country,,0,0,0,0
+base.access_res_country_group_user,res_country group_user,base.model_res_country,base.group_partner_manager,0,0,0,0
+access_res_country_read,res_country group_read,base.model_res_country,group_country_view,1,0,0,0
+access_res_country_write,res_country group_write,base.model_res_country,group_country_edit,1,1,0,0
+access_res_country_unlink,res_country group_unlink,base.model_res_country,group_country_delete,1,0,0,1
+access_res_country_create,res_country group_create,base.model_res_country,group_country_cr,1,0,1,0
+
+
+
+
+
+purchase.access_stock_location_purchase_user,stock.location,stock.model_stock_location,purchase.group_purchase_user,1,0,0,0
+purchase.access_stock_location_purchase_user_manager,stock.location,stock.model_stock_location,purchase.group_purchase_manager,1,0,0,0
+purchase.access_stock_location_purchase_manager,stock.location purchase manager,stock.model_stock_location,purchase.group_purchase_manager,1,0,0,0
+sale_stock.access_stock_location_user,stock.location.user,stock.model_stock_location,base.group_sale_salesman,1,0,0,0
+stock.access_stock_location__partner_manager,stock.location.partner.manager,stock.model_stock_location,base.group_partner_manager,1,1,1,1
+stock.access_stock_location_manager,stock.location.manager,stock.model_stock_location,stock.group_stock_manager,1,1,1,1
+stock.access_stock_location_user,stock.location.user,stock.model_stock_location,base.group_user,1,0,0,0
+stock.access_stock_location_sale_manager,stock.location sale manager,stock.model_stock_location,base.group_sale_manager,1,0,0,0
+stock.access_stock_location_stock_manager,stock.location stock manager,stock.model_stock_location,stock.group_stock_manager,1,0,0,0
+
+
+
+sale.access_sale_shop,sale.shop,sale.model_sale_shop,base.group_user,0,0,0,0
+sale.access_sale_shop_sale_user,sale.shop.sale.user,sale.model_sale_shop,base.group_sale_salesman,0,0,0,0
+sale.access_sale_shop_sale_manager,sale.shop.sale.manager,sale.model_sale_shop,base.group_sale_manager,0,0,0,0
+sale.access_sale_shop_manager,account.journal sale order.user,sale.model_sale_shop,base.group_sale_manager,0,0,0,0
+sale.access_sale_shop,sale.shop,sale.model_sale_shop,portal.group_portal,0,0,0,0
+access_sale_shop_read,sale_shop group_read,sale.model_sale_shop,group_location_view,1,0,0,0
+access_sale_shop_write,sale_shop group_write,sale.model_sale_shop,group_location_edit,1,1,0,0
+access_sale_shop_create,sale_shop group_create,sale.model_sale_shop,group_location_cr,1,0,1,0
+access_sale_shop_unlink,sale_shop group_unlink,sale.model_sale_shop,group_location_unlink,1,0,0,1
+
+
+
+
+
+account.access_product_product_account_user,product.product.account.user,product.model_product_product,account.group_account_user,0,0,0,0
+product.access_product_product_employee,product.product employee,product.model_product_product,base.group_user,0,0,0,0
+product.access_product_product_sale_manager,product.product salemanager,product.model_product_product,base.group_sale_manager,0,0,0,0
+purchase.access_product_product_purchase_user,product.product.purchase.user,product.model_product_product,purchase.group_purchase_user,0,0,0,0
+purchase.access_product_product_purchase_manager,product.product purchase_manager,product.model_product_product,purchase.group_purchase_manager,0,0,0,0
+sale.access_product_product_sale_user,product.product sale use,product.model_product_product,base.group_sale_salesman,0,0,0,0
+stock.access_product_product_stock_user,product_product_stock_user,product.model_product_product,stock.group_stock_user,0,0,0,0
+stock.access_product_product_stock_manager,product.product stock_manager,product.model_product_product,stock.group_stock_manager,0,0,0,0
+access_product_read,product group_read,product.model_product_product,group_pro_view,1,0,0,0
+access_product_write,product group_write,product.model_product_product,group_pro_edit,1,1,0,0
+access_product_create,product group_create,product.model_product_product,group_pro_cr,1,0,1,0
+access_product_unlink,product group_unlink,product.model_product_product,group_pro_unlink,1,0,0,1
+access_product_temp_read,product_temp group_read,product.model_product_template,group_pro_view,1,0,0,0
+access_product_temp_write,product_temp group_write,product.model_product_template,group_pro_edit,1,1,0,0
+access_product_temp_create,product_temp group_create,product.model_product_template,group_pro_cr,1,0,1,0
+access_product_temp_unlink,product_temp group_unlink,product.model_product_template,group_pro_unlink,1,0,0,1
+
+
+
+account.access_account_payment_term,account.payment.term,account.model_account_payment_term,account.group_account_user,0,0,0,0
+account.access_account_payment_term_manager,account.payment.term,account.model_account_payment_term,account.group_account_manager,0,0,0,0
+account.access_account_payment_term_partner_manager,account.payment.term partner manager,account.model_account_payment_term,base.group_user,0,0,0,0
+sale.access_account_payment_term_salesman,account_payment_term salesman,account.model_account_payment_term,base.group_sale_salesman,0,0,0,0
+access_pt_read,pt group_read,account.model_account_payment_term,group_pt_view,1,0,0,0
+access_pt_write,pt group_write,account.model_account_payment_term,group_pt_edit,1,1,0,0
+access_pt_create,pt group_create,account.model_account_payment_term,group_pt_cr,1,0,1,0
+access_pt_unlink,pt group_unlink,account.model_account_payment_term,group_pt_unlink,1,0,0,1
+
+
+hatta_account.access_transaction_type_user,access_transaction_type,hatta_account.model_transaction_type,account.group_account_invoice,0,0,0,0
+hatta_account.access_transaction_type_manager,access_transaction_type_man,hatta_account.model_transaction_type,account.group_account_manager,0,0,0,0
+hatta_account.access_transaction_type_sales,access_transaction_type_sale,hatta_account.model_transaction_type,base.group_sale_salesman,0,0,0,0
+access_tt_read,tt group_read,hatta_account.model_transaction_type,group_tt_view,1,0,0,0
+access_tt_write,tt group_write,hatta_account.model_transaction_type,group_tt_edit,1,1,0,0
+access_tt_create,tt group_create,hatta_account.model_transaction_type,group_tt_cr,1,0,1,0
+access_tt_unlink,tt group_unlink,hatta_account.model_transaction_type,group_tt_unlink,1,0,0,1
+
+hatta_account.access_job_account,access_job_account,hatta_account.model_job_account,base.group_user,0,0,0,0
+access_ja_read,ja group_read,hatta_account.model_job_account,group_ja_view,1,0,0,0
+access_ja_write,ja group_write,hatta_account.model_job_account,group_ja_edit,1,1,0,0
+access_ja_create,ja group_create,hatta_account.model_job_account,group_ja_cr,1,0,1,0
+access_ja_unlink,ja group_unlink,hatta_account.model_job_account,group_ja_unlink,1,0,0,1
+
+
+
+access_cc_read,cc group_read,analytic.model_account_analytic_account,group_cc_view,1,0,0,0
+access_cc_write,cc group_write,analytic.model_account_analytic_account,group_cc_edit,1,1,0,0
+access_cc_create,cc group_create,analytic.model_account_analytic_account,group_cc_cr,1,0,1,0
+access_cc_unlink,cc group_unlink,analytic.model_account_analytic_account,group_cc_unlink,1,0,0,1
+account.access_account_analytic_account,account.analytic.account,analytic.model_account_analytic_account,base.group_user,0,0,0,0
+account.access_account_analytic_accountant,account.analytic.account accountant,analytic.model_account_analytic_account,account.group_account_user,0,0,0,0
+sale.access_account_analytic_account_salesman,account_analytic_account salesman,analytic.model_account_analytic_account,base.group_sale_salesman,0,0,0,0
+
+
+
+
+
+account.access_account_account,account.account,account.model_account_account,account.group_account_user,0,0,0,0
+account.access_account_account_user,account.account user,account.model_account_account,base.group_user,0,0,0,0
+account.access_account_account_partner_manager,account.account partner manager,account.model_account_account,base.group_partner_manager,0,0,0,0
+account.access_account_account_sale_manager,account.account sale manager,account.model_account_account,base.group_sale_manager,0,0,0,0
+account.access_account_account_invoice,account.account invoice,account.model_account_account,account.group_account_invoice,0,0,0,0
+account.access_account_account_type_invoice,account.account.type invoice,account.model_account_account_type,account.group_account_invoice,0,0,0,0
+purchase.access_account_account_purchase_manager,account.account purchase manager,account.model_account_account,purchase.group_purchase_manager,0,0,0,0
+sale.access_account_account_salesman,account_account salesman,account.model_account_account,base.group_sale_salesman,0,0,0,0
+stock.access_account_account_stock_manager,account.account stock manager,account.model_account_account,stock.group_stock_manager,0,0,0,0
+access_acc_read,acc group_read,account.model_account_account,group_acc_view,1,0,0,0
+access_acc_write,acc group_write,account.model_account_account,group_acc_edit,1,1,0,0
+access_acc_create,acc group_create,account.model_account_account,group_acc_cr,1,0,1,1
+access_acc_unlink,acc group_unlink,account.model_account_account,group_acc_cr,1,0,0,1
+
+access_stock_incoterms,stock.incoterms.hatta,stock.model_stock_incoterms,purchase.group_purchase_user,1,1,1,0
+
+access_quo_send,send_quo_user,model_quotation_status,group_send_quotation_user,1,1,1,0
+access_quo_send_man,send_quo_manager,model_quotation_status,group_send_quotation_man,1,1,1,1
+access_quo_send_line,send_quo_line_user,model_quotation_status_line,group_send_quotation_user,1,1,1,0
+access_quo_send_line_man,send_quo_line_manager,model_quotation_status_line,group_send_quotation_man,1,1,1,1
+
+
+
+
+
+
+
+"base.access_res_partner_group_partner_manager","res_partner group_partner_manager","base.model_res_partner","base.group_partner_manager",0,0,0,0
+"base.access_res_partner_group_user","res_partner group_user","base.model_res_partner","base.group_user",0,0,0,0
+document.access_res_partner_group_user,res.partner user,base.model_res_partner,base.group_document_user,0,0,0,0
+account.access_res_partner_group_account_manager,res_partner group_account_manager,base.model_res_partner,account.group_account_manager,0,0,0,0
+stock.access_product_group_res_partner_stock_manager,res_partner group_stock_manager,base.model_res_partner,stock.group_stock_manager,0,0,0,0
+purchase.access_res_partner_purchase_user,res.partner purchase,base.model_res_partner,purchase.group_purchase_user,0,0,0,0
+purchase.access_res_partner_purchase_manager,res.partner.purchase.manager,base.model_res_partner,purchase.group_purchase_manager,0,0,0,0
+crm.access_res_partner_manager,res.partner.crm.manager,base.model_res_partner,base.group_sale_manager,0,0,0,0
+crm.access_res_partner,res.partner.crm.user,base.model_res_partner,base.group_sale_salesman,0,0,0,0
+sale.access_res_partner_sale_user,res.partner.sale.user,base.model_res_partner,base.group_sale_salesman,0,0,0,0
+sale.access_res_partner_sale_manager,res.partner.sale.manager,base.model_res_partner,base.group_sale_manager,0,0,0,0
+sale.access_product_group_res_partner_sale_manager,res_partner group_sale_manager,base.model_res_partner,base.group_sale_manager,0,0,0,0
+portal.access_res_partner,res.partner,base.model_res_partner,portal.group_portal,0,0,0,0
+purchase.access_product_group_res_partner_purchase_manager,res_partner group_purchase_manager,base.model_res_partner,purchase.group_purchase_manager,0,0,0,0
+
+
+access_res_partner_cust_read,res.partner.read,base.model_res_partner,group_cust_view,1,0,0,0
+access_res_partner_cust_write,res.partner.write,base.model_res_partner,group_cust_edit,0,1,0,0
+access_res_partner_cust_create,res.partner.create,base.model_res_partner,group_cust_cr,0,0,1,0
+access_res_partner_cust_unlink,res.partner.unlink,base.model_res_partner,group_cust_unlink,0,0,0,1
+
+access_res_partner_supp_read,res.partner.read,base.model_res_partner,group_sup_view,1,0,0,0
+access_res_partner_supp_write,res.partner.write,base.model_res_partner,group_sup_edit,0,1,0,0
+access_res_partner_supp_create,res.partner.create,base.model_res_partner,group_sup_cr,0,0,1,0
+access_res_partner_supp_unlink,res.partner.unlink,base.model_res_partner,group_sup_unlink,0,0,0,1
+

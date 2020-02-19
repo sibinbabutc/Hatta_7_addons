@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!--Hatta Create RFQ wizard form-->
+        <record id="hatta_rfq_create_form" model="ir.ui.view">
+          <field name="name">create.rfq.form</field>
+          <field name="model">create.rfq</field>
+          <field name="arch" type="xml">
+            <form string="Create RFQ" version="7.0">
+                <div class="oe_title">
+                            <label for="reference" class="oe_edit_only"/>
+                            <h1><field name="reference" readonly="1"/></h1>
+                            
+                        </div>
+                <group colspan="4" col="4">
+                    
+                    <field name="enq_date" readonly="1"/>
+                    <field name="partner_id" readonly="1"/>
+                    <field name="closing_date" readonly="1"/>
+                    <field name="supplier_closing_date" required="True"/>
+                    <field name="state" invisible="True"/>
+                </group>
+                <notebook attrs="{'invisible': [('state', '!=', 'start')]}">
+                    <page string="Supplier(s)">
+                        <field name="supplier_ids" colspan="4" nolabel="1"
+                                domain="[('supplier', '=', True)]"
+                                context="{'default_supplier': True, 'default_customer': False}"/>
+                    </page>
+                    <page string="Products">
+                    	<group><button name="button_select_all" type="object" string="Select All" class="oe_highlight"></button></group>
+                        <label for="product_ids" string="Product(s) Selected" colspan="4"/>
+                        <field name="product_ids" readonly="False">
+                            <tree string="Products" editable="bottom" create="0">
+                                <field name="sequence_no" readonly="True"/>
+                                <field name="product_id" readonly="True"/>
+                                <field name="name" readonly="True"/>
+                                <field name="manufacturer_id" readonly="True"/>
+                                <field name="product_qty"/>
+                                <field name="uom_id" readonly="True"/>
+                                <field name="crm_product_line_ref" invisible="True"/>
+                                <field name="select_product"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+                <field name="warning" nolabel="1" readonly="1" widget="html" colspan="4" attrs="{'invisible': [('state', '!=', 'end')]}"/>
+                <separator string="Duplicate Lines" colspan="4" attrs="{'invisible': [('state', '!=', 'end')]}"/>
+                <field name="pol_ids" colspan="4" nolabel="1" attrs="{'invisible': [('state', '!=', 'end')]}"
+                        context="{'tree_view_ref': 'purchase_order_line_tree_rfq'}"/>
+                <footer>
+                   <button icon="gtk-execute" name="check_rfqs" string="Create RFQs" type="object"  default_focus="1" class="oe_highlight" attrs="{'invisible': [('state', '!=', 'start')]}"/>
+                   <button icon="gtk-execute" name="create_rfqs" string="Create RFQs" type="object"  default_focus="1" class="oe_highlight" attrs="{'invisible': [('state', '=', 'start')]}"/>
+                    or
+                   <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+                    
+                </footer>
+            </form>
+          </field>
+       </record>
+       
+       <record id="action_hatta_rfq_create" model="ir.actions.act_window">
+          <field name="name">Create RFQ</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">create.rfq</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="hatta_rfq_create_form"/>
+          <field name="target">new</field>
+       </record>
+       
+       
+    </data>
+</openerp>

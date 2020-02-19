@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="pol_select_qty_adjust_form" model="ir.ui.view">
+          <field name="name">pol.select.qty.adjuct.form</field>
+          <field name="model">pol.select.qty.adjust</field>
+          <field name="arch" type="xml">
+            <form string="Change Select Qty" version="7.0">
+                <field name="name" widget="html" class="oe_view_only" readonly="True"/>
+                <group>
+                    <group>
+                        <field name="enq_qty" readonly="True"/>
+                    </group>
+                    <newline/>
+                    <separator string="RFQs Selected" colspan="4"/>
+                    <field name="product_ids" colspan="4" nolabel="1">
+                        <tree string="Product(s) Selected" editable="bottom" create="0">
+                            <field name="order_ref" readonly="True"/>
+                            <field name="product_id" readonly="True" required="True"/>
+                            <field name="supplier_id" readonly="True"/>
+                            <field name="customer_id" readonly="True"/>
+                            <field name="lead_id" readonly="True"/>
+                            <field name="product_qty" attrs="{'readonly': [('state', '!=', 'bid')]}"/>
+                            <field name="currency_id" readonly="True"/>
+                            <field name="price_unit_fc" readonly="True"/>
+                            <field name="price_unit_lc" readonly="True"/>
+                            <field name="subtotal_lc" readonly="True"/>
+                            <field name="pol_id" invisible="True"/>
+                            <field name="state" readonly="True"/>
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                   <button icon="gtk-execute" name="change_qty" string="Continue" type="object"  default_focus="1" class="oe_highlight"/>
+                    or
+                   <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+                    
+                </footer>
+            </form>
+          </field>
+       </record>
+       
+       <record id="action_pol_select_qty_adjust" model="ir.actions.act_window">
+          <field name="name">Change Select Qty</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">pol.select.qty.adjust.line</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="pol_select_qty_adjust_form"/>
+          <field name="target">new</field>
+       </record>
+    </data>
+</openerp>

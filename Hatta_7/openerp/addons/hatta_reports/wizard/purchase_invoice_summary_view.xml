@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="purchase_invoice_summary_form_view" model="ir.ui.view">
+          <field name="name">purchase.invoice.summary.form</field>
+          <field name="model">purchase.invoice.summary</field>
+          <field name="arch" type="xml">
+            <form string="Purchase Invoice Summary Report" version="7.0">
+                <group>
+                    <field name="inv_id" domain="[('type', '=', 'in_invoice'), ('state', '!=', 'cancel')]"/>
+                    <field name="partner_id" domain="[('supplier', '=', True)]"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="sort_based_on" required="1"/>
+                </group>
+                <footer>
+                   <button name="print_report" string="Print" type="object" icon="STOCK_PRINT" default_focus="1" class="oe_highlight"/>
+                    or
+                   <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+                </footer>
+            </form>
+          </field>
+       </record>
+       
+       <record id="action_pur_invoice_summary" model="ir.actions.act_window">
+          <field name="name">Purchase Invoice Summary Report</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">purchase.invoice.summary</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="purchase_invoice_summary_form_view"/>
+          <field name="target">new</field>
+       </record>
+       
+       <menuitem id="menu_pur_inv_summary" parent="hatta_reports.hatta_inv_report"
+                    action="action_pur_invoice_summary" sequence="2" icon="STOCK_PRINT"
+                    groups="hatta_reports.group_pur_inv_invoice_summ"/>
+    </data>
+</openerp>

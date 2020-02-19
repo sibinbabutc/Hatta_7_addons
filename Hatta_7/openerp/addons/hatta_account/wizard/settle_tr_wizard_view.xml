@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="settle_tr_wizard_form" model="ir.ui.view">
+            <field name="name">TR Settlement</field>
+            <field name="model">settle.tr.wizard</field>
+            <field name="arch" type="xml">
+                <form string="TR Settlement Wizard" version="7.0">
+                    <group>
+                        <group>
+                            <field name="tr_id" invisible="True"/>
+                            <field name="date" required="True"/>
+                            <field name="amount" required="True"/>
+                            <field name="voucher_id" required="True"
+                                domain="[('skip_check', '=', True), ('state','=','posted'), ('journal_id.display_in_voucher', '=', True)]"/>
+                        </group>
+                    </group>
+                    <separator string="Settlement Note" colspan="4" nolabel="1"/>
+                    <field name="name" colspan="4" nolabel="1"/>
+                    <footer>
+                        <button name="settle_tr" string="Settle" type="object"
+                                confirm="Are you sure you want to continue?"
+                                class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_settle_tr" model="ir.actions.act_window">
+            <field name="name">Settle TR</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">settle.tr.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="settle_tr_wizard_form" />
+            <field name="target">new</field>
+            <field name="multi">True</field>
+        </record>
+    </data>
+</openerp>

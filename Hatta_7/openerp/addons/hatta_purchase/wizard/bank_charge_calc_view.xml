@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="bank_charge_calc_form" model="ir.ui.view">
+          <field name="name">bank.charge.calc.form</field>
+          <field name="model">bank.charge.calc</field>
+          <field name="arch" type="xml">
+            <form string="Calculate Bank Charge" version="7.0">
+                <group>
+                    <group>
+                        <field name="amount_total" readonly="True" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="currency_id" invisible="True"/>
+                    </group>
+                    <group>
+                        <label for="int_rate"/>
+                        <div>
+                            <field name="int_rate" nolabel="1" class="oe_inline" attrs="{'readonly': [('line_ids', '!=', [])]}"/>%%
+                        </div>
+                    </group>
+                    <field name="line_ids" nolabel="1" colspan="4"
+                                on_change="onchange_line(line_ids, amount_total)">
+                        <tree string="Payment Schedule" editable="bottom">
+                            <field name="amount" required="True" on_change="onchange_int(parent.amount_total, parent.int_rate, amount, days)"/>
+                            <field name="days" required="True" on_change="onchange_int(parent.amount_total, parent.int_rate, amount, days)"/>
+                            <field name="int_amount" readonly="True"/>
+                        </tree>
+                    </field>
+                    <group>
+                    </group>
+                    <group>
+                        <field name="amount_total_int" readonly="True"/>
+                    </group>
+                </group>
+                <footer>
+                   <button icon="gtk-execute" name="apply_bank_charge" string="Apply" type="object"
+                                default_focus="1" class="oe_highlight"/>
+                    or
+                   <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+                    
+                </footer>
+            </form>
+          </field>
+       </record>
+       
+       <record id="action_bank_charge_calc" model="ir.actions.act_window">
+          <field name="name">Calculate Bank Charge</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">bank.charge.calc</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="bank_charge_calc_form"/>
+          <field name="target">new</field>
+       </record>
+    </data>
+</openerp>

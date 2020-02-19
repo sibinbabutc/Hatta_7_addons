@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+	
+		<record id="wizard_consolidated_so_form_view" model="ir.ui.view">
+			<field name="name">wizard.consolidated.so.form</field>
+			<field name="model">wizard.consolidated.so</field>
+			<field name="arch" type="xml">
+				<form string="Consolidated Sale Order Report" version="7.0">
+					<group>
+						<field name="from_date"/>
+						<field name="to_date"/>
+					</group>
+					<group>
+						<field name="customer_id"/>
+					</group>
+					<footer>
+					<button name="print_report" string="Print" type="object" icon="STOCK_PRINT" class="oe_highlight"/>
+		            	or
+		            <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+		            </footer>
+		        </form>
+		    </field>
+		</record>
+		
+		<record id="action_wizard_consolidated_so" model="ir.actions.act_window">
+		    <field name="name">Consolidated Sale Order Report</field>
+		    <field name="type">ir.actions.act_window</field>
+		    <field name="res_model">wizard.consolidated.so</field>
+		    <field name="view_type">form</field>
+		    <field name="view_mode">form</field>
+		    <field name="view_id" ref="wizard_consolidated_so_form_view"/>
+		    <field name="target">new</field>
+    	</record>
+    	
+    	<menuitem id="menu_wizard_consolidated_so" action="action_wizard_consolidated_so"
+    	 name="Consolidated Sale Order Report" parent="hatta_reports.hatta_inv_report"/>
+	
+	</data>
+</openerp>

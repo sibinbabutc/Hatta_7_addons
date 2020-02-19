@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    	
+    	<record id="wizard_invoice_upload_form" model="ir.ui.view">
+          <field name="name">wizard.invoice.upload.form</field>
+          <field name="model">wizard.invoice.upload</field>
+          <field name="arch" type="xml">
+            <form string="Invoice Uploaded to Customer?" version="7.0">
+           		<h3>
+           			<label string="Invoice Uploaded to Customer?"/>
+           		</h3>
+                <button name="uploaded_invoice" string="Yes" type="object" icon="STOCK_PRINT" class="oe_highlight"/>
+                 or
+                <button name="not_uploaded" string="No" type="object" icon="STOCK_PRINT" class="oe_highlight"/>
+            </form>
+          </field>
+       </record>
+    	
+    	<record id="action_wizard_invoice_upload" model="ir.actions.act_window">
+         <field name="name">Invoice Uploaded</field>
+         <field name="type">ir.actions.act_window</field>
+         <field name="res_model">wizard.invoice.upload</field>
+         <field name="view_type">form</field>
+         <field name="view_mode">form</field>
+         <field name="view_id" ref="wizard_invoice_upload_form"/>
+         <field name="target">new</field>
+      </record>
+    
+    </data>
+</openerp> 

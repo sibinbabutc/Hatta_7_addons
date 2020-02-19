@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    	
+    	<record model="ir.ui.view" id="tree_check_clearance_view">
+            <field name="name">Check Clearance Tree</field>
+            <field name="model">account.move</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Check Clearance">
+    				<field name="name" readonly="1"/>
+                    <field name="ref" readonly="1"/>
+                    <field name="date"/>
+                    <field name="period_id"/>
+                    <field name="journal_id"/>
+                    <field name="partner_id" readonly="1"/>
+                    <field name="amount" sum="Total Amount"/>
+                    <field name="to_check" readonly="1"/>
+                    <field name="check_cleared" readonly="1"/>
+                    <field name="include_for_checking" invisible="1"/>
+                    <field name="state"/>
+                    <button name="action_check_cleared" icon="terp-check" string="Check Cleared" type="object"/>
+                </tree>
+           	</field>
+      	 </record>
+      	 
+      	<record id="filter_check_clearance_view" model="ir.ui.view">
+	      	<field name="name">Check Clearance Search</field>
+	      	<field name="model">account.move</field>
+	      	<field name="arch" type="xml">
+	      	<search string="Check Clearance Search">
+	      		<field name="check_cleared"/>
+	      		<filter name="filter_uncleared" string="Uncleared" icon="terp-partner" domain="[('check_cleared', '=', False)]"/>
+	      	</search>
+	      	</field>
+      	</record>
+       
+    	<record model="ir.actions.act_window" id="action_check_clearance">
+            <field name="name">Check Clearance</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.move</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="tree_check_clearance_view"/>
+            <field name="search_view_id" ref="filter_check_clearance_view"/>
+            <field name="context">{'search_default_filter_uncleared': 1}</field>
+            <field name="domain">[('include_for_checking', '=', True), ('skip_check', '=', False)]</field>
+        </record>
+        
+        <menuitem name="Check Clearance" id="check_clearance" parent="menu_finance_vouchers"
+                    action="action_check_clearance" sequence="99"/>
+    
+    </data>
+</openerp>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="bank_reconciliation_form" model="ir.ui.view">
+            <field name="name">bank.reconciliation.form</field>
+            <field name="model">bank.reconciliation</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Bank Reconciliation" version="7.0">
+                    <header>
+                        <button string="Save" type="object" name="execute" class="oe_highlight" icon="STOCK_SAVE"/>
+                        or
+                        <button string="Cancel" type="object" name="cancel" class="oe_link"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="from_date" required="True"/>
+                                <field name="to_date" required="True"/>
+                                <field name="bank_account_id" required="True"/>
+                                <field name="type" required="True"/>
+                            </group>
+                            <group>
+                                <button name="update_record" string="Refresh/Update" type="object"
+                                            icon="STOCK_REFRESH"
+                                            confirm="All the modifications made will be reset. Do you want to continue ?"/>
+                            </group>
+                        </group>
+                        <field name="line_ids">
+                            <tree string="Bank Statement Line(s)" editable="bottom" create="0">
+                                <field name="date" readonly="True"/>
+                                <field name="move_id" readonly="True"/>
+                                <field name="ref" readonly="True"/>
+                                <field name="remark" readonly="True"/>
+                                <field name="debit" readonly="True"/>
+                                <field name="credit" readonly="True"/>
+                                <field name="bank_debit" attrs="{'readonly': [('rec', '=', False)]}"/>
+                                <field name="bank_credit" attrs="{'readonly': [('rec', '=', False)]}"/>
+                                <field name="rec" on_change="onchange_rec(rec, date, debit, credit)"/>
+                                <field name="rec_date" attrs="{'required': [('rec', '!=', False)]}"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_bank_reconciliation_view">
+            <field name="name">bank.reconciliation.action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">bank.reconciliation</field>
+             <field name="view_mode">form</field>
+            <field name="target">inline</field>
+        </record>
+        
+        <menuitem id="bank_reconciliation_menu" action="action_bank_reconciliation_view"
+            parent="hatta_account.menu_finance_vouchers" name="Bank Reconciliation"
+            groups="account.group_account_manager"/>
+    </data>
+</openerp>

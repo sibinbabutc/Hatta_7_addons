@@ -1,0 +1,49 @@
+<openerp>
+   <data>
+   
+   	<report string="Trial Balance(Excel)"
+			model="account.account"
+			auto="True"
+			name="jasper_trial_balance"
+			rml="hatta_tb_report/report/tb.jrxml"
+			id="report_jasper_trial_balance"
+			menu="False"
+			/>
+    
+    <report string="Trial Balance(Excel)"
+            model="account.account"
+            auto="True"
+            name="jasper_trial_balance_xls"
+            rml="hatta_tb_report/report/tb_xls.jrxml"
+            id="report_jasper_trial_balance_xls"
+            menu="False"
+            />
+    
+    <report string="Trial Balance(Excel)"
+            model="account.account"
+            auto="True"
+            name="jasper_trial_balance_detail"
+            rml="hatta_tb_report/report/tb_detail.jrxml"
+            id="report_jasper_trial_balance_detail"
+            menu="False"
+            />
+    
+    <report string="Trial Balance(Excel)"
+            model="account.account"
+            auto="True"
+            name="jasper_trial_balance_detail_xls"
+            rml="hatta_tb_report/report/tb_detail_xls.jrxml"
+            id="report_jasper_trial_balance_detail_xls"
+            menu="False"
+            />
+			
+	<menuitem id="menu_jasper_trial_balance" parent="account.final_accounting_reports" action="action_jasper_trial_balance" sequence="120" icon="STOCK_PRINT"/>
+	
+    
+     <menuitem 
+            id="board.menu_board_my_dash"
+            parent="base.menu_reporting_dashboard"
+            action="board.open_board_my_dash_action"
+            sequence="5"/>
+   </data>
+</openerp>

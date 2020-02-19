@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+    <t t-name="FieldBinaryFileUploader_prev.files">
+        <div class="oe_attachments">
+            <t t-if="widget.get('value')">
+                <t t-foreach="widget.get('value')" t-as="file">
+                    <t t-if="file.filetype !== 'webimage'">
+                        <div>
+                            <a t-att-href='file.url' target="_blank">
+                                <img t-att-src="'/mail/static/src/img/mimetypes/' + file.filetype + '.png'"></img>
+                                <div class='oe_name'><t t-raw='file.name' /></div>
+                            </a>
+                            <t t-if="!widget.get('effective_readonly')">
+                                <a class='oe_delete oe_e' title="Delete this attachment" t-att-data-id="file.id">[</a>
+                            </t>
+                        </div>
+                    </t>
+                    <t t-if="file.filetype === 'webimage'">
+                        <div t-attf-class="oe_attachment oe_preview #{file.upload ? 'oe_uploading' : ''}">
+                            <a t-att-href='file.url' target="_blank">
+                                <img t-att-src="widget.attachments_resize_image(file.id, [100,80])"></img>
+                                <div class='oe_name'><t t-raw='file.name' /></div>
+                            </a>
+                            <t t-if="!widget.get('effective_readonly')">
+                                <a class='oe_delete oe_e' title="Delete this attachment" t-att-data-id="file.id">[</a>
+                            </t>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </div>
+    </t>
+</template>

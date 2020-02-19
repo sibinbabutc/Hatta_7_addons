@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_purchase_order_form_inherit" model="ir.ui.view">
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='pricelist_id']" position="after">
+                    <label for="job_id"/>
+                    <div>
+                        <field name="job_id" required="False" readonly="True" class="oe_inline"/>
+                        <button name="%(hatta_account.action_assign_job_no)d" type="action" string="" icon="STOCK_ADD" attrs="{'invisible': [('job_id', '!=', False)]}" class="oe_inline oe_link"/>
+                    </div>
+                </xpath>
+                <xpath expr="//sheet/group/group" position="inside">
+                    <field name="supplier_invoice_date" attrs="{'readonly':[('state', '!=', 'draft')]}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+    	<record model="ir.cron" id="upcoming_payables_mail">
+            <field name='name'>Upcoming Payable Notification Mail</field>
+            <field name='interval_number'>1</field>
+            <field name='interval_type'>days</field>
+            <field name="numbercall">-1</field>
+            <field name="active">True</field>
+            <field name="doall" eval="True" />
+            <field name="model">account.move.line</field>
+            <field name="function">action_notification_mail</field>
+            <field name="args">(False,)</field>
+        </record>
+    
+    </data>
+</openerp>

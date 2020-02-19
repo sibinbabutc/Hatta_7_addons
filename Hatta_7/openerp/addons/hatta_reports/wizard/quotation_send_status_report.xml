@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="quotation_send_status_report_form" model="ir.ui.view">
+          <field name="name">quotation.send.status.form</field>
+          <field name="model">quotation.send.status.report</field>
+          <field name="arch" type="xml">
+            <form string="Quotation Send Status" version="7.0">
+                <group>
+                    <field name="date_from" required="True"/>
+                    <field name="date_to" required="True"/>
+                    <field name="partner_id"/>
+                </group>
+                <footer>
+                   <button name="print_report" string="Print" type="object" icon="STOCK_PRINT" default_focus="1" class="oe_highlight"/>
+                    or
+                   <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+                </footer>
+            </form>
+          </field>
+       </record>
+       
+       <record id="action_quotation_send_status_report" model="ir.actions.act_window">
+          <field name="name">Quotation Send Status</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">quotation.send.status.report</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="quotation_send_status_report_form"/>
+          <field name="target">new</field>
+       </record>
+       
+       <menuitem id="menu_quo_send_status" parent="hatta_reports.hatta_inv_report"
+                    action="action_quotation_send_status_report" sequence="99" icon="STOCK_PRINT"
+                    groups="hatta_reports.group_quo_send_stat_report"/>
+    </data>
+</openerp>

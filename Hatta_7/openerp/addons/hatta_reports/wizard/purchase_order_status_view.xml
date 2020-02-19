@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    
+    	<record id="purchase_order_status_form_view" model="ir.ui.view">
+          <field name="name">purchase.order.status.form</field>
+          <field name="model">purchase.order.status</field>
+          <field name="arch" type="xml">
+            <form string="Client Purchase Order Status Report" version="7.0">
+                <group>
+                	<field name="from_date"/>
+                	<field name="to_date"/>
+                	<field name="transaction_type_id" domain="[('model_id.model', '=', 'sale.order')]"/>
+                </group>
+                <group>
+                    <field name="customer_id" domain="[('customer', '=', True)]"/>
+                    <field name="supplier_id" domain="[('supplier', '=', True)]"/>
+                    <field name="job_id"/>
+                    <field name="rfq"/>
+                </group>
+                <group>
+                    <field name="closing_date_from"/>
+                    <field name="closing_date_to"/>
+                </group>
+                <footer>
+                   <button name="print_report" string="Print" type="object" class="oe_highlight"/>
+                    or
+                   <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+                </footer>
+            </form>
+          </field>
+       </record>
+    
+    	<record id="action_purchase_order_status" model="ir.actions.act_window">
+          <field name="name">Client Purchase Order Status Report</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">purchase.order.status</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="purchase_order_status_form_view"/>
+          <field name="target">new</field>
+       </record>
+       
+       <menuitem id="menu_purchase_order_status" parent="hatta_reports.hatta_inv_report"
+                    action="action_purchase_order_status"/>
+    
+    </data>
+</openerp>

@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="sal_computation" language="groovy" pageWidth="3600" pageHeight="595" orientation="Landscape" columnWidth="3560" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="e4abce43-8761-42d4-862e-5df024c28b55">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.row" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.ignore.cell.border" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.remove.empty.space.between.columns" value="true"/>
+	<property name="net.sf.jasperreports.export.xls.detect.cell.type" value="true"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<parameter name="report_heading" class="java.lang.String">
+		<parameterDescription><![CDATA[report_heading]]></parameterDescription>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/prajul/git/Hatta_ERP_7/openerp-7.0-20140804-231303/openerp/addons/hatta_hr_management/report/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="note" class="java.lang.String">
+		<parameterDescription><![CDATA[note]]></parameterDescription>
+	</parameter>
+	<queryString language="XPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="employee_name" class="java.lang.String">
+		<fieldDescription><![CDATA[employee_name]]></fieldDescription>
+	</field>
+	<field name="line_name" class="java.lang.String">
+		<fieldDescription><![CDATA[line_name]]></fieldDescription>
+	</field>
+	<field name="amount" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[amount]]></fieldDescription>
+	</field>
+	<field name="emp_acc" class="java.lang.String">
+		<fieldDescription><![CDATA[emp_acc]]></fieldDescription>
+	</field>
+	<field name="trans_mode" class="java.lang.String">
+		<fieldDescription><![CDATA[trans_mode]]></fieldDescription>
+	</field>
+	<field name="labor_no" class="java.lang.String">
+		<fieldDescription><![CDATA[labor_no]]></fieldDescription>
+	</field>
+	<field name="si_no" class="java.lang.Integer">
+		<fieldDescription><![CDATA[si_no]]></fieldDescription>
+	</field>
+	<field name="em_code" class="java.lang.String">
+		<fieldDescription><![CDATA[em_code]]></fieldDescription>
+	</field>
+	<field name="sort_seq" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[sort_seq]]></fieldDescription>
+	</field>
+	<field name="payline_data" class="java.lang.Object">
+		<fieldDescription><![CDATA[payline_data]]></fieldDescription>
+	</field>
+	<pageHeader>
+		<band height="32">
+			<textField>
+				<reportElement uuid="0e2f7af8-6e3a-48c0-8179-5cb179541cf1" x="0" y="0" width="843" height="32"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{report_heading}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<summary>
+		<band height="99">
+			<crosstab isRepeatRowHeaders="false" ignoreWidth="true">
+				<reportElement uuid="dc7381d2-d2b5-4e73-8e24-f939bb740e9f" isPrintRepeatedValues="false" x="0" y="0" width="843" height="59"/>
+				<crosstabDataset isDataPreSorted="true"/>
+				<crosstabHeaderCell>
+					<cellContents>
+						<staticText>
+							<reportElement uuid="dbee8d45-ca31-4d1e-aba9-918cf73262e4" style="Crosstab Data Text" x="245" y="0" width="67" height="30"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Time Roman" size="7" isBold="true"/>
+							</textElement>
+							<text><![CDATA[Labour ID Number]]></text>
+						</staticText>
+						<staticText>
+							<reportElement uuid="dbee8d45-ca31-4d1e-aba9-918cf73262e4" style="Crosstab Data Text" x="122" y="0" width="88" height="30"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Time Roman" size="7" isBold="true"/>
+							</textElement>
+							<text><![CDATA[Employee IBAN Number]]></text>
+						</staticText>
+						<staticText>
+							<reportElement uuid="dbee8d45-ca31-4d1e-aba9-918cf73262e4" style="Crosstab Data Text" x="81" y="0" width="41" height="30"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Time Roman" size="7" isBold="true"/>
+							</textElement>
+							<text><![CDATA[Emp Sl Code]]></text>
+						</staticText>
+						<staticText>
+							<reportElement uuid="dbee8d45-ca31-4d1e-aba9-918cf73262e4" style="Crosstab Data Text" x="19" y="0" width="62" height="30"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Time Roman" size="7" isBold="true"/>
+							</textElement>
+							<text><![CDATA[Names]]></text>
+						</staticText>
+						<staticText>
+							<reportElement uuid="dbee8d45-ca31-4d1e-aba9-918cf73262e4" style="Crosstab Data Text" x="210" y="0" width="35" height="30"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Time Roman" size="7" isBold="true"/>
+							</textElement>
+							<text><![CDATA[Mode of Transfer]]></text>
+						</staticText>
+						<staticText>
+							<reportElement uuid="dbee8d45-ca31-4d1e-aba9-918cf73262e4" style="Crosstab Data Text" x="0" y="0" width="19" height="30"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Time Roman" size="7" isBold="true"/>
+							</textElement>
+							<text><![CDATA[SI No]]></text>
+						</staticText>
+					</cellContents>
+				</crosstabHeaderCell>
+				<rowGroup name="si_no" width="19">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{si_no}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="f50b77da-5567-46a1-ab7a-4b48e002b51f" style="Crosstab Data Text" stretchType="RelativeToTallestObject" x="0" y="0" width="19" height="25"/>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Time Roman" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{si_no}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents/>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="employee_name" width="62" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{employee_name}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents backcolor="#FEFEFE" mode="Opaque">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="a477b948-0b8a-4f56-8f36-b084b38fc9d8" style="Crosstab Data Text" stretchType="RelativeToTallestObject" x="0" y="0" width="62" height="25"/>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Time Roman" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{employee_name}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents backcolor="#BFE1FF" mode="Opaque"/>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="emp_code" width="41">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{em_code}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="4bfb6f36-71c5-4073-94f8-ea67e55a29da" style="Crosstab Data Text" stretchType="RelativeToTallestObject" x="0" y="0" width="41" height="25"/>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Time Roman" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{emp_code}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents/>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="emp_acc" width="88">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{emp_acc}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="c4b4431a-b65c-4bb5-b4d8-e923a07878e3" style="Crosstab Data Text" stretchType="RelativeToTallestObject" x="0" y="0" width="88" height="25"/>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Time Roman" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{emp_acc}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents/>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="trans_mode" width="35">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{trans_mode}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="04b20f9c-46e2-4a18-ada4-22a3ebb301ce" style="Crosstab Data Text" stretchType="RelativeToTallestObject" x="0" y="0" width="35" height="25"/>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Time Roman" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{trans_mode}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents/>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="labor_no" width="67">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{labor_no}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents>
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="cb423e9f-12ac-4796-8a1d-840151cb85f4" style="Crosstab Data Text" stretchType="RelativeToTallestObject" x="0" y="0" width="67" height="25"/>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Time Roman" size="7"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{labor_no}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents/>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="line_name" height="30">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{line_name}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents backcolor="#FEFEFE" mode="Opaque">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="24d2c847-f118-44be-b095-3aa6a0b942d1" style="Crosstab Data Text" stretchType="RelativeToTallestObject" x="0" y="0" width="59" height="30"/>
+								<box>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Time Roman" size="7" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{line_name}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents/>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="amountMeasure" class="java.math.BigDecimal">
+					<measureExpression><![CDATA[$F{amount}]]></measureExpression>
+				</measure>
+				<measure name="amount_sum" class="java.lang.Integer" calculation="Sum">
+					<measureExpression><![CDATA[$F{amount}]]></measureExpression>
+				</measure>
+				<crosstabCell width="59" height="25">
+					<cellContents>
+						<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+							<reportElement uuid="e57e9483-0b68-4b9c-ad04-b7d3a31e5bf7" style="Crosstab Data Text" stretchType="RelativeToTallestObject" x="0" y="0" width="59" height="25"/>
+							<box>
+								<topPen lineWidth="0.5"/>
+								<leftPen lineWidth="0.5"/>
+								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
+							</box>
+							<textElement verticalAlignment="Middle">
+								<font fontName="Time Roman" size="7"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$V{amountMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="59" height="0" rowTotalGroup="employee_name">
+					<cellContents backcolor="#BFE1FF" mode="Opaque"/>
+				</crosstabCell>
+				<crosstabCell width="50" columnTotalGroup="line_name">
+					<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<textField>
+							<reportElement uuid="b9cbc12d-cae5-4506-bdbd-e85d9f631ee1" style="Crosstab Data Text" x="0" y="0" width="50" height="25"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$V{amountMeasure}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell height="0" rowTotalGroup="employee_name" columnTotalGroup="line_name">
+					<cellContents backcolor="#BFE1FF" mode="Opaque"/>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="si_no">
+					<cellContents/>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="si_no" columnTotalGroup="line_name">
+					<cellContents/>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="emp_code">
+					<cellContents/>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="emp_code" columnTotalGroup="line_name">
+					<cellContents/>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="emp_acc">
+					<cellContents/>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="emp_acc" columnTotalGroup="line_name">
+					<cellContents/>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="trans_mode">
+					<cellContents/>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="trans_mode" columnTotalGroup="line_name">
+					<cellContents/>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="labor_no">
+					<cellContents/>
+				</crosstabCell>
+				<crosstabCell rowTotalGroup="labor_no" columnTotalGroup="line_name">
+					<cellContents/>
+				</crosstabCell>
+			</crosstab>
+			<subreport>
+				<reportElement uuid="41d112c6-efc9-4433-b32e-02c89dc51681" positionType="Float" x="666" y="79" width="146" height="20"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("//payline_data")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "sal_computation_payments.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement uuid="d1e5d9de-d49c-412c-bea3-41545bcc73b4" positionType="Float" x="0" y="59" width="843" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="7" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Notes :]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="dd4ffb0a-7b9a-4a9a-9695-0aac12fc1f65" positionType="Float" x="0" y="79" width="666" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{note}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

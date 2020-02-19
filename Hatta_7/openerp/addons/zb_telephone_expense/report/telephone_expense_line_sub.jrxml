@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="telephone_expense_line_sub" language="groovy" pageWidth="864" pageHeight="595" columnWidth="864" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="00e81cdc-c719-492a-a802-b7300a31dd4d">
+	<property name="ireport.zoom" value="1.3310000000000004"/>
+	<property name="ireport.x" value="485"/>
+	<property name="ireport.y" value="0"/>
+	<field name="sl_no" class="java.lang.String">
+		<fieldDescription><![CDATA[sl_no]]></fieldDescription>
+	</field>
+	<field name="directory_name" class="java.lang.String">
+		<fieldDescription><![CDATA[directory_name]]></fieldDescription>
+	</field>
+	<field name="mobile" class="java.lang.String">
+		<fieldDescription><![CDATA[mobile]]></fieldDescription>
+	</field>
+	<field name="total_amt" class="java.lang.String">
+		<fieldDescription><![CDATA[total_amt]]></fieldDescription>
+	</field>
+	<field name="allowed_amount" class="java.lang.String">
+		<fieldDescription><![CDATA[allowed_amount]]></fieldDescription>
+	</field>
+	<field name="deduction" class="java.lang.String">
+		<fieldDescription><![CDATA[deduction]]></fieldDescription>
+	</field>
+	<field name="balance" class="java.lang.String">
+		<fieldDescription><![CDATA[balance]]></fieldDescription>
+	</field>
+	<field name="remarks" class="java.lang.String">
+		<fieldDescription><![CDATA[remarks]]></fieldDescription>
+	</field>
+	<field name="prev_month_balance" class="java.lang.String">
+		<fieldDescription><![CDATA[prev_month_balance]]></fieldDescription>
+	</field>
+	<field name="prev_month_increase" class="java.lang.String">
+		<fieldDescription><![CDATA[prev_month_increase]]></fieldDescription>
+	</field>
+	<field name="prev_month_decrease" class="java.lang.String">
+		<fieldDescription><![CDATA[prev_month_decrease]]></fieldDescription>
+	</field>
+	<field name="total_amount_exp" class="java.lang.String">
+		<fieldDescription><![CDATA[total_amount_exp]]></fieldDescription>
+	</field>
+	<field name="total_prev_month_balance" class="java.lang.String">
+		<fieldDescription><![CDATA[total_prev_month_balance]]></fieldDescription>
+	</field>
+	<field name="total_prev_month_increase" class="java.lang.String">
+		<fieldDescription><![CDATA[total_prev_month_increase]]></fieldDescription>
+	</field>
+	<field name="total_prev_month_decrease" class="java.lang.String">
+		<fieldDescription><![CDATA[total_prev_month_decrease]]></fieldDescription>
+	</field>
+	<field name="net_prev_month_increase" class="java.lang.String">
+		<fieldDescription><![CDATA[net_prev_month_increase]]></fieldDescription>
+	</field>
+	<columnHeader>
+		<band height="34" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="c76e93d8-0c4c-4b1c-9199-34c1ed04a5f1" x="0" y="0" width="28" height="34"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sl
+No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6ff4df39-6a41-44a3-a32f-fa4fc19a249c" x="28" y="0" width="74" height="34"/>
+				<box leftPadding="5">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="27b08664-5600-4e59-874b-74b78ad34027" x="102" y="0" width="60" height="34"/>
+				<box leftPadding="5">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mobile]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e7618c6f-97b2-4aca-b5bd-cdc906a368ca" x="162" y="0" width="77" height="34"/>
+				<box leftPadding="0">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total
+ Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="227e11a4-5860-44d0-aa1a-a6a495409a65" x="239" y="0" width="78" height="34"/>
+				<box leftPadding="0">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Allowed
+Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="48c3c79e-91a1-45a5-babc-4993308c75a5" x="317" y="0" width="64" height="34"/>
+				<box leftPadding="0">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Deduction]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d23829da-8259-4566-9b91-d6ce5e4f06a9" x="381" y="0" width="66" height="34"/>
+				<box leftPadding="0">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Balance]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="be13e743-c939-4354-8b67-b151e67d503c" x="447" y="0" width="94" height="34"/>
+				<box leftPadding="5" rightPadding="5">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Remarks]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a75e49b5-c2d4-4858-94dd-345bf1b20c24" x="541" y="0" width="89" height="34"/>
+				<box leftPadding="5">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Prev. Month
+Balane]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e0a8e66a-f5d9-4ef8-ab35-2e47c7c1d2b7" x="630" y="0" width="79" height="34"/>
+				<box leftPadding="5">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Inc. over
+Prev. Month]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1147c274-64b6-4a7f-a5a2-278f089015fc" x="709" y="0" width="86" height="34"/>
+				<box leftPadding="5">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dec. over
+Prev. Month]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="ed6ac3a4-e036-4c34-a4a9-923aaa22840b" x="0" y="0" width="28" height="26"/>
+				<box leftPadding="5">
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sl_no}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="5af8433a-1e0a-4872-b0c3-27f224f4d03e" x="28" y="0" width="74" height="26"/>
+				<box leftPadding="5">
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{directory_name}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="de3822d8-0dd2-4bba-87e2-bf95b43934b7" x="102" y="0" width="60" height="26"/>
+				<box leftPadding="5">
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mobile}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="b082dc90-d603-45e1-9fb9-4922f43793eb" x="162" y="0" width="77" height="26"/>
+				<box rightPadding="5">
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_amt}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="2dd04f24-fb7e-41d2-99b8-ade560478cb9" x="239" y="0" width="78" height="26"/>
+				<box rightPadding="5">
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{allowed_amount}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="e5af49a1-e010-47c6-beb1-4fae0265fafb" x="317" y="0" width="64" height="26"/>
+				<box rightPadding="5">
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{deduction}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="4ed22683-fedb-4dfb-a056-efe83bf5f0d0" x="381" y="0" width="66" height="26"/>
+				<box rightPadding="5">
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{balance}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="21b9515f-6548-4287-bee7-dbda05d2097b" stretchType="RelativeToTallestObject" x="447" y="0" width="94" height="26"/>
+				<box leftPadding="5" rightPadding="5">
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{remarks}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="586c3a92-818e-4732-9ab1-759daff93081" x="541" y="0" width="89" height="26"/>
+				<box rightPadding="5">
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{prev_month_balance}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="f62a8806-1b05-498b-a801-1b06885c85ba" x="630" y="0" width="79" height="26"/>
+				<box rightPadding="5">
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{prev_month_increase}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="9bee2239-1f7b-4a64-8c35-554d432f2810" x="709" y="0" width="86" height="26"/>
+				<box rightPadding="5">
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{prev_month_decrease}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="47" splitType="Stretch">
+			<textField>
+				<reportElement uuid="1f7e8ff3-c825-411e-bfeb-596fc04d7bde" x="162" y="0" width="77" height="21"/>
+				<box leftPadding="0" rightPadding="5">
+					<topPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_amount_exp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="ec767f00-d7ff-4061-993d-87873b459a39" x="0" y="0" width="162" height="21"/>
+				<box leftPadding="5">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="ac20aeea-ed1d-4b64-aae1-2d714f2abb18" x="239" y="0" width="391" height="21"/>
+				<box leftPadding="2" rightPadding="5">
+					<topPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_prev_month_balance}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1e2eba44-e0e9-49dd-9a2c-e64be0b4b57b" x="630" y="0" width="79" height="21"/>
+				<box leftPadding="0" rightPadding="5">
+					<topPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_prev_month_increase}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b57c44cb-4918-4c4c-a77c-01a50eb81694" x="709" y="0" width="86" height="21"/>
+				<box leftPadding="0" rightPadding="5">
+					<topPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_prev_month_decrease}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0050bc7c-0e23-4da6-a707-8398edafb55c" x="664" y="21" width="131" height="26"/>
+				<box rightPadding="5">
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{net_prev_month_increase}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c7eebf01-256d-4513-b688-3fc9378046ac" x="498" y="21" width="166" height="26"/>
+				<box>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Net Increase Over Previous Month : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3fe52eec-e817-4332-842d-320b9f39dc02" x="0" y="21" width="498" height="26"/>
+				<box leftPadding="5">
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement/>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

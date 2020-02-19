@@ -1,0 +1,35 @@
+Version 1.14 - 08/12/2015 by Soorya
+	* 2830. Final Destination in RFQ Report.
+
+Version 1.13 - 03/11/2015 by Soorya
+	* Modification in Cargo Company model.
+
+Version 1.12 - 30/10/2015 by Soorya
+	* Created new model and added fields in stock.picking.
+
+Version 1.11 - 28/10/2015 by Soorya
+	* Made modifications in shipping quotation and incoming shipment models
+	
+Version 1.10 - 21/10/2015 by Soorya
+	* Modification in Shipping Quotation model and Payment Details Report.
+
+Version 1.9 - 16/10/2015 by Soorya
+	* 2740. Modification in Payment Details Report.
+	
+Version 1.8 - 09/10/2015 by Soorya
+	* 2740. Shipping Invoice and Payment Details Report.
+	
+Version 1.7 - 30/09/2015 by Soorya
+	* 2728. Purchase Order Shipping Quotation
+
+Version 1.6 - 22/06/2015 by Soorya
+	* Added filters and group by in supplier delivery status report.
+
+Version 1.5 - 19/06/2015 by Soorya
+	* Created Supplier Delivery Status Report and added colouring based on delivery date.
+
+Version 1.4 - 11/06/2015 by Soorya
+	* Added cancellation note in purchase.
+
+Version 1.3 - 04/05/2015 by Shelton
+	* TO SEND PO THROUGH ERP [JUST LIKE ENQUIRY] - send PO button added

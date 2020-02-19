@@ -1,0 +1,209 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        
+        <record id="view_employee_tree_new" model="ir.ui.view">
+            <field name="name">hr.employee.tree.new</field>
+            <field name="model">hr.employee</field>
+            <field name="arch" type="xml">
+                <tree editable="top" string="Employees"> 
+                    <field name="name" string="Employees"/>
+                    <field name="emp_no"/>
+                    <field name="gender"/>
+                    <field name="job_id"/>
+                    <field name="country_id"/>
+                    <field name="department_id" />
+                    <field name="category_ids"/>        
+                    <button string="Timesheet" name="action_open_window" type="object" class="oe_highlight"/>         
+                </tree>
+            </field>
+        </record>
+        
+        
+        
+        
+        
+        
+        <record id="view_employee_filter_new" model="ir.ui.view">
+            <field name="name">Employees</field>
+            <field name="model">hr.employee</field>
+            <field name="arch" type="xml">
+                <search string="Employees">
+                    <field name="name" string="Employees"/>
+                    <field name="emp_no"/>
+                    <field name="gender"/>
+                    <field name="job_id"/>
+                    <field name="country_id"/>
+                    <field name="department_id" />
+                    <field name="category_ids"/>
+                    
+                    <group expand="0" string="Group By">
+                        <filter string="Gender" icon="terp-personal+" domain="[]" context="{'group_by':'gender'}"/>
+                        <filter string="Department" icon="terp-personal+" domain="[]" context="{'group_by':'department_id'}"/>
+                        <filter string="Job" icon="terp-gtk-select-all" domain="[]" context="{'group_by':'job_id'}"/>
+                        <filter string="Nationality" icon="terp-gtk-select-all" domain="[]" context="{'group_by':'country_id'}"/>
+                    </group>
+                </search>
+             </field>
+         </record>
+        
+        <record id="view_employee_tree_inherit" model="ir.ui.view">
+            <field name="name">hr.employee.tree.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree"/>
+            <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='name']" position="before">
+                    <field name="emp_no" string="Emp No"/>
+                 </xpath>
+                 <xpath expr="//field[@name='name']" position="after">
+                    <field name="gender" invisible="1"/>
+                    <field name="join_date" string="DOJ"/>
+                    
+                 </xpath>
+                 <xpath expr="//field[@name='work_phone']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                 </xpath>
+                 <xpath expr="//field[@name='work_email']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                 </xpath>
+                 <xpath expr="//field[@name='job_id']" position="after">
+                    <field name="birthday" string="DOB"/>
+                    <field name="country_id" invisible="1"/>
+                    <field name="passport_id"/>
+                    <field name="visa_no"/>
+                    <field name="labour_card_no"/>
+                    <button name="%(act_hr_timesheet_line_evry1_all_form_new)d" type="action"
+                                  class="oe_inline oe_link oe_edit_only"
+                                  string="Timesheet"
+                                  context="{'default_emp_id': [active_id], 'search_default_emp_id': [active_id]}"
+                                  />
+                 </xpath>
+                 
+<!--                   <xpath expr="//field[@name='parent_id']" position="attributes"> -->
+<!--                     <attribute name="invisible">True</attribute> -->
+<!--                  </xpath> -->
+            </data>
+            </field>
+        </record>
+        
+        
+        
+        <record id="view_employee_form_inherit" model="ir.ui.view">
+            <field name="name">view.employee.form.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="priority">16</field>
+            <field name="inherit_id" ref="hr_contract.hr_hr_employee_view_form2"/>
+            <field name="arch" type="xml">
+            <data>
+                 <xpath expr="//field[@name='place_of_birth']" position="after">
+                    <field name="blood_group"/>
+                 </xpath>
+                 <xpath expr="//field[@name='passport_id']" position="replace">
+                 </xpath>
+                 <xpath expr="//label[@for='category_ids']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                 </xpath>
+                 <xpath expr="//field[@name='category_ids']" position="after">
+                    <label for="emp_no" class="oe_edit_only" groups="base.group_hr_user"/>
+                    <field name="emp_no"/>
+                 </xpath>
+                 <xpath expr="//field[@name='category_ids']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                 </xpath>
+                 <xpath expr="//field[@name='address_home_id']" position="attributes">
+                    <attribute name="invisible">False</attribute>
+                    <attribute name="string">Related Partner</attribute>
+                    <attribute name="domain">[('is_employee', '=', True)]</attribute>
+                    <attribute name="context">{'default_is_company': False, 'default_customer': False, 'default_supplier': False, 'default_is_employee': True}</attribute>
+                 </xpath>
+                 <xpath expr="//field[@name='address_home_id']" position="after">
+                    <field name="home_address"/>
+                    <field name="home_contact_no"/>
+                    <field name="local_address"/>
+                    <field name="local_contact_no"/>
+                 </xpath>
+                 <xpath expr="//field[@name='department_id']" position="before">
+                    <field name="join_date"/>
+                 </xpath>
+                 <xpath expr="//page[@string='Personal Information']" position="after">
+                    <page string="Documents Info" groups="base.group_hr_user">
+                                <group>
+                                    <group string="Passport Info">
+                                        <field name="passport_id"/>
+                                        <field name="passport_issue_date"/>
+                                        <field name="passport_expiry_date"/>
+                                        <field name="place_issue"/>
+                                    </group>
+                                    <group string="Insurance Info">
+                                        <field name="insurance_no"/>
+                                        <field name="insurance_issue_date"/>
+                                        <field name="insurance_expiry_date"/>
+                                    </group>
+                                    <group string="Visa Info">
+                                        <field name="visa_no"/>
+                                        <field name="visa_issue_date"/>
+                                        <field name="visa_expiry_date"/>
+                                    </group>
+                                    <group string="Emirates ID Info">
+                                        <field name="emirates_id_no"/>
+                                        <field name="emirates_id_issue_date"/>
+                                        <field name="emirates_id_expiry_date"/>
+                                    </group>
+                                    <group string="Labour Card Info">
+                                        <field name="labour_card_no"/>
+                                        <field name="labour_card_issue_date"/>
+                                        <field name="labour_card_expiry_date"/>
+                                    </group>
+                                    <group string="Driving License Info">
+                                        <field name="license_no"/>
+                                        <field name="license_issue_date"/>
+                                        <field name="license_expiry_date"/>
+                                    </group>
+                                    
+                                </group>
+                     </page>
+                     <page string="Timesheet">
+                     <button string="Timesheet" name="action_open_window" type="object" class="oe_highlight"/>
+<!--                         <field name="timesheet_ids"> -->
+<!--                             <tree string="Timesheet" editable="bottom"> -->
+<!--                                 <field name="date"/> -->
+<!--                                 <field name="account_id"/> -->
+<!--                                 <field name="unit_amount"/> -->
+<!--                                 <field name="idle_hrs"/> -->
+<!--                                 <field name="ot_hrs"/> -->
+<!--                                 <field name="ot_type"/> -->
+<!--                                 <field name="total_hrs"/> -->
+<!--                             </tree> -->
+<!--                           </field> -->
+                     </page>
+                 </xpath>
+            </data>
+            </field>
+        </record>
+    
+    <record id="open_view_employee_list_my_inherit" model="ir.actions.act_window">
+            <field name="name">Employees</field>
+            <field name="res_model">hr.employee</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,kanban</field>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+            <field name="view_id" ref="view_employee_tree_inherit"/>
+            <field name="search_view_id" ref="view_employee_filter_new"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a new employee.
+              </p><p>
+                With just a quick glance on the Odoo employee screen, you
+                can easily find all the information you need for each person;
+                contact data, job position, availability, etc.
+              </p>
+            </field>
+        </record>
+
+        <menuitem action="open_view_employee_list_my_inherit" id="hr.menu_open_view_employee_list_my" sequence="3" parent="hr.menu_hr_main"/>
+    
+    
+    </data>
+</openerp>

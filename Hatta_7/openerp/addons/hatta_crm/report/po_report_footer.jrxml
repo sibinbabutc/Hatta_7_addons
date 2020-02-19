@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="po_report_footer" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2ae23679-1b09-4557-b1d8-0bd4d5a88ef8">
+	<property name="ireport.zoom" value="1.1000000000000025"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="note" class="java.lang.String">
+		<parameterDescription><![CDATA[note]]></parameterDescription>
+	</parameter>
+	<parameter name="end_user" class="java.lang.String">
+		<parameterDescription><![CDATA[end_user]]></parameterDescription>
+	</parameter>
+	<parameter name="pay_term" class="java.lang.String">
+		<parameterDescription><![CDATA[pay_term]]></parameterDescription>
+	</parameter>
+	<parameter name="payment_term_note" class="java.lang.String">
+		<parameterDescription><![CDATA[payment_term_note]]></parameterDescription>
+	</parameter>
+	<parameter name="del_schedule" class="java.lang.String">
+		<parameterDescription><![CDATA[del_schedule]]></parameterDescription>
+	</parameter>
+	<parameter name="del_address" class="java.lang.String">
+		<parameterDescription><![CDATA[del_address]]></parameterDescription>
+	</parameter>
+	<parameter name="special_note" class="java.lang.String">
+		<parameterDescription><![CDATA[special_note]]></parameterDescription>
+	</parameter>
+	<parameter name="del_date" class="java.sql.Timestamp">
+		<parameterDescription><![CDATA[del_date]]></parameterDescription>
+	</parameter>
+	<parameter name="delivery_mode" class="java.lang.String">
+		<parameterDescription><![CDATA[delivery_mode]]></parameterDescription>
+	</parameter>
+	<parameter name="special_note_1" class="java.lang.String">
+		<parameterDescription><![CDATA[special_note]]></parameterDescription>
+	</parameter>
+	<queryString language="XPath">
+		<![CDATA[]]>
+	</queryString>
+	<group name="note">
+		<groupExpression><![CDATA[$P{note}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="33ee1c9e-4b60-48ef-a60a-68da4fb501b3" x="0" y="13" width="555" height="15" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$P{note} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOTE :-]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="f59cd003-81c1-424e-83c1-c63c476fa586" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="28" width="555" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{note}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="65">
+			<rectangle radius="10">
+				<reportElement uuid="9d4320bc-a6c4-4038-ae83-74bb77249af3" stretchType="RelativeToTallestObject" x="0" y="30" width="555" height="34" isPrintWhenDetailOverflows="true">
+					<printWhenExpression><![CDATA[$P{special_note} != null]]></printWhenExpression>
+				</reportElement>
+			</rectangle>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="30191927-ffdd-4878-bbda-cfc3762a7103" stretchType="RelativeToTallestObject" x="13" y="48" width="542" height="16" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$P{special_note} != null]]></printWhenExpression>
+				</reportElement>
+				<box topPadding="2" bottomPadding="2"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{special_note}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="33ee1c9e-4b60-48ef-a60a-68da4fb501b3" x="13" y="35" width="542" height="13" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$P{special_note} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Times New Roman" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[SPECIAL INSTRUCTIONS]]></text>
+			</staticText>
+			<ellipse>
+				<reportElement uuid="433b6ae7-5693-4ffe-8a92-0b01ee838285" x="414" y="0" width="141" height="30">
+					<printWhenExpression><![CDATA[$P{special_note} != null]]></printWhenExpression>
+				</reportElement>
+			</ellipse>
+			<staticText>
+				<reportElement uuid="ad95984e-38b5-4981-941f-0b9f72cb0bf5" x="404" y="5" width="151" height="20">
+					<printWhenExpression><![CDATA[$P{special_note} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IMPORTANT]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

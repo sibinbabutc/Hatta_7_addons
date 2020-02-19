@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report id="report_partner_ageing" 
+                model="partner.ageing.report.wizard" 
+                name="partner.ageing.jasper" 
+                string="Partner Ageing" 
+                rml="hatta_ageing_report/report/ageing_report.jrxml"/>
+        
+        <report id="report_partner_ageing_summary" 
+                model="partner.ageing.report.wizard" 
+                name="partner.ageing.summary.jasper" 
+                string="Partner Ageing Summary" 
+                rml="hatta_ageing_report/report/ageing_report_summary.jrxml"/>
+    </data>
+</openerp>

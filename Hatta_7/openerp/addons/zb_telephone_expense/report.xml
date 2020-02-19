@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+    
+    <report id="report_telephone_expense_jasper" 
+                model="telex.transfer" 
+                auto="True"
+                name="telephone_expense_jasper" 
+                string="Telephone Expense Report" 
+                rml="zb_telephone_expense/report/telephone_expense_jasper.jrxml"/>
+    
+    </data>
+</openerp>

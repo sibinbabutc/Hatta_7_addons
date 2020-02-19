@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="rejection_report_form" model="ir.ui.view">
+            <field name="name">rejection.report.form</field>
+            <field name="model">rejection.report</field>
+            <field name="arch" type="xml">
+                <form string="Rejection Report" version="7.0">
+                    <group>
+                        <group>
+                            <field name="rejection_id"/>
+                            <field name="from_date"/>
+                            <field name="to_date"/>
+                            <field name="type" required="True"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button name="print_report" string="Print" type="object"
+                                class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_rejection_report" model="ir.actions.act_window">
+            <field name="name">Rejection Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">rejection.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="rejection_report_form" />
+            <field name="target">new</field>
+            <field name="multi">True</field>
+        </record>
+        
+        <menuitem id="rejection_report_menu_root" name="Reporting"
+                    parent="rejection_mangement_root"
+                    groups="hatta_rejection_management.rejection_management_user" sequence="7"/>
+        <menuitem id="rejection_report" name="Rejection Report"
+                    action="action_rejection_report"
+                    parent="rejection_report_menu_root"/>
+    </data>
+</openerp>

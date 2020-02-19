@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="product_product_form_inherit" model="ir.ui.view">
+            <field name="name">product.product.form.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Procurements']" position="after">
+                    <page string="Product Certificate(S)">
+                        <label for="certificate_ids"/>
+                        <field name="certificate_ids" nolabel="1" colspan="4"/>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='list_price']" position="after">
+                    <field name="manufacturer_id" domain="[('is_manufac', '=', True)]"
+                        context="{'default_customer': False, 'default_supplier': False, 'default_is_manufac': True, 'default_is_company': True}"/>
+                    <field name="part_no"/>
+                </xpath>
+                <xpath expr="//div[@name='ean']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//label[@for='ean13']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='categ_id']" position="attributes">
+                    <attribute name="on_change">onchange_categ_id(categ_id)</attribute>
+                </xpath>
+                <xpath expr="//field[@name='list_price']" position="after">
+                    <field name="iventory_value"/>
+                     <field name="qty_on_hand_store" invisible="1"/>
+                </xpath>
+                <notebook position="inside">
+                    <page string="Multiple Prices">
+                        <field name="multi_price_ids">
+                        	<tree editable="bottom" string="Multiple Prices">
+                        		<field name="currency_id" required="1"/>
+                        		<field name="list_price"/>
+                        	</tree>
+                        </field>
+                    </page>
+                </notebook>
+            </field>
+        </record>
+        
+        <record id="product_product_search_inherit" model="ir.ui.view">
+            <field name="name">product.product.search.inherit</field>
+            <field name="model">product.product</field>
+            <field name="inherit_id" ref="product.product_search_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="manufacturer_id"/>
+                    <field name="part_no"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="product_cat_form_inherit">
+            <field name="name">product.category.form</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='parent_id']" position="after">
+                    <field name="product_type" required="True"/>
+                    <field name="valuation" required="True"/>
+                    <field name="cost_method" required="True"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="product_stock_report_tree_view" model="ir.ui.view">
+            <field name="name">product.product.stock.report.tree</field>
+            <field name="model">product.product</field>
+            <field eval="7" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="Stock Report" create="false" edit="false">
+                    <field name="default_code"/>
+                    <field name="name"/>
+                    <field name="categ_id" invisible="1"/>
+                    <field name="type" invisible="1"/>
+                    <field name="uom_id" string="Unit of Measure" groups="product.group_uom"/>
+                    <field name="qty_available"/>
+                    <field name="standard_price"/>
+                    <field name="iventory_value"/>
+                    <field name="list_price"/>
+                    <field name="qty_on_hand_store" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="product_stock_report_action" model="ir.actions.act_window">
+            <field name="name">Stock Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.product</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+            <field name="domain">[('qty_on_hand_store','>',0.0)]</field>
+            <field name="view_id" ref="product_stock_report_tree_view"/>
+            <field name="search_view_id" ref="product.product_search_form_view"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to define a new product.
+              </p><p>
+                You must define a product for everything you buy or sell,
+                whether it's a physical product, a consumable or service.
+              </p>
+            </field>
+        </record>
+        
+        
+        
+    </data>
+</openerp>

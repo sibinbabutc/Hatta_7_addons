@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+	<data>
+	
+		<record id="invoice_uploadation_wizard_form_view" model="ir.ui.view">
+			<field name="name">invoice.uploadation.wizard.form</field>
+			<field name="model">invoice.uploadation.wizard</field>
+			<field name="arch" type="xml">
+				<form string="Invoice Online Upload Status Report" version="7.0">
+					<group>
+						<field name="from_date"/>
+						<field name="to_date"/>
+					</group>
+					<group>
+						<field name="customer_id" domain="[('upload_invoice', '=', True)]"/>
+						<field name="report_type"/>
+					</group>
+					<footer>
+					<button name="print_report" string="Print" type="object" icon="STOCK_PRINT" class="oe_highlight"/>
+		            	or
+		            <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+		            </footer>
+		        </form>
+		    </field>
+		</record>
+		
+		<record id="action_invoice_uploadation_wizard" model="ir.actions.act_window">
+		    <field name="name">Invoice Online Upload Status Report</field>
+		    <field name="type">ir.actions.act_window</field>
+		    <field name="res_model">invoice.uploadation.wizard</field>
+		    <field name="view_type">form</field>
+		    <field name="view_mode">form</field>
+		    <field name="view_id" ref="invoice_uploadation_wizard_form_view"/>
+		    <field name="target">new</field>
+    	</record>
+    	
+    	<menuitem id="menu_invoice_uploadation_wizard" action="action_invoice_uploadation_wizard"
+    	 name="Invoice Online Upload Status Report" parent="hatta_crm.hatta_account_report" sequence="14"/>
+	
+	</data>
+</openerp>

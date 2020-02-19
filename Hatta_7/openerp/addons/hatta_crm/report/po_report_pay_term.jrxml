@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="po_report_pay_term" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="5bbf08a4-23a7-434e-8771-6e130ef56994">
+	<property name="ireport.zoom" value="1.1000000000000005"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="end_user" class="java.lang.String">
+		<parameterDescription><![CDATA[end_user]]></parameterDescription>
+	</parameter>
+	<parameter name="pay_term" class="java.lang.String">
+		<parameterDescription><![CDATA[pay_term]]></parameterDescription>
+	</parameter>
+	<parameter name="del_date" class="java.util.Date">
+		<parameterDescription><![CDATA[del_date]]></parameterDescription>
+	</parameter>
+	<parameter name="delivery_mode" class="java.lang.String">
+		<parameterDescription><![CDATA[delivery_mode]]></parameterDescription>
+	</parameter>
+	<parameter name="del_schedule" class="java.lang.String">
+		<parameterDescription><![CDATA[del_schedule]]></parameterDescription>
+	</parameter>
+	<parameter name="del_address" class="java.lang.String">
+		<parameterDescription><![CDATA[del_address]]></parameterDescription>
+	</parameter>
+	<parameter name="user_name" class="java.lang.String">
+		<parameterDescription><![CDATA[user_name]]></parameterDescription>
+	</parameter>
+	<parameter name="display_del_address" class="java.lang.String">
+		<parameterDescription><![CDATA[display_del_address]]></parameterDescription>
+	</parameter>
+	<queryString language="XPath">
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="c998072e-b5b6-4215-92e0-9a495cb39555" stretchType="RelativeToTallestObject" x="117" y="12" width="438" height="15" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$P{end_user} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{end_user}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="33ee1c9e-4b60-48ef-a60a-68da4fb501b3" stretchType="RelativeToTallestObject" x="0" y="12" width="117" height="15" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$P{end_user} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[END USER :-]]></text>
+			</staticText>
+		</band>
+		<band height="15">
+			<staticText>
+				<reportElement uuid="33ee1c9e-4b60-48ef-a60a-68da4fb501b3" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="117" height="15" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$P{pay_term} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PAYMENT TERMS :-]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="45763b5b-bf3c-4cb3-96ef-43d42ea13ce5" positionType="Float" stretchType="RelativeToTallestObject" x="117" y="0" width="438" height="15" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$P{pay_term} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{pay_term}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="15">
+			<staticText>
+				<reportElement uuid="33ee1c9e-4b60-48ef-a60a-68da4fb501b3" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="117" height="15" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$P{del_schedule} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DEL. DATE :-]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="4a347049-13ba-4966-babd-4ce5de4358f6" positionType="Float" stretchType="RelativeToTallestObject" x="117" y="0" width="438" height="15" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$P{del_schedule} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{del_date}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="15">
+			<staticText>
+				<reportElement uuid="33ee1c9e-4b60-48ef-a60a-68da4fb501b3" positionType="Float" stretchType="RelativeToTallestObject" x="1" y="0" width="117" height="15" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$P{delivery_mode} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MODE OF SHIPMENT:-]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="4a347049-13ba-4966-babd-4ce5de4358f6" positionType="Float" stretchType="RelativeToTallestObject" x="118" y="0" width="438" height="15" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$P{delivery_mode} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{delivery_mode}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="15">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="4a347049-13ba-4966-babd-4ce5de4358f6" positionType="Float" stretchType="RelativeToTallestObject" x="118" y="0" width="438" height="15" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$P{del_schedule} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{del_schedule}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="33ee1c9e-4b60-48ef-a60a-68da4fb501b3" positionType="Float" stretchType="RelativeToTallestObject" x="1" y="0" width="117" height="15" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$P{del_schedule} != null]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DEL. SCHEDULE :-]]></text>
+			</staticText>
+		</band>
+		<band height="19">
+			<staticText>
+				<reportElement uuid="33ee1c9e-4b60-48ef-a60a-68da4fb501b3" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="117" height="19" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$P{del_address} != null & $P{display_del_address} != "false"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DEL. ADDRESS :-]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="59f0d109-2d2d-4e84-a21f-2598e0647789" positionType="Float" stretchType="RelativeToTallestObject" x="117" y="0" width="438" height="19" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$P{del_address} != null & $P{display_del_address} != "false"]]></printWhenExpression>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{del_address}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="73">
+			<staticText>
+				<reportElement uuid="dcb972e3-964e-457b-8139-cd5d995ba124" positionType="Float" x="-1" y="53" width="117" height="20" isRemoveLineWhenBlank="true"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PREPARED BY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dcb972e3-964e-457b-8139-cd5d995ba124" positionType="Float" x="203" y="53" width="112" height="20" isRemoveLineWhenBlank="true"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ACCOUNTS DEPT.]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="39c0064a-5a37-4623-85b0-02b67ccad7df" positionType="Float" x="0" y="34" width="116" height="19" isRemoveLineWhenBlank="true"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{user_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="dcb972e3-964e-457b-8139-cd5d995ba124" positionType="Float" x="402" y="53" width="152" height="20" isRemoveLineWhenBlank="true"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Times New Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AUTHORISED SIGNATORY]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

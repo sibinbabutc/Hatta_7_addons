@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="general_ledger_print_form" model="ir.ui.view">
+          <field name="name">general.ledger.print.form</field>
+          <field name="model">general.ledger.print</field>
+          <field name="arch" type="xml">
+            <form string="General Ledger" version="7.0">
+                <group>
+                    <field name="chart_account_id" required="True"/>
+                    <field name="fiscalyear_id" required="True"/>
+                    <field name="cost_center_id"/>
+                    <field name="start_account_id" on_change="onchange_account_from(start_account_id, end_account_id)"/>
+                    <field name="end_account_id" on_change="onchange_account_to(end_account_id, start_account_id)"/>
+                    <field name="date_from" required="True"/>
+                    <field name="date_to" required="True"/>
+                    <field name="report_type" required="True"/>
+                    <field name="print_forign_curr"/>
+                </group>
+                <footer>
+                   <button name="print_report" string="Print" type="object" icon="STOCK_PRINT" default_focus="1" class="oe_highlight"/>
+                    or
+                   <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+                </footer>
+            </form>
+          </field>
+       </record>
+       
+       <record id="action_gen_led_print_job" model="ir.actions.act_window">
+          <field name="name">General Ledger</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">general.ledger.print</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="general_ledger_print_form"/>
+          <field name="target">new</field>
+       </record>
+       
+       <menuitem id="menu_general_ledger" parent="account.final_accounting_reports"
+                    action="action_gen_led_print_job" sequence="120" icon="STOCK_PRINT"/>
+    </data>
+</openerp>

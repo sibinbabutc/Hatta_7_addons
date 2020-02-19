@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <report id="report_balance_report" 
+                model="balance.sheet.wizard" 
+                name="balance_sheet_jasper" 
+                string="Accounting Report" 
+                rml="hatta_balance_sheet/report/balance_sheet_report.jrxml"/>
+        
+        <report id="report_balance_report_xls" 
+                model="balance.sheet.wizard" 
+                name="balance_sheet_jasper_xls" 
+                string="Accounting Report" 
+                rml="hatta_balance_sheet/report/balance_sheet_report_xls.jrxml"/>
+        
+        <report id="report_balance_report_cmp_1" 
+                model="balance.sheet.wizard" 
+                name="balance_sheet_jasper_cmp_1" 
+                string="Accounting Report" 
+                rml="hatta_balance_sheet/report/balance_sheet_report_a3_1.jrxml"/>
+        
+        <report id="report_balance_report_cmp_2" 
+                model="balance.sheet.wizard" 
+                name="balance_sheet_jasper_cmp_2" 
+                string="Accounting Report" 
+                rml="hatta_balance_sheet/report/balance_sheet_report_a3_2.jrxml"/>
+        
+        <report id="report_balance_report_cmp_3" 
+                model="balance.sheet.wizard" 
+                name="balance_sheet_jasper_cmp_3" 
+                string="Accounting Report" 
+                rml="hatta_balance_sheet/report/balance_sheet_report_a3_3.jrxml"/>
+        
+        <report id="report_balance_report_cmp_1_xls" 
+                model="balance.sheet.wizard" 
+                name="balance_sheet_jasper_cmp_1_xls" 
+                string="Accounting Report" 
+                rml="hatta_balance_sheet/report/balance_sheet_report_a3_1_xls.jrxml"/>
+        
+        <report id="report_balance_report_cmp_2_xls" 
+                model="balance.sheet.wizard" 
+                name="balance_sheet_jasper_cmp_2_xls" 
+                string="Accounting Report" 
+                rml="hatta_balance_sheet/report/balance_sheet_report_a3_2_xls.jrxml"/>
+        
+        <report id="report_balance_report_cmp_3_xls" 
+                model="balance.sheet.wizard" 
+                name="balance_sheet_jasper_cmp_3_xls" 
+                string="Accounting Report" 
+                rml="hatta_balance_sheet/report/balance_sheet_report_a3_3_xls.jrxml"/>
+    </data>
+</openerp>

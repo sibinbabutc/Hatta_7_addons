@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="trans_done_cancel" model="workflow.transition">
+            <field name="act_from" ref="sale.act_done"/>
+            <field name="act_to" ref="sale.act_cancel"/>
+            <field name="signal">done_cancel</field>
+        </record>
+        <record id="sale_stock.trans_wait_ship_ship" model="workflow.transition">
+            <field name="act_from" ref="sale_stock.act_wait_ship"/>
+            <field name="act_to" ref="sale_stock.act_ship"/>
+            <field name="signal">create_ship</field>
+            <field name="condition">(order_policy!='prepaid') or invoiced</field>
+        </record>
+    </data>
+</openerp>

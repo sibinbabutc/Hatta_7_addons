@@ -1,0 +1,1123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="upcoming_delivery_report" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5ee696ef-3c0d-4dec-a7fa-0534b449e7e1">
+	<property name="ireport.zoom" value="1.0000000000000018"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="company_name" class="java.lang.String">
+		<parameterDescription><![CDATA[company_name]]></parameterDescription>
+	</parameter>
+	<parameter name="run_time" class="java.util.Date">
+		<parameterDescription><![CDATA[run_time]]></parameterDescription>
+	</parameter>
+	<parameter name="report_name" class="java.lang.String">
+		<parameterDescription><![CDATA[report_name]]></parameterDescription>
+	</parameter>
+	<parameter name="del_done" class="java.lang.String">
+		<parameterDescription><![CDATA[del_done]]></parameterDescription>
+	</parameter>
+	<parameter name="del_past" class="java.lang.String">
+		<parameterDescription><![CDATA[del_past]]></parameterDescription>
+	</parameter>
+	<parameter name="del_one" class="java.lang.String">
+		<parameterDescription><![CDATA[del_one]]></parameterDescription>
+	</parameter>
+	<parameter name="del_fut" class="java.lang.String">
+		<parameterDescription><![CDATA[del_fut]]></parameterDescription>
+	</parameter>
+	<parameter name="del_with_rej" class="java.lang.String">
+		<parameterDescription><![CDATA[del_with_rej]]></parameterDescription>
+	</parameter>
+	<queryString language="XPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="si_no" class="java.lang.Integer">
+		<fieldDescription><![CDATA[si_no]]></fieldDescription>
+	</field>
+	<field name="sale_no" class="java.lang.String">
+		<fieldDescription><![CDATA[sale_no]]></fieldDescription>
+	</field>
+	<field name="partner_name" class="java.lang.String">
+		<fieldDescription><![CDATA[partner_name]]></fieldDescription>
+	</field>
+	<field name="job_number" class="java.lang.String">
+		<fieldDescription><![CDATA[job_number]]></fieldDescription>
+	</field>
+	<field name="cust_po_number" class="java.lang.String">
+		<fieldDescription><![CDATA[cust_po_number]]></fieldDescription>
+	</field>
+	<field name="del_date" class="java.util.Date">
+		<fieldDescription><![CDATA[del_date]]></fieldDescription>
+	</field>
+	<field name="po_number" class="java.lang.String">
+		<fieldDescription><![CDATA[po_number]]></fieldDescription>
+	</field>
+	<field name="supp_number" class="java.lang.String">
+		<fieldDescription><![CDATA[supp_number]]></fieldDescription>
+	</field>
+	<field name="rejections" class="java.lang.String">
+		<fieldDescription><![CDATA[rejections]]></fieldDescription>
+	</field>
+	<field name="color" class="java.lang.String">
+		<fieldDescription><![CDATA[color]]></fieldDescription>
+	</field>
+	<field name="supp_del" class="java.lang.String">
+		<fieldDescription><![CDATA[supp_del]]></fieldDescription>
+	</field>
+	<field name="dn_numbers" class="java.lang.String">
+		<fieldDescription><![CDATA[dn_numbers]]></fieldDescription>
+	</field>
+	<field name="invoice_numbers" class="java.lang.String">
+		<fieldDescription><![CDATA[invoice_numbers]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="55" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="ceadcb12-aeb7-4f12-b629-cdcda3c4f2dc" x="1" y="0" width="20" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" size="8"/>
+				</textElement>
+				<text><![CDATA[Run :]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement uuid="5cfe2b73-5417-46de-bd41-cd986f2ffc9b" x="763" y="0" width="40" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement uuid="bf51b579-554e-4f58-a630-cc8273b7f61c" x="21" y="0" width="662" height="15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{run_time}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3a921b69-2736-4fe4-9bbf-752ca956e71a" x="1" y="15" width="801" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{company_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5557199f-d609-41b8-a0e0-cfb734370d8f" x="683" y="0" width="80" height="15"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Time Roman" size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="558afe60-b634-4516-8fc7-d213c570ff8e" x="1" y="35" width="801" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{report_name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="43" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="2cc35452-ad18-496b-80f0-ec7b179b0cf3" stretchType="RelativeToTallestObject" x="1" y="0" width="25" height="29"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SI #]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e3a6d2b7-1d7b-44d0-a777-e405f6c988fd" stretchType="RelativeToTallestObject" x="26" y="0" width="50" height="29"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SALE ORDER #]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="532c53bf-9119-4bed-aaff-f743db496ffc" stretchType="RelativeToTallestObject" x="76" y="0" width="85" height="29"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CUSTOMER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8332787e-d88c-45ee-9144-ecd6493b5039" stretchType="RelativeToTallestObject" x="218" y="0" width="45" height="29"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[A/C NO.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bba726fa-0abd-4d8f-aab9-ac7568c372d1" stretchType="RelativeToTallestObject" x="263" y="0" width="90" height="29"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CUST. PO NUMBER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="80e38721-0a04-42ad-9753-f65448e0c50c" stretchType="RelativeToTallestObject" x="473" y="0" width="60" height="29"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DELIVERY DATE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a8866bc6-49da-4f88-bca4-317908d0933f" stretchType="RelativeToTallestObject" x="533" y="0" width="50" height="29"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PO #]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="212393b2-3945-4c2e-bb86-2e9c0ad13c1b" stretchType="RelativeToTallestObject" x="583" y="0" width="154" height="29"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUPPLIER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ba031c62-adf0-44fc-b1ea-72aafaaa867c" stretchType="RelativeToTallestObject" x="737" y="0" width="65" height="29"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REJECTIONS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="532c53bf-9119-4bed-aaff-f743db496ffc" stretchType="RelativeToTallestObject" x="161" y="0" width="57" height="29"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUPPLIER DEL. DATE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="80e38721-0a04-42ad-9753-f65448e0c50c" stretchType="RelativeToTallestObject" x="353" y="0" width="60" height="29"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INVOICE #]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="80e38721-0a04-42ad-9753-f65448e0c50c" stretchType="RelativeToTallestObject" x="412" y="0" width="61" height="29"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DN #]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="bbd805d8-ca3b-4b87-a5ff-28d8a51aad01" positionType="Float" stretchType="RelativeToTallestObject" x="26" y="0" width="50" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{color} == "black"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sale_no}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="f5ef3395-8d2b-4147-b399-219dff202aa5" positionType="Float" stretchType="RelativeToTallestObject" x="76" y="0" width="85" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{color} == "black"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{partner_name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="8facd63e-e235-4594-822a-2b2666134bfc" positionType="Float" stretchType="RelativeToTallestObject" x="218" y="0" width="45" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{color} == "black"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{job_number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="31521a4c-0f28-4f61-b7fc-f2f42cf72f8d" positionType="Float" stretchType="RelativeToTallestObject" x="263" y="0" width="90" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{color} == "black"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cust_po_number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="1b44599c-6b1c-47f4-95f6-3dd085635357" positionType="Float" stretchType="RelativeToTallestObject" x="473" y="0" width="60" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{color} == "black"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{del_date}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="93cbb6af-1818-422d-85e7-a49fca2ef8c8" positionType="Float" stretchType="RelativeToTallestObject" x="533" y="0" width="50" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{color} == "black"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{po_number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="3b56a72b-732b-4057-b820-28c1bd871a3a" positionType="Float" stretchType="RelativeToTallestObject" x="583" y="0" width="154" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{color} == "black"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{supp_number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="50c929a3-c6cc-41b7-b68a-93c97ba2a25e" positionType="Float" stretchType="RelativeToTallestObject" x="737" y="0" width="65" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{color} == "black"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rejections}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="ca1d7256-e356-4123-bec1-f68a558698a2" positionType="Float" stretchType="RelativeToTallestObject" x="1" y="0" width="25" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{color} == "black"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="93cbb6af-1818-422d-85e7-a49fca2ef8c8" positionType="Float" stretchType="RelativeToTallestObject" x="533" y="0" width="50" height="20" isRemoveLineWhenBlank="true" forecolor="#FF0000">
+					<printWhenExpression><![CDATA[$F{color} == "red"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{po_number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="8facd63e-e235-4594-822a-2b2666134bfc" positionType="Float" stretchType="RelativeToTallestObject" x="218" y="0" width="45" height="20" isRemoveLineWhenBlank="true" forecolor="#FF0000">
+					<printWhenExpression><![CDATA[$F{color} == "red"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{job_number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="f5ef3395-8d2b-4147-b399-219dff202aa5" positionType="Float" stretchType="RelativeToTallestObject" x="76" y="0" width="85" height="20" isRemoveLineWhenBlank="true" forecolor="#FF0000">
+					<printWhenExpression><![CDATA[$F{color} == "red"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{partner_name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="1b44599c-6b1c-47f4-95f6-3dd085635357" positionType="Float" stretchType="RelativeToTallestObject" x="473" y="0" width="60" height="20" isRemoveLineWhenBlank="true" forecolor="#FF0000">
+					<printWhenExpression><![CDATA[$F{color} == "red"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{del_date}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="ca1d7256-e356-4123-bec1-f68a558698a2" positionType="Float" stretchType="RelativeToTallestObject" x="1" y="0" width="25" height="20" isRemoveLineWhenBlank="true" forecolor="#FF0000">
+					<printWhenExpression><![CDATA[$F{color} == "red"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="3b56a72b-732b-4057-b820-28c1bd871a3a" positionType="Float" stretchType="RelativeToTallestObject" x="583" y="0" width="154" height="20" isRemoveLineWhenBlank="true" forecolor="#FF0000">
+					<printWhenExpression><![CDATA[$F{color} == "red"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{supp_number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="bbd805d8-ca3b-4b87-a5ff-28d8a51aad01" positionType="Float" stretchType="RelativeToTallestObject" x="26" y="0" width="50" height="20" isRemoveLineWhenBlank="true" forecolor="#FF0000">
+					<printWhenExpression><![CDATA[$F{color} == "red"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sale_no}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="50c929a3-c6cc-41b7-b68a-93c97ba2a25e" positionType="Float" stretchType="RelativeToTallestObject" x="738" y="0" width="65" height="20" isRemoveLineWhenBlank="true" forecolor="#FF0000">
+					<printWhenExpression><![CDATA[$F{color} == "red"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rejections}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="31521a4c-0f28-4f61-b7fc-f2f42cf72f8d" positionType="Float" stretchType="RelativeToTallestObject" x="263" y="0" width="90" height="20" isRemoveLineWhenBlank="true" forecolor="#FF0000">
+					<printWhenExpression><![CDATA[$F{color} == "red"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cust_po_number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="31521a4c-0f28-4f61-b7fc-f2f42cf72f8d" positionType="Float" stretchType="RelativeToTallestObject" x="263" y="0" width="90" height="20" isRemoveLineWhenBlank="true" forecolor="#FF00F5">
+					<printWhenExpression><![CDATA[$F{color} == "pink"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cust_po_number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="ca1d7256-e356-4123-bec1-f68a558698a2" positionType="Float" stretchType="RelativeToTallestObject" x="1" y="0" width="25" height="20" isRemoveLineWhenBlank="true" forecolor="#FF00F5">
+					<printWhenExpression><![CDATA[$F{color} == "pink"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="93cbb6af-1818-422d-85e7-a49fca2ef8c8" positionType="Float" stretchType="RelativeToTallestObject" x="533" y="0" width="50" height="20" isRemoveLineWhenBlank="true" forecolor="#FF00F5">
+					<printWhenExpression><![CDATA[$F{color} == "pink"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{po_number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="f5ef3395-8d2b-4147-b399-219dff202aa5" positionType="Float" stretchType="RelativeToTallestObject" x="76" y="0" width="85" height="20" isRemoveLineWhenBlank="true" forecolor="#FF00F5">
+					<printWhenExpression><![CDATA[$F{color} == "pink"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{partner_name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="1b44599c-6b1c-47f4-95f6-3dd085635357" positionType="Float" stretchType="RelativeToTallestObject" x="473" y="0" width="60" height="20" isRemoveLineWhenBlank="true" forecolor="#FF00F5">
+					<printWhenExpression><![CDATA[$F{color} == "pink"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{del_date}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="50c929a3-c6cc-41b7-b68a-93c97ba2a25e" positionType="Float" stretchType="RelativeToTallestObject" x="738" y="0" width="65" height="20" isRemoveLineWhenBlank="true" forecolor="#FF00F5">
+					<printWhenExpression><![CDATA[$F{color} == "pink"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rejections}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="bbd805d8-ca3b-4b87-a5ff-28d8a51aad01" stretchType="RelativeToTallestObject" x="26" y="0" width="50" height="20" isRemoveLineWhenBlank="true" forecolor="#FF00F5">
+					<printWhenExpression><![CDATA[$F{color} == "pink"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sale_no}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="8facd63e-e235-4594-822a-2b2666134bfc" positionType="Float" stretchType="RelativeToTallestObject" x="218" y="0" width="45" height="20" isRemoveLineWhenBlank="true" forecolor="#FF00F5">
+					<printWhenExpression><![CDATA[$F{color} == "pink"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{job_number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="3b56a72b-732b-4057-b820-28c1bd871a3a" positionType="Float" stretchType="RelativeToTallestObject" x="583" y="0" width="154" height="20" isRemoveLineWhenBlank="true" forecolor="#FF00F5">
+					<printWhenExpression><![CDATA[$F{color} == "pink"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{supp_number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="1b44599c-6b1c-47f4-95f6-3dd085635357" positionType="Float" stretchType="RelativeToTallestObject" x="472" y="0" width="60" height="20" isRemoveLineWhenBlank="true" forecolor="#009500">
+					<printWhenExpression><![CDATA[$F{color} == "green"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{del_date}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="50c929a3-c6cc-41b7-b68a-93c97ba2a25e" positionType="Float" stretchType="RelativeToTallestObject" x="737" y="0" width="65" height="20" isRemoveLineWhenBlank="true" forecolor="#009500">
+					<printWhenExpression><![CDATA[$F{color} == "green"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rejections}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="93cbb6af-1818-422d-85e7-a49fca2ef8c8" positionType="Float" stretchType="RelativeToTallestObject" x="532" y="0" width="50" height="20" isRemoveLineWhenBlank="true" forecolor="#009500">
+					<printWhenExpression><![CDATA[$F{color} == "green"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{po_number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="ca1d7256-e356-4123-bec1-f68a558698a2" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="25" height="20" isRemoveLineWhenBlank="true" forecolor="#009500">
+					<printWhenExpression><![CDATA[$F{color} == "green"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="3b56a72b-732b-4057-b820-28c1bd871a3a" positionType="Float" stretchType="RelativeToTallestObject" x="582" y="0" width="154" height="20" isRemoveLineWhenBlank="true" forecolor="#009500">
+					<printWhenExpression><![CDATA[$F{color} == "green"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{supp_number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="31521a4c-0f28-4f61-b7fc-f2f42cf72f8d" positionType="Float" stretchType="RelativeToTallestObject" x="262" y="0" width="90" height="20" isRemoveLineWhenBlank="true" forecolor="#009500">
+					<printWhenExpression><![CDATA[$F{color} == "green"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cust_po_number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="bbd805d8-ca3b-4b87-a5ff-28d8a51aad01" positionType="Float" stretchType="RelativeToTallestObject" x="25" y="0" width="50" height="20" isRemoveLineWhenBlank="true" forecolor="#009500">
+					<printWhenExpression><![CDATA[$F{color} == "green"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sale_no}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="8facd63e-e235-4594-822a-2b2666134bfc" positionType="Float" stretchType="RelativeToTallestObject" x="217" y="0" width="45" height="20" isRemoveLineWhenBlank="true" forecolor="#009500">
+					<printWhenExpression><![CDATA[$F{color} == "green"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{job_number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="f5ef3395-8d2b-4147-b399-219dff202aa5" positionType="Float" stretchType="RelativeToTallestObject" x="75" y="0" width="85" height="20" isRemoveLineWhenBlank="true" forecolor="#009500">
+					<printWhenExpression><![CDATA[$F{color} == "green"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{partner_name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="bbd805d8-ca3b-4b87-a5ff-28d8a51aad01" positionType="Float" stretchType="RelativeToTallestObject" x="25" y="0" width="50" height="20" isRemoveLineWhenBlank="true" forecolor="#002DFF">
+					<printWhenExpression><![CDATA[$F{color} == "blue"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sale_no}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="f5ef3395-8d2b-4147-b399-219dff202aa5" positionType="Float" stretchType="RelativeToTallestObject" x="75" y="0" width="85" height="20" isRemoveLineWhenBlank="true" forecolor="#002DFF">
+					<printWhenExpression><![CDATA[$F{color} == "blue"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{partner_name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="8facd63e-e235-4594-822a-2b2666134bfc" positionType="Float" stretchType="RelativeToTallestObject" x="217" y="0" width="45" height="20" isRemoveLineWhenBlank="true" forecolor="#002DFF">
+					<printWhenExpression><![CDATA[$F{color} == "blue"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{job_number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="31521a4c-0f28-4f61-b7fc-f2f42cf72f8d" positionType="Float" stretchType="RelativeToTallestObject" x="262" y="0" width="90" height="20" isRemoveLineWhenBlank="true" forecolor="#002DFF">
+					<printWhenExpression><![CDATA[$F{color} == "blue"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cust_po_number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="1b44599c-6b1c-47f4-95f6-3dd085635357" positionType="Float" stretchType="RelativeToTallestObject" x="472" y="0" width="60" height="20" isRemoveLineWhenBlank="true" forecolor="#002DFF">
+					<printWhenExpression><![CDATA[$F{color} == "blue"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{del_date}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="93cbb6af-1818-422d-85e7-a49fca2ef8c8" positionType="Float" stretchType="RelativeToTallestObject" x="532" y="0" width="50" height="20" isRemoveLineWhenBlank="true" forecolor="#002DFF">
+					<printWhenExpression><![CDATA[$F{color} == "blue"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{po_number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="3b56a72b-732b-4057-b820-28c1bd871a3a" positionType="Float" stretchType="RelativeToTallestObject" x="582" y="0" width="154" height="20" isRemoveLineWhenBlank="true" forecolor="#002DFF">
+					<printWhenExpression><![CDATA[$F{color} == "blue"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{supp_number}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="50c929a3-c6cc-41b7-b68a-93c97ba2a25e" positionType="Float" stretchType="RelativeToTallestObject" x="737" y="0" width="65" height="20" isRemoveLineWhenBlank="true" forecolor="#002DFF">
+					<printWhenExpression><![CDATA[$F{color} == "blue"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rejections}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="ca1d7256-e356-4123-bec1-f68a558698a2" positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="25" height="20" isRemoveLineWhenBlank="true" forecolor="#002DFF">
+					<printWhenExpression><![CDATA[$F{color} == "blue"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="f5ef3395-8d2b-4147-b399-219dff202aa5" positionType="Float" stretchType="RelativeToTallestObject" x="160" y="0" width="57" height="20" isRemoveLineWhenBlank="true" forecolor="#002DFF">
+					<printWhenExpression><![CDATA[$F{color} == "blue"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{supp_del}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="f5ef3395-8d2b-4147-b399-219dff202aa5" positionType="Float" stretchType="RelativeToTallestObject" x="160" y="0" width="57" height="20" isRemoveLineWhenBlank="true" forecolor="#009500">
+					<printWhenExpression><![CDATA[$F{color} == "green"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{supp_del}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="f5ef3395-8d2b-4147-b399-219dff202aa5" positionType="Float" stretchType="RelativeToTallestObject" x="161" y="0" width="57" height="20" isRemoveLineWhenBlank="true" forecolor="#FF00F5">
+					<printWhenExpression><![CDATA[$F{color} == "pink"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{supp_del}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="f5ef3395-8d2b-4147-b399-219dff202aa5" positionType="Float" stretchType="RelativeToTallestObject" x="161" y="0" width="57" height="20" isRemoveLineWhenBlank="true" forecolor="#FF0000">
+					<printWhenExpression><![CDATA[$F{color} == "red"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{supp_del}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="f5ef3395-8d2b-4147-b399-219dff202aa5" positionType="Float" stretchType="RelativeToTallestObject" x="161" y="0" width="57" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{color} == "black"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{supp_del}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="1b44599c-6b1c-47f4-95f6-3dd085635357" positionType="Float" stretchType="RelativeToTallestObject" x="352" y="0" width="60" height="20" isRemoveLineWhenBlank="true" forecolor="#002DFF">
+					<printWhenExpression><![CDATA[$F{color} == "blue"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoice_numbers}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="1b44599c-6b1c-47f4-95f6-3dd085635357" positionType="Float" stretchType="RelativeToTallestObject" x="352" y="0" width="60" height="20" isRemoveLineWhenBlank="true" forecolor="#009500">
+					<printWhenExpression><![CDATA[$F{color} == "green"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoice_numbers}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="1b44599c-6b1c-47f4-95f6-3dd085635357" positionType="Float" stretchType="RelativeToTallestObject" x="353" y="0" width="60" height="20" isRemoveLineWhenBlank="true" forecolor="#FF0000">
+					<printWhenExpression><![CDATA[$F{color} == "red"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoice_numbers}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="1b44599c-6b1c-47f4-95f6-3dd085635357" positionType="Float" stretchType="RelativeToTallestObject" x="353" y="0" width="60" height="20" isRemoveLineWhenBlank="true" forecolor="#FF00F5">
+					<printWhenExpression><![CDATA[$F{color} == "pink"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoice_numbers}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="1b44599c-6b1c-47f4-95f6-3dd085635357" positionType="Float" stretchType="RelativeToTallestObject" x="353" y="0" width="60" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{color} == "black"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{invoice_numbers}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="1b44599c-6b1c-47f4-95f6-3dd085635357" positionType="Float" stretchType="RelativeToTallestObject" x="413" y="0" width="61" height="20" isRemoveLineWhenBlank="true" forecolor="#002DFF">
+					<printWhenExpression><![CDATA[$F{color} == "blue"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dn_numbers}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="1b44599c-6b1c-47f4-95f6-3dd085635357" positionType="Float" stretchType="RelativeToTallestObject" x="413" y="0" width="61" height="20" isRemoveLineWhenBlank="true" forecolor="#009500">
+					<printWhenExpression><![CDATA[$F{color} == "green"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dn_numbers}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="1b44599c-6b1c-47f4-95f6-3dd085635357" positionType="Float" stretchType="RelativeToTallestObject" x="413" y="0" width="61" height="20" isRemoveLineWhenBlank="true" forecolor="#FF0000">
+					<printWhenExpression><![CDATA[$F{color} == "red"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dn_numbers}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="1b44599c-6b1c-47f4-95f6-3dd085635357" positionType="Float" stretchType="RelativeToTallestObject" x="413" y="0" width="61" height="20" isRemoveLineWhenBlank="true" forecolor="#FF00F5">
+					<printWhenExpression><![CDATA[$F{color} == "pink"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dn_numbers}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="1b44599c-6b1c-47f4-95f6-3dd085635357" positionType="Float" stretchType="RelativeToTallestObject" x="413" y="0" width="61" height="20" isRemoveLineWhenBlank="true">
+					<printWhenExpression><![CDATA[$F{color} == "black"]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<bottomPen lineWidth="0.0" lineStyle="Dotted"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dn_numbers}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<lastPageFooter>
+		<band height="140">
+			<staticText>
+				<reportElement uuid="335ed3d7-9cb2-478c-8793-64c398dd0ad7" stretchType="RelativeToTallestObject" mode="Opaque" x="0" y="40" width="159" height="20" backcolor="#002DFF"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PENDING WITH REJECTION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="335ed3d7-9cb2-478c-8793-64c398dd0ad7" stretchType="RelativeToTallestObject" mode="Opaque" x="0" y="60" width="159" height="20" backcolor="#FF0000"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PAST DELIVERY DATE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="335ed3d7-9cb2-478c-8793-64c398dd0ad7" stretchType="RelativeToTallestObject" mode="Opaque" x="0" y="80" width="159" height="20" backcolor="#FF00F5"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DELIVERY WITHIN A MONTH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="335ed3d7-9cb2-478c-8793-64c398dd0ad7" stretchType="RelativeToTallestObject" mode="Opaque" x="0" y="100" width="159" height="20" backcolor="#009500"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DELIVERY AFTER ONE MONTH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="335ed3d7-9cb2-478c-8793-64c398dd0ad7" stretchType="RelativeToTallestObject" mode="Opaque" x="0" y="20" width="159" height="20" forecolor="#FEFEFE" backcolor="#010101"/>
+				<box>
+					<topPen lineWidth="0.5" lineColor="#0A0000"/>
+					<leftPen lineWidth="0.5" lineColor="#0A0000"/>
+					<bottomPen lineWidth="0.5" lineColor="#0A0000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DELIVERED]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="efd682ca-19cd-46f1-9228-a63f0860f70b" stretchType="RelativeToTallestObject" x="0" y="0" width="259" height="20"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUMMARY]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="c70b4b95-5785-4c40-8278-d6438ab1f13b" stretchType="RelativeToTallestObject" x="159" y="20" width="100" height="20"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{del_done}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="f686a42a-c303-44cd-9a48-ba6a9bead813" stretchType="RelativeToTallestObject" x="159" y="60" width="100" height="20"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{del_past}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="df3f3cc4-9005-4561-bfcc-ca71ad715048" stretchType="RelativeToTallestObject" x="159" y="80" width="100" height="20"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{del_one}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="fdfe5ac4-40f0-4958-a569-66132bbe6312" stretchType="RelativeToTallestObject" x="159" y="100" width="100" height="20"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{del_fut}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="5df2d4b3-71ed-4b51-9d09-5847b26f4acf" stretchType="RelativeToTallestObject" x="159" y="40" width="100" height="20"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{del_with_rej}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+</jasperReport>

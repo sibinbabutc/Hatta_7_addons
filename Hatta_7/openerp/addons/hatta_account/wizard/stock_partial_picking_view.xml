@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_stock_partial_picking_form_inherit" model="ir.ui.view">
+            <field name="name">stock.partial.picking.inherit</field>
+            <field name="model">stock.partial.picking</field>
+            <field name="inherit_id" ref="stock.stock_partial_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='hide_tracking']" position="after">
+                    <group>
+                        <group>
+                            <field name="origin"/>
+                            <field name="exchange_rate" required="True"/>
+                            <field name="exahange_value" required="True" on_change="onchange_ex_value(exahange_value, purchase_amount)"/>
+                            <field name="purchase_amount" invisible="True"/>
+                            <field name="date_invoice" on_change="onchange_invoice_date(date_invoice)"/>
+                            <field name="supplier_invoice_date"/>
+                            <field name="po_num" required="True"/>
+                        </group>
+                    </group>
+                </xpath>
+                <xpath expr="//field[@name='move_ids']/tree" position="attributes">
+                    <attribute name="create">0</attribute>
+                </xpath>
+                <xpath expr="//field[@name='move_ids']" position="attributes">
+                    <attribute name="on_change">onchange_move_ids(move_ids, context)</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

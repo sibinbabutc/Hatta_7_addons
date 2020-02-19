@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="subledger_print_form" model="ir.ui.view">
+          <field name="name">subledger.print.form</field>
+          <field name="model">subledger.print</field>
+          <field name="arch" type="xml">
+            <form string="Sub Ledger Statment Account" version="7.0">
+                <group>
+                    <field name="chart_account_id" required="True"/>
+                    <field name="start_date" required="True"/>
+                    <field name="end_date" required="True"/>
+                    <field name="fiscalyear_id" required="True" invisible="1"/>
+                    <field name="account_id"/>
+                    <field name="cost_center_id"/>
+                    <field name="job_subledger" invisible="True"/>
+                    <field name="partner_id" domain="[('parent_id','=',False), '|', '|', ('customer', '=', True), ('supplier', '=', True), ('is_employee', '=', True)]"
+                            attrs="{'invisible': [('job_subledger', '=', True)]}"
+                            options="{'create_edit': false}"/>
+                    <field name="partner_id_to" domain="[('parent_id','=',False), '|', '|', ('customer', '=', True), ('supplier', '=', True), ('is_employee', '=', True)]"
+                            attrs="{'invisible': [('job_subledger', '=', True)]}"
+                            options="{'create_edit': false}"/>
+                    <field name="job_id" attrs="{'invisible': [('job_subledger', '=', False)]}"/>
+                    <field name="include_matching_tran" attrs="{'invisible': [('job_subledger', '=', True)]}"/>
+                    <field name="report_type" required="True"/>
+                </group>
+                <footer>
+                   <button name="print_report" string="Print" type="object" icon="STOCK_PRINT" default_focus="1" class="oe_highlight"/>
+                    or
+                   <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+                </footer>
+            </form>
+          </field>
+       </record>
+       
+       <record id="action_subledger_print" model="ir.actions.act_window">
+          <field name="name">Sub Ledger Statement Account</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">subledger.print</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="subledger_print_form"/>
+          <field name="context">{'default_job_subledger': False}</field>
+          <field name="target">new</field>
+       </record>
+       
+       <record id="action_subledger_print_job" model="ir.actions.act_window">
+          <field name="name">Job Sub Ledger Statement Account</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">subledger.print</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="subledger_print_form"/>
+          <field name="context">{'default_job_subledger': True}</field>
+          <field name="target">new</field>
+       </record>
+       
+       <menuitem id="menu_sub_ledger_print" parent="account.final_accounting_reports"
+                    action="action_subledger_print" sequence="120" icon="STOCK_PRINT"/>
+       <menuitem id="menu_sub_ledger_print_job" parent="account.final_accounting_reports"
+                    action="action_subledger_print_job" sequence="120" icon="STOCK_PRINT"/>
+    </data>
+</openerp>

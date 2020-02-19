@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <report id="report_user_password" 
+                model="hatta.login.otp" 
+                name="user.password.jasper" 
+                string="User Password" 
+                groups="group_hatta_password_man"
+                rml="hatta_login/report/hatta_user_pwd_report.jrxml"/>
+        
+        <report id="report_user_login_logout" 
+                model="login.log.view" 
+                name="user.login.jasper" 
+                string="User Login-Logout Log" 
+                groups="group_hatta_password_man"
+                rml="hatta_login/report/user_login_log.jrxml"/>
+        
+        <record id="email_user_password" model="email.template">
+            <field name="name">User Password Mail</field>
+            <field name="email_from">Hatta User Password&lt;hatta@hatta.ae&gt;</field>
+            <field name="subject">Hatta User Passwords (${object.date_today})</field>
+            <field name="email_recipients"></field>
+            <field name="model_id" ref="hatta_login.model_hatta_login_otp"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="report_name">User Password(${time.strftime("%d/%m/%Y"))})</field>
+            <field name="body_html"><![CDATA[
+
+<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+    <p>Hello,</p>
+    
+    <p>New Password for all the users is attached with the mail.</p>
+</div>
+            ]]></field>
+        </record>
+        
+        <record id="user_access_email" model="email.template">
+            <field name="name">User Access Email</field>
+            <field name="email_from">Hatta User Access Log&lt;hatta@hatta.ae&gt;</field>
+            <field name="subject">Hatta User Access Log (${object.date_today})</field>
+            <field name="email_recipients"></field>
+            <field name="model_id" ref="hatta_login.model_login_log_view"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="body_html"><![CDATA[
+
+<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+    <p>Hello,</p>
+    
+    <p>Access log for all the users is attached with the mail.</p>
+</div>
+            ]]></field>
+        </record>
+    </data>
+</openerp>

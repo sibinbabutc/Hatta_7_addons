@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_telephone_directory_account_user,directory account.user,model_telephone_directory,account.group_account_user,1,0,0,0
+access_telephone_directory_account_manager,directory account.manager,model_telephone_directory,account.group_account_manager,1,1,1,1
+access_tel_account_allocation_account_user,account_info account.user,model_tel_account_allocation,account.group_account_user,1,0,0,0
+access_tel_account_allocation_account_manager,account_info account.manager,model_tel_account_allocation,account.group_account_manager,1,1,1,1
+access_tel_group_allocation_account_user,group_info account.user,model_tel_group_allocation,account.group_account_user,1,0,0,0
+access_tel_group_allocation_account_manager,group_info account.manager,model_tel_group_allocation,account.group_account_manager,1,1,1,1
+access_tel_service_provider_account_user,sp account.user,model_tel_service_provider,account.group_account_user,1,0,0,0
+access_tel_service_provider_account_manager,sp account.manager,model_tel_service_provider,account.group_account_manager,1,1,1,1
+access_telephone_group_account_user,tel_group account.user,model_telephone_group,account.group_account_user,1,0,0,0
+access_telephone_group_account_manager,tel_group account.manager,model_telephone_group,account.group_account_manager,1,1,1,1
+access_telephone_expense_account_user,expense account.user,model_telephone_expense,account.group_account_user,1,0,0,0
+access_telephone_expense_account_manager,expense account.manager,model_telephone_expense,account.group_account_manager,1,1,1,1
+access_telephone_expense_line_account_user,expense_line account.user,model_telephone_expense_line,account.group_account_user,1,0,0,0
+access_telephone_expense_line_account_manager,expense_line account.manager,model_telephone_expense_line,account.group_account_manager,1,1,1,1
+

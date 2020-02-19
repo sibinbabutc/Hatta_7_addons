@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="crm_make_sale_form_inherit" model="ir.ui.view">
+            <field name="model">crm.make.sale</field>
+            <field name="inherit_id" ref="sale_crm.view_crm_make_sale"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="attributes">
+                    <attribute name='invisible'>True</attribute>
+                </xpath>
+                <xpath expr="//form" position="inside">
+                    <field name="warning" readonly="True" widget="html"/>
+                    <group>
+                        <group>
+                            <field name="customer_po_no" required="True"/>
+                            <field name="delivery_date" required="True"/>
+                            <field name="payment_term_id" required="True"/>
+                        </group>
+                    </group>
+                    <field name="line_ids" colspan="4" nolabel="1">
+                        <tree string="Costing" create="0" editable="bottom">
+                            <field name="sequence_no" readonly="True"/>
+                            <field name="product_id" readonly="True"/>
+                            <field name="qty" readonly="True"/>
+                            <field name="uom_id" invisible="True"/>
+                            <field name="cost_price_fc" readonly="True"/>
+                            <field name="total_cost_fc" readonly="True"/>
+                            <field name="cost_price_lc" readonly="True"/>
+                            <field name="total_cost_lc" readonly="True"/>
+                            <field name="factor" readonly="True"/>
+                            <field name="selling_price_lc" readonly="True"/>
+                            <field name="total_selling_price_lc" readonly="True"/>
+                            <field name="line_id" invisible="True"/>
+                        </tree>
+                     </field>
+                </xpath>
+<!--                 <xpath expr="//field[@name='shop_id']" position="attributes"> -->
+<!--                     <attribute name='invisible'>True</attribute> -->
+<!--                 </xpath> -->
+<!--                 <xpath expr="//field[@name='close']" position="attributes"> -->
+<!--                     <attribute name='invisible'>True</attribute> -->
+<!--                 </xpath> -->
+            </field>
+        </record>
+    </data>
+</openerp>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="wizard_payslip_batch_export_sif" model="ir.ui.view">
+            <field name="name">Export Payslip Batch As SIF file</field>
+            <field name="model">payslip_batch.export.sif</field>
+            <field name="arch" type="xml">
+                <form string="Export to File" version="7.0">
+                    <group colspan="4" states="choose">
+                        <separator colspan="4" string="Export to File"/>
+                        <field name="company_id" invisible="1"/>
+                        <field name="name"/>
+                        <field invisible="1" name="state"/>
+                    </group>
+                    <group colspan="4" states="get">
+                        <field name="file_name" invisible="1" colspan="4"/>
+                        <field name="data" nolabel="1" readonly="1" filename="file_name" colspan="4"/>
+                    </group>
+                    <footer>
+                        <button icon="gtk-ok" name="act_getfile" string="_Export" type="object"
+                                class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+
+        <record id="action_wizard_payslip_batch_export_sif" model="ir.actions.act_window">
+            <field name="name">Export Payslip Batch As SIF</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">payslip_batch.export.sif</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>

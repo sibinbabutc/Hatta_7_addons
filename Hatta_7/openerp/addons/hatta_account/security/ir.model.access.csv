@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_job_account,access_job_account,model_job_account,base.group_user,1,1,1,1
+access_transaction_type_user,access_transaction_type,model_transaction_type,account.group_account_invoice,1,0,0,0
+access_transaction_type_manager,access_transaction_type_man,model_transaction_type,account.group_account_manager,1,1,1,1
+access_transaction_type_sales,access_transaction_type_sale,model_transaction_type,base.group_sale_salesman,1,0,0,0
+sale.access_account_analytic_account_salesman,account_analytic_account salesman,analytic.model_account_analytic_account,base.group_sale_salesman,1,0,0,0
+tr_detals_user,tr_details_user,model_tr_details,account.group_account_invoice,1,1,1,0
+tr_details_manager,tr_details_manager,model_tr_details,account.group_account_manager,1,1,1,1
+tr_model_user,tr_model_user,model_tr_model,account.group_account_invoice,1,1,1,0
+tr_model_manager,tr_model_manager,model_tr_model,account.group_account_manager,1,1,1,1
+local_purchase_order_user,local_purchase_order_user,model_local_purchase_order,account.group_account_invoice,1,0,0,0
+local_purchase_order_manager,local_purchase_order_manager,model_local_purchase_order,account.group_account_manager,1,1,1,1
+settle_tr_detals_user,settle_tr_details_user,model_tr_settle_details,account.group_account_invoice,1,1,1,0
+settle_tr_details_manager,settle_tr_details_manager,model_tr_settle_details,account.group_account_manager,1,1,1,1

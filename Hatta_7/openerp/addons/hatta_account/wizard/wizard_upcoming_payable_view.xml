@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    
+    	<record id="wizard_upcoming_payable_form" model="ir.ui.view">
+          <field name="name">wizard.upcoming.payable.form</field>
+          <field name="model">wizard.upcoming.payable</field>
+          <field name="arch" type="xml">
+            <form string="Upcoming Payable Report" version="7.0">
+                <group>
+                    <field name="from_date"/>
+                    <field name="to_date"/>
+                </group>
+                <group>
+                	<field name="party_id"/>
+                	<field name="report_type" required="1"/>
+                </group>
+                <group>
+                    <field name="due_date_from"/>
+                    <field name="due_date_to"/>
+                </group>
+                <footer>
+                   <button name="print_report" string="Print" type="object" icon="STOCK_PRINT" class="oe_highlight"/>
+                    or
+                   <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+                </footer>
+            </form>
+          </field>
+       </record>
+       
+       <record id="action_wizard_upcoming_payable" model="ir.actions.act_window">
+         <field name="name">Upcoming Payable Report</field>
+         <field name="type">ir.actions.act_window</field>
+         <field name="res_model">wizard.upcoming.payable</field>
+         <field name="view_type">form</field>
+         <field name="view_mode">form</field>
+         <field name="view_id" ref="wizard_upcoming_payable_form"/>
+         <field name="target">new</field>
+      </record>
+     
+      <menuitem 
+	      	id="menu_wizard_upcoming_payable" 
+	      	action="action_wizard_upcoming_payable"
+	    	name="Upcoming Payable Report"
+	        parent="hatta_crm.hatta_account_report" 
+	        sequence="15"
+      	/>    	
+    
+    </data>
+</openerp>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_hr_config_settings_hatta_inherit">
+            <field name="name">hr.config.settings.inherit</field>
+            <field name="inherit_id" ref="hr.view_human_resources_configuration"/>
+            <field name="model">hr.config.settings</field>
+            <field name="priority">20</field>
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="inside">
+                    <separator string="Employee Advance" colspan="4"/>
+                    <group>
+                        <field name="emp_adv_account_id" domain="[('type', '!=', 'view')]"/>
+                    </group>
+                    <separator name="wpc" string="WPS Configuration"/>
+                    <group name="hr_wps_config">
+                        <field name="basic_salary_code"/>
+                        <field name="salary_earned_code"/>
+                        <field name="total_deduction_code"/>
+                        <field name="salary_advance_code"/>
+                        <field name="allowance_code"/>
+                        <field name="overtime_code"/>
+                        <field name="net_salary_code"/>
+                    </group>
+                    <separator name="payslip" string="Payslip Report"/>
+                    <group>
+                        <field name="parent_earning_categ"/>
+                        <field name="parent_ded_categ"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

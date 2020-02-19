@@ -1,0 +1,7 @@
+<templates>
+    <t t-extend="mail.thread.message">
+        <t t-jquery="div.oe_msg_icons" t-operation="append">
+            <span class='oe_forward'><a title="Forward" class="oe_e">)</a></span>
+        </t>
+    </t>
+</templates>

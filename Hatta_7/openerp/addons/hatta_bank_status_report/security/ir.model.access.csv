@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bank_status_report,access_bank_status_report,model_bank_status_report,,1,1,1,1
+access_bank_status_deposit,access_bank_status_deposit,model_bank_status_deposit,,1,1,1,1
+access_bank_status_withdraw,access_bank_status_withdraw,model_bank_status_withdraw,,1,1,1,1

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="sale_purchase_history_form" model="ir.ui.view">
+          <field name="name">sale.purchase.history.form</field>
+          <field name="model">crm.sale.purchase.history</field>
+          <field name="arch" type="xml">
+            <form string="Sale - Purchase history" version="7.0">
+                <group>
+                    <field name="product_id" domain="[('id', 'in', product_ids[0][2])]" create="0"
+                            on_change="onchange_product(product_id, partner_id)"/>
+                    <field name="partner_id" on_change="onchange_product(product_id, partner_id)"
+                            domain="[('customer', '=', True)]"/>
+                    <label for="sale_line_ids" string="Sale History"/>
+                    <field name="sale_line_ids" nolabel="1" colspan="4" readonly="True">
+                        <tree editable="bottom">
+                            <field name="order_id"/>
+                            <field name="date_order"/>
+                            <field name="order_partner_id"/>
+                            <field name="name"/>
+                            <field name="product_uom_qty"/>
+                            <field name="product_uom"/>
+                            <field name="salesman_id"/>
+                            <field name="price_subtotal"/>
+                            <field name="state" invisible="True"/>
+                        </tree>
+                    </field>
+                    <label for="purchase_line_ids" string="Purchase History"/>
+                    <field name="purchase_line_ids" nolabel="1" colspan="4" readonly="True">
+                        <tree>
+                            <field name="order_id" readonly="True"/>
+                            <field name="product_id" readonly="True"/>
+                            <field name="partner_id" readonly="True" string="Supplier"/>
+                            <field name="product_qty" readonly="True"/>
+                            <field name="currency_id" readonly="True"/>
+                            <field name="price_unit" string="Unit Price FC" readonly="True"/>
+                            <field name="unit_price_lc" readonly="True"/>
+                            <field name="amount_total_lc" readonly="True"/>
+                            <field name="net_dist_cost"/>
+                            <field name="date_order"/>
+                            <field name="state" invisible="True"/>
+                            <field name="quote_date"/>
+                            <button name="view_po" type="object" string="View Order" icon="STOCK_GO_FORWARD"/>
+                        </tree>
+                    </field>
+                    <field name="product_ids" colspan="4" nolabel="1" invisible="1"/>
+                </group>
+                <footer>
+                   <button icon="gtk-execute" special="cancel" string="Cancel" default_focus="1" class="oe_highlight"/>
+                </footer>
+            </form>
+          </field>
+       </record>
+       
+       <record id="action_sale_purchase_history" model="ir.actions.act_window">
+          <field name="name">Sale - Purchase History</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">crm.sale.purchase.history</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="sale_purchase_history_form"/>
+          <field name="target">new</field>
+       </record>
+    </data>
+</openerp>

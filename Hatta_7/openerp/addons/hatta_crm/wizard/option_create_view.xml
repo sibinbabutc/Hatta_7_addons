@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="hatta_option_create" model="ir.ui.view">
+          <field name="name">hatta.option.create.form</field>
+          <field name="model">option.create</field>
+          <field name="arch" type="xml">
+            <form string="Create Option" version="7.0">
+                <group>
+                    <group>
+                        <field name="po_id" readonly="True"/>
+                    </group>
+                    <group>
+                        <field name="partner_id" readonly="True"/>
+                    </group>
+                    <separator string="Products" colspan="4"/>
+                    <field name="line_ids" colspan="4" nolabel="1">
+                        <tree string="Lines" editable="bottom" create="0">
+                            <field name="si_no" readonly="True"/>
+                            <field name="product_id" readonly="True"/>
+                            <field name="option_count" required="True"/>
+                            <field name="pol_id" invisible="True"/>
+                        </tree>
+                    </field>
+                </group>
+                <footer>
+                   <button icon="gtk-execute" name="create_option"
+                                confirm="Are you sure you want to continue?"
+                                string="Continue" type="object"  default_focus="1" class="oe_highlight"/>
+                    or
+                   <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+                </footer>
+            </form>
+          </field>
+       </record>
+       
+       <record id="hatta_option_action" model="ir.actions.act_window">
+          <field name="name">Create Option</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">option.create</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="hatta_option_create"/>
+          <field name="target">new</field>
+       </record>
+    </data>
+</openerp>

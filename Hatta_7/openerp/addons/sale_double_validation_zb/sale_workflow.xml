@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="act_double_wait" model="workflow.activity">
+            <field name="wkf_id" ref="sale.wkf_sale"/>
+            <field name="name">WaitForApproval</field>
+            <field name="kind">function</field>
+            <field name="action">sale_approved()</field>
+        </record>
+
+        <record id="act_double_check" model="workflow.activity">
+            <field name="wkf_id" ref="sale.wkf_sale"/>
+            <field name="name">CheckForApproval</field>
+            <field name="split_mode">OR</field>
+            <field name="kind">function</field>
+            <field name="action">sale_send_for_approval()</field>
+        </record>
+        
+        <record id="sale.trans_draft_router" model="workflow.transition">
+            <field name="act_from" ref="sale.act_draft"/>
+            <field name="act_to" ref="act_double_check"/>
+            <field name="signal">order_confirm</field>
+        </record>
+        
+        <record id="sale.trans_sent_router" model="workflow.transition">
+            <field name="act_from" ref="sale.act_sent"/>
+            <field name="act_to" ref="act_double_check"/>
+            <field name="signal">order_confirm</field>
+        </record>
+        
+        <record id="sale.trans_check_wait_sig" model="workflow.transition">
+            <field name="act_from" ref="act_double_check"/>
+            <field name="act_to" ref="act_double_wait"/>
+            <field name="signal">validate_order</field>
+            <field name="condition">check_approval_limit()</field>
+        </record>
+        
+        <record id="trans_double_app_conf" model="workflow.transition">
+            <field name="act_from" ref="act_double_wait"/>
+            <field name="act_to" ref="sale.act_router"/>
+        </record>
+        
+        
+         <record id="trans_double_wait_cancel" model="workflow.transition">
+            <field name="act_from" ref="act_double_wait"/>
+            <field name="act_to" ref="sale.act_cancel"/>
+            <field name="signal">cancel</field>
+        </record>
+    </data>
+</openerp>

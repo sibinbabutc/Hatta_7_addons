@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="leave_salary_report" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0bc6e558-b731-42ca-92d2-272fb6d721a9">
+	<property name="ireport.zoom" value="1.2100000000000013"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="144"/>
+	<parameter name="company_name" class="java.lang.String">
+		<parameterDescription><![CDATA[company_name]]></parameterDescription>
+	</parameter>
+	<parameter name="current_date_time" class="java.util.Date">
+		<parameterDescription><![CDATA[current_date_time]]></parameterDescription>
+	</parameter>
+	<queryString language="xPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="last_leave_date" class="java.util.Date">
+		<fieldDescription><![CDATA[last_leave_date]]></fieldDescription>
+	</field>
+	<field name="leave_from" class="java.util.Date">
+		<fieldDescription><![CDATA[leave_from]]></fieldDescription>
+	</field>
+	<field name="leave_to" class="java.util.Date">
+		<fieldDescription><![CDATA[leave_to]]></fieldDescription>
+	</field>
+	<field name="days_after_leave" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[days_after_leave]]></fieldDescription>
+	</field>
+	<field name="leave_sal_eligible_for" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[leave_sal_eligible_for]]></fieldDescription>
+	</field>
+	<field name="leave_base_amt" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[leave_base_amt]]></fieldDescription>
+	</field>
+	<field name="leave_salary" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[leave_salary]]></fieldDescription>
+	</field>
+	<field name="name" class="java.lang.String">
+		<fieldDescription><![CDATA[name]]></fieldDescription>
+	</field>
+	<field name="salary_details" class="java.lang.String">
+		<fieldDescription><![CDATA[salary_details]]></fieldDescription>
+	</field>
+	<field name="status" class="java.lang.String">
+		<fieldDescription><![CDATA[status]]></fieldDescription>
+	</field>
+	<field name="date_of_rejoining" class="java.util.Date">
+		<fieldDescription><![CDATA[date_of_rejoining]]></fieldDescription>
+	</field>
+	<field name="leave_eligible_for" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[leave_eligible_for]]></fieldDescription>
+	</field>
+	<field name="less_availed" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[less_availed]]></fieldDescription>
+	</field>
+	<field name="actual_leave_days" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[actual_leave_days]]></fieldDescription>
+	</field>
+	<field name="sal_advance" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[sal_advance]]></fieldDescription>
+	</field>
+	<field name="salary" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[salary]]></fieldDescription>
+	</field>
+	<field name="leave_sal_label" class="java.lang.String">
+		<fieldDescription><![CDATA[leave_sal_label]]></fieldDescription>
+	</field>
+	<field name="leave_sal_amount" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[leave_sal_amount]]></fieldDescription>
+	</field>
+	<field name="leave_encashment" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[leave_encashment]]></fieldDescription>
+	</field>
+	<field name="other_allowance" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[other_allowance]]></fieldDescription>
+	</field>
+	<field name="total_payable" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[total_payable]]></fieldDescription>
+	</field>
+	<field name="monthly_deduction" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[monthly_deduction]]></fieldDescription>
+	</field>
+	<field name="other_allow_name" class="java.lang.String">
+		<fieldDescription><![CDATA[other_allow_name]]></fieldDescription>
+	</field>
+	<field name="other_allow_amount" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[other_allow_amount]]></fieldDescription>
+	</field>
+	<field name="other_allow_ref" class="java.lang.String">
+		<fieldDescription><![CDATA[other_allow_ref]]></fieldDescription>
+	</field>
+	<field name="net_amount_payable" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[net_amount_payable]]></fieldDescription>
+	</field>
+	<field name="leave_encashed" class="java.lang.String">
+		<fieldDescription><![CDATA[leave_encashed]]></fieldDescription>
+	</field>
+	<field name="other_allow" class="java.lang.String">
+		<fieldDescription><![CDATA[other_allow]]></fieldDescription>
+	</field>
+	<field name="leave_applied" class="java.lang.String">
+		<fieldDescription><![CDATA[leave_applied]]></fieldDescription>
+	</field>
+	<field name="from_month" class="java.lang.String">
+		<fieldDescription><![CDATA[from_month]]></fieldDescription>
+	</field>
+	<field name="leave_eligible_for_label" class="java.lang.String">
+		<fieldDescription><![CDATA[leave_eligible_for_label]]></fieldDescription>
+	</field>
+	<field name="leave_encashment_label" class="java.lang.String">
+		<fieldDescription><![CDATA[leave_encashment_label]]></fieldDescription>
+	</field>
+	<field name="other_allowance_label" class="java.lang.String">
+		<fieldDescription><![CDATA[other_allowance_label]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70">
+			<staticText>
+				<reportElement uuid="5bce1d38-6952-4691-95c5-3d25f2df37c5" x="113" y="0" width="62" height="20"/>
+				<textElement>
+					<font fontName="Time Roman" size="8"/>
+				</textElement>
+				<text><![CDATA[(ZESTY)]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement uuid="a82c6c0f-0b91-400a-9a5a-a727253a7f4e" x="515" y="0" width="40" height="20"/>
+				<textElement>
+					<font fontName="Time Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="4f253f52-34ef-4797-b3f8-c93d4457531c" stretchType="RelativeToTallestObject" x="0" y="44" width="555" height="24" isPrintWhenDetailOverflows="true"/>
+				<box topPadding="0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="08c98cf2-2337-4e89-8ebd-df108224015f" x="435" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right">
+					<font fontName="Time Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement uuid="680cb3b5-fcf0-41a6-8351-0a39877e31f2" x="41" y="0" width="72" height="20"/>
+				<textElement>
+					<font fontName="Time Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{current_date_time}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="191d5f67-bb57-4702-ba54-4d18b90278f1" x="0" y="23" width="556" height="21"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{company_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="5bce1d38-6952-4691-95c5-3d25f2df37c5" x="0" y="0" width="41" height="20"/>
+				<textElement>
+					<font fontName="Time Roman" size="8"/>
+				</textElement>
+				<text><![CDATA[Printed On : ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="207" splitType="Stretch">
+			<textField isStretchWithOverflow="true" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="74546438-64ed-4f01-a48e-c5cfde79125e" stretchType="RelativeToTallestObject" mode="Transparent" x="459" y="166" width="87" height="16" backcolor="#FEFEFE"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{leave_encashment}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="fed2b75d-4460-4fb5-9f57-6204fcc043ec" stretchType="RelativeToTallestObject" x="449" y="118" width="10" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c2d0e3df-3c36-416b-86a1-6049c173ea51" stretchType="RelativeToTallestObject" x="1" y="166" width="165" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<text><![CDATA[Leave Encashment for Balance Leaves]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fed2b75d-4460-4fb5-9f57-6204fcc043ec" stretchType="RelativeToTallestObject" x="449" y="22" width="10" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fed2b75d-4460-4fb5-9f57-6204fcc043ec" stretchType="RelativeToTallestObject" x="449" y="150" width="10" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c2d0e3df-3c36-416b-86a1-6049c173ea51" stretchType="RelativeToTallestObject" x="406" y="0" width="43" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="74546438-64ed-4f01-a48e-c5cfde79125e" stretchType="RelativeToTallestObject" mode="Transparent" x="459" y="150" width="87" height="16" backcolor="#FEFEFE"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{leave_sal_amount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c2d0e3df-3c36-416b-86a1-6049c173ea51" stretchType="RelativeToTallestObject" x="0" y="54" width="80" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<text><![CDATA[Leave Eligible for ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fed2b75d-4460-4fb5-9f57-6204fcc043ec" stretchType="RelativeToTallestObject" x="449" y="166" width="10" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="74546438-64ed-4f01-a48e-c5cfde79125e" stretchType="RelativeToTallestObject" mode="Transparent" x="459" y="38" width="87" height="16" backcolor="#FEFEFE"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{days_after_leave}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="fed2b75d-4460-4fb5-9f57-6204fcc043ec" stretchType="RelativeToTallestObject" x="449" y="38" width="10" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="###0.00;-###0.00" isBlankWhenNull="true">
+				<reportElement uuid="74546438-64ed-4f01-a48e-c5cfde79125e" stretchType="RelativeToTallestObject" mode="Transparent" x="459" y="134" width="87" height="16" backcolor="#FEFEFE"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sal_advance}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="74546438-64ed-4f01-a48e-c5cfde79125e" stretchType="RelativeToTallestObject" mode="Transparent" x="459" y="70" width="87" height="16" backcolor="#FEFEFE"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{less_availed}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="74546438-64ed-4f01-a48e-c5cfde79125e" stretchType="RelativeToTallestObject" mode="Transparent" x="459" y="118" width="87" height="16" backcolor="#FEFEFE"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{salary}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="fed2b75d-4460-4fb5-9f57-6204fcc043ec" stretchType="RelativeToTallestObject" x="449" y="102" width="10" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="74546438-64ed-4f01-a48e-c5cfde79125e" stretchType="RelativeToTallestObject" mode="Transparent" x="459" y="54" width="87" height="16" backcolor="#FEFEFE"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{leave_eligible_for}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="74546438-64ed-4f01-a48e-c5cfde79125e" stretchType="RelativeToTallestObject" mode="Transparent" x="459" y="102" width="87" height="16" backcolor="#FEFEFE"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{actual_leave_days}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c2d0e3df-3c36-416b-86a1-6049c173ea51" stretchType="RelativeToTallestObject" x="0" y="38" width="449" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<text><![CDATA[Total Working Days]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fed2b75d-4460-4fb5-9f57-6204fcc043ec" stretchType="RelativeToTallestObject" x="449" y="70" width="10" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fed2b75d-4460-4fb5-9f57-6204fcc043ec" stretchType="RelativeToTallestObject" x="449" y="86" width="10" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c2d0e3df-3c36-416b-86a1-6049c173ea51" stretchType="RelativeToTallestObject" x="0" y="86" width="449" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<text><![CDATA[Net Eligible Leaves]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fed2b75d-4460-4fb5-9f57-6204fcc043ec" stretchType="RelativeToTallestObject" x="449" y="0" width="10" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="74546438-64ed-4f01-a48e-c5cfde79125e" stretchType="RelativeToTallestObject" mode="Transparent" x="0" y="150" width="449" height="16" backcolor="#FEFEFE"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{leave_sal_label}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c2d0e3df-3c36-416b-86a1-6049c173ea51" stretchType="RelativeToTallestObject" x="-1" y="22" width="450" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<text><![CDATA[Date of Re-joining After Last Leave]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fed2b75d-4460-4fb5-9f57-6204fcc043ec" stretchType="RelativeToTallestObject" x="449" y="54" width="10" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fed2b75d-4460-4fb5-9f57-6204fcc043ec" stretchType="RelativeToTallestObject" x="449" y="134" width="10" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c2d0e3df-3c36-416b-86a1-6049c173ea51" stretchType="RelativeToTallestObject" x="0" y="118" width="44" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<text><![CDATA[Salary for ]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="74546438-64ed-4f01-a48e-c5cfde79125e" stretchType="RelativeToTallestObject" mode="Transparent" x="459" y="22" width="87" height="16" backcolor="#FEFEFE"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date_of_rejoining}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
+				<reportElement uuid="74546438-64ed-4f01-a48e-c5cfde79125e" stretchType="RelativeToTallestObject" mode="Transparent" x="459" y="0" width="87" height="16" backcolor="#FEFEFE"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="74546438-64ed-4f01-a48e-c5cfde79125e" stretchType="RelativeToTallestObject" mode="Transparent" x="459" y="86" width="87" height="16" backcolor="#FEFEFE"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{leave_sal_eligible_for}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c2d0e3df-3c36-416b-86a1-6049c173ea51" stretchType="RelativeToTallestObject" x="0" y="102" width="449" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<text><![CDATA[Actual Leave Days    ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c2d0e3df-3c36-416b-86a1-6049c173ea51" stretchType="RelativeToTallestObject" x="0" y="134" width="449" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<text><![CDATA[Salary Advance]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c2d0e3df-3c36-416b-86a1-6049c173ea51" stretchType="RelativeToTallestObject" x="0" y="70" width="449" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<text><![CDATA[Less : Already availed]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c2d0e3df-3c36-416b-86a1-6049c173ea51" stretchType="RelativeToTallestObject" x="0" y="189" width="234" height="16">
+					<printWhenExpression><![CDATA[$F{other_allow}!=null]]></printWhenExpression>
+				</reportElement>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Other Allowances]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="74546438-64ed-4f01-a48e-c5cfde79125e" stretchType="RelativeToTallestObject" mode="Transparent" x="44" y="118" width="405" height="16" backcolor="#FEFEFE"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{from_month}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="74546438-64ed-4f01-a48e-c5cfde79125e" stretchType="RelativeToTallestObject" mode="Transparent" x="80" y="54" width="369" height="16" backcolor="#FEFEFE"/>
+				<box topPadding="2" leftPadding="0" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{leave_eligible_for_label}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="74546438-64ed-4f01-a48e-c5cfde79125e" stretchType="RelativeToTallestObject" mode="Transparent" x="166" y="166" width="283" height="16" backcolor="#FEFEFE"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{leave_encashment_label}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="16">
+			<printWhenExpression><![CDATA[$F{other_allow}!=null]]></printWhenExpression>
+			<staticText>
+				<reportElement uuid="c2d0e3df-3c36-416b-86a1-6049c173ea51" stretchType="RelativeToTallestObject" x="0" y="0" width="443" height="16"/>
+				<box topPadding="2" leftPadding="5" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Narration ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c2d0e3df-3c36-416b-86a1-6049c173ea51" stretchType="RelativeToTallestObject" x="443" y="0" width="103" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="5">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Time Roman" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16">
+			<printWhenExpression><![CDATA[$F{other_allow}!=null]]></printWhenExpression>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="74546438-64ed-4f01-a48e-c5cfde79125e" stretchType="RelativeToTallestObject" mode="Transparent" x="0" y="0" width="443" height="16" backcolor="#FEFEFE"/>
+				<box topPadding="2" leftPadding="5" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{other_allow_name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="74546438-64ed-4f01-a48e-c5cfde79125e" stretchType="RelativeToTallestObject" mode="Transparent" x="443" y="0" width="103" height="16" backcolor="#FEFEFE"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="5">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Time Roman" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{other_allow_amount}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="350" splitType="Stretch">
+			<textField isStretchWithOverflow="true" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="74546438-64ed-4f01-a48e-c5cfde79125e" stretchType="RelativeToTallestObject" mode="Transparent" x="459" y="6" width="87" height="16" backcolor="#FEFEFE"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{other_allowance}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c2d0e3df-3c36-416b-86a1-6049c173ea51" stretchType="RelativeToTallestObject" x="0" y="22" width="449" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<text><![CDATA[Total Payable]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="74546438-64ed-4f01-a48e-c5cfde79125e" stretchType="RelativeToTallestObject" mode="Transparent" x="459" y="22" width="87" height="16" backcolor="#FEFEFE"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_payable}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="74546438-64ed-4f01-a48e-c5cfde79125e" stretchType="RelativeToTallestObject" mode="Transparent" x="459" y="38" width="87" height="16" backcolor="#FEFEFE"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{monthly_deduction}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c2d0e3df-3c36-416b-86a1-6049c173ea51" stretchType="RelativeToTallestObject" x="0" y="38" width="449" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<text><![CDATA[Less: Staff Loan Monthly Deduction]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fed2b75d-4460-4fb5-9f57-6204fcc043ec" stretchType="RelativeToTallestObject" x="449" y="38" width="10" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fed2b75d-4460-4fb5-9f57-6204fcc043ec" stretchType="RelativeToTallestObject" x="449" y="6" width="10" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fed2b75d-4460-4fb5-9f57-6204fcc043ec" stretchType="RelativeToTallestObject" x="449" y="22" width="10" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c2d0e3df-3c36-416b-86a1-6049c173ea51" stretchType="RelativeToTallestObject" x="0" y="54" width="449" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<text><![CDATA[Net amount Payable]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fed2b75d-4460-4fb5-9f57-6204fcc043ec" stretchType="RelativeToTallestObject" x="449" y="54" width="10" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="74546438-64ed-4f01-a48e-c5cfde79125e" stretchType="RelativeToTallestObject" mode="Transparent" x="459" y="54" width="87" height="16" backcolor="#FEFEFE"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{net_amount_payable}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="fed2b75d-4460-4fb5-9f57-6204fcc043ec" stretchType="RelativeToTallestObject" x="93" y="86" width="10" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c2d0e3df-3c36-416b-86a1-6049c173ea51" stretchType="RelativeToTallestObject" x="0" y="86" width="93" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<text><![CDATA[Leave Eligible for]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="#,##0;-#,##0" isBlankWhenNull="true">
+				<reportElement uuid="74546438-64ed-4f01-a48e-c5cfde79125e" stretchType="RelativeToTallestObject" mode="Transparent" x="103" y="86" width="143" height="16" backcolor="#FEFEFE"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{leave_sal_eligible_for}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="fed2b75d-4460-4fb5-9f57-6204fcc043ec" stretchType="RelativeToTallestObject" x="93" y="101" width="10" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c2d0e3df-3c36-416b-86a1-6049c173ea51" stretchType="RelativeToTallestObject" x="0" y="101" width="93" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<text><![CDATA[Leave Applied for]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="74546438-64ed-4f01-a48e-c5cfde79125e" stretchType="RelativeToTallestObject" mode="Transparent" x="103" y="117" width="143" height="16" backcolor="#FEFEFE"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{leave_encashed}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="fed2b75d-4460-4fb5-9f57-6204fcc043ec" stretchType="RelativeToTallestObject" x="93" y="117" width="10" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c2d0e3df-3c36-416b-86a1-6049c173ea51" stretchType="RelativeToTallestObject" x="0" y="117" width="93" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<text><![CDATA[Leaves Encashed]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="74546438-64ed-4f01-a48e-c5cfde79125e" stretchType="RelativeToTallestObject" mode="Transparent" x="457" y="85" width="69" height="16" backcolor="#FEFEFE"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{leave_from}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="fed2b75d-4460-4fb5-9f57-6204fcc043ec" stretchType="RelativeToTallestObject" x="447" y="85" width="10" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c2d0e3df-3c36-416b-86a1-6049c173ea51" stretchType="RelativeToTallestObject" x="364" y="85" width="84" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<text><![CDATA[Leave Start date]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="74546438-64ed-4f01-a48e-c5cfde79125e" stretchType="RelativeToTallestObject" mode="Transparent" x="459" y="101" width="69" height="16" backcolor="#FEFEFE"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{leave_to}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="fed2b75d-4460-4fb5-9f57-6204fcc043ec" stretchType="RelativeToTallestObject" x="448" y="101" width="10" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c2d0e3df-3c36-416b-86a1-6049c173ea51" stretchType="RelativeToTallestObject" x="364" y="100" width="84" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<text><![CDATA[Leave End date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fed2b75d-4460-4fb5-9f57-6204fcc043ec" stretchType="RelativeToTallestObject" x="448" y="117" width="10" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c2d0e3df-3c36-416b-86a1-6049c173ea51" stretchType="RelativeToTallestObject" x="364" y="117" width="85" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<text><![CDATA[Date of Re-joining After Last Leave]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="74546438-64ed-4f01-a48e-c5cfde79125e" stretchType="RelativeToTallestObject" mode="Transparent" x="458" y="117" width="70" height="16" backcolor="#FEFEFE"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date_of_rejoining}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="74546438-64ed-4f01-a48e-c5cfde79125e" stretchType="RelativeToTallestObject" mode="Transparent" x="103" y="102" width="143" height="16" backcolor="#FEFEFE"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{leave_applied}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c2d0e3df-3c36-416b-86a1-6049c173ea51" stretchType="RelativeToTallestObject" x="1" y="166" width="112" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<text><![CDATA[Prepared By]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c2d0e3df-3c36-416b-86a1-6049c173ea51" stretchType="RelativeToTallestObject" x="1" y="182" width="112" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<text><![CDATA[Signature]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c2d0e3df-3c36-416b-86a1-6049c173ea51" stretchType="RelativeToTallestObject" x="194" y="166" width="112" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<text><![CDATA[Authorised Signatory    ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c2d0e3df-3c36-416b-86a1-6049c173ea51" stretchType="RelativeToTallestObject" x="417" y="166" width="111" height="16"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<text><![CDATA[Signature]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="74546438-64ed-4f01-a48e-c5cfde79125e" stretchType="RelativeToTallestObject" mode="Transparent" x="-1" y="6" width="450" height="16" backcolor="#FEFEFE"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{other_allowance_label}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

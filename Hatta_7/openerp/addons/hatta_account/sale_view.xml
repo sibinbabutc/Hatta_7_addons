@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_sale_order_inherit" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="attributes">
+                    <attribute name="col">3</attribute>
+                </xpath>
+                <xpath expr="//group/group" position="attributes">
+                    <attribute name="col">2</attribute>
+                </xpath>
+                <xpath expr="//page[@string='Order Lines']/group[1]/field[@name='amount_untaxed']" position="after">
+                    <field name="discount" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                </xpath>
+                <xpath expr="//group/group[last()]" position="attributes">
+                    <attribute name="col">2</attribute>
+                </xpath>
+                <xpath expr="//group/group[last()]" position="after">
+                    <group col="2">
+                        <field name="cost_center_id" attrs="{'readonly': [('state', '!=', 'draft')]}"
+                                required="True" domain="[('type', '=', 'normal')]"/>
+                        <label for="job_id"/>
+                        <div>
+                            <field name="job_id" required="False" readonly="True" class="oe_inline"/>
+                            <button name="%(hatta_account.action_assign_job_no)d" type="action" string="" icon="STOCK_ADD" attrs="{'invisible': [('job_assigned', '!=', False)]}" class="oe_inline oe_link"/>
+                        </div>
+                        <field name="job_assigned" invisible="True"/>
+                    </group>
+                </xpath>
+                <xpath expr="//page[@string='Order Lines']//label[@for='discount']" position="replace">
+                	<label for="discount"/>
+				</xpath> 
+				<xpath expr="//page[@string='Order Lines']//div[@name='discount']" position="replace">
+					<div name="discount" groups="sale.group_discount_per_so_line">
+                    	<field name="discount"/> 
+                    </div>
+				</xpath>    
+				<xpath expr="//tree[@string='Sales Order Lines']//field[@name='discount']" position="replace">
+					<field name="discount"/>
+				</xpath>
+				<xpath expr="//page[@string='Order Lines']//group[@name='sale_total']" position="after">
+					<separator string="Cancellation Notes"/>
+                    <field name="cancel_note" plcaceholder="Cancellation Notes....."/>
+				</xpath>
+				<xpath expr="//field[@name='note']" position="replace">
+					<separator string="Terms and conditions"/>
+                    <field name="note" plcaceholder="Terms and conditions..."/>
+				</xpath>
+            </field>
+        </record>
+        
+        <record model="ir.ui.view" id="sale_order_line_form_inherit">
+            <field name="name">sale.order.line.form</field>
+            <field name="model">sale.order.line</field>
+            <field name="inherit_id" ref="sale.view_order_line_form2"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='invoiced']" position="after">
+                    <field name="create_man_invoice"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

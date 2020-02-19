@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    
+        <record id="view_account_journal_form_inherit" model="ir.ui.view">
+            <field name="name">Account Journal Bank Status</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='sequence_id']" position="before">
+                    <field name="is_deposit"/>
+                    <field name="is_withdrawal"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_account_account_inherit" model="ir.ui.view">
+            <field name="name">Account</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='active']" position="after">
+                    <field name="is_bank"/>
+                </xpath>
+            </field>
+        </record>
+        
+    </data>
+</openerp>
+        

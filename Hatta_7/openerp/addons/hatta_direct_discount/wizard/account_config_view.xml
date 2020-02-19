@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="view_account_config_settings_hatta_inherit">
+            <field name="name">account.config.settings.inherit</field>
+            <field name="inherit_id" ref="account.view_account_config_settings"/>
+            <field name="model">account.config.settings</field>
+            <field name="priority">20</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='purchase_refund_journal_id']" position="after">
+                    <separator name="discount" string="Discount Accounts"/>
+                    <group name="discount_account">
+                        <field name="discount_in_account" domain="[('type', '!=', 'view')]"/>
+                        <field name="discount_out_account" domain="[('type', '!=', 'view')]"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

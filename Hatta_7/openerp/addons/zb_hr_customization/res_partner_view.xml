@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="partner_form_view_inherit" model="ir.ui.view">
+            <field name="name">partner.form.view.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="priority">16</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Sales &amp; Purchases']/group/group[2]" position="inside">
+                    <field name="is_employee"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

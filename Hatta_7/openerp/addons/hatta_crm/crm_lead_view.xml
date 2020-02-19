@@ -1,0 +1,342 @@
+<openerp>
+    <data>
+        <record id="crm_case_form_view_oppor_inherit" model="ir.ui.view">
+            <field name="name">Opportunities</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="sale_crm.crm_case_form_view_oppor"/>
+            <field name="arch" type="xml">
+                   <xpath expr="//form/header/button[@name='case_mark_won']" position="before">
+                    <button name="%(action_hatta_rfq_create)d" string="Create RFQ" type="action"
+                                states="draft" class="oe_highlight"
+                                groups="hatta_crm.group_opp_rfq"/>
+                    <button name="send_sale_quote_mail" string="Send Sale Quote"
+                            type="object" context="{'send_rfq':True}"
+                            attrs="{'invisible': [('send_quote_mail', '=', False)]}"
+                            class="oe_highlight"
+                            groups="hatta_crm.group_opp_rfq"/>
+                    <button name="%(action_enq_duplicate_form)d" type="action" string="Duplicate Enquiry"
+                        confirm="Are you sure you want to continue?"/>
+                    <button name="create_invoice" type="object" string="Create Invoice"
+                            attrs="{'invisible': [('direct_invoice', '=', False)]}"
+                            confirm="Are you sure you want to continue ?"/>
+                   </xpath>
+                   <xpath expr="//form/header/button[@name='case_mark_won']" position="attributes">
+                        <attribute name="invisible">True</attribute>
+                   </xpath>
+                   <xpath expr="//form/header/button[@name='case_mark_lost']" position="attributes">
+                        <attribute name="invisible">True</attribute>
+                   </xpath>
+                 <xpath expr="//form/sheet/div[@class='oe_right oe_button_box']/button[@string='Schedule/Log Call']" position="before">
+                    <button name="view_pos" string="View RFQS" type="object"
+                                states="draft,open,pending" groups="hatta_crm.group_opp_rfq"/>
+                    <button name="view_sqo" string="View Sale Orders" type="object"
+                                states="draft,open,pending" groups="hatta_crm.group_Quot,hatta_crm.group_sale"/>
+                 </xpath>
+                 <xpath expr="//form/sheet/div[@class='oe_right oe_button_box']/button[@string='Schedule/Log Call']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                 </xpath>
+                 <xpath expr="//form/sheet/div[@class='oe_right oe_button_box']/button[@string='Meeting']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                 </xpath>
+                 <xpath expr="//button[@name='%(sale_crm.action_crm_make_sale)d']" position="attributes">
+                    <attribute name="string">Convert to Sale Order</attribute>
+                    <attribute name="groups">hatta_crm.group_sale,hatta_crm.group_Quot</attribute>
+                 </xpath>
+                 <xpath expr="//button[@name='%(sale_crm.action_crm_make_sale)d'][last()]" position="attributes">
+                    <attribute name="string">Convert to Sale Order</attribute>
+                    <attribute name="groups">hatta_crm.group_sale,hatta_crm.group_Quot</attribute>
+                 </xpath>
+                 <xpath expr="//notebook" position="inside">
+                    <page string="Related Invoice(s)">
+                        <field name="direct_invoice" invisible="True"/>
+                        <field name="invoice_ids" colspan="4" nolabel="1"/>
+                    </page>
+                 </xpath>
+                 <xpath expr="//form/sheet/div[@class='oe_title']" position="replace">
+                        <div class="oe_title">
+                            <h1>
+                                <field name="reference" modifiers="{'required': true}" readonly="True"/>
+                            </h1>
+                            <label for="creation_date" class="oe_edit_only"/>
+                            <h2>
+                                <field name="creation_date" widget="date" modifiers="{'required': true}"/>
+                            </h2>
+                            <label for="customer_rfq" class="oe_edit_only"/>
+                            <h2>
+                                <field name="customer_rfq"/>
+                            </h2>
+                            <field name="company_currency" invisible="1"/>
+                        </div>
+                 </xpath>
+                 <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="domain">[('customer', '=', True)]</attribute>
+                 </xpath>
+                 <xpath expr="//field[@name='date_action']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                 </xpath>
+                 <xpath expr="//field[@name='title_action']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                 </xpath>
+                 <xpath expr="//label[@for='title_action']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                 </xpath>
+                 <xpath expr="//field[@name='priority']" position="replace"/>
+                 <xpath expr="//form/sheet/group/group[2]/div" position="replace"/>
+                 <field name="date_deadline" position="replace"/>
+                 <xpath expr="//form/sheet/group/group/label[@for='title_action']" position="before">
+                        <field name="date_deadline" required="True"/>
+                        <field name="priority"/>
+                        <field name="track_revision" invisible="True"/>
+                        <field name="transaction_type_id" on_change="onchange_transaction_type(transaction_type_id)"
+                                    domain="[('model_id.model', '=', 'crm.lead')]" required="True"/>
+                        <field name="analytic_account_id" required="True" readonly="True"/>
+                        <field name="partner_seq" invisible="True"/>
+                        <field name="supplier_id" domain="[('supplier', '=', True), ('pric_supplier', '=', True)]" attrs="{'invisible': [('partner_seq', '=', False)], 'required': [('partner_seq', '!=', False)]}"/>
+                        <field name="revision_number" attrs="{'invisible': [('track_revision', '=', False)]}"/>
+                        <field name="payment_term_id"/>
+                        <field name="delivery_terms"/>
+                        <field name="quote_validity" string="Our Quote Validity"/>
+                        <field name="currency_id" required="True" options="{'create_edit': false}"/>
+                        <field name="sale_id"/>
+                        <field name="send_quote_mail" invisible="True"/>
+                 </xpath>
+                 <field name="user_id" position="replace"/>
+                 <xpath expr="//field[@name='date_deadline']" position="before">
+                    <label for="call_no" class="oe_inline"/>
+                    <div>
+                        <field name="call_no" class="oe_inline"/>
+                        <field name="coll_no_type" class="oe_edit_only"/>
+                    </div>
+                    <field name="name" string="Enquiry Subject" required="False" invisible="False"/>
+                 </xpath>
+                 <xpath expr="//field[@name='phone']" position="after">
+                    <field name="user_id"/>
+                    <field name="product_type"/>
+                 </xpath>
+                 <xpath expr="//sheet/notebook/page[@string='Internal Notes']" position="before">
+                    <page string="Enquired Products">
+                        <field name="product_lines" context="{'order_id': product_lines, 'analytic_account_id': analytic_account_id}">
+                            <tree>
+                                <field name="sequence_no" string="SI. No"/>
+                                <button name="%(action_sale_purchase_history)d" type="action" string="Sale - Purchase History" icon="STOCK_FIND"/>
+                                <field name="product_id" on_change="onchange_product_id(product_id, product_uom_qty, uom_id, context)"/>
+                                <field name="description" required="1"/>
+                                <field name="uom_id" required="True" on_change="onchange_product_id(product_id, product_uom_qty, uom_id, context)"
+                                            string="UOM"/>
+                                <field name="product_uom_qty" required="1"/>
+                                <field name="cost_price" readonly="True"/>
+                                <field name="price_unit" required="1" string="Unit Sale Price"
+                                        readonly="True"/>
+                                <field name="price_subtotal" readonly="1"/>
+                                <field name="select"/>
+                            </tree>
+                            <form>
+                                <notebook>
+                                    <page string="Product Details">
+                                        <group>
+                                            <group>
+                                                <field name="sequence_no" string="SI. No"/>
+                                                <field name="product_id"
+                                                        on_change="onchange_product_id(product_id, product_uom_qty, uom_id, context)"
+                                                        required="True"/>
+                                                <field name="uom_id" required="True" on_change="onchange_product_id(product_id, product_uom_qty, uom_id, context)"
+                                                        string="UOM"/>
+                                                <field name="product_uom_qty" required="1"/>
+                                                <field name="manufacturer_id" domain="[('is_manufac', '=', True)]" context="{'default_customer': False, 'default_supplier': False, 'default_is_manufac': True, 'default_is_company': True}"/>
+                                                <field name="cost_price" readonly="True"/>
+                                                <field name="price_unit" required="1" string="Unit Sale Price"
+                                                        readonly="True"/>
+                                                <field name="overide_sale_price"/>
+                                                <field name="price_subtotal" readonly="1"/>
+                                                <field name="selected_pol_id"/>
+                                            </group>
+                                        </group>
+                                        <separator string="Description" colspan="4"/>
+                                        <field name="description" required="1" colspan="4" nolabel="1"/>
+                                        <separator string="Certificate(s) Required" colspan="4"/>
+                                        <field name="certificate_ids" colspan="4" nolabel="1"/>
+                                    </page>
+                                    <page string="Quotations To Select">
+                                        <field name="pol_ids" colspan="4" nolabel="1" domain="[('select_line', '=', True)]">
+                                        <tree string="RFQs to Select" create="false">
+                                            <field name="complete_name"/>
+                                            <field name="cust_selected" invisible="False" readonly="True"/>
+                                            <field name="sequence_no" readonly="True" string="SI. No" invisible="True"/>
+                                            <field name="order_id" readonly="True"/>
+                                            <field name="product_id" readonly="True" invisible="True"/>
+                                            <field name="manufacturer_id" readonly="True" context="{'default_customer': False, 'default_supplier': False, 'default_is_manufac': True, 'default_is_company': True}"/>
+                                            <field name="enq_customer_id" invisible="True"/>
+                                            <field name="customer_enq" readonly="True" invisible="True"/>
+                                            <field name="product_qty" readonly="True"/>
+                                            <field name="currency_id" readonly="True"/>
+                                            <field name="price_unit" string="Unit Price FC" readonly="True" invisible="True" on_change="onchange_unit_price_fc(price_unit, currency_id, product_qty)"/>
+                                            <field name="unit_price_lc" readonly="True" invisible="True"/>
+                                            <field name="amount_total_lc" readonly="True" invisible="True"/>
+                                            <field name="net_dist_cost" invisible="True"/>
+                                            <field name="date_order" invisible="True"/>
+                                            <field name="state" invisible="True"/>
+                                            <field name="sale_price"/>
+                                            <field name="select_line" readonly="True" string="Selected"/>
+                                            <field name="cost_distributed" invisible="True"/>
+                                            <field name="sale_calculated" invisible="True"/>
+                                            <button name="customer_select" type="object" icon="terp-partner" string="Customer selection"
+                                                    attrs="{'invisible': ['|', '|', ('cust_selected', '=', True), ('sale_calculated', '=', False), ('select_line', '=', False)]}"
+                                                    confirm="Please confirm customer has selected this line. Do you want to continue?"/>
+                                            <button name="cancel_customer_select" type="object" icon="STOCK_CANCEL" string="Customer selection"
+                                                    attrs="{'invisible': [('cust_selected', '=', False)]}"
+                                                    confirm="Do you want to cancel this customer selection?"/>
+                                        </tree>
+                                        </field>
+                                    </page>
+                                </notebook>
+                            </form>
+                        </field>
+                        <group class="oe_subtotal_footer oe_right" colspan="2" name="products_total">
+                                <div class="oe_subtotal_footer_separator oe_inline">
+                                    <label for="amount_total" />
+                                    <button name="button_dummy"
+                                         string="(update)" type="object" class="oe_edit_only oe_link"/>
+                                </div>
+                                <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary'/>
+                         </group>
+                         <field name="cust_remark" placeholder="Remarks to customer...." nolabel="1"/>
+                    </page>
+                </xpath>
+<!--                 <xpath expr="//field[@name='planned_revenue']" position="attributes"> -->
+<!--                     <attribute name="invisible">True</attribute> -->
+<!--                 </xpath> -->
+<!--                 <xpath expr="//span" position="attributes"> -->
+<!--                     <attribute name="invisible">True</attribute> -->
+<!--                 </xpath> -->
+<!--                 <xpath expr="//field[@name='probability']" position="attributes"> -->
+<!--                     <attribute name="invisible">True</attribute>" -->
+<!--                 </xpath> -->
+                <xpath expr="//field[@name='categ_ids']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='section_id']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//label[@for='section_id']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//button[@name='case_escalate']" position="attributes">
+                    <attribute name="attrs"></attribute>
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="partner_procure_id"
+                            domain="['|', ('id', '=', partner_id), ('parent_id', '=', partner_id)]"
+                            options="{'create_edit': false}"/>
+                    <field name="partner_delivery_id"
+                            domain="['|', ('id', '=', partner_id), ('parent_id', '=', partner_id)]"
+                            options="{'create_edit': false}"/>
+                    <field name="contact_id"
+                            domain="['|', ('id', '=', partner_id), ('parent_id', '=', partner_id)]"
+                            options="{'create_edit': false}"/>
+                    <field name="inquiry_id" options="{'create_edit': false}"/>
+                </xpath>
+                <xpath expr="//form" position="attributes">
+                    <attribute name="create">0</attribute>
+                </xpath>
+                <xpath expr="//field[@name='stage_id']" position="after">
+                    <field name="state" widget="statusbar"/>
+                </xpath>
+                <xpath expr="//field[@name='stage_id']" position="replace"/>
+            </field>
+        </record>
+
+        <record id="crm_case_form_view_oppor_inherit2" model="ir.ui.view">
+            <field name="name">Opportunity / Enquiry</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm_case_form_view_oppor_inherit"/>
+            <field name="groups_id" eval="[(6, 0, [ref('account.group_account_manager')])]"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='reference']" position="attributes">
+                    <attribute name="readonly">False</attribute>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="crm_case_tree_view_oppor_inherit" model="ir.ui.view">
+            <field name="name">Opportunities Tree</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_tree_view_oppor"/>
+            <field name="arch" type="xml">
+                   <field name="create_date" position="attributes">
+                        <attribute name="invisible">True</attribute>
+                   </field>
+                   <field name="title_action" position="attributes">
+                        <attribute name="invisible">True</attribute>
+                   </field>
+                   <field name="date_action" position="attributes">
+                        <attribute name="invisible">True</attribute>
+                   </field>
+                   <field name="stage_id" position="attributes">
+                        <attribute name="invisible">True</attribute>
+                   </field>
+                   <field name="planned_revenue" position="attributes">
+                        <attribute name="invisible">True</attribute>
+                   </field>
+                   <field name="probability" position="attributes">
+                        <attribute name="invisible">True</attribute>
+                   </field>
+                   <field name="probability" position="attributes">
+                        <attribute name="invisible">True</attribute>
+                   </field>
+                   <field name="create_date" position="after">
+                        <field name="creation_date"/>
+                   </field>
+                   <field name="name" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                   </field>
+                   <field name="name" position="after">
+                        <field name="reference"/>
+                   </field>
+                   <field name="partner_id" position="after">
+                        <field name="customer_rfq"/>
+                        <field name="date_deadline"/>
+                   </field>
+                   <field name="title_action" position="attributes">
+                        <attribute name="invisible">1</attribute>
+                   </field>
+                   <xpath expr="//tree" position="attributes">
+                        <attribute name="create">1</attribute>
+                   </xpath>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="crm.crm_case_category_act_oppor11">
+        <field name="name">Opportunities/Enquiries</field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">kanban,tree,graph,form,calendar</field>
+        <field name="domain">[('type','=','opportunity')]</field>
+        <field name="context">{'stage_type': 'opportunity', 'default_type': 'opportunity', 'default_user_id': uid}</field>
+        <field name="view_id" eval="False"/>
+        <field name="search_view_id" ref="crm.view_crm_case_opportunities_filter"/>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+          Click to create a new opportunity.
+          </p><p>
+          OpenERP helps you keep track of your sales pipeline to follow
+          up potential sales and better forecast your future revenues.
+          </p><p>
+          You will be able to plan meetings and phone calls from
+          opportunities, convert them into quotations, attach related
+          documents, track all discussions, and much more.
+          </p>
+        </field>
+    </record>
+    
+    <record id="crm_lead_search_view_inherit" model="ir.ui.view">
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.view_crm_case_opportunities_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="reference" string="Enquiry" filter_domain="[('reference', 'ilike', self)]"/>
+            </xpath>
+        </field>
+    </record>
+    
+      <menuitem name="Opportunities/Enquiries" id="crm.menu_crm_opportunities" parent="base.menu_sales" action="crm.crm_case_category_act_oppor11" sequence="3" />
+    </data>
+</openerp>

@@ -1,0 +1,844 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_account_journal_form" model="ir.ui.view">
+            <field name="name">Account Journal</field>
+            <field name="model">account.journal</field>
+            <field name="inherit_id" ref="account.view_account_journal_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='allow_date']" position="after">
+                    <field name="display_check_details"/>
+                    <field name="display_mapping_partner"/>
+                    <field name="display_bank_details"/>
+                    <field name="display_check_type_date"/>
+                    <field name="display_amount"/>
+                    <field name="display_invoice_details"/>
+                    <field name="diplay_tr_details"/>
+                    <field name="voucher_no_as_ref"/>
+                    <field name="show_crd"/>
+                    <field name="show_deb"/>
+                    <field name="credit_journal_acc"/>
+                    <field name="debit_journal_acc"/>
+                    <field name="credit_partner_acc"/>
+                    <field name="debit_partner_acc"/>
+                    <field name="credit_gl_acc"/>
+                    <field name="debit_gl_acc"/>
+                    <field name="credit_bank_acc"/>
+                    <field name="debit_bank_acc"/>
+                    <field name="display_in_voucher"/>
+                    <field name="check_cheque_number"/>
+                    <field name="check_voucher"/>
+                </xpath>
+                <xpath expr="//field[@name='sequence_id']" position="after">
+                    <field name="voucher_label"/>
+                </xpath>
+                <xpath expr="//field[@name='sequence_id']" position="before">
+                    <field name="seq_period"/>
+                    <field name="man_seq" attrs="{'invisible': [('seq_period', '=' , False)]}"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_account_account_inherit" model="ir.ui.view">
+            <field name="name">Account</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='active']" position="after">
+                    <field name="account_analytic_id"/>
+                    <field name="include_subledger"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="hatta_invoice_double_validation.account_invoice_cust_inherit3" model="ir.ui.view">
+            <field name="name">Customer Invoice</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="hatta_invoice_double_validation.account_invoice_cust_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='invoice_proforma2']" position="attributes">
+                    <attribute name="type">object</attribute>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="hatta_invoice_double_validation.account_invoice_cust_inherit2" model="ir.ui.view">
+            <field name="name">Customer Invoice</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="hatta_invoice_double_validation.account_invoice_cust_inherit"/>
+            <field name="groups_id" eval="[(6, 0, [ref('hatta_invoice_double_validation.group_direct_validate')])]"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='invoice_proforma2']" position="attributes">
+                    <attribute name="name">invoice_open</attribute>
+                    <attribute name="type">object</attribute>
+                    <attribute name="string">Post</attribute>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_account_invoice_form_view" model="ir.ui.view">
+            <field name="name">account.invoice.form.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account_voucher.view_invoice_customer"/>
+            <field name="arch" type="xml">
+                <xpath expr="//h1" position="after">
+                    <label for="transaction_type_id"/>
+                    <h1>
+                        <field name="transaction_type_id" readonly="False" required="1"
+                            on_change="onchange_trnsaction_type(transaction_type_id)"
+                            domain="[('model_id.model', '=', 'account.invoice')]"
+                            attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                    </h1>
+                    <label for="expected_sequence"/>
+                    <h1>
+                        <field name="expected_seq" readonly="True"/>
+                    </h1>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="invoice_uploaded" invisible="True"/>
+                    <field name="upload_inv" invisible="True"/>
+                </xpath>
+                <xpath expr="//field[@name='state']" position="before">
+                    <button name="invoice_uploaded" type="object" string="Invoice Uploaded"
+                        attrs="{'invisible': ['|', '|', ('state', 'in', ['draft', 'cancel']), ('upload_inv', '=', False), ('invoice_uploaded', '=', True)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='date_invoice']" position="after">
+                    <field name="number" readonly="True" invisible="True"/>
+                </xpath>
+                <xpath expr="//field[@name='number']" position="attributes">
+                    <attribute name="name">internal_number</attribute>"
+                </xpath>
+                <xpath expr="//button[@name='invoice_cancel']" position="after">
+                    <button name="account_invoice_cancel_paid" type="object" states="paid"
+                                groups="account.group_account_manager" string="Unpost"/>
+                </xpath>
+                <xpath expr="//field[@name='fiscal_position']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//sheet/group" position="attributes">
+                    <attribute name="col">3</attribute>
+                </xpath>
+                <xpath expr="//sheet/group/group" position="attributes">
+                    <attribute name="col">2</attribute>
+                </xpath>
+                <xpath expr="//sheet/group/group[last()]" position="attributes">
+                    <attribute name="col">2</attribute>
+                </xpath>
+                <xpath expr="//page[@string='Other Info']//field[@name='name']" position="replace"/>
+                <xpath expr="//sheet/group" position="inside">
+                    <group>
+                        <field name="name" string="Customer PO Number"/>
+                        <field name="cost_center_id" readonly="True"/>
+                        <label for="job_id"/>
+                        <div>
+                            <field name="job_id" required="False" readonly="True" class="oe_inline"/>
+                            <button name="%(hatta_account.action_assign_job_no)d" type="action" string="" icon="STOCK_ADD" attrs="{'invisible': [('job_id', '!=', False)]}" class="oe_inline oe_link"/>
+                        </div>
+                        <field name="sale_id" readonly="True"/>
+                        <field name="shop_id" readonly="True"/>
+                        <field name="reg_pay_invoice" invisible="True"/>
+                    </group>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="before">
+                    <field name="parent_partner_id" attrs="{'readonly': [('state', '!=', 'draft')]}" required="True"
+                            context="{'show_address': True}"
+                            domain="[('parent_id', '=', False), ('customer', '=', True)]"
+                            on_change="onchange_parent_partner_id(parent_partner_id)"
+                            options="{'create_edit': false}"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name='domain'>['|',('id', '=', parent_partner_id),('parent_id', '=', parent_partner_id)]</attribute>
+                    <attribute name="string">Address</attribute>
+                    <attribute name="context">{'search_default_customer': 1, 'default_parent_id': parent_partner_id, 'default_type': 'invoice'}</attribute>
+                    <attribute name="options">{'create_edit': false}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='invoice_pay_customer']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', '|', ('state','!=','open'), ('sent','=',True), ('reg_pay_invoice', '=', False)]}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='invoice_pay_customer'][last()]" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', '|', ('state','!=','open'), ('sent','=',False), ('reg_pay_invoice', '=', False)]}</attribute>
+                </xpath>
+                <xpath expr="//button[@string='Refund Invoice']" position="attributes">
+                    <attribute name="states">open</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_line']//tree" position="attributes">
+                    <attribute name="editable"></attribute>
+                </xpath>
+                <xpath expr="//sheet/group/group[1]" position="inside">
+                    <label for="self_billing_num" groups="account.group_account_manager"/>
+                    <div groups="account.group_account_manager">
+                        <field name="self_billing_num" class="oe_inline" readonly="True" groups="account.group_account_manager"/>
+                        <button name="%(hatta_account.action_self_billing_number)d" class="oe_link oe_inline"
+                            type="action" help="Assign Self Billing Number" icon="STOCK_NEW"
+                            attrs="{'invisible': [('state', '=', 'draft')]}" groups="account.group_account_manager"/>
+                    </div>
+                </xpath>
+                <xpath expr="//field[@name='currency_id']" position="attributes">
+                    <attribute name="on_change">onchange_currency_id(currency_id)</attribute>
+                </xpath>
+                <xpath expr="//field[@name='currency_id']" position="after">
+                    <field name="exchange_rate" invisible="True"/>
+                </xpath>
+                <xpath expr="//field[@name='journal_id']" position="after">
+                    <field name="rel_picking_ids" widget="many2many_tags"
+                            domain="[('sale_id', '=', sale_id)]"/>
+                </xpath>
+                <xpath expr="//page[@string='Invoice Lines']//field[@name='discount']" position="replace">
+                	<field name="discount"/>
+                </xpath>
+               <!-- <xpath expr="//field[@name='invoice_line_tax_id']" position="attributes">
+                	<attribute name="invisible">True</attribute>
+                </xpath> -->
+                <xpath expr="//field[@name='comment']" position="after">
+                    	<separator string="Cancellation Notes"/>
+                    	<field name="cancel_note" class="oe_inline" plcaceholder="Cancellation Notes....."/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="invoice_supplier_form_view" model="ir.ui.view">
+            <field name="name">account.invoice.supplier.form.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//field[@name='comment']" position="after">
+                   	<separator string="Cancellation Notes"/>
+                   	<field name="cancel_note" plcaceholder="Cancellation Notes....."/>
+                </xpath>
+                <xpath expr="//field[@name='currency_id']" position="after">
+                   	<field name="supplier_invoice_date" 
+                   		attrs="{'readonly':[('state', '!=', 'draft')]}"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="account_invoice_cust_search_inherit" model="ir.ui.view">
+            <field name="name">Customer Invoice</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='period_id']" position="after">
+                    <field name="cost_center_id"/>
+                    <field name="transaction_type_id"/>
+                </xpath>
+                <xpath expr="//filter[@string='Partner']" position="after">
+                    <filter string="Cost Center" icon="terp-partner" domain="[]" context="{'group_by':'cost_center_id'}"/>
+                    <filter string="Transaction Type" icon="terp-partner" domain="[]" context="{'group_by':'transaction_type_id'}"/>
+                </xpath>
+            </field>
+        </record>
+        
+        
+        <record id="view_inherit_account_invoice_line_form1" model="ir.ui.view">
+        	<field name="name">account.invoice.line.inherit.form</field>
+        	<field name="model">account.invoice.line</field>
+        	<field name="sequence">3</field>
+        	<field name="inherit_id" ref="account.view_invoice_line_form"/>
+        	<field name="arch" type="xml">
+        	<field name="name" position="after">
+        		<separator string="Local Purchase Order"/>
+        		<field name="lpo_ids">
+        			<tree editable="bottom">
+        				<field name="purchase_id"/>
+						<field name="quantity"/>   
+        			</tree>
+        			<form>
+        				<sheet>
+        					<group col="4">
+        						<field name="purchase_id"/>
+								<field name="quantity"/>   
+        					</group>
+        				</sheet>
+        			</form>
+        		</field>
+        	</field>
+        	</field>
+        </record>
+        
+<!--         <record id="view_account_invoice_line_form_view" model="ir.ui.view"> -->
+<!-- 			<field name="name">account.invoice.line.form.inherit</field> -->
+<!-- 			<field name="model">account.invoice.line</field> -->
+<!-- 			<field name="inherit_id" ref="account.view_invoice_line_form"/> -->
+<!-- 			<field name="arch" type="xml"> -->
+<!-- 				<xpath expr="//field[@name='invoice_line_tax_id']" position="attributes"> -->
+<!-- 					<attribute name="invisible">True</attribute> -->
+<!-- 				</xpath> -->
+<!-- 			</field> -->
+<!-- 		</record> -->
+        
+        <record id="view_account_move_form" model="ir.ui.view">
+            <field name="name">Account Move</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='to_check']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                
+                <xpath expr="//field[@name='journal_id']" position="after">
+                	<field name="display_mapping_partner" invisible="True"/>
+                </xpath>
+                
+                <xpath expr="//field[@name='to_check']" position="after">
+                    <field name="display_check_details" invisible="True"/>
+                    <field name="display_bank_details" invisible="True"/>
+                    <field name="display_check_type_date" invisible="True"/>
+                    <field name="display_amount" invisible="True"/>
+                    <field name="display_invoice_details" invisible="True"/>
+                    <field name="diplay_tr_details" invisible="True"/>
+                </xpath>
+                <xpath expr="//field[@name='line_id']/tree/field[@name='partner_id']" position="replace"/>
+                <xpath expr="//field[@name='journal_id']" position="attributes">
+                    <attribute name="context">{'journal_change': True}</attribute>
+                    <attribute name="domain">[('display_in_voucher', '=', True)]</attribute>
+                    <attribute name="on_change">onchange_chq_amount(journal_id, cheque_amt, journal_partner_id, journal_employee_part_id, bank_account_id, line_id, ref, date, part_type, gl_account_id, cheque_type, context)</attribute>
+                </xpath>
+                <xpath expr="//group" position="after">
+                    <group>
+                        <separator string="Cheque Details" attrs="{'invisible': [('display_check_details', '=', False)]}" colspan="4"/>
+                        <group>
+                            <field name="cheque_no" attrs="{'readonly': [('state', '=', 'posted')], 'invisible': [('display_check_details', '=', False)]}"/>
+                            <field name="cheque_type"
+                                    attrs="{'readonly': [('state', '=', 'posted')], 'invisible': [('display_check_type_date', '=', False)]}"
+                                    context="{'bank_ac_change': True}"
+                                    on_change="onchange_chq_amount(journal_id, cheque_amt, journal_partner_id, journal_employee_part_id, bank_account_id, line_id, ref, date, part_type, gl_account_id, cheque_type, context)"/>
+                            <field name="cheque_date" on_change="onchange_cheque_date(cheque_date)" attrs="{'readonly': [('state', '=', 'posted')], 'invisible': [('display_check_type_date', '=', False)]}"/>
+                            <field name="bank_details" attrs="{'readonly': [('state', '=', 'posted')], 'invisible': [('display_bank_details', '=', False)]}"/>
+                        </group>
+                        <group>
+                            <div attrs="{'invisible': [('display_mapping_partner', '=', False)]}">
+                                <label for="journal_partner_id" attrs="{'invisible': [('part_type', '!=', 'party')]}"
+                                        class="oe_inline"/>
+                                <label for="journal_employee_part_id" attrs="{'invisible': [('part_type', '!=', 'empl')]}"
+                                        class="oe_inline"/>
+                            </div>
+                            <div class="oe_inline" attrs="{'invisible': [('display_mapping_partner', '=', False)]}">
+                                <field name="part_type" class="oe_inline" attrs="{'readonly': [('state', '=', 'posted')]}"/>
+                                <field name="journal_partner_id"
+                                    context="{'partner_change': True, 'default_is_company': True}"
+                                    on_change="onchange_chq_amount(journal_id, cheque_amt, journal_partner_id, journal_employee_part_id, bank_account_id, line_id, ref, date, part_type, gl_account_id, cheque_type, context)"
+                                    attrs="{'readonly': [('state', '=', 'posted')], 'invisible': [('part_type', '!=', 'party')]}" class="oe_inline"/>
+                                <field name="journal_employee_part_id"
+                                    attrs="{'readonly': [('state', '=', 'posted')], 'invisible': [('part_type', 'not in', ['empl'])]}" class="oe_inline"
+                                    context="{'gl_change': True}"
+                                    on_change="onchange_chq_amount(journal_id, cheque_amt, journal_partner_id, journal_employee_part_id, bank_account_id, line_id, ref, date, part_type, gl_account_id, cheque_type, context)"/>
+                            </div>
+                            <field name="gl_account_id" domain="[('type', '!=', 'view')]"
+                                    attrs="{'readonly': [('state', '=', 'posted')], 'invisible': [('part_type', 'not in', ['gl', 'empl']), ('display_mapping_partner', '=', False)]}" class="oe_inline"
+                                    context="{'gl_change': True}"
+                                    on_change="onchange_chq_amount(journal_id, cheque_amt, journal_partner_id, journal_employee_part_id, bank_account_id, line_id, ref, date, part_type, gl_account_id, cheque_type, context)"/>
+                            <field name="partner_name" attrs="{'readonly': [('state', '=', 'posted')], 'invisible': ['|', ('part_type', '=', 'gl'), ('display_mapping_partner', '=', False)]}"/>
+                            <field name="bank_account_id" domain="[('type', '!=' , 'view'), ('user_type.code', '=', 'bank')]" attrs="{'readonly': [('state', '=', 'posted')], 'invisible': [('display_bank_details', '=', False)]}"
+                                 context="{'bank_ac_change': True}"
+                                 on_change="onchange_chq_amount(journal_id, cheque_amt, journal_partner_id, journal_employee_part_id, bank_account_id, line_id, ref, date, part_type, gl_account_id, cheque_type, context)"/>
+                            <field name="cheque_amt"
+                                    context="{'cheque_amt': True}"
+                                    on_change="onchange_amount(cheque_amt, line_id, context)" attrs="{'readonly': [('state', '=', 'posted')], 'invisible': [('display_amount', '=', False)]}"
+                                    string="Amount"/>
+                        </group>
+                        <button name="button_dummy" type="object" string="Update" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                    </group>
+                    <group string="Supplier Invoice Details" attrs="{'invisible': [('display_invoice_details', '=', False)]}">
+                        <group>
+                            <field name="invoice_id" domain="[('type', '=', 'in_invoice')]"
+                                    on_change="onchange_invoice(invoice_id)" options="{'create_edit': false}"/>
+                            <field name="invoice_date"/>
+                        </group>
+                        <group>
+                            <field name="lpo_no"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="is_a_tr" attrs="{'invisible': [('diplay_tr_details', '=', False)]}"/>
+                    </group>
+                    <group string="TR Details" attrs="{'invisible': ['|', ('diplay_tr_details', '=', False), ('is_a_tr', '=', False)]}">
+                        <field name="tr_type" attrs="{'required': [('is_a_tr', '=', True)]}"/>
+                        <field name="tr_id"
+                                domain="[('state', '=', 'open')]"
+                                attrs="{'invisible': ['|', '|', ('diplay_tr_details', '=', False), ('is_a_tr', '=', False), ('tr_type', '!=', 'settle')], 'required': [('diplay_tr_details', '=', True), ('is_a_tr', '=', True), ('tr_type', '=', 'settle')]}"/>
+                        <field name="tr_no" attrs="{'invisible': ['|', '|', ('diplay_tr_details', '=', False), ('is_a_tr', '=', False), ('tr_type', '!=', 'new')], 'required': [('diplay_tr_details', '=', True), ('is_a_tr', '=', True), ('tr_type', '=', 'new')]}"/>
+                        <field name="tr_date" attrs="{'invisible': ['|', '|', ('diplay_tr_details', '=', False), ('is_a_tr', '=', False), ('tr_type', '!=', 'new')], 'required': [('diplay_tr_details', '=', True), ('is_a_tr', '=', True), ('tr_type', '=', 'new')]}"/>
+                        <field name="tr_duration" attrs="{'invisible': ['|', '|', ('diplay_tr_details', '=', False), ('is_a_tr', '=', False), ('tr_type', '!=', 'new')], 'required': [('diplay_tr_details', '=', True), ('is_a_tr', '=', True), ('tr_type', '=', 'new')]}"/>
+                        <field name="interest_rate" attrs="{'invisible': ['|', '|', ('diplay_tr_details', '=', False), ('is_a_tr', '=', False), ('tr_type', '!=', 'new')], 'required': [('diplay_tr_details', '=', True), ('is_a_tr', '=', True), ('tr_type', '=', 'new')]}"/>
+                    </group>
+                </xpath>
+                <xpath expr="//field[@name='ref']" position="attributes">
+                    <attribute name="required">True</attribute>
+                    <attribute name="string">Narration</attribute>
+                    <attribute name="on_change">onchange_ref(ref, line_id)</attribute>
+                </xpath>
+                <xpath expr="//field[@name='line_id']" position="attributes">
+                    <attribute name="context">{'default_name': ref, 'default_date_maturity': date}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='button_cancel']" position="attributes">
+                    <attribute name="string">Unpost</attribute>
+                </xpath>
+                <xpath expr="//field[@name='line_id']/tree/field[@name='invoice']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='line_id']/tree/field[@name='name']" position="replace"/>
+                <xpath expr="//field[@name='line_id']/tree/field[@name='analytic_account_id']" position="replace"/>
+                <xpath expr="//field[@name='line_id']/tree/field[@name='currency_id']" position="replace"/>
+                <xpath expr="//field[@name='line_id']/tree/field[@name='amount_currency']" position="replace"/>
+                <xpath expr="//field[@name='line_id']/tree/field[@name='tax_code_id']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='amount_currency']" position="attributes">
+                    <attribute name="on_change">onchange_amount_currency(amount_currency, currency_id)</attribute>
+                </xpath>
+                <xpath expr="//field[@name='currency_id']" position="attributes">
+                    <attribute name="on_change">onchange_amount_currency(amount_currency, currency_id)</attribute>
+                </xpath>
+                <xpath expr="//field[@name='line_id']/tree/field[@name='tax_amount']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='line_id']/tree/field[@name='debit']" position="before">
+                    <field name="man_ref" string="Ref#"/>
+                    <field name="job_id" domain="[('name', '!=', '?')]"/>
+                    <field name="currency_id"/>
+                    <field name="amount_currency" string="Amount FC"/>
+                    <field name="credit_line" invisible="True"/>
+                    <field name="debit_line" invisible="True"/>
+                </xpath>
+                <xpath expr="//field[@name='line_id']/tree/field[@name='account_id']" position="attributes">
+                    <attribute name="on_change">onchange_account_id(account_id)</attribute>
+                </xpath>
+                <xpath expr="//field[@name='line_id']/tree/field[@name='reconcile_id']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='line_id']/tree/field[@name='reconcile_partial_id']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='line_id']/tree/field[@name='reconcile_partial_id']" position="after">
+                    <field name="name" string="Remark"/>
+                    <field name="line_type" invisible="True"/>
+                    <field name="id" invisible="True"/>
+                    <field name="voucher_id" string="" widget="many2onebutton"
+                            options="{'label':{'create':'Reconcile','edit':'Edit Reconciliation'}}"
+                            context="{'default_number': parent.name,'active_move_line': id,'line_type': line_type, 'default_type': (debit - credit) &lt; 0 and 'receipt' or 'payment', 'type': (debit - credit) &lt; 0 and 'receipt' or 'payment', 'default_partner_id': partner_id, 'default_journal_id': parent.journal_id, 'default_reference': name, 'default_date': parent.date, 'default_name': name, 'default_active': False, 'account_id': account_id, 'cr_dr_invisible': True}"
+                            attrs="{'invisble': ['|', ('partner_id', '=', False), ('id', '=', False)]}"/>
+                </xpath>
+                <xpath expr="//field[@name='line_id']/tree/field[@name='account_id']" position="after">
+                    <field name="analytic_account_id" string="CostCenter"/>
+                    <field name="partner_id" string="Subledger" context="{'default_is_company': True}"
+                            on_change="onchange_partner_hatta(partner_id)"/>
+                </xpath>
+                <xpath expr="//field[@name='line_id']/tree/field[@name='date_maturity']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='line_id']/tree/field[@name='amount_currency']" position="before">
+                    <field name="amount_fc_temp" on_change="onchange_amount_curr(currency_id, amount_currency, amount_fc_temp, debit, credit)"/>
+                </xpath>
+                <xpath expr="//field[@name='line_id']/tree/field[@name='amount_currency']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='line_id']/tree/field[@name='credit']" position="attributes">
+                    <attribute name="on_change">onchange_amount_curr(currency_id, amount_currency, amount_fc_temp, debit, credit)</attribute>
+                </xpath>
+                <xpath expr="//field[@name='line_id']/tree/field[@name='debit']" position="attributes">
+                    <attribute name="on_change">onchange_amount_curr(currency_id, amount_currency, amount_fc_temp, debit, credit)</attribute>
+                </xpath>
+                <xpath expr="//field[@name='line_id']/tree/field[@name='currency_id']" position="attributes">
+                    <attribute name="on_change">onchange_amount_curr(currency_id, amount_currency, amount_fc_temp, debit, credit)</attribute>
+                </xpath>
+                <xpath expr="//field[@name='account_id']" position="attributes">
+                    <attribute name="domain">[('journal_id', '=', parent.journal_id.id),('company_id', '=', parent.company_id.id)('type', '!=', 'view')]</attribute>
+                </xpath>
+                <xpath expr="//field[@name='line_id']/tree/field[@name='state']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='period_id']" position="replace"/>
+                <xpath expr="//field[@name='date']" position="replace"/>
+                <xpath expr="//field[@name='journal_id']" position="after">
+                    <field name="date" on_change="onchange_date(date)" attrs="{'readonly': [('state', 'in', ['posted'])]}"/>
+                </xpath>
+                <xpath expr="//field[@name='ref']" position="after">
+                    <field name="period_id" attrs="{'invisible': [('state', 'in', ['posted'])]}"
+                                string="AM"/>
+                </xpath>
+                <xpath expr="//field[@name='journal_id']" position="attributes">
+                    <attribute name="string">Voucher Type</attribute>
+                </xpath>
+                <xpath expr="//field[@name='ref']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', '=', 'posted')]}</attribute>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_account_move_tree" model="ir.ui.view">
+            <field name="name">Account Move</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="cheque_no" invisible="True"/>
+                    <field name="cheque_date" invisible="True"/>
+                    <field name="bank_account_id" invisible="True"/>
+                    <field name="cheque_type" invisible="True"/>
+                    <field name="bank_details" invisible="True"/>
+                    <field name="partner_name" invisible="True"/>
+                    <field name="cheque_amt" invisible="True"/>
+                    <field name="cheque_released" invisible="True"/>
+                    <field name="bounced" invisible="True"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="journal_partner_id"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_account_move_search" model="ir.ui.view">
+            <field name="name">Account Move</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_account_move_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="cheque_no"/>
+                    <field name="cheque_date"/>
+                    <field name="journal_partner_id"/>
+                    <field name="bank_account_id"/>
+                    <field name="cheque_type"/>
+                    <field name="bank_details"/>
+                    <field name="partner_name"/>
+                    <field name="cheque_amt"/>
+                    <filter icon="terp-document-new" name="cheque_rel" string="To Release" domain="[('cheque_released', '=', False)]" help="Cheques to release"/>
+                    <filter icon="terp-document-new" name="bounce" string="Bounced" domain="[('bounced', '=', True)]" help="Bounced Cheques"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_move_tree_pdc" model="ir.ui.view">
+            <field name="name">account.move.tree</field>
+            <field name="model">account.move</field>
+            <field name="arch" type="xml">
+                <tree colors="blue:state == 'draft';black:state == 'posted';red:bounced == True;" string="Journal Entries" editable="top">
+                    <field name="name" readonly="1"/>
+                    <field name="ref" readonly="1"/>
+                    <field name="date"/>
+                    <field name="period_id" readonly="1"/>
+                    <field name="journal_id" readonly="1"/>
+                    <field name="partner_id" readonly="1"/>
+                    <field name="journal_partner_id" invisible="1"/>
+                    <field name="amount" sum="Total Amount" readonly="1"/>
+                    <field name="to_check" readonly="1"/>
+                    <field name="state" invisible="1"/>
+                    <field name="release_date"/>
+                    <field name="skip_check" invisible="True"/>
+                    <field name="cheque_released" readonly="True"/>
+                    <field name="bounced" invisible="True"/>
+                    <button name="cheque_release" string="Release" type="object" attrs="{'invisible': [('cheque_released', '=', True)]}" icon="gtk-apply"/>
+                    <button name="cheque_bounce" string="Bounce" type="object" icon="gtk-cancel" attrs="{'invisible': [('bounced', '!=', False)]}"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="account.action_move_journal_line" model="ir.actions.act_window">
+            <field name="name">Vouchers</field>
+            <field name="res_model">account.move</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="account.view_move_tree"/>
+            <field name="search_view_id" ref="account.view_account_move_filter"/>
+            <field name="domain">[('journal_id.display_in_voucher', '=', True), ('skip_check', '=', False)]</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a voucher entry.
+              </p><p>
+                A journal entry consists of several voucher items, each of
+                which is either a debit or a credit transaction.
+              </p><p>
+                OpenERP automatically creates one voucher entry per accounting
+                document: invoice, refund, supplier payment, bank statements,
+                etc. So, you should record voucher entries manually only/mainly
+                for miscellaneous operations.
+              </p>
+            </field>
+        </record>
+        
+        <record id="action_move_journal_line_new" model="ir.actions.act_window">
+            <field name="name">Vouchers</field>
+            <field name="res_model">account.move</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="account.view_move_tree"/>
+            <field name="search_view_id" ref="account.view_account_move_filter"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a voucher entry.
+              </p><p>
+                A journal entry consists of several voucher items, each of
+                which is either a debit or a credit transaction.
+              </p><p>
+                OpenERP automatically creates one voucher entry per accounting
+                document: invoice, refund, supplier payment, bank statements,
+                etc. So, you should record voucher entries manually only/mainly
+                for miscellaneous operations.
+              </p>
+            </field>
+        </record>
+        
+        <record id="action_move_journal_line_pdc" model="ir.actions.act_window">
+            <field name="name">PDC Vouchers</field>
+            <field name="res_model">account.move</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_move_tree_pdc"/>
+            <field name="search_view_id" ref="account.view_account_move_filter"/>
+            <field name="domain">[('journal_id.display_in_voucher', '=', True), ('state','=', 'posted'),('cheque_type','=','pdc'), ('skip_check', '=', False)]</field>
+            <field name="context">{'search_default_cheque_rel': 1}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a voucher entry.
+              </p><p>
+                A journal entry consists of several voucher items, each of
+                which is either a debit or a credit transaction.
+              </p><p>
+                OpenERP automatically creates one voucher entry per accounting
+                document: invoice, refund, supplier payment, bank statements,
+                etc. So, you should record voucher entries manually only/mainly
+                for miscellaneous operations.
+              </p>
+            </field>
+        </record>
+        
+        <record id="view_account_analyic_form_inherit" model="ir.ui.view">
+            <field name="name">Cost Center</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_account_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='manager_id']" position="after">
+                    <field name="default"/>
+                    <field name="system_sale_price"/>
+                    <field name="send_quote_mail"/>
+                    <field name="reg_pay_invoice"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_partner_bank_tree_inherit" model="ir.ui.view">
+            <field name="name">bank.account.tree</field>
+            <field name="model">res.partner.bank</field>
+            <field name="inherit_id" ref="base.view_partner_bank_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='acc_number']" position="after">
+                    <field name="account_type"/>
+                    <field name="od_limit" attrs="{'invisible': [('account_type', '!=' , 'od')]}"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_partner_bank_form_inherit" model="ir.ui.view">
+            <field name="name">bank.account.form</field>
+            <field name="model">res.partner.bank</field>
+            <field name="inherit_id" ref="base.view_partner_bank_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='acc_number']" position="after">
+                    <field name="account_type"/>
+                    <field name="od_limit" attrs="{'invisible': [('account_type', '!=' , 'od')]}"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_account_voucher_form_inherit1" model="ir.ui.view">
+            <field name="name">Supplier Payment</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_vendor_payment_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='line_cr_ids']" position="attributes">
+                    <attribute name="invisible">context.get('cr_dr_invisible', False)</attribute>
+<!--                     <attribute name="invisible">True</attribute> -->
+                </xpath>
+                <xpath expr="//label[@for='line_cr_ids']" position="attributes">
+                    <attribute name="invisible">context.get('cr_dr_invisible', False)</attribute>
+<!--                     <attribute name="invisible">True</attribute> -->
+                </xpath>
+                <xpath expr="//button[@name='cancel_voucher'][last()]" position="attributes">
+                    <attribute name="string">Unmatch</attribute>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_account_voucher_form_inherit2" model="ir.ui.view">
+            <field name="name">Customer Payment</field>
+            <field name="model">account.voucher</field>
+            <field name="inherit_id" ref="account_voucher.view_vendor_receipt_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='line_dr_ids']" position="attributes">
+                    <attribute name="invisible">context.get('cr_dr_invisible', False)</attribute>
+<!--                     <attribute name="invisible">True</attribute> -->
+                </xpath>
+                <xpath expr="//label[@for='line_dr_ids']" position="attributes">
+                    <attribute name="invisible">context.get('cr_dr_invisible', False)</attribute>
+<!--                     <attribute name="invisible">True</attribute> -->
+                </xpath>
+                <xpath expr="//button[@name='cancel_voucher'][last()]" position="attributes">
+                    <attribute name="string">Unmatch</attribute>
+                </xpath>
+            </field>
+        </record>
+        
+        <menuitem id="menu_finance_transaction" name="Transaction" sequence="50"
+                groups="account.group_account_manager"/>
+        <menuitem id="menu_finance_transaction_conf" name="Configuration" sequence="51"
+                groups="account.group_account_manager"
+                parent="menu_finance_transaction"/>
+        <menuitem id="menu_action_account_period" action="account.action_account_period"
+                parent="menu_finance_transaction_conf" name="Accounting Months"
+                sequence="1"/>
+        <menuitem id="menu_action_account_fiscalyear" action="account.action_account_fiscalyear"
+                parent="menu_finance_transaction_conf" sequence="2"/>
+        <menuitem action="account.action_account_fiscalyear_close"
+                id="menu_wizard_fy_close"
+                parent="menu_finance_transaction_conf"
+                sequence="3"/>
+        <menuitem action="account.action_account_open_closed_fiscalyear"
+                id="menu_wizard_account_open_closed_fiscalyear"
+                sequence="4"
+                parent="menu_finance_transaction_conf"/>
+        <menuitem id="menu_finance_vouchers" name="Voucher" sequence="3"
+                parent="menu_finance_transaction"
+                groups="account.group_account_user,account.group_account_manager"/>
+        <menuitem
+                icon="STOCK_JUSTIFY_FILL"
+                action="account.action_move_journal_line"
+                id="menu_action_move_journal_line_form"
+                parent="menu_finance_vouchers"
+                groups="account.group_account_user"
+                name="View Voucher"
+                sequence="5"/>
+        <menuitem
+                icon="STOCK_JUSTIFY_FILL"
+                action="action_move_journal_line_new"
+                id="menu_action_move_journal_line_form_new"
+                parent="menu_finance_vouchers"
+                groups="account.group_account_user"
+                name="Data Entry"
+                sequence="1"/>
+        <menuitem
+                icon="STOCK_JUSTIFY_FILL"
+                action="action_move_journal_line_pdc"
+                id="menu_action_move_journal_line_pdc"
+                parent="menu_finance_vouchers"
+                groups="account.group_account_user"
+                name="PDC Vouchers"
+                sequence="10"/>
+        
+        <record model="ir.ui.view" id="view_res_company_form_inherit">
+            <field name="name">res.company.form.inherit</field>
+            <field name="model">res.company</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Configuration']" position="inside">
+	                <separator string="TR Configurations"/>
+	                <div>
+	                	<field name="tr_limit"/>
+	                </div>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_outcoming_payable_tree" model="ir.ui.view">
+            <field name="name">view.outcoming.payable.tree</field>
+            <field name="model">account.move.line</field>
+            <field eval="100" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="Upcoming Payables">
+                    <field name="move_id" string="Voucher Number" invisible="True"/>
+                    <field name="move_line_name" string="Voucher Number"/>
+                    <field name="partner_id" string="Party Name"/>
+                    <field name="job_id" string="Job #"/>
+                    <field name="name" string="Narration"/>
+                    <field name="currency_id" string="Currency"/>
+                    <field name="amount_currency" string="Amount in FC"/>
+                    <field name="debit"/>
+                    <field name="credit"/>
+                    <field name="date_maturity"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="action_movline_out_payables" model="ir.actions.act_window">
+            <field name="name">Upcoming Payables</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.move.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('account_id.type','=','payable'), ('reconcile_id','=',False), ('credit', '>', 0.00), ('partner_id', '!=', False), ('move_id.skip_check', '=', False)]</field>
+            <field name="view_id" ref="view_outcoming_payable_tree"/>
+            <field name="target">current</field>
+        </record>
+        
+        <menuitem
+                action="action_movline_out_payables"
+                id="menu_outcoming_payables"
+                parent="hatta_crm.hatta_account_report"
+                groups="account.group_account_user"
+                name="Upcoming Payables"
+                sequence="10"/>
+        
+        <record id="view_outcoming_receivable_tree" model="ir.ui.view">
+            <field name="name">view.outcoming.receivable.tree</field>
+            <field name="model">account.move.line</field>
+            <field eval="100" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="Upcoming Receivable">
+                    <field name="move_id" string="Voucher Number" invisible="True"/>
+                    <field name="move_line_name" string="Voucher Number"/>
+                    <field name="date" string="Voucher Date"/>
+                    <field name="partner_id" string="Party Name"/>
+                    <field name="job_id" string="Job #"/>
+                    <field name="name" string="Narration"/>
+                    <field name="currency_id" string="Currency"/>
+                    <field name="amount_currency" string="Amount in FC"/>
+                    <field name="debit"/>
+                    <field name="credit"/>
+                    <field name="date_maturity"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="action_movline_out_receivable" model="ir.actions.act_window">
+            <field name="name">Upcoming Receivable</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.move.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('account_id.type','=','receivable'), ('reconcile_id','=',False), ('debit', '>', 0.00), ('partner_id', '!=', False), ('move_id.skip_check', '=', False)]</field>
+            <field name="view_id" ref="view_outcoming_receivable_tree"/>
+            <field name="target">current</field>
+        </record>
+        
+        <menuitem
+                action="action_movline_out_receivable"
+                id="menu_outcoming_receivable"
+                parent="hatta_crm.hatta_account_report"
+                groups="account.group_account_user"
+                name="Upcoming Receivable"
+                sequence="11"/> 
+        
+        <record id="account.action_account_period" model="ir.actions.act_window">
+            <field name="name">Periods</field>
+            <field name="res_model">account.period</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a fiscal period.
+              </p><p>
+                An accounting period typically is a month or a quarter. It
+                usually corresponds to the periods of the tax declaration.
+              </p>
+            </field>
+        </record>
+        
+        <menuitem id="menu_hatta_account_period" action="account.action_account_period"
+                parent="hatta_account.menu_finance_vouchers"
+                groups="group_open_close_period" name="Accounting Months"
+                sequence="999"/>
+    </data>
+</openerp>

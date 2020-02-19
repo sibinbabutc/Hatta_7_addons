@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="offline_matching_form" model="ir.ui.view">
+            <field name="name">offline.matching.form</field>
+            <field name="model">offline.matching</field>
+            <field name="priority" eval="8" />
+            <field name="arch" type="xml">
+                <form string="Matching" version="7.0">.
+                    <header>
+                        <button string="Match" type="object" name="execute" class="oe_highlight" icon="STOCK_SAVE"/>
+                        or
+                        <button string="Cancel" type="object" name="cancel" class="oe_link"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="partner_id" required="True" options="{'create_edit':false}"/>
+                                <field name="cost_center_id" invisible="True"/>
+                                <field name="account_id" required="True" options="{'create_edit':false}"/>
+                            </group>
+                            <group>
+                                <field name="credit_amount" readonly="True"/>
+                                <field name="debit_amount" readonly="True"/>
+                                <button name="display_tran" type="object" string="Display" col="1"/>
+                                <button name="update_tran" type="object" string="Update" col="1" class="oe_link"/>
+                            </group>
+                        </group>
+                        <separator string="Credit" colspan="4"/>
+                        <field name="line_cr_ids" on_change="onchange_cr_lines(line_cr_ids)">
+	                        <tree editable="bottom" create="0">
+	                            <field name="move_line_id" readonly="True"/>
+	                            <field name="account_id" readonly="True"/>
+	                            <field name="date_original" readonly="True"/>
+	                            <field name="date_due" readonly="True"/>
+	                            <field name="amount_original" readonly="True"/>
+	                            <field name="amount_unreconciled" readonly="True"/>
+	                            <field name="untax_amount" invisible="True"/>
+	                            <field name="type" invisible="True"/>
+	                            <field name="account_analytic_id" invisible="True"/>
+	                            <field name="reconcile" on_change="onchange_reconcile(reconcile, amount_unreconciled)"/>
+	                            <field name="amount"/>
+	                        </tree>
+	                    </field>
+	                    <separator string="Debit" colspan="4"/>
+	                    <field name="line_dr_ids" on_change="onchange_dr_lines(line_dr_ids)">
+	                        <tree editable="bottom" create="0">
+	                            <field name="move_line_id" readonly="True"/>
+	                            <field name="account_id" readonly="True"/>
+	                            <field name="date_original" readonly="True"/>
+	                            <field name="date_due" readonly="True"/>
+	                            <field name="amount_original" readonly="True"/>
+	                            <field name="amount_unreconciled" readonly="True"/>
+	                            <field name="untax_amount" invisible="True"/>
+	                            <field name="type" invisible="True"/>
+	                            <field name="account_analytic_id" invisible="True"/>
+	                            <field name="reconcile" on_change="onchange_reconcile(reconcile, amount_unreconciled)"/>
+	                            <field name="amount"/>
+	                        </tree>
+	                    </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_offline_matching">
+            <field name="name">offline.matching.action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">offline.matching</field>
+             <field name="view_mode">form</field>
+            <field name="target">inline</field>
+        </record>
+        
+        <menuitem id="offline_matching_menu" action="action_offline_matching"
+            parent="hatta_account.menu_finance_vouchers" name="Matching"
+            groups="account.group_account_manager"/>
+    </data>
+</openerp>

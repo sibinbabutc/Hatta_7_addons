@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="currency_form_view_inherit" model="ir.ui.view">
+            <field name="model">res.currency</field>
+            <field name="inherit_id" ref="base.view_currency_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='accuracy']" position="after">
+                    <field name="sec_curr_name"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

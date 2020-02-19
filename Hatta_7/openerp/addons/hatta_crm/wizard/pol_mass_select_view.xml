@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="pol_mass_select_form" model="ir.ui.view">
+          <field name="name">pol.mass.select.form</field>
+          <field name="model">pol.mass.select</field>
+          <field name="arch" type="xml">
+            <form string="Select Line" version="7.0">
+                <group>
+                    <group>
+                        <field name="po_id" readonly="True"/>
+                        <field name="partner_ref" required="True"/>
+                        <field name="quote_date" required="True"/>
+                    </group>
+                    <group>
+                        <field name="partner_id" readonly="True"/>
+                        <field name="quote_send_by" required="True"/>
+                        <field name="pricelist_id" required="True"/>
+                    </group>
+                </group>
+                <field name="line_ids" label="1" colspan="4">
+                    <tree string="RFQ Line(s)" editable="bottom" create="0">
+                        <field name="sequence_no" readonly="True"/>
+                        <field name="product_id" readonly="True"/>
+                        <field name="price"/>
+                        <field name="select"/>
+                        <field name="pol_id" invisible="True"/>
+                    </tree>
+                </field>
+                <footer>
+                   <button icon="gtk-execute" name="confirm_select_line" string="Continue" type="object"  default_focus="1" class="oe_highlight"/>
+                    or
+                   <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+                </footer>
+            </form>
+          </field>
+       </record>
+       
+       <record id="action_pol_mass_select" model="ir.actions.act_window">
+          <field name="name">Select Line</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">pol.mass.select</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="pol_mass_select_form"/>
+          <field name="target">new</field>
+       </record>
+    </data>
+</openerp>

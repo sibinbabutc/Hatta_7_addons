@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="remark_report" language="groovy" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="38fc73c2-e9af-4647-820c-4811ac1ae4a8">
+	<property name="ireport.zoom" value="1.3310000000000022"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="93"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/prajul/workspace/Hatta_ERP_7/openerp-7.0-20140804-231303/openerp/addons/hatta_reports/report/"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="image_lines" class="java.lang.Object">
+		<parameterDescription><![CDATA[image_lines]]></parameterDescription>
+	</parameter>
+	<queryString language="XPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="lead_id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[lead_id]]></fieldDescription>
+	</field>
+	<field name="cust_ref" class="java.lang.String">
+		<fieldDescription><![CDATA[cust_ref]]></fieldDescription>
+	</field>
+	<field name="our_ref" class="java.lang.String">
+		<fieldDescription><![CDATA[our_ref]]></fieldDescription>
+	</field>
+	<field name="image_lines" class="java.lang.Object">
+		<fieldDescription><![CDATA[image_lines]]></fieldDescription>
+	</field>
+	<field name="lines" class="java.lang.Object">
+		<fieldDescription><![CDATA[lines]]></fieldDescription>
+	</field>
+	<group name="Claim Group" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{lead_id}]]></groupExpression>
+		<groupHeader>
+			<band height="88">
+				<staticText>
+					<reportElement uuid="20923a80-43a0-4809-8c8e-644bd2261d87" x="0" y="0" width="555" height="36"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="14" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Remarks]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="73efe475-1db2-47fb-8765-f4a9fa5bd3a9" x="0" y="68" width="133" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Our Reference]]></text>
+				</staticText>
+				<staticText>
+					<reportElement uuid="73efe475-1db2-47fb-8765-f4a9fa5bd3a9" x="0" y="48" width="133" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Your RFQ Number]]></text>
+				</staticText>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="2f502114-2dbb-4426-bf10-937eadf5fe80" x="133" y="48" width="422" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{cust_ref}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="66b84f4b-6399-4528-afc5-942b9e03e7cd" x="133" y="68" width="422" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Times New Roman" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{our_ref}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<detail>
+		<band height="95" splitType="Stretch">
+			<subreport>
+				<reportElement uuid="8783c578-9f33-48a5-8f11-0ac134d03cce" x="0" y="0" width="555" height="95" isRemoveLineWhenBlank="true"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("//lines")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "remark_report_lines.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="84">
+			<subreport isUsingCache="false">
+				<reportElement uuid="8299f0dd-4ae3-4ae4-aa58-7cf3df61ecd0" stretchType="RelativeToBandHeight" x="0" y="0" width="555" height="84" isRemoveLineWhenBlank="true"/>
+				<dataSourceExpression><![CDATA[((net.sf.jasperreports.engine.data.JRXmlDataSource)$P{REPORT_DATA_SOURCE}).subDataSource("//image_lines")]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "remark_report_image.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

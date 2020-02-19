@@ -1,0 +1,29 @@
+Version 1.11 - 08/12/2015 by Soorya
+	* 2830. Final Destination in RFQ Report.
+
+Version 1.10 - 29/09/2015 by Soorya
+	* 2727. Bank Details in Invoice Report
+
+Version 1.9 - 13/08/2015 by Soorya
+	* Partner creation w.r.t the new employees created
+
+Version 1.8 - 28/07/2015 by Soorya
+	* PO no confirmation w/o total
+
+Version 1.7 - 08/06/2015 by Soorya
+	* 46. CUSTOMER NAME TO DISPLAY INSTEAD OF FLAT NUMBER UNDER SATV SALES INVOICE VIEW
+	* 37. Edited the constrain code.
+	
+Version 1.6 - 05/06/2015 by Soorya
+	* 37. Added constrain to check same partner name. Created group called "Override Partner Duplicate Check"
+			and added reviwed button in form view.
+
+Version 1.5 - 31/05/2015 by Lijesh
+	* 22. ALL PO'S HAVING BOROUGE AS CUSTOMER SHOULD AUTOMATICALLY INCLUDE 
+	      "SOLD & SHIP TO- HATTA TRADING & SERVICES & ENDUSER - BOROUGE" BY DEFAULT
+	      - Spercial note for bourouge duty exempt shipment
+	* 23. BY DEFAULT ALL QUOTATIONS & PURCHASE SHOULD CARRY "LIQUADTED DAMAGES NOT
+	      ACCEPTED" EXCEPT FOR OIL COMPANY QUOTES & PO'S
+
+Version 1.4 - 30/05/2015 by Shelton
+* 18. POP UP SCREENS OR DUE DATE REMINDERS IN THE SYSTEM FOR OUCOMING PAYABLES

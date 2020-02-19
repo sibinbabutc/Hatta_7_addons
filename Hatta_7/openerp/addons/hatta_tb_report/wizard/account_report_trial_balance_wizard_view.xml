@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+<!-- 		<record id="trial_bal_inherit" model="ir.ui.view"> -->
+<!--             <field name="name">Trial Balance</field> -->
+<!--             <field name="model">trial.balance.webkit</field> -->
+<!--             <field name="inherit_id" ref="account_financial_report_webkit.account_trial_balance_view_webkit"/> -->
+<!--             <field name="arch" type="xml"> -->
+<!--                 <xpath expr="//field[@name='account_ids']" position="attributes"> -->
+<!--                     <attribute name="domain"></attribute> -->
+<!--                 </xpath> -->
+<!--             </field> -->
+<!--         </record>     -->
+    </data>
+</openerp>

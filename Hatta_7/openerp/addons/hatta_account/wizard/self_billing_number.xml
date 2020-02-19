@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="self_billing_number_form" model="ir.ui.view">
+          <field name="name">self.billing.number.form</field>
+          <field name="model">self.billing.number</field>
+          <field name="arch" type="xml">
+            <form string="Assign Self Billing Number" version="7.0">
+                <group>
+                    <field name="invoice_id" invisible="True"/>
+                    <field name="billing_number" required="True"/>
+                </group>
+                <footer>
+                   <button name="assign_number" string="Assign" type="object" icon="STOCK_GO_FORWARD" default_focus="1" class="oe_highlight"/>
+                    or
+                   <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+                </footer>
+            </form>
+          </field>
+       </record>
+       
+       <record id="action_self_billing_number" model="ir.actions.act_window">
+          <field name="name">Assign Self Billing Number</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">self.billing.number</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="self_billing_number_form"/>
+          <field name="target">new</field>
+       </record>
+    </data>
+</openerp>

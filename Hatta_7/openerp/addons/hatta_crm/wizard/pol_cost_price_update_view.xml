@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="pol_cost_price_update_form" model="ir.ui.view">
+          <field name="name">pol.cost.price.update.form</field>
+          <field name="model">cost.price.update</field>
+          <field name="arch" type="xml">
+            <form string="Other RFQ Level Cost" version="7.0">
+                <group colspan="4" col="4" string="Equipment Cost">
+                    <group>
+                        <field name="freight_charges"
+                                context="{'fc_change': True}"
+                                on_change="onchange_freight(freight_charges, freight_charges_lc, exchange_rate, context)"/>
+                        <field name="fob_charges"
+                                context="{'fc_change': True}"
+                                on_change="onchange_fob(fob_charges, fob_charges_lc, exchange_rate, context)"/>
+                        <field name="other_charges"
+                                context="{'fc_change': True}"
+                                on_change="onchange_other_ch(other_charges, other_charges_lc, exchange_rate, context)"/>
+                    </group>
+                    <group>
+                        <field name="freight_charges_lc"
+                                context="{'lc_change': True}"
+                                on_change="onchange_freight(freight_charges, freight_charges_lc, exchange_rate, context)"/>
+                        <field name="fob_charges_lc"
+                                context="{'lc_change': True}"
+                                on_change="onchange_fob(fob_charges, fob_charges_lc, exchange_rate, context)"/>
+                        <field name="other_charges_lc"
+                                context="{'lc_change': True}"
+                                on_change="onchange_other_ch(other_charges, other_charges_lc, exchange_rate, context)"/>
+                    </group>
+                </group>
+                <group>
+                    <group string="Local Currency Cost">
+                       <field name="communication_charges"/>
+                       <field name="bank_charges"/>
+                       <field name="bank_interest"/>
+                       <field name="insurance_charges"/>
+                       <field name="customs_duty"/>
+                       <field name="clg_agent_charges"/>
+                       <field name="clearing_expenses"/>
+                       <field name="transport_delivery_expenses"/>
+                       <field name="misc_expenses"/>
+                       <field name="pol_id" invisible="True"/>
+                       <field name="exchange_rate" invisible="True"/>
+                    </group>
+                  </group>
+                <footer>
+                   <button icon="gtk-execute" name="change_cost" string="Apply" type="object"  default_focus="1" class="oe_highlight"/>
+                    or
+                   <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+                    
+                </footer>
+            </form>
+          </field>
+       </record>
+       
+       <record id="action_pol_cost_price_update" model="ir.actions.act_window">
+          <field name="name">Other RFQ Level Cost</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">cost.price.update</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="pol_cost_price_update_form"/>
+          <field name="target">new</field>
+       </record>
+    </data>
+</openerp>

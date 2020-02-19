@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model='ir.ui.view' id='shipment_method_form_view'>
+            <field name="name">shipment.method.form</field>
+            <field name="model">hatta.shipment.method</field>
+            <field name="arch" type="xml">
+                <form string="Shipping Method Defaults" version="7.0">
+                    <sheet>
+                        <label for="name"/>
+                        <h1>
+                            <field name="name" class="oe_inline"/>
+                        </h1>
+                        <group>
+                            <group>
+                                <field name="communication_charges"/>
+                                <field name="bank_charges"/>
+                                <label for="bank_interest"/>
+                                <div>
+                                    <field name="bank_interest" class="oe_inline"/>%%
+                                    <label string="Calculation will be made based on this value on actual product cost and number of days" class="oe_gray"/>
+                                </div>
+                                <field name="insurance_charges"/>
+                                <label for="customs_duty"/>
+                                <div>
+                                    <field name="customs_duty" class="oe_inline"/>%%
+                                    <label string="Calculation will be made based on this value on actual product cost in RFQ" class="oe_gray"/>
+                                </div>
+                                <field name="clg_agent_charges"/>
+                                <field name="clearing_expenses"/>
+                                <field name="transport_delivery_expenses"/>
+                                <field name="misc_expenses"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='shipment_method_tree_view'>
+            <field name="name">shipment.method.tree</field>
+            <field name="model">hatta.shipment.method</field>
+            <field name="arch" type="xml">
+                <tree string="Shipping Method Defaults">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model='ir.actions.act_window' id='shipment_method_action'>
+            <field name="name">Shipping Method Defaults</field>
+            <field name="res_model">hatta.shipment.method</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <menuitem name="Shipping Method Defaults" id="menu_shipment_method_action"
+            parent="purchase.menu_purchase_config_purchase" action="shipment_method_action" sequence="1"/>
+    </data>
+</openerp>

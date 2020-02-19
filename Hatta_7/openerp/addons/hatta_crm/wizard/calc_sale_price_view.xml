@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="hatta_sale_price_calc_form" model="ir.ui.view">
+          <field name="name">hatta.sale.price.calc</field>
+          <field name="model">calc.sale.price</field>
+          <field name="arch" type="xml">
+            <form string="Calculate Sale Price" version="7.0">
+                <group>
+                    <field name="cost_sheet_required"/>
+                </group>
+                <notebook>
+                    <page string="Cost Sheet" attrs="{'invisible': [('cost_sheet_required', '=', False)]}">
+                        <group>
+                            <group>
+                                <field name="lead_id" readonly="True"/>
+                                <field name="partner_id" readonly="True"/>
+                            </group>
+                            <group>
+                                <field name="po_id" readonly="True"/>
+                                <field name="exchange_rate" readonly="True"/>
+                            </group>
+                        </group>
+                        <table align="center" width="100%%">
+                            <tr>
+                                <td align="center" width="50%%">
+                                    <h2 align="center"><label string="Currency : "/><field name="currency_id" class="oe_inline" readonly="True"/></h2>
+                                </td>
+                                <td align="center" width="50%%">
+                                    <h2 align="center"><field name="local_currency_id" class="oe_inline" readonly="True"/></h2>
+                                </td>
+                            </tr>
+                        </table>
+                        <group>
+                            <group>
+                                <field name="cost_price_fc" readonly="True"/>
+                                <field name="freight_charges_fc" readonly="True"/>
+                                <field name="fob_charges_fc" readonly="True"/>
+                                <field name="other_charges_fc" readonly="True"/>
+                                <field name="total_cost_fc" readonly="True"/>
+                                <br/><br/>
+                                <field name="comm_charges" readonly="True"/>
+                                <field name="bank_charges" readonly="True"/>
+                                <field name="bank_int" readonly="True"/>
+                                <field name="insu_charges" readonly="True"/>
+                                <field name="duty" readonly="True"/>
+                                <field name="agent_charge" readonly="True"/>
+                                <field name="clearing_exp_port" readonly="True"/>
+                                <field name="trans_del_expense" readonly="True"/>
+                                <field name="misc_exp" readonly="True"/>
+                                <field name="total_exp" readonly="True"/>
+                                <br/><br/><br/><br/>
+                                <field name="total_exp2" readonly="True"/>
+                                <field name="total_cost_lc2" readonly="True"/>
+                                <field name="margin" on_change="onchange_margin(margin, po_id, total_exp2, total_cost_lc2, cost_price_lc)"/>
+                                <field name="total_sell_price" readonly="True"/>
+                            </group>
+                            <group>
+                                <field name="cost_price_lc" readonly="True"/>
+                                <field name="freight_charges_lc" readonly="True"/>
+                                <field name="fob_charges_lc" readonly="True"/>
+                                <field name="other_charges_lc" readonly="True"/>
+                                <field name="total_cost_lc" readonly="True"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="factor" readonly="True"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Product Margin" attrs="{'invisible': [('cost_sheet_required', '=', True)]}">
+                        <field name="line_ids" nolabel="1">
+                            <tree editable="bottom">
+                                <field name="sequence_no" readonly="True"/>
+                                <field name="product_id" readonly="True"/>
+                                <field name="cost_price" readonly="True"/>
+                                <field name="margin" on_change="onchange_line_margin(margin, cost_price)"/>
+                                <field name="sale_price" readonly="True"/>
+                                <field name="pol_id" invisible="True"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+                <footer>
+                   <button icon="gtk-execute" name="cal_sale_price"
+                                confirm="Are you sure you want to continue?"
+                                string="Calculate Sale Price" type="object"  default_focus="1" class="oe_highlight"/>
+                    or
+                   <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+                    
+                </footer>
+            </form>
+          </field>
+       </record>
+       
+       <record id="action_hatta_sale_price_calc" model="ir.actions.act_window">
+          <field name="name">Calculate Sale Price</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">calc.sale.price</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="hatta_sale_price_calc_form"/>
+          <field name="target">new</field>
+       </record>
+    </data>
+</openerp>

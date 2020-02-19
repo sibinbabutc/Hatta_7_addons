@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="account_invoice_cust_inherit" model="ir.ui.view">
+            <field name="name">Customer Invoice</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account_cancel.invoice_form_cancel_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@string='Refund Invoice']" position="attributes">
+                    <attribute name="groups">hatta_crm.group_sale_return</attribute>
+                </xpath>
+                <xpath expr="//field[@name='invoice_line']/tree//field[@name='product_id']" position="before">
+                    <field name="sequence_no"/>
+                </xpath>
+                <xpath expr="//button[@name='invoice_cancel']" position="attributes">
+                    <attribute name="groups">hatta_crm.group_cancel_invoice</attribute>
+                    <attribute name="string">Unpost</attribute>
+                    <attribute name="type">object</attribute>
+                    <attribute name="states">open,draft,proforma2</attribute>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_account_invoice_inherit" model="ir.ui.view">
+            <field name="name">account.invoice.hatta.form.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="hatta_account.view_account_invoice_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='shop_id']" position="after">
+                    <field name="cash_invoice" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                    <field name="display_bank_details" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_bank_id']" position="attributes">
+                	<attribute name="required">0</attribute>"
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="job_account_form_inherit" model="ir.ui.view">
+            <field name="name">Job Account</field>
+            <field name="model">job.account</field>
+            <field name="inherit_id" ref="hatta_account.view_job_account_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='sale_ids']/tree/field[@name='user_id']" position="after">
+                    <field name="date_delivery"/>
+                    <field name="delivery_terms"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_account_invoice_search_inherit" model="ir.ui.view">
+            <field name="name">account.invoice.hatta.search.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@string='Status']" position="after">
+                     <filter string="State" icon="terp-stock_effects-object-colorize" domain="[]" context="{'group_by':'state'}"/>
+                </xpath>
+                <xpath expr="//filter[@string='Status']" position="attributes">
+                    <attribute name="context">{'group_by':'status'}</attribute>"
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_account_invoice_tree_inherit" model="ir.ui.view">
+            <field name="name">account.invoice.tree.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='number']" position="after">
+                    <field name="edit_inv" invisible="True"/>
+                </xpath>
+                <field name="partner_id" position="replace">
+                	<field name="partner_id" invisible="1"/>
+                    <field name="parent_partner_id"/>
+                </field>
+            </field>
+        </record>
+                
+        <record id="action_invoice_tree1_hatta" model="ir.actions.act_window">
+            <field name="name">Customer Invoices</field>
+            <field name="res_model">account.invoice</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,calendar,graph</field>
+            <field eval="False" name="view_id"/>
+            <field name="domain">[('type','=','out_invoice'), '|', ('state', '!=', 'cancel'), ('edit_inv', '!=', False)]</field>
+            <field name="context">{'default_type':'out_invoice', 'type':'out_invoice', 'journal_type': 'sale'}</field>
+            <field name="search_view_id" ref="account.view_account_invoice_filter"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a customer invoice.
+              </p><p>
+                OpenERP's electronic invoicing allows to ease and fasten the
+                collection of customer payments. Your customer receives the
+                invoice by email and he can pay online and/or import it
+                in his own system.
+              </p><p>
+                The discussions with your customer are automatically displayed at
+                the bottom of each invoice.
+              </p>
+            </field>
+        </record>
+
+
+        <record id="action_invoice_tree1_view1_hatta" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="act_window_id" ref="action_invoice_tree1_hatta"/>
+        </record>
+
+        <record id="action_invoice_tree1_view2_hatta" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="account.invoice_form"/>
+            <field name="act_window_id" ref="action_invoice_tree1_hatta"/>
+        </record>
+        
+        <record id="view_account_analyic_form_inherit" model="ir.ui.view">
+            <field name="name">Cost Center</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_account_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='manager_id']" position="after">
+                    <field name="cons_quo_stat_report"/>
+                    <newline/>
+                    <separator string="Liquidated Damages Note" colspan="4"/>
+                    <field name="liquid_damage_note" nolabel="1" colspan="4" plcaceholder="Liquidated Damages Note"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_inherit_account_invoice_line_form1" model="ir.ui.view">
+            <field name="name">account.invoice.line.inherit.form</field>
+            <field name="model">account.invoice.line</field>
+            <field name="sequence">3</field>
+            <field name="inherit_id" ref="account.view_invoice_line_form"/>
+            <field name="arch" type="xml">
+	        <xpath expr="//field[@name='product_id']" position="before">
+	            <field name="sequence_no"/>
+	        </xpath>
+		<xpath expr="//field[@name='invoice_line_tax_id']" position="attributes">
+                    <attribute name="string">VAT</attribute>
+                </xpath>
+            </field>
+        </record>
+
+	<record id="account_invoice_form_view_inherit" model="ir.ui.view">
+            <field name="name">account.invoice.inherit.form</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+	            <xpath expr="//h1/label[1]" position="attributes">
+	               <attribute name="string">Draft Tax Invoice</attribute>
+	            </xpath>
+                <xpath expr="//h1/label[4]" position="attributes">
+	               <attribute name="string">Tax Invoice</attribute>
+	            </xpath>
+                <xpath expr="//field[@name='amount_untaxed']" position="attributes">
+                    <attribute name="string">Amount(VAT Excluded)</attribute>
+                </xpath>
+                <xpath expr="//field[@name='amount_total']" position="attributes">
+                    <attribute name="string">Amount(Incl.VAT)</attribute>
+                </xpath>
+                <label for="amount_tax" position="replace">
+                    <label for="amount_tax"  string="VAT"/>
+                </label>
+            </field>
+        </record>
+        
+<!--         <record id="invoice_supplier_form_view_crm" model="ir.ui.view"> -->
+<!--             <field name="name">account.invoice.supplier.form.inherit</field> -->
+<!--             <field name="model">account.invoice</field> -->
+<!--             <field name="inherit_id" ref="account.invoice_supplier_form"/> -->
+<!--             <field name="arch" type="xml"> -->
+<!--             	<xpath expr="//field[@name='currency_id']" position="after"> -->
+<!--                    	<field name="supplier_invoice_date"/> -->
+<!--                 </xpath> -->
+<!--             </field> -->
+<!--         </record> -->
+        
+    </data>
+</openerp>

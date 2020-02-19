@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="cost_sheet_analysis_form" model="ir.ui.view">
+            <field name="name">Cost Analysis</field>
+            <field name="model">cost.sheet.analysis</field>
+            <field name="arch" type="xml">
+                <form string="Cost Analysis" version="7.0">
+                    <group>
+                        <field name="from_date"/>
+                        <field name="to_date"/>
+                        <field name="job_id" domain="[('name', '=', '?')]"/>
+                        <field name="partner_id"/>
+                        <field name="supplier_id"/>
+                        <field name="transaction_type_id"/>
+                    </group>
+                    <separator string="Accounts" colspan="4"/>
+                    <group>
+                        <field name="duty_account_id" required="True"/>
+                        <field name="bank_int_account_id" required="True"/>
+                        <field name="insu_account_id" required="True"/>
+                        <field name="tel_account_id" required="True"/>
+                        <field name="freight_account_id" required="True"/>
+                    </group>
+                    <footer>
+                        <button name="print_report" string="Print" type="object"
+                                class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_cost_sheet_analysis" model="ir.actions.act_window">
+            <field name="name">Cost Analysis</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cost.sheet.analysis</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="cost_sheet_analysis_form" />
+            <field name="target">new</field>
+            <field name="multi">True</field>
+        </record>
+        
+        <menuitem id="menu_cost_analysis" name="Cost Analysis Report" parent="hatta_crm.hatta_account_report"
+                    action="action_cost_sheet_analysis" sequence="12"/>
+    </data>
+</openerp>

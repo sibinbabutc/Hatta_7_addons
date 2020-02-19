@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="view_validate_sale" model="ir.ui.view">
+            <field name="name">Validate Sale Order</field>
+            <field name="model">sale.validate</field>
+            <field name="arch" type="xml">
+                <form string="Approve Sale Orders" version="7.0">
+                    <separator colspan="4" string="Do you really want to validate the Sale Order(s)" />
+                    <label string="Please note that you can only validate sale Orders that are in Waiting For Approval State" colspan="4"/>
+                    <group>
+                    </group>
+                    <footer>
+                        <button name="validate_orders" string ="Validate Orders" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_validate_orders" model="ir.actions.act_window">
+            <field name="name">Approve Sales Orders</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.validate</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_validate_sale" />
+            <field name="target">new</field>
+            <field name="multi">True</field>
+        </record>
+
+        <record model="ir.values" id="validate_sale_order">
+            <field name="model_id" ref="sale.model_sale_order" />
+            <field name="name">Approve Sale order</field>
+            <field name="key2">client_action_multi</field>
+            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_validate_orders'))"/>
+            <field name="key">action</field>
+            <field name="model">sale.order</field>
+        </record>
+    </data>
+</openerp>

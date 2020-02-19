@@ -1,0 +1,650 @@
+<?xml version="1.0"?>
+<document filename="test.pdf">
+  <template pageSize="(595.0,842.0)" title="Test" author="Martin Simon" allowSplitting="20">
+    <pageTemplate id="first">
+      <frame id="first" x1="57.0" y1="57.0" width="481" height="728"/>
+    </pageTemplate>
+  </template>
+  <stylesheet>
+    <blockTableStyle id="Standard_Outline">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table1">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table2">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table3">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table4">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table5">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table6">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table7">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table8">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table9">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table10">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table11">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table12">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table13">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table14">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table15">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table16">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table17">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table18">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table19">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table21">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table22">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table23">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table24">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table25">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table26">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table27">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table28">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table29">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table30">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table20">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table31">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table32">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table33">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table34">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table35">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table36">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <blockTableStyle id="Table37">
+      <blockAlignment value="LEFT"/>
+      <blockValign value="TOP"/>
+    </blockTableStyle>
+    <initialize>
+      <paraStyle name="all" alignment="justify"/>
+    </initialize>
+    <paraStyle name="P1" fontName="Times-Roman" fontSize="11.0" leading="14"/>
+    <paraStyle name="P2" fontName="Times-Roman" fontSize="11.0" leading="14" alignment="LEFT"/>
+    <paraStyle name="P3" fontName="Times-Roman" fontSize="11.0" leading="14" alignment="JUSTIFY"/>
+    <paraStyle name="P3_b" fontName="Times-Bold" fontSize="11.0" leading="14" alignment="JUSTIFY"/>
+    <paraStyle name="P3_bold" fontName="Times-BoldItalic" fontSize="11.0" leading="14" alignment="JUSTIFY"/>
+    <paraStyle name="P4" fontName="Times-Roman" fontSize="11.0" leading="14" alignment="RIGHT"/>
+    <paraStyle name="P5" fontName="Times-Roman" fontSize="11.0" leading="14"/>
+    <paraStyle name="P5_bold" fontName="Times-Roman" fontSize="11.0" leading="14"/>
+    <paraStyle name="P6" fontName="Times-Roman" fontSize="11.0" leading="14" alignment="RIGHT"/>
+    <paraStyle name="P7" fontName="Times-Bold" fontSize="11.0" leading="14" alignment="CENTER"/>
+    <paraStyle name="P8" fontName="Times-Roman" fontSize="11.0" leading="14"/>
+    <paraStyle name="Standard" fontName="Times-Roman"/>
+    <paraStyle name="Heading" fontName="Times-Roman" fontSize="14.0" leading="17" spaceBefore="12.0" spaceAfter="6.0"/>
+    <paraStyle name="Text body" fontName="Times-Roman" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="List" fontName="Times-Roman" spaceBefore="0.0" spaceAfter="6.0"/>
+    <paraStyle name="Caption" fontName="Times-Roman" fontSize="12.0" leading="15" spaceBefore="6.0" spaceAfter="6.0"/>
+    <paraStyle name="Index" fontName="Times-Roman"/>
+    <paraStyle name="Table Contents" fontName="Times-Roman"/>
+    <paraStyle name="Table Heading" fontName="Times-Roman" alignment="CENTER"/>
+    <images/>
+  </stylesheet>
+  <story>
+    <para style="P8">[[ repeatIn(objects, 'o') ]]</para>
+    <blockTable colWidths="482.0" style="Table15">
+        <tr>
+          <td>
+            <para style="P1">
+              <font color="white"> </font>
+            </para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table15">
+        <tr>
+          <td>
+            <para style="P1">
+              <font color="white"> </font>
+            </para>
+          </td>
+        </tr>
+      </blockTable>
+    <blockTable colWidths="482.0" style="Table15">
+        <tr>
+          <td>
+            <para style="P1">
+              <font color="white"> </font>
+            </para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table15">
+        <tr>
+          <td>
+            <para style="P1">
+              <font color="white"> </font>
+            </para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table15">
+        <tr>
+          <td>
+            <para style="P1">
+              <font color="white"> </font>
+            </para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table15">
+        <tr>
+          <td>
+            <para style="P1">
+              <font color="white"> </font>
+            </para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table15">
+        <tr>
+          <td>
+            <para style="P1">
+              <font color="white"> </font>
+            </para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table15">
+        <tr>
+          <td>
+            <para style="P1">
+              <font color="white"> </font>
+            </para>
+          </td>
+        </tr>
+      </blockTable>
+    <section>
+      <blockTable colWidths="42.0,320.0,44.0,66.0" style="Table1">
+        <tr>
+          <td>
+            <para style="P5_bold">Ref :</para>
+          </td>
+          <td>
+            <para style="P5_bold">[[ o.reference or '' ]]</para>
+          </td>
+          <td>
+            <para style="P5_bold">Date :</para>
+          </td>
+          <td>
+            <para style="P5_bold">[[ formatLang(data['form']['date'],date=True) ]]</para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table2">
+        <tr>
+          <td>
+            <para style="P1">
+              <font color="white"> </font>
+            </para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table2">
+        <tr>
+          <td>
+            <para style="P1">
+              <font color="white"> </font>
+            </para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table2">
+        <tr>
+          <td>
+            <para style="P1">
+              <font color="white"> </font>
+            </para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table3">
+        <tr>
+          <td>
+            <para style="P2">[[ get_procurement_address(o) ]]</para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table4">
+        <tr>
+          <td>
+            <para style="P1">
+              <font color="white"> </font>
+            </para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table4">
+        <tr>
+          <td>
+            <para style="P1">
+              <font color="white"> </font>
+            </para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table4">
+        <tr>
+          <td>
+            <para style="P1">
+              <font color="white"> </font>
+            </para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table4">
+        <tr>
+          <td>
+            <para style="P1">
+              <font color="white"> </font>
+            </para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table5">
+        <tr>
+          <td>
+            <para style="P7"><u>[[ data['form']['revised'] and 'REVISED TECHNICAL BID' or 'TECHNICAL BID' ]]</u></para>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <para style="P7">[[ data['form']['note'] and data['form']['note'] or removeParentNode('tr') ]]</para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table6">
+        <tr>
+          <td>
+            <para style="P1">
+              <font color="white"> </font>
+            </para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table4">
+        <tr>
+          <td>
+            <para style="P1">
+              <font color="white"> </font>
+            </para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table4">
+        <tr>
+          <td>
+            <para style="P1">
+              <font color="white"> </font>
+            </para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table6">
+        <tr>
+          <td>
+            <para style="P1">
+              <font color="white"> </font>
+            </para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table6">
+        <tr>
+          <td>
+            <para style="P1">
+              <font color="white"> </font>
+            </para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table7">
+        <tr>
+          <td>
+            <para style="P1">
+              <font color="white"> </font>
+            </para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table8">
+        <tr>
+          <td>
+            <para style="P1">Dear Sir,</para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table9">
+        <tr>
+          <td>
+            <para style="P1">
+              <font color="white"> </font>
+            </para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="40.0,442.0" style="Table10">
+        <tr>
+          <td>
+            <para style="P5_bold">Sub</para>
+          </td>
+          <td>
+            <para style="P5_bold">: RFQ. No: [[ o.customer_rfq ]] (CL. DT. [[ formatLang(o.date_deadline, date=True) ]] )</para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="40.0,442.0" style="Table11">
+        <tr>
+          <td>
+            <para style="P5_bold">
+              <font color="white"> </font>
+            </para>
+          </td>
+          <td>
+            <para style="P5_bold">[[ o.coll_no_type != 'coll' and removeParentNode('blockTable') ]]: Coll. RFQ No.: [[ o.call_no or '' ]]</para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="40.0,442.0" style="Table11">
+        <tr>
+          <td>
+            <para style="P5_bold">
+              <font color="white"> </font>
+            </para>
+          </td>
+          <td>
+            <para style="P5_bold">[[ o.coll_no_type != 'buyer' and removeParentNode('blockTable') ]]: Buyer : [[ o.call_no or '' ]]</para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table13">
+        <tr>
+          <td>
+            <para style="P1">
+              <font color="white"> </font>
+            </para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table14">
+        <tr>
+          <td>
+            <para style="P3">We thank you for your valued enquiry and are pleased to submit our offer as per enclosed.</para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table14">
+        <tr>
+          <td>
+            <para style="P3">[[ data['form']['add_note'] and data['form']['add_note'] or removeParentNode('blockTable') ]]</para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table16">
+        <tr>
+          <td>
+            <para style="P1">We trust our offer suffices</para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="47.0,115.0,307.0" style="Table19">
+        <tr>
+          <td>
+            <para style="P5">
+              <font color="white"> </font>
+            </para>
+          </td>
+          <td>
+            <para style="P5_bold">Delivery Place</para>
+          </td>
+          <td>
+            <para style="P5_bold">: [[ o.partner_delivery_id.name or '' ]] - [[ o.partner_delivery_id.city or '' ]]</para>
+          </td>
+        </tr>
+        <tr>
+        [[ not data['form'].get('duty_exemtion', False) and removeParentNode('tr')]]
+          <td>
+            <para style="P5">
+              <font color="white"> </font>
+            </para>
+          </td>
+          <td>
+            <para style="P5_bold">Duty Exemption Letter</para>
+          </td>
+          <td>
+            <para style="P5_bold">: [[ data['form']['duty_exemtion_letter'] ]]</para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table23">
+        <tr>
+          <td>
+            <para style="P3_b">Our quotation is for total quantity mentioned in the RFQ. In the event of partial order or in case of any changes in the quantities, please contact us for confirmation of validity of prices with our principal supplier/s.</para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table23">
+        <tr>
+          <td>
+            <para style="P3_b">In the event of an Order Purchase order cannot be cancellable and returnable.</para>
+          </td>
+        </tr>
+      </blockTable>
+      <para style="P3_bold">[[ not o.cust_remark and removeParentNode('blockTable') ]][[ o.cust_remark ]]</para>
+      <blockTable colWidths="482.0" style="Table25">
+        <tr>
+          <td>
+            <para style="P3">Hope our offer meets your requirements and if any further clarification, we are at your disposal.</para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table26">
+        <tr>
+          <td>
+            <para style="P1">
+              <font color="white"> </font>
+            </para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table27">
+        <tr>
+          <td>
+            <para style="P1">We assure our best service at all times.</para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table28">
+        <tr>
+          <td>
+            <para style="P1">
+              <font color="white"> </font>
+            </para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table30">
+        <tr>
+          <td>
+            <para style="P1">Yours faithfully,</para>
+          </td>
+        </tr>
+      </blockTable>
+      <para style="P8">
+        <font color="white"> </font>
+      </para>
+    </section>
+    <blockTable colWidths="482.0" style="Table4">
+        <tr>
+          <td>
+            <para style="P1">
+              <font color="white"> </font>
+            </para>
+          </td>
+        </tr>
+      </blockTable>
+      <blockTable colWidths="482.0" style="Table4">
+        <tr>
+          <td>
+            <para style="P1">
+              <font color="white"> </font>
+            </para>
+          </td>
+        </tr>
+      </blockTable>
+    <blockTable colWidths="482.0" style="Table31">
+      <tr>
+        <td>
+          <para style="P1">
+            <font color="white"> </font>
+          </para>
+        </td>
+      </tr>
+    </blockTable>
+    <blockTable colWidths="482.0" style="Table31">
+      <tr>
+        <td>
+          <para style="P1">
+            <font color="white"> </font>
+          </para>
+        </td>
+      </tr>
+    </blockTable>
+    <blockTable colWidths="482.0" style="Table31">
+      <tr>
+        <td>
+          <para style="P1">
+            <font color="white"> </font>
+          </para>
+        </td>
+      </tr>
+    </blockTable>
+    <blockTable colWidths="482.0" style="Table32">
+      <tr>
+        <td>
+          <para style="P1">C.T. HASHIM</para>
+        </td>
+      </tr>
+    </blockTable>
+    <blockTable colWidths="482.0" style="Table33">
+      <tr>
+        <td>
+          <para style="P1">C E O</para>
+        </td>
+      </tr>
+    </blockTable>
+    <blockTable colWidths="482.0" style="Table37">
+      <tr>
+        <td>
+          <para style="P4">Page 1+/[[ user.abb_name ]]</para>
+        </td>
+      </tr>
+    </blockTable>
+    <para style="P8">
+      <font color="white"> </font>
+    </para>
+  </story>
+</document>
+

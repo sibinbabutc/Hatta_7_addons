@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    
+        <record model='ir.ui.view' id='view_bank_status_form'>
+            <field name="name">view.bank.status.report.form</field>
+            <field name="model">bank.status.report</field>
+            <field name="arch" type="xml">
+            <form string="Bank Status Report" version="7.0">
+            	<sheet>
+            		<group>
+            			<group>
+            				<field name="account_id" required="1" on_change="onchange_account_id(account_id,date)"
+            					domain="[('is_bank','=',True)]"/>
+            				<field name="bank_balance"/>
+            			</group>
+            			<group>
+            				<field name="date" on_change="onchange_account_id(account_id,date)"/>
+            			</group>
+            		</group>
+            		<notebook>
+            			<page string="Other Information">
+            				<group>
+            					<field name="edit_mode"/>
+            				</group>
+            				<group string="Deposits">
+            					<field name="deposit_ids" nolabel="1" attrs="{'readonly':[('edit_mode','=',False)]}">
+            						<tree string="Deposits" editable="bottom">
+			                                <field name="move_line_id" options="{'create_edit': false}" required="True"
+			                                	domain="[('account_id', '=',parent.account_id),'|',('rec_date', '=',False),('rec_date','>',parent.date)]"
+			                                	on_change="onchange_move_line_id(move_line_id,select_amount,original_amount)"/>
+			                                <field name="remark"/>
+			                                <field name="original_amount" on_change="onchange_select_amount(select_amount,original_amount)"/>
+			                                <field name="select_amount" on_change="onchange_select_amount(select_amount,original_amount)"/>
+			                                <field name="amount_selected" readonly="1"/>
+			                        </tree>
+            					</field>
+            				</group>
+            				<group class="oe_subtotal_footer oe_right" colspan="2" name="deposit_total">
+                                <div class="oe_subtotal_footer_separator oe_inline">
+                                    <label for="total_deposit" />
+                                </div>
+                                <field name="total_deposit" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary'/>
+                            </group>
+            				<group string="Withdrawals">
+            					<field name="withdrawal_ids" nolabel="1" attrs="{'readonly':[('edit_mode','=',False)]}">
+            						<tree string="Withdrawals" editable="bottom">
+			                                <field name="move_line_id" domain="[('account_id', '=',parent.account_id),'|',('rec_date', '=',False),('rec_date','>',parent.date)]"
+			                                	   on_change="onchange_move_line_id(move_line_id,select_amount,original_amount)" required="True"
+			                                	   options="{'create_edit': false}"/>
+			                                <field name="remark" />
+			                                <field name="original_amount"  on_change="onchange_select_amount(select_amount,original_amount)"/>
+			                                <field name="select_amount" on_change="onchange_select_amount(select_amount,original_amount)"/>
+			                                <field name="amount_selected" readonly="1"/>
+			                        </tree>
+            					</field>
+            				</group>
+            				<group class="oe_subtotal_footer oe_right" colspan="2" name="deposit_total">
+                                <div class="oe_subtotal_footer_separator oe_inline">
+                                    <label for="total_withdraw" />
+                                    <button name="button_dummy" string="(update)" type="object" class="oe_edit_only oe_link"/>
+                                </div>
+                                <field name="total_withdraw" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary'/>
+                            </group>
+                            <group>
+                            	<field name="book_balance"/>
+            					<field name="od_limit"/>
+            					<field name="amount_available"/>
+            					<field name="safe_funds"/>
+                            	<field name="total_fund"/>
+                            </group>
+            			</page>
+            		</notebook>
+            	</sheet>
+            </form>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='view_bank_status_tree'>
+            <field name="name">view.bank.status.report.tree</field>
+            <field name="model">bank.status.report</field>
+            <field name="arch" type="xml">
+                <tree string="Bank Status Report">
+                    <field name="account_id"/>
+                    <field name="bank_balance"/>
+                    <field name="date"/>
+                   </tree>
+            </field>
+        </record>
+        
+        <record id="view_bank_status_filter" model="ir.ui.view">
+            <field name="name">bank.status.report.select</field>
+            <field name="model">bank.status.report</field>
+            <field name="arch" type="xml">
+                <search string="Search Bank Status Report">
+                    <field name="account_id"/>
+                    <field name="date"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="Account" icon="terp-personal" domain="[]" context="{'group_by':'account_id'}"/>
+                        <filter string="Date" icon="terp-personal" context="{'group_by':'date'}"/>
+                    </group>
+               </search>
+            </field>
+        </record>
+        
+        <record model='ir.actions.act_window' id='action_view_bank_status'>
+            <field name="name">Bank Status Report</field>
+            <field name="res_model">bank.status.report</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_bank_status_filter"/>
+        </record>
+        
+        
+<!--         <menuitem id="menu_bank_status_report" action="action_view_bank_status"  -->
+<!--         	parent="account.menu_finance_bank_and_cash" sequence="5"/> -->
+        	
+        <menuitem id="menu_bank_status_report" action="action_view_bank_status"
+            parent="hatta_account.menu_finance_vouchers" name="Bank Status Report" sequence="11"/>
+  
+	</data>
+</openerp>
+            

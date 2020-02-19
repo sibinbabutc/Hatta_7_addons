@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="financial_report_wizard" model="ir.ui.view">
+            <field name="name">Account Financial Report</field>
+            <field name="model">balance.sheet.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Account Financial Report" version="7.0">
+                    <group>
+                        <field name="chart_account_id" required="True"/>
+                        <field name="account_report_id" readonly="True"/>
+                        <field name="fin_report_type" invisible="True"/>
+                        <field name="date_from" required="True" attrs="{'invisible': [('fin_report_type', '=', 'bl')]}"/>
+                        <field name="date_to" required="True"/>
+                        <field name="view_all"/>
+                        <field name="report_type" required="True"/>
+                        <field name="enable_comparison_1"/>
+                        <field name="enable_comparison_2" attrs="{'invisible': [('enable_comparison_1', '=', False)]}"/>
+                        <field name="enable_comparison_3" attrs="{'invisible': [('enable_comparison_2', '=', False)]}"/>
+                    </group>
+                    <notebook>
+                        <page string="Cost Center">
+                            <field name="cost_center_ids" nolabel="1" colspan="4"/>
+                        </page>
+                        <page string="Comparison 1" attrs="{'invisible': [('enable_comparison_1', '=', False)]}">
+                            <group>
+                                <field name="comp1_date_from" attrs="{'required': [('enable_comparison_1', '=', True)]}"/>
+                                <field name="comp1_date_to" attrs="{'required': [('enable_comparison_1', '=', True)]}"/>
+                                <field name="comp_1_label" attrs="{'required': [('enable_comparison_1', '=', True)]}"/>
+                            </group>
+                        </page>
+                        <page string="Comparison 2" attrs="{'invisible': [('enable_comparison_2', '=', False)]}">
+                            <group>
+                                <field name="comp2_date_from" attrs="{'required': [('enable_comparison_2', '=', True)]}"/>
+                                <field name="comp2_date_to" attrs="{'required': [('enable_comparison_2', '=', True)]}"/>
+                                <field name="comp_2_label" attrs="{'required': [('enable_comparison_2', '=', True)]}"/>
+                            </group>
+                        </page>
+                        <page string="Comparison 3" attrs="{'invisible': [('enable_comparison_3', '=', False)]}">
+                            <group>
+                                <field name="comp3_date_from" attrs="{'required': [('enable_comparison_3', '=', True)]}"/>
+                                <field name="comp3_date_to" attrs="{'required': [('enable_comparison_3', '=', True)]}"/>
+                                <field name="comp_3_label" attrs="{'required': [('enable_comparison_3', '=', True)]}"/>
+                            </group>
+                        </page>
+                    </notebook>
+                    <footer>
+                        <button name="print_report" string="Print" type="object"
+                                class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_balance_sheet" model="ir.actions.act_window">
+            <field name="name">Balance Sheet</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">balance.sheet.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="financial_report_wizard" />
+            <field name="target">new</field>
+            <field name="context">{'print_report_type': 'bl'}</field>
+            <field name="multi">True</field>
+        </record>
+        
+        <record id="action_p_l" model="ir.actions.act_window">
+            <field name="name">Profit &amp; Loss</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">balance.sheet.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="financial_report_wizard" />
+            <field name="target">new</field>
+            <field name="context">{'print_report_type': 'pl'}</field>
+            <field name="multi">True</field>
+        </record>
+        
+        <menuitem id="balance_sheet_menu" string="Balance Sheet" action="action_balance_sheet"
+                parent="hatta_crm.hatta_gl_report" groups="account.group_account_manager"/>
+        
+        <menuitem id="p_l_menu" string="Profit &amp; Loss" action="action_p_l"
+                parent="hatta_crm.hatta_gl_report" groups="account.group_account_manager"/>
+        
+    </data>
+</openerp>

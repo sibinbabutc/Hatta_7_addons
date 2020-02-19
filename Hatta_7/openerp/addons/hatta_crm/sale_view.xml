@@ -1,0 +1,190 @@
+<openerp>
+    <data>
+        <record id="view_order_form_inherit1" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="hatta_account.view_sale_order_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='job_assigned']" position="after">
+                    <field name="lead_id" readonly="True" string="Enquiry No."/>
+                    <field name="date_confirm" readonly="True"/>
+                    <field name="picking_exist" invisible="True"/>
+                    <field name="date_delivery" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                    <field name="overwrite_po_check" attrs="{'readonly': [('state', 'not in', ['draft', 'sent'])]}"
+                            groups="account.group_account_manager"/>
+                </xpath>
+                <xpath expr="//page[@string='Order Lines']/field[@name='order_line']/tree/field[@name='tax_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//page[@string='Order Lines']/group[1]/field[@name='amount_untaxed']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                 <xpath expr="//page[@string='Order Lines']/group[1]/field[@name='amount_tax']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_button_confirm']" position="attributes">
+                    <attribute name="states"></attribute>
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_button_confirm'][last()]" position="attributes">
+                    <attribute name="states"></attribute>
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_button_confirm']" postion="after">
+                    <button name="action_button_confirm_ini" states="draft" string="Confirm Sale Order" type="object" modifiers="{'invisible': [['state', 'not in', ['draft']]]}"/>
+                    <button name="action_button_confirm_ini" states="sent" string="Confirm Sale Order" class="oe_highlight" type="object" modifiers="{'invisible': [['state', 'not in', ['sent']]]}"/>
+                </xpath>
+                <xpath expr="//page[@string='Order Lines']/field[@name='order_line']/tree/field[@name='product_id']" position="before">
+                    <field name="sequence_no" readonly="True" string="SI. No"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/tree" position="attributes">
+                    <attribute name="editable"></attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/form/label[@for='name']" position="before">
+                    <separator string="Certificate(s)"/>
+                    <field name="certificate_ids" colspan="4" nolabel="1"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/form//field[@name='product_id']" position="before">
+                    <field name="sequence_no"/>
+                </xpath>
+                <xpath expr="//field[@name='order_line']/form/field[@name='name']" position="after">
+                    <label for="pol_remark"/>
+                    <field name="pol_remark" widget="text_ckeditor4"/>
+                </xpath>
+                <xpath expr="//field[@name='payment_term']" position="replace"/>
+                <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                    <field name="payment_term" attrs="{'readonly': [('state', 'not in', ['draft', 'sent'])]}" required="1"/>
+                </xpath>
+                <xpath expr="//field[@name='pricelist_id']" position="after">
+                    <field name="delivery_terms" readonly="False"/>
+                    <field name="direct_po_id" invisible="True"/>
+                </xpath>
+                <xpath expr="//h1" position="after">
+                    <label for="transaction_type_id"/>
+                    <h1>
+                        <field name="transaction_type_id" required="True"
+                            domain="[('model_id.model', '=', 'sale.order')]"
+                            on_change="onchange_transaction_type(transaction_type_id)"
+                            attrs="{'readonly': ['|', ('state', '!=', 'draft'), ('lead_id', '!=', False)]}"/>
+                    </h1>
+                </xpath>
+                <xpath expr="//field[@name='client_order_ref']" position="attributes">
+                    <attribute name="string">Customer PO Number</attribute>
+                </xpath>
+                <xpath expr="//page[@string='Other Information']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//label[@string='Quotation ']" position="attributes">
+                    <attribute name="string">Sale Order Draft </attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_cancel']" position="attributes">
+                    <attribute name="groups">hatta_crm.group_cancel_sale</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_view_invoice']" position="after">
+                    <button name="button_cancel" states="done,invoice_except,manual" type="object" string="Unpost"/>
+                    <button name="view_direct_purchase_orders" type="object" string="View Direct Purchase Orders"
+                        attrs="{'invisible': [('lead_id', '!=', False)]}"/>
+                    <button name="%(hatta_crm.create_direct_purchase_action)d" type="action" string="Create PO" attrs="{'invisible': ['|', ('lead_id', '!=', False), ('direct_po_id', '!=', False)]}"/>
+                </xpath>
+                <xpath expr="//button[@name='invoice_cancel']" position="attributes">
+                    <attribute name="states"></attribute>
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_order_form_inherit3" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_stock.view_order_form_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet/group//field[@name='shop_id']" position="attributes">
+                    <attribute name="string">Location</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_view_delivery']" position="after">
+                    <button name="create_ship" string="Create Delivery Order"
+                        class ="oe_highlight"
+                        attrs="{'invisible': ['|', ('picking_exist', '!=', False), ('state', 'not in', ('progress','manual'))]}"/>
+                </xpath>
+                <xpath expr="//button[@name='action_view_delivery']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', ('picking_ids','=',False),('picking_ids','=',[])]}</attribute>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_sale_order_filter_inherit" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_id']" position="before">
+                    <field name="date_order" string="Date From" filter_domain="[('date_order','&gt;=',self)]"/>
+                    <field name="date_order" string="Date To" filter_domain="[('date_order','&lt;=',self)]"/>
+                    <field name="job_id"/>
+                </xpath>
+                <xpath expr="//group" position="inside">
+                    <filter string="Job" icon="terp-personal" domain="[]" context="{'group_by':'job_id'}"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_sale_order_tree_inherit" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="before">
+                    <field name="job_id"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_sale_order_line_tree_inherit" model="ir.ui.view">
+            <field name="model">sale.order.line</field>
+            <field name="inherit_id" ref="sale.view_order_line_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='salesman_id']" position="before">
+                    <field name='job_id'/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_sale_order_line_search_inherit" model="ir.ui.view">
+            <field name="model">sale.order.line</field>
+            <field name="inherit_id" ref="sale.view_sales_order_uninvoiced_line_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='salesman_id']" position="before">
+                    <field name='job_id'/>
+                </xpath>
+                <xpath expr="//filter[@string='Order']" position="after">
+                    <filter string="Job" icon="terp-gtk-jump-to-rtl" domain="[]"
+                                    context="{'group_by':'job_id'}" help="Job Account No"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="hatta_action_order_line_tree2" model="ir.actions.act_window">
+            <field name="name">Sale Order Detail</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order.line</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="sale.view_sales_order_uninvoiced_line_filter"/>
+            <field name="domain">[('state', 'in', ['confirmed', 'done'])]</field>
+            <field name="filter" eval="True"/>
+            <field name="help" type="html">
+              <p>
+                Here is a list of each sales order line to be invoiced. You can
+                invoice sales orders partially, by lines of sales order. You do
+                not need this list if you invoice from the delivery orders or
+                if you invoice sales totally.
+              </p>
+            </field>
+        </record>
+        
+<!--         <menuitem id="menu_sale_report" parent="base.menu_base_partner" sequence="29"  -->
+<!--                   name="Sales Reports" groups="base.group_sale_manager"/> -->
+        
+<!--         <menuitem id="menu_sale_order" parent="menu_sale_report" sequence="1"  -->
+<!--                   action="sale.action_orders"/> -->
+        
+<!--         <menuitem id="menu_sale_order_line" parent="menu_sale_report" sequence="2"  -->
+<!--                   action="hatta_action_order_line_tree2" name="Sale Order Detail"/> -->
+    </data>
+</openerp>

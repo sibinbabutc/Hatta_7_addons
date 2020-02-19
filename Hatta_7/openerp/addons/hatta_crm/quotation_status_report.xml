@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model='ir.ui.view' id='view_quotation_status_form'>
+            <field name="name">view.quotation.status.form</field>
+            <field name="model">quotation.status</field>
+            <field name="arch" type="xml">
+                <form string="Quotation Status" version="7.0">
+                    <header>
+                        <button name="submit" type="object" string="Submit" states="open" class="oe_highlight" groups="hatta_crm.group_send_quotation_user"/>
+                        <button name="set_to_draft" type="object" string="Unpost" states="closed" groups="hatta_crm.group_send_quotation_man"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <label for="date"/>
+                                <div>
+                                    <field name="date"  required="True" class="oe_inline" attrs="{'readonly': [('state', '!=', 'open')]}"/>
+                                    <button name="get_quote_data" type="object" string="Get Quotation(s)"
+                                        confirm="The loaded lines will be reloaded. Do you want to continue?"
+                                        class="oe_link" attrs="{'invisible': [('state', '!=', 'open')]}"/>
+                                </div>
+                            </group>
+                            <group>
+                                <field name="user_id" readonly="True"/>
+                            </group>
+                        </group>
+                        <field name="line_ids" nolabel="1" attrs="{'readonly': [('state', '!=', 'open')]}">
+                            <tree string="Quotation(s)" editable="bottom">
+                                <field name="received_date" required="True"/>
+                                <field name="lead_id" required="True" on_change="onchange_lead_id(lead_id)"/>
+                                <field name="client_ref_no"/>
+                                <field name="partner_id" required="True"/>
+                                <field name="closing_date" required="True"/>
+                                <field name="submission_type" required="True"/>
+                                <field name="remark"/>
+                            </tree>
+                        </field>
+                        <group>
+                            <group>
+                                <field name="tb_count" readonly="True"/>
+                                <field name="email_count" readonly="True"/>
+                                <field name="late_count" readonly="True"/>
+                                <field name="regret" readonly="True"/>
+                                <field name="revised" readonly="True"/>
+                                <field name="other" readonly="True"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='view_quotation_status_tree'>
+            <field name="name">view.quotation.status.tree</field>
+            <field name="model">quotation.status</field>
+            <field name="arch" type="xml">
+                <tree colors="red:state=='open';green:state=='closed'" string="Quotation Status">
+                    <field name="date"/>
+                    <field name="user_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='view_quotation_status_search'>
+            <field name="name">view.quotation.status.search</field>
+            <field name="model">quotation.status</field>
+            <field name="arch" type="xml">
+                <search string="Quotation Status">
+                    <field name="date"/>
+                    <field name="user_id"/>
+                    <field name="state"/>
+                    <group expand="0" string="Group By...">
+                        <filter string="User" icon="terp-personal" domain="[]" context="{'group_by':'user_id'}"/>
+                        <filter string="Status" icon="terp-personal" domain="[]" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        <record model='ir.actions.act_window' id='view_quotation_status_action'>
+            <field name="name">Quotation Status</field>
+            <field name="res_model">quotation.status</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_quotation_status_search"/>
+        </record>
+    </data>
+</openerp>

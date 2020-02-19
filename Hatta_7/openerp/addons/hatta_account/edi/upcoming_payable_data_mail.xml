@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<openerp>
+    <data noupdate="1">
+    
+    <record id="upcoming_payable_data_email" model="email.template">
+            <field name="name">Upcoming Payable Mail</field>
+            <field name="email_from">Hatta User Access Log&lt;hatta@hatta.ae&gt;</field>
+            <field name="subject">Upcoming Payable Report of ${object.date_today} till ${object.diff_date}</field>
+            <field name="email_recipients"></field>
+            <field name="model_id" ref="model_account_move_line"/>
+            <field name="auto_delete" eval="True"/>
+            <field name="report_template" ref="hatta_account.report_upcoming_payable_scheduler"/>
+            <field name="report_name">Upcoming Payable Report of ${object.date_today} till ${object.diff_date}</field>
+            <field name="body_html"><![CDATA[
+
+<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+
+    <p>Hi,</p>
+    
+    <p>Upcoming Payable Report of till ${object.diff_date}</p>
+</div>
+            ]]></field>
+        </record>
+    
+    </data>
+</openerp>

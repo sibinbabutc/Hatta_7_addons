@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>       
+        <record id="view_order_form_double_validation" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale_stock.view_order_form_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_button_confirm']" position="before">
+                    <button name="validate_order" class="oe_highlight" string="Confirm Sale"
+                                        attrs="{'invisible': [('can_approve', '!=', True)]}"
+                                        groups="base.group_user"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <field name="can_approve" invisible="True"/>
+                </xpath>
+                <xpath expr="//button[@name='action_button_confirm'][1]" position="attributes">
+                    <attribute name="string">Send For Approval</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_button_confirm'][1]" position="after">
+                    <button name="action_portal_confirm" states="draft" string="Submit"
+                                    type="object" groups="portal.group_portal"/>
+                </xpath>
+                <xpath expr="//button[@name='action_button_confirm'][2]" position="attributes">
+                    <attribute name="string">Send For Approval</attribute>
+                </xpath>
+                <xpath expr="//button[@name='cancel']" position="attributes">
+                    <attribute name="states">draft,sent</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_cancel']" position="attributes">
+                    <attribute name="states">manual,progress,wait_for_approval</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_validated" model="ir.actions.act_window">
+            <field name="name">Sale Orders To Approve</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">sale.order</field>
+            <field name="view_type">form</field>
+            <field name="view_id" ref="sale.view_quotation_tree"/>
+            <field name="view_mode">tree,form,calendar,graph</field>
+            <field name="context">{}</field>
+            <field name="domain">[('state','in',('wait_for_approval',))]</field>
+            <field name="search_view_id" ref="sale.view_sales_order_filter"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                    Click to create a quotation, the first step of a new sale.
+              </p>
+            </field>
+        </record>
+
+        <menuitem id="menu_sale_validated_quotations"
+                action="action_validated" parent="base.menu_sales"
+                sequence="5"/>
+    </data>
+</openerp>

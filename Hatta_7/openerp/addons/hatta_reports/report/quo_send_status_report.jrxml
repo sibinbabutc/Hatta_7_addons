@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="quo_send_status_report" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e6900588-8951-411e-a416-a281c0bcc41b">
+	<property name="ireport.zoom" value="1.2100000000000009"/>
+	<property name="ireport.x" value="208"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="company_name" class="java.lang.String">
+		<parameterDescription><![CDATA[company_name]]></parameterDescription>
+	</parameter>
+	<parameter name="run_time" class="java.util.Date">
+		<parameterDescription><![CDATA[run_time]]></parameterDescription>
+	</parameter>
+	<parameter name="report_name" class="java.lang.String">
+		<parameterDescription><![CDATA[report_name]]></parameterDescription>
+	</parameter>
+	<queryString language="XPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="date_received" class="java.util.Date">
+		<fieldDescription><![CDATA[date_received]]></fieldDescription>
+	</field>
+	<field name="our_ref" class="java.lang.String">
+		<fieldDescription><![CDATA[our_ref]]></fieldDescription>
+	</field>
+	<field name="client_ref" class="java.lang.String">
+		<fieldDescription><![CDATA[client_ref]]></fieldDescription>
+	</field>
+	<field name="partner_name" class="java.lang.String">
+		<fieldDescription><![CDATA[partner_name]]></fieldDescription>
+	</field>
+	<field name="cl_date" class="java.util.Date">
+		<fieldDescription><![CDATA[cl_date]]></fieldDescription>
+	</field>
+	<field name="remark" class="java.lang.String">
+		<fieldDescription><![CDATA[remark]]></fieldDescription>
+	</field>
+	<field name="submission_date" class="java.util.Date">
+		<fieldDescription><![CDATA[submission_date]]></fieldDescription>
+	</field>
+	<field name="si_no" class="java.lang.String">
+		<fieldDescription><![CDATA[si_no]]></fieldDescription>
+	</field>
+	<field name="submitted_by" class="java.lang.String">
+		<fieldDescription><![CDATA[submitted_by]]></fieldDescription>
+	</field>
+	<field name="value" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[value]]></fieldDescription>
+	</field>
+	<field name="supplier_name" class="java.lang.String">
+		<fieldDescription><![CDATA[supplier_name]]></fieldDescription>
+	</field>
+	<group name="SUBMISSION_DATE">
+		<groupExpression><![CDATA[$F{submission_date}]]></groupExpression>
+	</group>
+	<group name="CLOSING_DATE">
+		<groupExpression><![CDATA[$F{cl_date}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="69" splitType="Stretch">
+			<textField>
+				<reportElement uuid="09c82c56-6bd9-41c8-a2f5-986fea141bd1" x="0" y="12" width="802" height="37"/>
+				<textElement textAlignment="Center">
+					<font fontName="Time Roman" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{company_name}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy HH.mm.ss">
+				<reportElement uuid="5b021598-5679-4b35-9666-f67c3cb0165e" x="0" y="0" width="113" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{run_time}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="321aed10-a4a9-44ef-95bc-94ba9abeb23a" x="0" y="49" width="802" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{report_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="bf54fcc8-db27-4429-ae32-95bfefd5a107" x="113" y="0" width="689" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Time Roman" size="8"/>
+				</textElement>
+				<text><![CDATA[(ZESTY)]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="f527af42-4b60-43c0-8636-e040fde5b0a4" stretchType="RelativeToTallestObject" mode="Opaque" x="0" y="0" width="29" height="20" backcolor="#DCDCDC"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<leftPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<bottomPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<rightPen lineWidth="0.5" lineColor="#DCDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[NO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="72214962-cf80-4286-9778-9a3230829a54" stretchType="RelativeToTallestObject" mode="Opaque" x="612" y="0" width="62" height="20" backcolor="#DCDCDC"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<leftPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<bottomPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<rightPen lineWidth="0.5" lineColor="#DCDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[REMARKS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="13912a68-b9d9-4072-bc2d-e723a69c0d78" stretchType="RelativeToTallestObject" mode="Opaque" x="88" y="0" width="105" height="20" backcolor="#DCDCDC"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<leftPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<bottomPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<rightPen lineWidth="0.5" lineColor="#DCDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[OUR REF NO.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="42b5dc9e-daa1-41c3-814e-aea4f0b506ea" stretchType="RelativeToTallestObject" mode="Opaque" x="462" y="0" width="57" height="20" backcolor="#DCDCDC"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<leftPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<bottomPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<rightPen lineWidth="0.5" lineColor="#DCDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[C.L. DATE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5b787f3d-1c79-46cd-bd4c-0daeaa51b85e" stretchType="RelativeToTallestObject" mode="Opaque" x="272" y="0" width="87" height="20" backcolor="#DCDCDC"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<leftPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<bottomPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<rightPen lineWidth="0.5" lineColor="#DCDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[CLIENT NAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7e2bc09e-c03e-4c19-8c1d-59b0a7bcd2c1" stretchType="RelativeToTallestObject" mode="Opaque" x="29" y="0" width="59" height="20" backcolor="#DCDCDC"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<leftPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<bottomPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<rightPen lineWidth="0.5" lineColor="#DCDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[DATE RCVD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="cc79500f-37d7-419a-b962-8153716769f2" stretchType="RelativeToTallestObject" mode="Opaque" x="193" y="0" width="79" height="20" backcolor="#DCDCDC"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<leftPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<bottomPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<rightPen lineWidth="0.5" lineColor="#DCDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[CLIENT REF NO.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="42b5dc9e-daa1-41c3-814e-aea4f0b506ea" stretchType="RelativeToTallestObject" mode="Opaque" x="519" y="0" width="93" height="20" backcolor="#DCDCDC"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<leftPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<bottomPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<rightPen lineWidth="0.5" lineColor="#DCDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[SUBMISSION DATE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="72214962-cf80-4286-9778-9a3230829a54" stretchType="RelativeToTallestObject" mode="Opaque" x="674" y="0" width="70" height="20" backcolor="#DCDCDC"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<leftPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<bottomPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<rightPen lineWidth="0.5" lineColor="#DCDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[SUBMITTED BY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="72214962-cf80-4286-9778-9a3230829a54" stretchType="RelativeToTallestObject" mode="Opaque" x="744" y="0" width="58" height="20" backcolor="#DCDCDC"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<leftPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<bottomPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<rightPen lineWidth="0.5" lineColor="#DCDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[AMOUNT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="42b5dc9e-daa1-41c3-814e-aea4f0b506ea" stretchType="RelativeToTallestObject" mode="Opaque" x="359" y="0" width="103" height="20" backcolor="#DCDCDC"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<topPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<leftPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<bottomPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<rightPen lineWidth="0.5" lineColor="#DCDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[SUPPLIER]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="fa231791-19e6-4faf-98b5-11ea68beb6b2" stretchType="RelativeToTallestObject" x="29" y="0" width="59" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<leftPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<bottomPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<rightPen lineWidth="0.5" lineColor="#DCDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{date_received}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="67435f30-e7c1-4411-a93d-25a7995293e2" stretchType="RelativeToTallestObject" x="88" y="0" width="105" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<leftPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<bottomPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<rightPen lineWidth="0.5" lineColor="#DCDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{our_ref}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="079d7936-4edf-4b44-924d-eff59de50f2b" stretchType="RelativeToTallestObject" x="193" y="0" width="79" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<leftPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<bottomPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<rightPen lineWidth="0.5" lineColor="#DCDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{client_ref}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="34322033-3c7a-4e24-a387-1e4d18691a12" stretchType="RelativeToTallestObject" x="272" y="0" width="87" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<leftPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<bottomPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<rightPen lineWidth="0.5" lineColor="#DCDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{partner_name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="444a7335-41e2-45b8-a184-d7c514c60735" stretchType="RelativeToTallestObject" x="462" y="0" width="57" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<leftPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<bottomPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<rightPen lineWidth="0.5" lineColor="#DCDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cl_date}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement uuid="3c620706-e8a0-43a1-82ad-ac88c1da735a" stretchType="RelativeToTallestObject" x="519" y="0" width="93" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<leftPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<bottomPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<rightPen lineWidth="0.5" lineColor="#DCDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{submission_date}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="d5e49962-ebfd-4ff5-803c-fec055a1cf2c" stretchType="RelativeToTallestObject" x="612" y="0" width="62" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<leftPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<bottomPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<rightPen lineWidth="0.5" lineColor="#DCDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{remark}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="84ca7d32-340c-45c3-8c92-e5be5f869092" stretchType="RelativeToTallestObject" x="0" y="0" width="29" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<leftPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<bottomPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<rightPen lineWidth="0.5" lineColor="#DCDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="044ab082-4c60-4764-aa79-c827e80f996d" stretchType="RelativeToTallestObject" x="674" y="0" width="70" height="20"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<topPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<leftPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<bottomPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<rightPen lineWidth="0.5" lineColor="#DCDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{submitted_by}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="044ab082-4c60-4764-aa79-c827e80f996d" stretchType="RelativeToTallestObject" x="744" y="0" width="58" height="20"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<topPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<leftPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<bottomPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<rightPen lineWidth="0.5" lineColor="#DCDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{value}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="34322033-3c7a-4e24-a387-1e4d18691a12" stretchType="RelativeToTallestObject" x="359" y="0" width="103" height="20"/>
+				<box>
+					<topPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<leftPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<bottomPen lineWidth="0.5" lineColor="#DCDCDC"/>
+					<rightPen lineWidth="0.5" lineColor="#DCDCDC"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Time Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{supplier_name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

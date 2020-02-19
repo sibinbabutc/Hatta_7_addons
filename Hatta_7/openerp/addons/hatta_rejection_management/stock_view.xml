@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="stock_picking_out_inherit">
+            <field name="name">stock.picking.out.form.inherit</field>
+            <field name="model">stock.picking.out</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="stock.view_picking_out_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@string='Additional Info']" position="after">
+                    <page string='Returns' groups="hatta_rejection_management.rejection_management_user">
+                        <field name="reject_ids" colspan="4" nolabel="1"/>
+                    </page>
+                </xpath>
+                <xpath expr="//h1[last()]" position="after">
+                    <div class="oe_right oe_button_box" name="buttons">
+                        <button name="view_rejects" type="object"
+                                string="View Rejections"
+                                groups="hatta_rejection_management.rejection_management_user"/>
+                        <button name="view_re_delivery" type="object"
+                                    string="View Re-Delivery"
+                                    groups="hatta_rejection_management.rejection_management_user"/>
+                    </div>
+                </xpath>
+                <xpath expr="//button[@string='Return Products']" position="attributes">
+                    <attribute name="confirm">Are you sure customer has rejected Products ?</attribute>
+                </xpath>
+                <xpath expr="//field[@name='date_done']" position="after">
+                    <field name="rej_parent_picking_id" readonly="True"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

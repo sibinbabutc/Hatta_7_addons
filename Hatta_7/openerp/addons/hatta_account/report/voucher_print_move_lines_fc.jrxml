@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="voucher_print_move_lines" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="4c44327d-453c-438e-9e2a-0f5c4f3b4709">
+	<property name="ireport.zoom" value="1.4641000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="XPath">
+		<![CDATA[]]>
+	</queryString>
+	<field name="account_code" class="java.lang.String">
+		<fieldDescription><![CDATA[account_code]]></fieldDescription>
+	</field>
+	<field name="account_name" class="java.lang.String">
+		<fieldDescription><![CDATA[account_name]]></fieldDescription>
+	</field>
+	<field name="partner_code" class="java.lang.String">
+		<fieldDescription><![CDATA[partner_code]]></fieldDescription>
+	</field>
+	<field name="partner_name" class="java.lang.String">
+		<fieldDescription><![CDATA[partner_name]]></fieldDescription>
+	</field>
+	<field name="ref" class="java.lang.String">
+		<fieldDescription><![CDATA[ref]]></fieldDescription>
+	</field>
+	<field name="debit" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[debit]]></fieldDescription>
+	</field>
+	<field name="credit" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[credit]]></fieldDescription>
+	</field>
+	<field name="remark" class="java.lang.String">
+		<fieldDescription><![CDATA[remark]]></fieldDescription>
+	</field>
+	<field name="cc" class="java.lang.String">
+		<fieldDescription><![CDATA[cc]]></fieldDescription>
+	</field>
+	<field name="sub_ledger" class="java.lang.String">
+		<fieldDescription><![CDATA[sub_ledger]]></fieldDescription>
+	</field>
+	<field name="fc_amount" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[fc_amount]]></fieldDescription>
+	</field>
+	<variable name="sum_debit" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{debit}]]></variableExpression>
+	</variable>
+	<variable name="sum_credit" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{credit}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="eeb04de7-e1a1-4c1e-8e9b-7e075ff95c35" x="0" y="0" width="145" height="25"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineStyle="Dashed" lineColor="#C5C5C5"/>
+					<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#B3B3B3"/>
+					<leftPen lineWidth="0.0" lineStyle="Dashed" lineColor="#C5C5C5"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#B3B3B3"/>
+					<rightPen lineWidth="0.0" lineStyle="Dashed" lineColor="#C5C5C5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[A/C CODE & DESCRIPTION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="05857418-ecdc-496a-8846-03678f83e7b8" x="169" y="0" width="81" height="25"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineStyle="Dashed" lineColor="#C5C5C5"/>
+					<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#B3B3B3"/>
+					<leftPen lineWidth="0.0" lineStyle="Dashed" lineColor="#C5C5C5"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#B3B3B3"/>
+					<rightPen lineWidth="0.0" lineStyle="Dashed" lineColor="#C5C5C5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[SUB LEDGER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="79b093c6-b593-44b5-942a-439d41d86e5a" x="339" y="0" width="50" height="25"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineStyle="Dashed" lineColor="#C5C5C5"/>
+					<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#B3B3B3"/>
+					<leftPen lineWidth="0.0" lineStyle="Dashed" lineColor="#C5C5C5"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#B3B3B3"/>
+					<rightPen lineWidth="0.0" lineStyle="Dashed" lineColor="#C5C5C5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[DEBIT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5682c8f8-38aa-4091-b046-edd963f86e22" x="389" y="0" width="51" height="25"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineStyle="Dashed" lineColor="#C5C5C5"/>
+					<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#B3B3B3"/>
+					<leftPen lineWidth="0.0" lineStyle="Dashed" lineColor="#C5C5C5"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#B3B3B3"/>
+					<rightPen lineWidth="0.0" lineStyle="Dashed" lineColor="#C5C5C5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[CREDIT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5d91e0bc-59f3-4a55-85fc-bc54920505e3" x="440" y="0" width="115" height="25"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineStyle="Dashed" lineColor="#C5C5C5"/>
+					<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#B3B3B3"/>
+					<leftPen lineWidth="0.0" lineStyle="Dashed" lineColor="#C5C5C5"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#B3B3B3"/>
+					<rightPen lineWidth="0.0" lineStyle="Dashed" lineColor="#C5C5C5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[REMARK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="05857418-ecdc-496a-8846-03678f83e7b8" x="145" y="0" width="24" height="25"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineStyle="Dashed" lineColor="#C5C5C5"/>
+					<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#B3B3B3"/>
+					<leftPen lineWidth="0.0" lineStyle="Dashed" lineColor="#C5C5C5"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#B3B3B3"/>
+					<rightPen lineWidth="0.0" lineStyle="Dashed" lineColor="#C5C5C5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[CC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="79b093c6-b593-44b5-942a-439d41d86e5a" x="250" y="0" width="34" height="25"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineStyle="Dashed" lineColor="#C5C5C5"/>
+					<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#B3B3B3"/>
+					<leftPen lineWidth="0.0" lineStyle="Dashed" lineColor="#C5C5C5"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#B3B3B3"/>
+					<rightPen lineWidth="0.0" lineStyle="Dashed" lineColor="#C5C5C5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[REF. #]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="79b093c6-b593-44b5-942a-439d41d86e5a" x="284" y="0" width="55" height="25"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2">
+					<pen lineStyle="Dashed" lineColor="#C5C5C5"/>
+					<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#B3B3B3"/>
+					<leftPen lineWidth="0.0" lineStyle="Dashed" lineColor="#C5C5C5"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#B3B3B3"/>
+					<rightPen lineWidth="0.0" lineStyle="Dashed" lineColor="#C5C5C5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[AMOUNT FC]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="757a0ae3-3230-4b49-8f9c-9dc51e14da5a" stretchType="RelativeToTallestObject" x="0" y="0" width="39" height="15"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{account_code}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="a09ab7ed-571d-467c-a34a-e200e2cf290d" stretchType="RelativeToTallestObject" x="39" y="0" width="106" height="15"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{account_name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="9e396d83-477e-4b62-b462-2c09ee281d8a" stretchType="RelativeToTallestObject" x="169" y="0" width="81" height="15"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sub_ledger}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="e3a6df30-3172-44ae-aeb5-e04f0193b6e2" stretchType="RelativeToTallestObject" x="339" y="0" width="50" height="15"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{debit}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="af741b28-0152-4ad2-8d48-e555341a740b" stretchType="RelativeToTallestObject" x="389" y="0" width="51" height="15"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{credit}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="edd72a49-d8d1-4354-ae8b-b64f04441528" stretchType="RelativeToTallestObject" x="440" y="0" width="115" height="15"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{remark}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="a09ab7ed-571d-467c-a34a-e200e2cf290d" stretchType="RelativeToTallestObject" x="145" y="0" width="24" height="15"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cc}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="9e396d83-477e-4b62-b462-2c09ee281d8a" stretchType="RelativeToTallestObject" x="250" y="0" width="34" height="15"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ref}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="9e396d83-477e-4b62-b462-2c09ee281d8a" stretchType="RelativeToTallestObject" x="284" y="0" width="55" height="15"/>
+				<box topPadding="2" leftPadding="2" bottomPadding="2" rightPadding="2"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fc_amount}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="20">
+			<staticText>
+				<reportElement uuid="1d2b414f-ea80-47ba-87b2-931b7f076d17" stretchType="RelativeToTallestObject" x="0" y="0" width="327" height="15"/>
+				<box leftPadding="2">
+					<pen lineColor="#C5C5C5"/>
+					<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#B3B3B3"/>
+					<leftPen lineColor="#C5C5C5"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#B3B3B3"/>
+					<rightPen lineColor="#C5C5C5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[Total :]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00">
+				<reportElement uuid="25fd99d0-8669-4c73-a45d-b063ec961e3f" stretchType="RelativeToTallestObject" x="327" y="0" width="52" height="15"/>
+				<box leftPadding="2">
+					<pen lineColor="#C5C5C5"/>
+					<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#B3B3B3"/>
+					<leftPen lineColor="#C5C5C5"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#B3B3B3"/>
+					<rightPen lineColor="#C5C5C5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sum_debit}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0.00">
+				<reportElement uuid="c9be98b3-f66c-4fd8-98e9-c3d3f0d39371" stretchType="RelativeToTallestObject" x="379" y="0" width="61" height="15"/>
+				<box leftPadding="2">
+					<pen lineColor="#C5C5C5"/>
+					<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#B3B3B3"/>
+					<leftPen lineColor="#C5C5C5"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#B3B3B3"/>
+					<rightPen lineColor="#C5C5C5"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{sum_credit}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="1d2b414f-ea80-47ba-87b2-931b7f076d17" stretchType="RelativeToTallestObject" x="440" y="0" width="115" height="15"/>
+				<box leftPadding="2">
+					<pen lineColor="#C5C5C5"/>
+					<topPen lineWidth="0.5" lineStyle="Dashed" lineColor="#B3B3B3"/>
+					<leftPen lineColor="#C5C5C5"/>
+					<bottomPen lineWidth="0.5" lineStyle="Dashed" lineColor="#B3B3B3"/>
+					<rightPen lineColor="#C5C5C5"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="9"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+</jasperReport>

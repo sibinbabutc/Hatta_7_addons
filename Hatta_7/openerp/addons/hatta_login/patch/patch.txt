@@ -1,0 +1,12 @@
+Index: openerp-7.0-20140804-231303/openerp/addons/web/controllers/main.py
+===================================================================
+--- openerp-7.0-20140804-231303/openerp/addons/web/controllers/main.py	(revision 1303)
++++ openerp-7.0-20140804-231303/openerp/addons/web/controllers/main.py	(working copy)
+@@ -945,6 +945,7 @@
+ 
+     @openerpweb.jsonrequest
+     def destroy(self, req):
++        req.session.model('res.users').logout()
+         req.session._suicide = True
+ 
+ class Menu(openerpweb.Controller):

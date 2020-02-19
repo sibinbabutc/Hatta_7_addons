@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="assign_job_no_form" model="ir.ui.view">
+          <field name="name">assign.job.no.form</field>
+          <field name="model">assign.job.no</field>
+          <field name="arch" type="xml">
+            <form string="Assign Job Number" version="7.0">
+                <group>
+                    <field name="sale_id" invisible="True"/>
+                    <field name="job_id" invisible="True"/>
+                    <field name="purchase_id" invisible="True"/>
+                    <field name="name" attrs="{'invisible': [('use_existing', '!=', False)], 'required': [('use_existing', '=', False)]}"/>
+                    <field name="use_existing"/>
+                    <field name="exist_job_id"
+                            domain="[('name', '!=', '?')]"
+                            attrs="{'invisible': [('use_existing', '=', False)], 'required': [('use_existing', '!=', False)]}"/>
+                </group>
+                <footer>
+                   <button name="assign_job_no" string="Continue" type="object"  default_focus="1" class="oe_highlight"/>
+                    or
+                   <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+                    
+                </footer>
+            </form>
+          </field>
+       </record>
+       
+       <record id="action_assign_job_no" model="ir.actions.act_window">
+          <field name="name">Assign Job Number</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">assign.job.no</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="assign_job_no_form"/>
+          <field name="target">new</field>
+       </record>
+    </data>
+</openerp>

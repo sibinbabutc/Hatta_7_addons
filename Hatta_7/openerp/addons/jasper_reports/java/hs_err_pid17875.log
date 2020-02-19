@@ -1,0 +1,1459 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 360710144 bytes for committing reserved memory.
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   In 32 bit mode, the process size limit was hit
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Use 64 bit Java on a 64 bit OS
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_linux.cpp:2769), pid=17875, tid=140020919314176
+#
+# JRE version: OpenJDK Runtime Environment (7.0_55-b14) (build 1.7.0_55-b14)
+# Java VM: OpenJDK 64-Bit Server VM (24.51-b03 mixed mode linux-amd64 compressed oops)
+# Failed to write core dump. Core dumps have been disabled. To enable core dumping, try "ulimit -c unlimited" before starting Java again
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007f5938099800):  VMThread [stack: 0x00007f5929182000,0x00007f5929283000] [id=17904]
+
+Stack: [0x00007f5929182000,0x00007f5929283000],  sp=0x00007f5929281360,  free space=1020k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0x8f6253]  VMError::report_and_die()+0x173
+V  [libjvm.so+0x464970]  report_vm_out_of_memory(char const*, int, unsigned long, char const*)+0x70
+V  [libjvm.so+0x780331]  os::Linux::commit_memory_impl(char*, unsigned long, unsigned long, bool)+0x1b1
+V  [libjvm.so+0x7803bc]  os::pd_commit_memory(char*, unsigned long, unsigned long, bool)+0xc
+V  [libjvm.so+0x77a1b6]  os::commit_memory(char*, unsigned long, unsigned long, bool)+0x26
+V  [libjvm.so+0x7e695b]  PSVirtualSpace::expand_by(unsigned long)+0x6b
+V  [libjvm.so+0x7e73eb]  PSYoungGen::resize_generation(unsigned long, unsigned long)+0xbb
+V  [libjvm.so+0x7e7a32]  PSYoungGen::resize(unsigned long, unsigned long)+0x22
+V  [libjvm.so+0x7e444f]  PSScavenge::invoke_no_policy()+0xdbf
+V  [libjvm.so+0x7e4cc3]  PSScavenge::invoke()+0x43
+V  [libjvm.so+0x79eead]  ParallelScavengeHeap::failed_mem_allocate(unsigned long)+0x6d
+V  [libjvm.so+0x8f7c70]  VM_ParallelGCFailedAllocation::doit()+0x90
+V  [libjvm.so+0x8fc272]  VM_Operation::evaluate()+0x52
+V  [libjvm.so+0x8fa97d]  VMThread::evaluate_operation(VM_Operation*)+0x9d
+V  [libjvm.so+0x8fb046]  VMThread::loop()+0x1c6
+V  [libjvm.so+0x8fb4b2]  VMThread::run()+0x72
+V  [libjvm.so+0x77ce12]  java_start(Thread*)+0x132
+
+VM_Operation (0x00007f5922b5c690): ParallelGCFailedAllocation, mode: safepoint, requested by thread 0x00007f588c004000
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x00007f5880245000 JavaThread "Java2D Disposer" daemon [_thread_blocked, id=17941, stack(0x00007f592002b000,0x00007f592012c000)]
+  0x00007f588c004000 JavaThread "XML-RPC-0" [_thread_blocked, id=17916, stack(0x00007f5922a5e000,0x00007f5922b5f000)]
+  0x00007f593800f800 JavaThread "DestroyJavaVM" [_thread_blocked, id=17884, stack(0x00007f593e76a000,0x00007f593e86b000)]
+  0x00007f5938459000 JavaThread "XML-RPC Weblistener" [_thread_in_native, id=17914, stack(0x00007f5922b5f000,0x00007f5922c60000)]
+  0x00007f59380ca000 JavaThread "Service Thread" daemon [_thread_blocked, id=17910, stack(0x00007f59289b1000,0x00007f5928ab2000)]
+  0x00007f59380c7800 JavaThread "C2 CompilerThread1" daemon [_thread_blocked, id=17909, stack(0x00007f5928ab2000,0x00007f5928bb3000)]
+  0x00007f59380c4800 JavaThread "C2 CompilerThread0" daemon [_thread_blocked, id=17908, stack(0x00007f5928bb3000,0x00007f5928cb4000)]
+  0x00007f59380c2800 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=17907, stack(0x00007f5928cb4000,0x00007f5928db5000)]
+  0x00007f593809f800 JavaThread "Finalizer" daemon [_thread_blocked, id=17906, stack(0x00007f5929081000,0x00007f5929182000)]
+  0x00007f593809e000 JavaThread "Reference Handler" daemon [_thread_blocked, id=17905, stack(0x00007f58afdaf000,0x00007f58afeb0000)]
+
+Other Threads:
+=>0x00007f5938099800 VMThread [stack: 0x00007f5929182000,0x00007f5929283000] [id=17904]
+  0x00007f59380d4800 WatcherThread [stack: 0x00007f59288b0000,0x00007f59289b1000] [id=17911]
+
+VM state:at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007f593800c0e0] Threads_lock - owner thread: 0x00007f5938099800
+[0x00007f593800c5e0] Heap_lock - owner thread: 0x00007f588c004000
+
+Heap
+ PSYoungGen      total 508928K, used 19030K [0x0000000782900000, 0x00000007a9980000, 0x0000000800000000)
+  eden space 378368K, 0% used [0x0000000782900000,0x0000000782900000,0x0000000799a80000)
+  from space 130560K, 14% used [0x0000000799a80000,0x000000079ad15ba8,0x00000007a1a00000)
+  to   space 129536K, 0% used [0x00000007a1a80000,0x00000007a1a80000,0x00000007a9900000)
+ ParOldGen       total 381440K, used 236394K [0x0000000687c00000, 0x000000069f080000, 0x0000000782900000)
+  object space 381440K, 61% used [0x0000000687c00000,0x00000006962da898,0x000000069f080000)
+ PSPermGen       total 48640K, used 24507K [0x000000067d600000, 0x0000000680580000, 0x0000000687c00000)
+  object space 48640K, 50% used [0x000000067d600000,0x000000067edeee78,0x0000000680580000)
+
+Card table byte_map: [0x00007f593377a000,0x00007f5934390000] byte_map_base: 0x00007f593038f000
+
+Polling page: 0x00007f593e879000
+
+Code Cache  [0x00007f5934390000, 0x00007f5934810000, 0x00007f5937390000)
+ total_blobs=1643 nmethods=1025 adapters=571 free_code_cache=44643Kb largest_free_block=45646016
+
+Compilation events (10 events):
+Event: 185.531 Thread 0x00007f59380c4800 nmethod 1083 0x00007f59345dead0 code [0x00007f59345dec00, 0x00007f59345dec78]
+Event: 185.531 Thread 0x00007f59380c4800 1084             org.codehaus.groovy.runtime.ArrayUtil::createArray (9 bytes)
+Event: 185.532 Thread 0x00007f59380c4800 nmethod 1084 0x00007f5934660950 code [0x00007f5934660aa0, 0x00007f5934660b58]
+Event: 185.532 Thread 0x00007f59380c4800 1085             net.sf.jasperreports.engine.fill.TextMeasurer$TextMeasuredState::<init> (20 bytes)
+Event: 185.532 Thread 0x00007f59380c4800 nmethod 1085 0x00007f5934660710 code [0x00007f5934660840, 0x00007f59346608b8]
+Event: 185.532 Thread 0x00007f59380c4800 1086             java.lang.Float::intValue (6 bytes)
+Event: 185.533 Thread 0x00007f59380c4800 nmethod 1086 0x00007f59345f0b50 code [0x00007f59345f0c80, 0x00007f59345f0cf8]
+Event: 185.533 Thread 0x00007f59380c4800 1087             net.sf.jasperreports.engine.base.JRBaseParagraph::getOwnSpacingBefore (5 bytes)
+Event: 185.533 Thread 0x00007f59380c4800 nmethod 1087 0x00007f59347fb8d0 code [0x00007f59347fba00, 0x00007f59347fba78]
+Event: 185.610 Thread 0x00007f59380c7800 nmethod 1063 0x00007f5934803150 code [0x00007f59348035c0, 0x00007f5934804fb8]
+
+GC Heap History (10 events):
+Event: 180.919 GC heap after
+Heap after GC invocations=3 (full 0):
+ PSYoungGen      total 112640K, used 15855K [0x0000000782900000, 0x0000000790500000, 0x0000000800000000)
+  eden space 96768K, 0% used [0x0000000782900000,0x0000000782900000,0x0000000788780000)
+  from space 15872K, 99% used [0x0000000788780000,0x00000007896fbde0,0x0000000789700000)
+  to   space 15872K, 0% used [0x000000078f580000,0x000000078f580000,0x0000000790500000)
+ ParOldGen       total 256512K, used 114495K [0x0000000687c00000, 0x0000000697680000, 0x0000000782900000)
+  object space 256512K, 44% used [0x0000000687c00000,0x000000068ebcfd00,0x0000000697680000)
+ PSPermGen       total 24576K, used 24068K [0x000000067d600000, 0x000000067ee00000, 0x0000000687c00000)
+  object space 24576K, 97% used [0x000000067d600000,0x000000067ed811d0,0x000000067ee00000)
+}
+Event: 181.206 GC heap before
+{Heap before GC invocations=4 (full 0):
+ PSYoungGen      total 112640K, used 112623K [0x0000000782900000, 0x0000000790500000, 0x0000000800000000)
+  eden space 96768K, 100% used [0x0000000782900000,0x0000000788780000,0x0000000788780000)
+  from space 15872K, 99% used [0x0000000788780000,0x00000007896fbde0,0x0000000789700000)
+  to   space 15872K, 0% used [0x000000078f580000,0x000000078f580000,0x0000000790500000)
+ ParOldGen       total 256512K, used 114495K [0x0000000687c00000, 0x0000000697680000, 0x0000000782900000)
+  object space 256512K, 44% used [0x0000000687c00000,0x000000068ebcfd00,0x0000000697680000)
+ PSPermGen       total 24576K, used 24081K [0x000000067d600000, 0x000000067ee00000, 0x0000000687c00000)
+  object space 24576K, 97% used [0x000000067d600000,0x000000067ed84538,0x000000067ee00000)
+Event: 181.261 GC heap after
+Heap after GC invocations=4 (full 0):
+ PSYoungGen      total 209408K, used 15859K [0x0000000782900000, 0x0000000790500000, 0x0000000800000000)
+  eden space 193536K, 0% used [0x0000000782900000,0x0000000782900000,0x000000078e600000)
+  from space 15872K, 99% used [0x000000078f580000,0x00000007904fcf90,0x0000000790500000)
+  to   space 15872K, 0% used [0x000000078e600000,0x000000078e600000,0x000000078f580000)
+ ParOldGen       total 256512K, used 181522K [0x0000000687c00000, 0x0000000697680000, 0x0000000782900000)
+  object space 256512K, 70% used [0x0000000687c00000,0x0000000692d44950,0x0000000697680000)
+ PSPermGen       total 24576K, used 24081K [0x000000067d600000, 0x000000067ee00000, 0x0000000687c00000)
+  object space 24576K, 97% used [0x000000067d600000,0x000000067ed84538,0x000000067ee00000)
+}
+Event: 181.261 GC heap before
+{Heap before GC invocations=5 (full 1):
+ PSYoungGen      total 209408K, used 15859K [0x0000000782900000, 0x0000000790500000, 0x0000000800000000)
+  eden space 193536K, 0% used [0x0000000782900000,0x0000000782900000,0x000000078e600000)
+  from space 15872K, 99% used [0x000000078f580000,0x00000007904fcf90,0x0000000790500000)
+  to   space 15872K, 0% used [0x000000078e600000,0x000000078e600000,0x000000078f580000)
+ ParOldGen       total 256512K, used 181522K [0x0000000687c00000, 0x0000000697680000, 0x0000000782900000)
+  object space 256512K, 70% used [0x0000000687c00000,0x0000000692d44950,0x0000000697680000)
+ PSPermGen       total 24576K, used 24081K [0x000000067d600000, 0x000000067ee00000, 0x0000000687c00000)
+  object space 24576K, 97% used [0x000000067d600000,0x000000067ed84538,0x000000067ee00000)
+Event: 181.685 GC heap after
+Heap after GC invocations=5 (full 1):
+ PSYoungGen      total 209408K, used 0K [0x0000000782900000, 0x0000000790500000, 0x0000000800000000)
+  eden space 193536K, 0% used [0x0000000782900000,0x0000000782900000,0x000000078e600000)
+  from space 15872K, 0% used [0x000000078f580000,0x000000078f580000,0x0000000790500000)
+  to   space 15872K, 0% used [0x000000078e600000,0x000000078e600000,0x000000078f580000)
+ ParOldGen       total 381440K, used 170562K [0x0000000687c00000, 0x000000069f080000, 0x0000000782900000)
+  object space 381440K, 44% used [0x0000000687c00000,0x00000006922909b0,0x000000069f080000)
+ PSPermGen       total 48640K, used 24071K [0x000000067d600000, 0x0000000680580000, 0x0000000687c00000)
+  object space 48640K, 49% used [0x000000067d600000,0x000000067ed81d38,0x0000000680580000)
+}
+Event: 182.184 GC heap before
+{Heap before GC invocations=6 (full 1):
+ PSYoungGen      total 209408K, used 193536K [0x0000000782900000, 0x0000000790500000, 0x0000000800000000)
+  eden space 193536K, 100% used [0x0000000782900000,0x000000078e600000,0x000000078e600000)
+  from space 15872K, 0% used [0x000000078f580000,0x000000078f580000,0x0000000790500000)
+  to   space 15872K, 0% used [0x000000078e600000,0x000000078e600000,0x000000078f580000)
+ ParOldGen       total 381440K, used 170562K [0x0000000687c00000, 0x000000069f080000, 0x0000000782900000)
+  object space 381440K, 44% used [0x0000000687c00000,0x00000006922909b0,0x000000069f080000)
+ PSPermGen       total 48640K, used 24360K [0x000000067d600000, 0x0000000680580000, 0x0000000687c00000)
+  object space 48640K, 50% used [0x000000067d600000,0x000000067edca340,0x0000000680580000)
+Event: 182.252 GC heap after
+Heap after GC invocations=6 (full 1):
+ PSYoungGen      total 209408K, used 15872K [0x0000000782900000, 0x00000007a9900000, 0x0000000800000000)
+  eden space 193536K, 0% used [0x0000000782900000,0x0000000782900000,0x000000078e600000)
+  from space 15872K, 100% used [0x000000078e600000,0x000000078f580000,0x000000078f580000)
+  to   space 129536K, 0% used [0x00000007a1a80000,0x00000007a1a80000,0x00000007a9900000)
+ ParOldGen       total 381440K, used 236394K [0x0000000687c00000, 0x000000069f080000, 0x0000000782900000)
+  object space 381440K, 61% used [0x0000000687c00000,0x00000006962da898,0x000000069f080000)
+ PSPermGen       total 48640K, used 24360K [0x000000067d600000, 0x0000000680580000, 0x0000000687c00000)
+  object space 48640K, 50% used [0x000000067d600000,0x000000067edca340,0x0000000680580000)
+}
+Event: 183.264 GC heap before
+{Heap before GC invocations=7 (full 1):
+ PSYoungGen      total 209408K, used 209408K [0x0000000782900000, 0x00000007a9900000, 0x0000000800000000)
+  eden space 193536K, 100% used [0x0000000782900000,0x000000078e600000,0x000000078e600000)
+  from space 15872K, 100% used [0x000000078e600000,0x000000078f580000,0x000000078f580000)
+  to   space 129536K, 0% used [0x00000007a1a80000,0x00000007a1a80000,0x00000007a9900000)
+ ParOldGen       total 381440K, used 236394K [0x0000000687c00000, 0x000000069f080000, 0x0000000782900000)
+  object space 381440K, 61% used [0x0000000687c00000,0x00000006962da898,0x000000069f080000)
+ PSPermGen       total 48640K, used 24483K [0x000000067d600000, 0x0000000680580000, 0x0000000687c00000)
+  object space 48640K, 50% used [0x000000067d600000,0x000000067ede8e48,0x0000000680580000)
+Event: 183.283 GC heap after
+Heap after GC invocations=7 (full 1):
+ PSYoungGen      total 507904K, used 17184K [0x0000000782900000, 0x00000007a9980000, 0x0000000800000000)
+  eden space 378368K, 0% used [0x0000000782900000,0x0000000782900000,0x0000000799a80000)
+  from space 129536K, 13% used [0x00000007a1a80000,0x00000007a2b48000,0x00000007a9900000)
+  to   space 130560K, 0% used [0x0000000799a80000,0x0000000799a80000,0x00000007a1a00000)
+ ParOldGen       total 381440K, used 236394K [0x0000000687c00000, 0x000000069f080000, 0x0000000782900000)
+  object space 381440K, 61% used [0x0000000687c00000,0x00000006962da898,0x000000069f080000)
+ PSPermGen       total 48640K, used 24483K [0x000000067d600000, 0x0000000680580000, 0x0000000687c00000)
+  object space 48640K, 50% used [0x000000067d600000,0x000000067ede8e48,0x0000000680580000)
+}
+Event: 189.281 GC heap before
+{Heap before GC invocations=8 (full 1):
+ PSYoungGen      total 507904K, used 395552K [0x0000000782900000, 0x00000007a9980000, 0x0000000800000000)
+  eden space 378368K, 100% used [0x0000000782900000,0x0000000799a80000,0x0000000799a80000)
+  from space 129536K, 13% used [0x00000007a1a80000,0x00000007a2b48000,0x00000007a9900000)
+  to   space 130560K, 0% used [0x0000000799a80000,0x0000000799a80000,0x00000007a1a00000)
+ ParOldGen       total 381440K, used 236394K [0x0000000687c00000, 0x000000069f080000, 0x0000000782900000)
+  object space 381440K, 61% used [0x0000000687c00000,0x00000006962da898,0x000000069f080000)
+ PSPermGen       total 48640K, used 24507K [0x000000067d600000, 0x0000000680580000, 0x0000000687c00000)
+  object space 48640K, 50% used [0x000000067d600000,0x000000067edeee78,0x0000000680580000)
+
+Deoptimization events (10 events):
+Event: 181.991 Thread 0x00007f588c004000 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x00007f59345f1280 method=net.sf.jasperreports.engine.util.JRStyleResolver.isStrikeThrough(Lnet/sf/jasperreports/engine/JRFont;)Z @ 1
+Event: 181.991 Thread 0x00007f588c004000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007f5934415788 method=net.sf.jasperreports.engine.util.JRStyleResolver.getForecolor(Lnet/sf/jasperreports/engine/JRCommonElement;)Ljava/awt/Color; @ 1
+Event: 181.991 Thread 0x00007f588c004000 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x00007f593443a4c8 method=net.sf.jasperreports.engine.util.JRStyleResolver.getFontSize(Lnet/sf/jasperreports/engine/JRFont;)I @ 1
+Event: 181.991 Thread 0x00007f588c004000 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x00007f59345f0da8 method=net.sf.jasperreports.engine.util.JRStyleResolver.isBold(Lnet/sf/jasperreports/engine/JRFont;)Z @ 1
+Event: 181.991 Thread 0x00007f588c004000 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x00007f59345f1780 method=net.sf.jasperreports.engine.util.JRStyleResolver.isUnderline(Lnet/sf/jasperreports/engine/JRFont;)Z @ 1
+Event: 181.991 Thread 0x00007f588c004000 Uncommon trap: reason=bimorphic action=maybe_recompile pc=0x00007f59345f1280 method=net.sf.jasperreports.engine.util.JRStyleResolver.isStrikeThrough(Lnet/sf/jasperreports/engine/JRFont;)Z @ 1
+Event: 181.991 Thread 0x00007f588c004000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007f5934415788 method=net.sf.jasperreports.engine.util.JRStyleResolver.getForecolor(Lnet/sf/jasperreports/engine/JRCommonElement;)Ljava/awt/Color; @ 1
+Event: 182.015 Thread 0x00007f588c004000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007f59344623d4 method=net.sf.jasperreports.engine.fill.JRFillDataset.setOldValues()V @ 55
+Event: 182.020 Thread 0x00007f588c004000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007f59344623d4 method=net.sf.jasperreports.engine.fill.JRFillDataset.setOldValues()V @ 55
+Event: 182.026 Thread 0x00007f588c004000 Uncommon trap: reason=class_check action=maybe_recompile pc=0x00007f59344623d4 method=net.sf.jasperreports.engine.fill.JRFillDataset.setOldValues()V @ 55
+
+Internal exceptions (10 events):
+Event: 181.978 Thread 0x00007f588c004000 Threw 0x000000078ca1d690 at /build/buildd/openjdk-7-7u55-2.4.7/build/openjdk/hotspot/src/share/vm/prims/jvm.cpp:1244
+Event: 181.979 Thread 0x00007f588c004000 Threw 0x000000078ca266a8 at /build/buildd/openjdk-7-7u55-2.4.7/build/openjdk/hotspot/src/share/vm/prims/jvm.cpp:1244
+Event: 181.980 Thread 0x00007f588c004000 Threw 0x000000078ca329a8 at /build/buildd/openjdk-7-7u55-2.4.7/build/openjdk/hotspot/src/share/vm/prims/jvm.cpp:1244
+Event: 181.981 Thread 0x00007f588c004000 Threw 0x000000078ca3bdb8 at /build/buildd/openjdk-7-7u55-2.4.7/build/openjdk/hotspot/src/share/vm/prims/jvm.cpp:1244
+Event: 181.982 Thread 0x00007f588c004000 Threw 0x000000078ca47320 at /build/buildd/openjdk-7-7u55-2.4.7/build/openjdk/hotspot/src/share/vm/prims/jvm.cpp:1244
+Event: 181.983 Thread 0x00007f588c004000 Threw 0x000000078ca50710 at /build/buildd/openjdk-7-7u55-2.4.7/build/openjdk/hotspot/src/share/vm/prims/jvm.cpp:1244
+Event: 181.987 Thread 0x00007f588c004000 Implicit null exception at 0x00007f59345c583b to 0x00007f59345c5e31
+Event: 183.820 Thread 0x00007f588c004000 Threw 0x0000000788598328 at /build/buildd/openjdk-7-7u55-2.4.7/build/openjdk/hotspot/src/share/vm/prims/jvm.cpp:1244
+Event: 183.936 Thread 0x00007f5938459000 Threw 0x000000078a0b6290 at /build/buildd/openjdk-7-7u55-2.4.7/build/openjdk/hotspot/src/share/vm/prims/jni.cpp:743
+Event: 188.037 Thread 0x00007f5938459000 Threw 0x000000078a0b6540 at /build/buildd/openjdk-7-7u55-2.4.7/build/openjdk/hotspot/src/share/vm/prims/jni.cpp:743
+
+Events (10 events):
+Event: 185.408 Thread 0x00007f59380c4800 flushing nmethod 0x00007f59345f0b50
+Event: 185.408 Thread 0x00007f59380c4800 flushing nmethod 0x00007f59345f1010
+Event: 185.408 Thread 0x00007f59380c4800 flushing nmethod 0x00007f59345f1510
+Event: 185.408 Thread 0x00007f59380c4800 flushing nmethod 0x00007f59345f5310
+Event: 185.409 Thread 0x00007f59380c4800 flushing nmethod 0x00007f5934650ad0
+Event: 185.409 Thread 0x00007f59380c4800 flushing nmethod 0x00007f593465b110
+Event: 185.409 Thread 0x00007f59380c4800 flushing nmethod 0x00007f593465e810
+Event: 185.409 Thread 0x00007f59380c4800 flushing nmethod 0x00007f593465fa50
+Event: 185.409 Thread 0x00007f59380c4800 flushing nmethod 0x00007f593466a210
+Event: 189.281 Executing VM operation: ParallelGCFailedAllocation
+
+
+Dynamic libraries:
+00400000-00401000 r-xp 00000000 08:03 53543549                           /usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java
+00600000-00601000 r--p 00000000 08:03 53543549                           /usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java
+00601000-00602000 rw-p 00001000 08:03 53543549                           /usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java
+01aae000-01acf000 rw-p 00000000 00:00 0                                  [heap]
+67d600000-680580000 rw-p 00000000 00:00 0 
+680580000-687c00000 rw-p 00000000 00:00 0 
+687c00000-69f080000 rw-p 00000000 00:00 0 
+69f080000-782900000 rw-p 00000000 00:00 0 
+782900000-7a9980000 rw-p 00000000 00:00 0 
+7bf180000-800000000 rw-p 00000000 00:00 0 
+7f5880000000-7f5880f3a000 rw-p 00000000 00:00 0 
+7f5880f3a000-7f5884000000 ---p 00000000 00:00 0 
+7f5884000000-7f5884021000 rw-p 00000000 00:00 0 
+7f5884021000-7f5888000000 ---p 00000000 00:00 0 
+7f5888000000-7f5888021000 rw-p 00000000 00:00 0 
+7f5888021000-7f588c000000 ---p 00000000 00:00 0 
+7f588c000000-7f588c021000 rw-p 00000000 00:00 0 
+7f588c021000-7f5890000000 ---p 00000000 00:00 0 
+7f5890000000-7f5890f25000 rw-p 00000000 00:00 0 
+7f5890f25000-7f5894000000 ---p 00000000 00:00 0 
+7f5894000000-7f5894021000 rw-p 00000000 00:00 0 
+7f5894021000-7f5898000000 ---p 00000000 00:00 0 
+7f5898000000-7f5898021000 rw-p 00000000 00:00 0 
+7f5898021000-7f589c000000 ---p 00000000 00:00 0 
+7f589c000000-7f589d0e0000 rw-p 00000000 00:00 0 
+7f589d0e0000-7f58a0000000 ---p 00000000 00:00 0 
+7f58a0000000-7f58a0021000 rw-p 00000000 00:00 0 
+7f58a0021000-7f58a4000000 ---p 00000000 00:00 0 
+7f58a4000000-7f58a4021000 rw-p 00000000 00:00 0 
+7f58a4021000-7f58a8000000 ---p 00000000 00:00 0 
+7f58a8000000-7f58a8241000 rw-p 00000000 00:00 0 
+7f58a8241000-7f58ac000000 ---p 00000000 00:00 0 
+7f58afdaf000-7f58afdb2000 ---p 00000000 00:00 0 
+7f58afdb2000-7f58bc000000 rw-p 00000000 00:00 0 
+7f58bc000000-7f58bc021000 rw-p 00000000 00:00 0 
+7f58bc021000-7f58c0000000 ---p 00000000 00:00 0 
+7f58c4000000-7f58c4021000 rw-p 00000000 00:00 0 
+7f58c4021000-7f58c8000000 ---p 00000000 00:00 0 
+7f58cc000000-7f58cc021000 rw-p 00000000 00:00 0 
+7f58cc021000-7f58d0000000 ---p 00000000 00:00 0 
+7f58d4000000-7f58d4021000 rw-p 00000000 00:00 0 
+7f58d4021000-7f58d8000000 ---p 00000000 00:00 0 
+7f58dc000000-7f58dc021000 rw-p 00000000 00:00 0 
+7f58dc021000-7f58e0000000 ---p 00000000 00:00 0 
+7f58e4000000-7f58e4021000 rw-p 00000000 00:00 0 
+7f58e4021000-7f58e8000000 ---p 00000000 00:00 0 
+7f58ec000000-7f58ec021000 rw-p 00000000 00:00 0 
+7f58ec021000-7f58f0000000 ---p 00000000 00:00 0 
+7f58f4000000-7f58f4021000 rw-p 00000000 00:00 0 
+7f58f4021000-7f58f8000000 ---p 00000000 00:00 0 
+7f58fc000000-7f58fc021000 rw-p 00000000 00:00 0 
+7f58fc021000-7f5900000000 ---p 00000000 00:00 0 
+7f5900000000-7f5900021000 rw-p 00000000 00:00 0 
+7f5900021000-7f5904000000 ---p 00000000 00:00 0 
+7f5904000000-7f5904021000 rw-p 00000000 00:00 0 
+7f5904021000-7f5908000000 ---p 00000000 00:00 0 
+7f5908000000-7f5908021000 rw-p 00000000 00:00 0 
+7f5908021000-7f590c000000 ---p 00000000 00:00 0 
+7f590c000000-7f590c021000 rw-p 00000000 00:00 0 
+7f590c021000-7f5910000000 ---p 00000000 00:00 0 
+7f591399a000-7f59139ec000 r-xp 00000000 08:03 53552019                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libfontmanager.so
+7f59139ec000-7f5913bec000 ---p 00052000 08:03 53552019                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libfontmanager.so
+7f5913bec000-7f5913bef000 r--p 00052000 08:03 53552019                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libfontmanager.so
+7f5913bef000-7f5913bf0000 rw-p 00055000 08:03 53552019                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libfontmanager.so
+7f5913bf0000-7f5913bf3000 r-xp 00000000 08:03 28607110                   /lib/x86_64-linux-gnu/libgpg-error.so.0.8.0
+7f5913bf3000-7f5913df2000 ---p 00003000 08:03 28607110                   /lib/x86_64-linux-gnu/libgpg-error.so.0.8.0
+7f5913df2000-7f5913df3000 r--p 00002000 08:03 28607110                   /lib/x86_64-linux-gnu/libgpg-error.so.0.8.0
+7f5913df3000-7f5913df4000 rw-p 00003000 08:03 28607110                   /lib/x86_64-linux-gnu/libgpg-error.so.0.8.0
+7f5913df4000-7f5913dfc000 r-xp 00000000 08:03 28606490                   /lib/x86_64-linux-gnu/libkeyutils.so.1.4
+7f5913dfc000-7f5913ffc000 ---p 00008000 08:03 28606490                   /lib/x86_64-linux-gnu/libkeyutils.so.1.4
+7f5913ffc000-7f5913ffd000 rw-p 00008000 08:03 28606490                   /lib/x86_64-linux-gnu/libkeyutils.so.1.4
+7f5913ffd000-7f5914000000 rw-p 00000000 00:00 0 
+7f5914000000-7f5914021000 rw-p 00000000 00:00 0 
+7f5914021000-7f5918000000 ---p 00000000 00:00 0 
+7f5918000000-7f5918021000 rw-p 00000000 00:00 0 
+7f5918021000-7f591c000000 ---p 00000000 00:00 0 
+7f591c000000-7f591c021000 rw-p 00000000 00:00 0 
+7f591c021000-7f5920000000 ---p 00000000 00:00 0 
+7f5920019000-7f5920022000 r--s 00000000 08:03 46547933                   /var/cache/fontconfig/945677eb7aeaf62f1d50efc3fb3ec7d8-le64.cache-3
+7f5920022000-7f592002b000 r--s 00000000 08:03 46548232                   /var/cache/fontconfig/6d41288fd70b0be22e8c3a91e032eec0-le64.cache-3
+7f592002b000-7f592002e000 ---p 00000000 00:00 0 
+7f592002e000-7f592012c000 rw-p 00000000 00:00 0 
+7f592012c000-7f592016e000 r-xp 00000000 08:03 28607058                   /lib/x86_64-linux-gnu/libdbus-1.so.3.5.8
+7f592016e000-7f592036e000 ---p 00042000 08:03 28607058                   /lib/x86_64-linux-gnu/libdbus-1.so.3.5.8
+7f592036e000-7f592036f000 r--p 00042000 08:03 28607058                   /lib/x86_64-linux-gnu/libdbus-1.so.3.5.8
+7f592036f000-7f5920370000 rw-p 00043000 08:03 28607058                   /lib/x86_64-linux-gnu/libdbus-1.so.3.5.8
+7f5920370000-7f5920381000 r-xp 00000000 08:03 53020388                   /usr/lib/x86_64-linux-gnu/libp11-kit.so.0.0.0
+7f5920381000-7f5920580000 ---p 00011000 08:03 53020388                   /usr/lib/x86_64-linux-gnu/libp11-kit.so.0.0.0
+7f5920580000-7f5920581000 r--p 00010000 08:03 53020388                   /usr/lib/x86_64-linux-gnu/libp11-kit.so.0.0.0
+7f5920581000-7f5920582000 rw-p 00011000 08:03 53020388                   /usr/lib/x86_64-linux-gnu/libp11-kit.so.0.0.0
+7f5920582000-7f59205fc000 r-xp 00000000 08:03 28607129                   /lib/x86_64-linux-gnu/libgcrypt.so.11.7.0
+7f59205fc000-7f59207fc000 ---p 0007a000 08:03 28607129                   /lib/x86_64-linux-gnu/libgcrypt.so.11.7.0
+7f59207fc000-7f59207fd000 r--p 0007a000 08:03 28607129                   /lib/x86_64-linux-gnu/libgcrypt.so.11.7.0
+7f59207fd000-7f5920800000 rw-p 0007b000 08:03 28607129                   /lib/x86_64-linux-gnu/libgcrypt.so.11.7.0
+7f5920800000-7f5920810000 r-xp 00000000 08:03 53020326                   /usr/lib/x86_64-linux-gnu/libtasn1.so.3.1.12
+7f5920810000-7f5920a0f000 ---p 00010000 08:03 53020326                   /usr/lib/x86_64-linux-gnu/libtasn1.so.3.1.12
+7f5920a0f000-7f5920a10000 r--p 0000f000 08:03 53020326                   /usr/lib/x86_64-linux-gnu/libtasn1.so.3.1.12
+7f5920a10000-7f5920a11000 rw-p 00010000 08:03 53020326                   /usr/lib/x86_64-linux-gnu/libtasn1.so.3.1.12
+7f5920a11000-7f5920a18000 r-xp 00000000 08:03 53020035                   /usr/lib/x86_64-linux-gnu/libkrb5support.so.0.1
+7f5920a18000-7f5920c17000 ---p 00007000 08:03 53020035                   /usr/lib/x86_64-linux-gnu/libkrb5support.so.0.1
+7f5920c17000-7f5920c18000 r--p 00006000 08:03 53020035                   /usr/lib/x86_64-linux-gnu/libkrb5support.so.0.1
+7f5920c18000-7f5920c19000 rw-p 00007000 08:03 53020035                   /usr/lib/x86_64-linux-gnu/libkrb5support.so.0.1
+7f5920c19000-7f5920c1c000 r-xp 00000000 08:03 28607105                   /lib/x86_64-linux-gnu/libcom_err.so.2.1
+7f5920c1c000-7f5920e1b000 ---p 00003000 08:03 28607105                   /lib/x86_64-linux-gnu/libcom_err.so.2.1
+7f5920e1b000-7f5920e1c000 r--p 00002000 08:03 28607105                   /lib/x86_64-linux-gnu/libcom_err.so.2.1
+7f5920e1c000-7f5920e1d000 rw-p 00003000 08:03 28607105                   /lib/x86_64-linux-gnu/libcom_err.so.2.1
+7f5920e1d000-7f5920e42000 r-xp 00000000 08:03 53020366                   /usr/lib/x86_64-linux-gnu/libk5crypto.so.3.1
+7f5920e42000-7f5921042000 ---p 00025000 08:03 53020366                   /usr/lib/x86_64-linux-gnu/libk5crypto.so.3.1
+7f5921042000-7f5921043000 r--p 00025000 08:03 53020366                   /usr/lib/x86_64-linux-gnu/libk5crypto.so.3.1
+7f5921043000-7f5921044000 rw-p 00026000 08:03 53020366                   /usr/lib/x86_64-linux-gnu/libk5crypto.so.3.1
+7f5921044000-7f5921045000 rw-p 00000000 00:00 0 
+7f5921045000-7f5921109000 r-xp 00000000 08:03 53020360                   /usr/lib/x86_64-linux-gnu/libkrb5.so.3.3
+7f5921109000-7f5921308000 ---p 000c4000 08:03 53020360                   /usr/lib/x86_64-linux-gnu/libkrb5.so.3.3
+7f5921308000-7f5921312000 r--p 000c3000 08:03 53020360                   /usr/lib/x86_64-linux-gnu/libkrb5.so.3.3
+7f5921312000-7f5921313000 rw-p 000cd000 08:03 53020360                   /usr/lib/x86_64-linux-gnu/libkrb5.so.3.3
+7f5921313000-7f592133a000 r-xp 00000000 08:03 28607112                   /lib/x86_64-linux-gnu/libexpat.so.1.5.2
+7f592133a000-7f592153a000 ---p 00027000 08:03 28607112                   /lib/x86_64-linux-gnu/libexpat.so.1.5.2
+7f592153a000-7f592153c000 r--p 00027000 08:03 28607112                   /lib/x86_64-linux-gnu/libexpat.so.1.5.2
+7f592153c000-7f592153d000 rw-p 00029000 08:03 28607112                   /lib/x86_64-linux-gnu/libexpat.so.1.5.2
+7f592153d000-7f59215d3000 r-xp 00000000 08:03 53019931                   /usr/lib/x86_64-linux-gnu/libfreetype.so.6.8.0
+7f59215d3000-7f59217d2000 ---p 00096000 08:03 53019931                   /usr/lib/x86_64-linux-gnu/libfreetype.so.6.8.0
+7f59217d2000-7f59217d8000 r--p 00095000 08:03 53019931                   /usr/lib/x86_64-linux-gnu/libfreetype.so.6.8.0
+7f59217d8000-7f59217d9000 rw-p 0009b000 08:03 53019931                   /usr/lib/x86_64-linux-gnu/libfreetype.so.6.8.0
+7f59217d9000-7f59217e9000 r-xp 00000000 08:03 53019410                   /usr/lib/x86_64-linux-gnu/libavahi-client.so.3.2.9
+7f59217e9000-7f59219e8000 ---p 00010000 08:03 53019410                   /usr/lib/x86_64-linux-gnu/libavahi-client.so.3.2.9
+7f59219e8000-7f59219e9000 r--p 0000f000 08:03 53019410                   /usr/lib/x86_64-linux-gnu/libavahi-client.so.3.2.9
+7f59219e9000-7f59219ea000 rw-p 00010000 08:03 53019410                   /usr/lib/x86_64-linux-gnu/libavahi-client.so.3.2.9
+7f59219ea000-7f59219f5000 r-xp 00000000 08:03 53019408                   /usr/lib/x86_64-linux-gnu/libavahi-common.so.3.5.3
+7f59219f5000-7f5921bf4000 ---p 0000b000 08:03 53019408                   /usr/lib/x86_64-linux-gnu/libavahi-common.so.3.5.3
+7f5921bf4000-7f5921bf5000 r--p 0000a000 08:03 53019408                   /usr/lib/x86_64-linux-gnu/libavahi-common.so.3.5.3
+7f5921bf5000-7f5921bf6000 rw-p 0000b000 08:03 53019408                   /usr/lib/x86_64-linux-gnu/libavahi-common.so.3.5.3
+7f5921bf6000-7f5921caa000 r-xp 00000000 08:03 53021469                   /usr/lib/x86_64-linux-gnu/libgnutls.so.26.21.8
+7f5921caa000-7f5921eaa000 ---p 000b4000 08:03 53021469                   /usr/lib/x86_64-linux-gnu/libgnutls.so.26.21.8
+7f5921eaa000-7f5921eb0000 r--p 000b4000 08:03 53021469                   /usr/lib/x86_64-linux-gnu/libgnutls.so.26.21.8
+7f5921eb0000-7f5921eb1000 rw-p 000ba000 08:03 53021469                   /usr/lib/x86_64-linux-gnu/libgnutls.so.26.21.8
+7f5921eb1000-7f5921eb2000 rw-p 00000000 00:00 0 
+7f5921eb2000-7f5921eed000 r-xp 00000000 08:03 53020354                   /usr/lib/x86_64-linux-gnu/libgssapi_krb5.so.2.2
+7f5921eed000-7f59220ed000 ---p 0003b000 08:03 53020354                   /usr/lib/x86_64-linux-gnu/libgssapi_krb5.so.2.2
+7f59220ed000-7f59220ee000 r--p 0003b000 08:03 53020354                   /usr/lib/x86_64-linux-gnu/libgssapi_krb5.so.2.2
+7f59220ee000-7f59220f0000 rw-p 0003c000 08:03 53020354                   /usr/lib/x86_64-linux-gnu/libgssapi_krb5.so.2.2
+7f59220f0000-7f5922124000 r-xp 00000000 08:03 53020018                   /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.4.4
+7f5922124000-7f5922324000 ---p 00034000 08:03 53020018                   /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.4.4
+7f5922324000-7f5922325000 r--p 00034000 08:03 53020018                   /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.4.4
+7f5922325000-7f5922326000 rw-p 00035000 08:03 53020018                   /usr/lib/x86_64-linux-gnu/libfontconfig.so.1.4.4
+7f5922326000-7f5922376000 r-xp 00000000 08:03 60506114                   /usr/lib/x86_64-linux-gnu/libcups.so.2
+7f5922376000-7f5922575000 ---p 00050000 08:03 60506114                   /usr/lib/x86_64-linux-gnu/libcups.so.2
+7f5922575000-7f5922579000 r--p 0004f000 08:03 60506114                   /usr/lib/x86_64-linux-gnu/libcups.so.2
+7f5922579000-7f592257a000 rw-p 00053000 08:03 60506114                   /usr/lib/x86_64-linux-gnu/libcups.so.2
+7f592257a000-7f592257f000 r--s 00000000 08:03 46547445                   /var/cache/fontconfig/3047814df9a2f067bd2d96a2b9c36e5a-le64.cache-3
+7f592257f000-7f5922584000 r--s 0004c000 08:03 53543562                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/jsse.jar
+7f5922584000-7f592258a000 r-xp 00000000 08:03 53551957                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/headless/libmawt.so
+7f592258a000-7f5922789000 ---p 00006000 08:03 53551957                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/headless/libmawt.so
+7f5922789000-7f592278a000 r--p 00005000 08:03 53551957                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/headless/libmawt.so
+7f592278a000-7f592278b000 rw-p 00006000 08:03 53551957                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/headless/libmawt.so
+7f592278b000-7f592282d000 r-xp 00000000 08:03 53552014                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libawt.so
+7f592282d000-7f5922a2d000 ---p 000a2000 08:03 53552014                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libawt.so
+7f5922a2d000-7f5922a2e000 r--p 000a2000 08:03 53552014                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libawt.so
+7f5922a2e000-7f5922a39000 rw-p 000a3000 08:03 53552014                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libawt.so
+7f5922a39000-7f5922a5e000 rw-p 00000000 00:00 0 
+7f5922a5e000-7f5922a61000 ---p 00000000 00:00 0 
+7f5922a61000-7f5922b5f000 rw-p 00000000 00:00 0 
+7f5922b5f000-7f5922b62000 ---p 00000000 00:00 0 
+7f5922b62000-7f5922c60000 rw-p 00000000 00:00 0 
+7f5922c60000-7f5922c70000 r-xp 00000000 08:03 53552006                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libnio.so
+7f5922c70000-7f5922e6f000 ---p 00010000 08:03 53552006                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libnio.so
+7f5922e6f000-7f5922e70000 r--p 0000f000 08:03 53552006                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libnio.so
+7f5922e70000-7f5922e71000 rw-p 00010000 08:03 53552006                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libnio.so
+7f5922e71000-7f5922e82000 r--s 000f7000 08:03 33563973                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/jasperreports-core-renderer.jar
+7f5922e82000-7f5922e84000 r--s 0000d000 08:03 33563979                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/hive-jdbc-0.8.1.jar
+7f5922e84000-7f5922e86000 r--s 0000a000 08:03 33563986                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/ehcache-1.1.jar
+7f5922e86000-7f5922e87000 r--s 00002000 08:03 33563992                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/slf4j-log4j12-1.5.8.jar
+7f5922e87000-7f5922e95000 r--s 000b7000 08:03 33563983                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/velocity-1.7-dep.jar
+7f5922e95000-7f5922e9a000 r--s 0003e000 08:03 33563926                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/barcode4j-2.1.jar
+7f5922e9a000-7f5922e9c000 r--s 0000c000 08:03 33563972                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/hive-common-0.8.1.jar
+7f5922e9c000-7f5922f1b000 r--s 0034a000 08:03 33564006                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/poi-ooxml-schemas-3.7-20101029.jar
+7f5922f1b000-7f5922f1c000 r--s 00005000 08:03 33564034                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/slf4j-api-1.5.8.jar
+7f5922f1c000-7f5922f21000 r--s 00048000 08:03 33563944                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/dom4j-1.6.jar
+7f5922f21000-7f5922f24000 r--s 0001d000 08:03 33563958                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/batik-util.jar
+7f5922f24000-7f5922f29000 r--s 00040000 08:03 33564021                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/hibernate-annotations.jar
+7f5922f29000-7f5922f36000 r--s 00087000 08:03 33563971                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/batik-svg-dom.jar
+7f5922f36000-7f5922f4a000 r--s 001a0000 08:03 33564000                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/xalan.jar
+7f5922f4a000-7f5922f4b000 r--s 00003000 08:03 33563935                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/jasperreports-expressions-0.0.3.jar
+7f5922f4b000-7f5922f4e000 r--s 0000f000 08:03 33563956                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/js_commons-discovery-0.2.jar
+7f5922f4e000-7f5922f63000 r--s 0019b000 08:03 33563967                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/hive-metastore-0.8.1.jar
+7f5922f63000-7f5922f66000 r--s 00015000 08:03 33563962                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/commons-javaflow-20060411.jar
+7f5922f66000-7f5922f6b000 r--s 00043000 08:03 33563975                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/mongo-java-driver-2.7.3.jar
+7f5922f6b000-7f5922f95000 r--s 00288000 08:03 33563969                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/mondrian-3.2.0-13661-JS.jar
+7f5922f95000-7f5922fd3000 r--s 0025b000 08:03 33563974                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/xbean.jar
+7f5922fd3000-7f5922fd6000 r--s 0000e000 08:03 33563968                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/hibernate-commons-annotations.jar
+7f5922fd6000-7f5922fd8000 r--s 00001000 08:03 33563982                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/jta.jar
+7f5922fd8000-7f5922fda000 r--s 0000a000 08:03 33563922                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/js_commons-codec-1.3.jar
+7f5922fda000-7f5922fe0000 r--s 0006d000 08:03 33563943                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/javassist-3.4.GA.jar
+7f5922fe0000-7f5922fe3000 r--s 00006000 08:03 33564009                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/jackson-annotations-2.0.5.jar
+7f5922fe3000-7f5922fe4000 r--s 00008000 08:03 33563934                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/jasperreports-extensions-3.5.3.jar
+7f5922fe4000-7f5922ff3000 r--s 000c1000 08:03 33563987                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/jackson-databind-2.0.5.jar
+7f5922ff3000-7f592300c000 r--s 00136000 08:03 33563990                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/swingx-2007_10_07.jar
+7f592300c000-7f592301b000 r--s 000b6000 08:03 33564015                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/rex-0.8.1.jar
+7f592301b000-7f5923038000 r--s 0017c000 08:03 33564031                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/poi-3.7-20101029.jar
+7f5923038000-7f5923074000 r-xp 00000000 08:03 28607206                   /lib/x86_64-linux-gnu/libpcre.so.3.12.1
+7f5923074000-7f5923273000 ---p 0003c000 08:03 28607206                   /lib/x86_64-linux-gnu/libpcre.so.3.12.1
+7f5923273000-7f5923274000 r--p 0003b000 08:03 28607206                   /lib/x86_64-linux-gnu/libpcre.so.3.12.1
+7f5923274000-7f5923275000 rw-p 0003c000 08:03 28607206                   /lib/x86_64-linux-gnu/libpcre.so.3.12.1
+7f5923275000-7f592327c000 r-xp 00000000 08:03 53019905                   /usr/lib/x86_64-linux-gnu/libffi.so.6.0.0
+7f592327c000-7f592347b000 ---p 00007000 08:03 53019905                   /usr/lib/x86_64-linux-gnu/libffi.so.6.0.0
+7f592347b000-7f592347c000 r--p 00006000 08:03 53019905                   /usr/lib/x86_64-linux-gnu/libffi.so.6.0.0
+7f592347c000-7f592347d000 rw-p 00007000 08:03 53019905                   /usr/lib/x86_64-linux-gnu/libffi.so.6.0.0
+7f592347d000-7f5923495000 r-xp 00000000 08:03 28607252                   /lib/x86_64-linux-gnu/libresolv-2.15.so
+7f5923495000-7f5923695000 ---p 00018000 08:03 28607252                   /lib/x86_64-linux-gnu/libresolv-2.15.so
+7f5923695000-7f5923696000 r--p 00018000 08:03 28607252                   /lib/x86_64-linux-gnu/libresolv-2.15.so
+7f5923696000-7f5923697000 rw-p 00019000 08:03 28607252                   /lib/x86_64-linux-gnu/libresolv-2.15.so
+7f5923697000-7f5923699000 rw-p 00000000 00:00 0 
+7f5923699000-7f59236b6000 r-xp 00000000 08:03 28607203                   /lib/x86_64-linux-gnu/libselinux.so.1
+7f59236b6000-7f59238b5000 ---p 0001d000 08:03 28607203                   /lib/x86_64-linux-gnu/libselinux.so.1
+7f59238b5000-7f59238b6000 r--p 0001c000 08:03 28607203                   /lib/x86_64-linux-gnu/libselinux.so.1
+7f59238b6000-7f59238b7000 rw-p 0001d000 08:03 28607203                   /lib/x86_64-linux-gnu/libselinux.so.1
+7f59238b7000-7f59238b8000 rw-p 00000000 00:00 0 
+7f59238b8000-7f59238bb000 r-xp 00000000 08:03 53019698                   /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so.0.3200.4
+7f59238bb000-7f5923aba000 ---p 00003000 08:03 53019698                   /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so.0.3200.4
+7f5923aba000-7f5923abb000 r--p 00002000 08:03 53019698                   /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so.0.3200.4
+7f5923abb000-7f5923abc000 rw-p 00003000 08:03 53019698                   /usr/lib/x86_64-linux-gnu/libgmodule-2.0.so.0.3200.4
+7f5923abc000-7f5923bae000 r-xp 00000000 08:03 28607061                   /lib/x86_64-linux-gnu/libglib-2.0.so.0.3200.4
+7f5923bae000-7f5923dae000 ---p 000f2000 08:03 28607061                   /lib/x86_64-linux-gnu/libglib-2.0.so.0.3200.4
+7f5923dae000-7f5923daf000 r--p 000f2000 08:03 28607061                   /lib/x86_64-linux-gnu/libglib-2.0.so.0.3200.4
+7f5923daf000-7f5923db0000 rw-p 000f3000 08:03 28607061                   /lib/x86_64-linux-gnu/libglib-2.0.so.0.3200.4
+7f5923db0000-7f5923db1000 rw-p 00000000 00:00 0 
+7f5923db1000-7f5923dfe000 r-xp 00000000 08:03 53019704                   /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.3200.4
+7f5923dfe000-7f5923ffe000 ---p 0004d000 08:03 53019704                   /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.3200.4
+7f5923ffe000-7f5923fff000 r--p 0004d000 08:03 53019704                   /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.3200.4
+7f5923fff000-7f5924000000 rw-p 0004e000 08:03 53019704                   /usr/lib/x86_64-linux-gnu/libgobject-2.0.so.0.3200.4
+7f5924000000-7f5924021000 rw-p 00000000 00:00 0 
+7f5924021000-7f5928000000 ---p 00000000 00:00 0 
+7f5928001000-7f592800a000 r--s 000b9000 08:03 53543560                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/resources.jar
+7f592800a000-7f592800d000 r--s 00028000 08:03 33563947                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/libfb303-0.7.0.jar
+7f592800d000-7f592800e000 r--s 00006000 08:03 33563925                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/asm.jar
+7f592800e000-7f5928010000 r--s 0000d000 08:03 33564037                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/eigenbase-resgen-1.3.0.11873.jar
+7f5928010000-7f5928016000 r--s 00077000 08:03 33563999                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/postgresql-8.4-701.jdbc4.jar
+7f5928016000-7f592801b000 r--s 00030000 08:03 33563941                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/batik-svggen.jar
+7f592801b000-7f5928051000 r--s 00385000 08:03 33563970                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/hadoop-core-1.0.1.jar
+7f5928051000-7f5928058000 r--s 0004e000 08:03 33564025                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/libthrift-0.9.0-snapshot.jar
+7f5928058000-7f592805e000 r--s 0002b000 08:03 33563951                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/commons-digester-2.1.jar
+7f592805e000-7f5928061000 r--s 00038000 08:03 33563988                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/javacup.jar
+7f5928061000-7f5928070000 r--s 000be000 08:03 33563991                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/rex-20080421.jar
+7f5928070000-7f5928076000 r--s 00032000 08:03 33563964                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/jaxen-1.1.1.jar
+7f5928076000-7f592807a000 r--s 00027000 08:03 33564019                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/batik-dom.jar
+7f592807a000-7f5928081000 r--s 00051000 08:03 33563930                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/js_mail-1.4.jar
+7f5928081000-7f592808e000 r--s 0008e000 08:03 33563994                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/sqleonardo-2009.03.rc1.jar
+7f592808e000-7f59280c4000 r--s 00318000 08:03 33563960                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/hive-exec-0.8.1.jar
+7f59280c4000-7f59280cc000 r--s 00028000 08:03 33563937                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/xml-apis.jar
+7f59280cc000-7f59280cf000 r--s 00014000 08:03 33563993                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/barbecue-1.5-beta1.jar
+7f59280cf000-7f59280d6000 r--s 00059000 08:03 33563957                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/log4j-1.2.15.jar
+7f59280d6000-7f59280dc000 r--s 0003f000 08:03 33564027                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/cglib-2.1.jar
+7f59280dc000-7f59280df000 r--s 00019000 08:03 33563953                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/commons-pool-1.6.jar
+7f59280df000-7f59280e2000 r--s 0001c000 08:03 33563946                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/js_wsdl4j-1.5.1.jar
+7f59280e2000-7f59280e4000 r--s 0000a000 08:03 33564022                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/jasperreports-htmlcomponent-5.0.1.jar
+7f59280e4000-7f59280e7000 r--s 0002b000 08:03 33564023                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/jasperreports-jtidy-r938.jar
+7f59280e7000-7f59280ec000 r--s 00021000 08:03 33563939                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/commons-math-1.0.jar
+7f59280ec000-7f59280ed000 r--s 00007000 08:03 33564036                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/batik-xml.jar
+7f59280ed000-7f59280ef000 r--s 0001c000 08:03 33564001                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/commons-dbcp-1.2.2.jar
+7f59280ef000-7f59280f4000 r--s 00010000 08:03 33564024                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/xml-apis-ext.jar
+7f59280f4000-7f59280f6000 r--s 00003000 08:03 33563923                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/saaj-api-1.3.jar
+7f59280f6000-7f59280f8000 r--s 0000a000 08:03 33563928                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/jasperreports-htmlcomponent-4.7.1.jar
+7f59280f8000-7f59280fa000 r--s 00003000 08:03 33564018                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/gettext-commons-0.9.6.jar
+7f59280fa000-7f5928159000 r--s 00589000 08:03 33563980                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/groovy-all-2.0.1.jar
+7f5928159000-7f592815b000 r--s 00010000 08:03 33564030                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/batik-parser.jar
+7f592815b000-7f592815e000 r--s 00009000 08:03 33563950                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/jpa.jar
+7f592815e000-7f5928168000 r--s 0011e000 08:03 33564028                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/jdt-compiler-3.1.1.jar
+7f5928168000-7f592816a000 r--s 0000e000 08:03 33564003                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/commons-pool-1.3.jar
+7f592816a000-7f592816c000 r--s 00050000 08:03 33564008                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/iTextAsian.jar
+7f592816c000-7f592816f000 r--s 00015000 08:03 33563965                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/batik-anim.jar
+7f592816f000-7f5928179000 r--s 00079000 08:03 33564016                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/bcel-5.2.jar
+7f5928179000-7f592817e000 r--s 00058000 08:03 33563932                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/bsh-2.1b5.jar
+7f592817e000-7f5928180000 r--s 00003000 08:03 33563966                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/js_saaj-api-1.3.jar
+7f5928180000-7f5928186000 r--s 00067000 08:03 33563996                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/antlr-2.7.6.jar
+7f5928186000-7f5928188000 r--s 00003000 08:03 33563949                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/asm-attrs.jar
+7f5928188000-7f592818a000 r--s 0025c000 08:03 33563989                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/jasperreports-fonts-5.0.4.jar
+7f592818a000-7f5928190000 r--s 00046000 08:03 33564026                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/jcommon-1.0.15.jar
+7f5928190000-7f5928198000 r--s 00051000 08:03 33564011                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/commons-vfs-1.0.jar
+7f5928198000-7f59281c9000 rw-p 00000000 00:00 0 
+7f59281c9000-7f5928311000 r-xp 00000000 08:03 53019703                   /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.3200.4
+7f5928311000-7f5928510000 ---p 00148000 08:03 53019703                   /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.3200.4
+7f5928510000-7f5928514000 r--p 00147000 08:03 53019703                   /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.3200.4
+7f5928514000-7f5928516000 rw-p 0014b000 08:03 53019703                   /usr/lib/x86_64-linux-gnu/libgio-2.0.so.0.3200.4
+7f5928516000-7f5928518000 rw-p 00000000 00:00 0 
+7f5928519000-7f592851c000 r--s 00000000 08:03 46547931                   /var/cache/fontconfig/b5ea634b0fb353b8ea17632d1f9ef766-le64.cache-3
+7f592851c000-7f5928520000 r--s 00038000 08:03 33563961                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/batik-gvt.jar
+7f5928520000-7f5928522000 r--s 00003000 08:03 33563998                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/jasperreports-json.jar
+7f5928522000-7f5928538000 r-xp 00000000 08:03 53551998                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libnet.so
+7f5928538000-7f5928738000 ---p 00016000 08:03 53551998                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libnet.so
+7f5928738000-7f5928739000 r--p 00016000 08:03 53551998                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libnet.so
+7f5928739000-7f592873a000 rw-p 00017000 08:03 53551998                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libnet.so
+7f592873a000-7f5928787000 r--s 003ea000 08:03 33563929                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/jasperreports-5.1.0.jar
+7f5928787000-7f5928797000 r--s 0013f000 08:03 33564038                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/jfreechart-1.0.12.jar
+7f5928797000-7f59287ab000 r--s 0012f000 08:03 33563995                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/ant-1.7.1.jar
+7f59287ab000-7f59287b2000 r--s 00073000 08:03 33563981                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/poi-ooxml-3.7-20101029.jar
+7f59287b2000-7f59287b8000 r--s 00045000 08:03 33563955                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/js_commons-httpclient-3.1.jar
+7f59287b8000-7f59287bb000 r--s 00015000 08:03 33564017                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/eigenbase-xom-1.3.0.11999.jar
+7f59287bb000-7f59287c3000 r--s 00065000 08:03 33563927                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/olap4j-0.9.7.309-JS.jar
+7f59287c3000-7f59287c5000 r--s 00012000 08:03 33564012                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/xmlrpc-server-3.1.2.jar
+7f59287c5000-7f59287c6000 r--s 00004000 08:03 33564004                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/cincom-jr-xmla.jar
+7f59287c6000-7f59287c9000 r--s 00025000 08:03 33563978                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/jasperreports-chart-themes-5.1.0.jar
+7f59287c9000-7f59287ce000 r--s 00034000 08:03 33563959                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/commons-beanutils-1.8.2.jar
+7f59287ce000-7f59287d6000 r--s 00045000 08:03 33564029                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/batik-css.jar
+7f59287d6000-7f59287d8000 r--s 00006000 08:03 33564020                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/js_jaxrpc.jar
+7f59287d8000-7f59287e6000 r--s 0007f000 08:03 33563948                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/commons-collections-3.2.1.jar
+7f59287e6000-7f59287f5000 r--s 000c3000 08:03 33563997                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/castor-1.2.jar
+7f59287f5000-7f59287fe000 r--s 000a4000 08:03 33563954                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/hsqldb-1.8.0-10.jar
+7f59287fe000-7f5928800000 r--s 00007000 08:03 33564002                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/ws-commons-util-1.0.2.jar
+7f5928800000-7f5928802000 r--s 0000c000 08:03 33563977                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/js_activation-1.1.jar
+7f5928802000-7f5928804000 r--s 00010000 08:03 33564035                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/js_jasperserver-common-ws-4.7.1.jar
+7f5928804000-7f5928807000 r--s 00028000 08:03 33563938                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/hive-service-0.8.1.jar
+7f5928807000-7f592880e000 r--s 0005c000 08:03 33564033                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/batik-awt-util.jar
+7f592880e000-7f592883a000 r--s 00278000 08:03 33563933                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/hibernate3.jar
+7f592883a000-7f5928879000 r--s 00277000 08:03 33564013                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/spring.jar
+7f5928879000-7f5928883000 r--s 00080000 08:03 33563976                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/batik-bridge.jar
+7f5928883000-7f5928897000 r--s 00173000 08:03 33563963                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/js_axis-1.4patched.jar
+7f5928897000-7f59288a3000 r--s 000aa000 08:03 33564032                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/jxl-2.6.10.jar
+7f59288a3000-7f59288b0000 r--s 00108000 08:03 33563942                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/iText-2.1.7.js2.jar
+7f59288b0000-7f59288b1000 ---p 00000000 00:00 0 
+7f59288b1000-7f59289b1000 rw-p 00000000 00:00 0 
+7f59289b1000-7f59289b4000 ---p 00000000 00:00 0 
+7f59289b4000-7f5928ab2000 rw-p 00000000 00:00 0 
+7f5928ab2000-7f5928ab5000 ---p 00000000 00:00 0 
+7f5928ab5000-7f5928bb3000 rw-p 00000000 00:00 0 
+7f5928bb3000-7f5928bb6000 ---p 00000000 00:00 0 
+7f5928bb6000-7f5928cb4000 rw-p 00000000 00:00 0 
+7f5928cb4000-7f5928cb7000 ---p 00000000 00:00 0 
+7f5928cb7000-7f5928db5000 rw-p 00000000 00:00 0 
+7f5928db5000-7f5929081000 r--p 00000000 08:03 53019656                   /usr/lib/locale/locale-archive
+7f5929081000-7f5929084000 ---p 00000000 00:00 0 
+7f5929084000-7f5929182000 rw-p 00000000 00:00 0 
+7f5929182000-7f5929183000 ---p 00000000 00:00 0 
+7f5929183000-7f592c000000 rw-p 00000000 00:00 0 
+7f592c000000-7f592c021000 rw-p 00000000 00:00 0 
+7f592c021000-7f5930000000 ---p 00000000 00:00 0 
+7f5930000000-7f5930001000 rw-p 00000000 00:00 0 
+7f5930001000-7f5930004000 r--s 0002d000 08:03 33563985                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/jackson-core-2.0.5.jar
+7f5930004000-7f5930006000 r--s 00005000 08:03 33563931                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/jasperreports-exprfunctions-0.0.3.jar
+7f5930006000-7f5930012000 r--s 00100000 08:03 33564007                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/rhino-1.7R3.jar
+7f5930012000-7f5930022000 r--s 0007c000 08:03 33563940                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/joda-time-2.1.jar
+7f5930022000-7f5930024000 r--s 00004000 08:03 33563924                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/js-hive-datasource-1.0.4.jar
+7f5930024000-7f5930028000 r--s 00017000 08:03 33564005                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/xmlrpc-common-3.1.2.jar
+7f5930028000-7f593002a000 r--s 00012000 08:03 53551224                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/ext/zipfs.jar
+7f593002a000-7f593002c000 r--s 0000f000 08:03 53551222                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/ext/pulse-java.jar
+7f593002c000-7f593002d000 r--s 00002000 08:03 53551229                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/ext/dnsns.jar
+7f593002d000-7f5930e84000 rw-p 00000000 00:00 0 
+7f5930e84000-7f5931032000 r--s 01cfc000 08:03 53543556                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/rt.jar
+7f5931032000-7f5931d91000 rw-p 00000000 00:00 0 
+7f5931d91000-7f5931d92000 ---p 00000000 00:00 0 
+7f5931d92000-7f5931e92000 rw-p 00000000 00:00 0 
+7f5931e92000-7f5931e93000 ---p 00000000 00:00 0 
+7f5931e93000-7f5931f93000 rw-p 00000000 00:00 0 
+7f5931f93000-7f5931f94000 ---p 00000000 00:00 0 
+7f5931f94000-7f5932094000 rw-p 00000000 00:00 0 
+7f5932094000-7f5932095000 ---p 00000000 00:00 0 
+7f5932095000-7f5932195000 rw-p 00000000 00:00 0 
+7f5932195000-7f5932196000 ---p 00000000 00:00 0 
+7f5932196000-7f5932296000 rw-p 00000000 00:00 0 
+7f5932296000-7f5932297000 ---p 00000000 00:00 0 
+7f5932297000-7f5932397000 rw-p 00000000 00:00 0 
+7f5932397000-7f5932398000 ---p 00000000 00:00 0 
+7f5932398000-7f5932498000 rw-p 00000000 00:00 0 
+7f5932498000-7f5932499000 ---p 00000000 00:00 0 
+7f5932499000-7f5932599000 rw-p 00000000 00:00 0 
+7f5932599000-7f593259a000 ---p 00000000 00:00 0 
+7f593259a000-7f593269a000 rw-p 00000000 00:00 0 
+7f593269a000-7f593269b000 ---p 00000000 00:00 0 
+7f593269b000-7f593279b000 rw-p 00000000 00:00 0 
+7f593279b000-7f593279c000 ---p 00000000 00:00 0 
+7f593279c000-7f593289c000 rw-p 00000000 00:00 0 
+7f593289c000-7f593289d000 ---p 00000000 00:00 0 
+7f593289d000-7f593299d000 rw-p 00000000 00:00 0 
+7f593299d000-7f593299e000 ---p 00000000 00:00 0 
+7f593299e000-7f5932a9e000 rw-p 00000000 00:00 0 
+7f5932a9e000-7f5932a9f000 ---p 00000000 00:00 0 
+7f5932a9f000-7f5932b9f000 rw-p 00000000 00:00 0 
+7f5932b9f000-7f5932ba0000 ---p 00000000 00:00 0 
+7f5932ba0000-7f5932ca0000 rw-p 00000000 00:00 0 
+7f5932ca0000-7f5932ca1000 ---p 00000000 00:00 0 
+7f5932ca1000-7f5932da1000 rw-p 00000000 00:00 0 
+7f5932da1000-7f5932da2000 ---p 00000000 00:00 0 
+7f5932da2000-7f5932ea2000 rw-p 00000000 00:00 0 
+7f5932ea2000-7f5932ea3000 ---p 00000000 00:00 0 
+7f5932ea3000-7f593305e000 rw-p 00000000 00:00 0 
+7f593305e000-7f593377a000 rw-p 00000000 00:00 0 
+7f593377a000-7f5933792000 rw-p 00000000 00:00 0 
+7f5933792000-7f59337cd000 rw-p 00000000 00:00 0 
+7f59337cd000-7f5933888000 rw-p 00000000 00:00 0 
+7f5933888000-7f5933fa3000 rw-p 00000000 00:00 0 
+7f5933fa3000-7f59340dc000 rw-p 00000000 00:00 0 
+7f59340dc000-7f593438f000 rw-p 00000000 00:00 0 
+7f593438f000-7f5934390000 rw-p 00000000 00:00 0 
+7f5934390000-7f5934810000 rwxp 00000000 00:00 0 
+7f5934810000-7f5937390000 rw-p 00000000 00:00 0 
+7f5937390000-7f5937398000 r-xp 00000000 08:03 53551962                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libzip.so
+7f5937398000-7f5937597000 ---p 00008000 08:03 53551962                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libzip.so
+7f5937597000-7f5937598000 r--p 00007000 08:03 53551962                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libzip.so
+7f5937598000-7f5937599000 rw-p 00008000 08:03 53551962                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libzip.so
+7f5937599000-7f59375a5000 r-xp 00000000 08:03 28607251                   /lib/x86_64-linux-gnu/libnss_files-2.15.so
+7f59375a5000-7f59377a4000 ---p 0000c000 08:03 28607251                   /lib/x86_64-linux-gnu/libnss_files-2.15.so
+7f59377a4000-7f59377a5000 r--p 0000b000 08:03 28607251                   /lib/x86_64-linux-gnu/libnss_files-2.15.so
+7f59377a5000-7f59377a6000 rw-p 0000c000 08:03 28607251                   /lib/x86_64-linux-gnu/libnss_files-2.15.so
+7f59377a6000-7f59377b0000 r-xp 00000000 08:03 28607255                   /lib/x86_64-linux-gnu/libnss_nis-2.15.so
+7f59377b0000-7f59379b0000 ---p 0000a000 08:03 28607255                   /lib/x86_64-linux-gnu/libnss_nis-2.15.so
+7f59379b0000-7f59379b1000 r--p 0000a000 08:03 28607255                   /lib/x86_64-linux-gnu/libnss_nis-2.15.so
+7f59379b1000-7f59379b2000 rw-p 0000b000 08:03 28607255                   /lib/x86_64-linux-gnu/libnss_nis-2.15.so
+7f59379b2000-7f59379c9000 r-xp 00000000 08:03 28607267                   /lib/x86_64-linux-gnu/libnsl-2.15.so
+7f59379c9000-7f5937bc8000 ---p 00017000 08:03 28607267                   /lib/x86_64-linux-gnu/libnsl-2.15.so
+7f5937bc8000-7f5937bc9000 r--p 00016000 08:03 28607267                   /lib/x86_64-linux-gnu/libnsl-2.15.so
+7f5937bc9000-7f5937bca000 rw-p 00017000 08:03 28607267                   /lib/x86_64-linux-gnu/libnsl-2.15.so
+7f5937bca000-7f5937bcc000 rw-p 00000000 00:00 0 
+7f5937bcc000-7f5937bd4000 r-xp 00000000 08:03 28607249                   /lib/x86_64-linux-gnu/libnss_compat-2.15.so
+7f5937bd4000-7f5937dd3000 ---p 00008000 08:03 28607249                   /lib/x86_64-linux-gnu/libnss_compat-2.15.so
+7f5937dd3000-7f5937dd4000 r--p 00007000 08:03 28607249                   /lib/x86_64-linux-gnu/libnss_compat-2.15.so
+7f5937dd4000-7f5937dd5000 rw-p 00008000 08:03 28607249                   /lib/x86_64-linux-gnu/libnss_compat-2.15.so
+7f5937dd5000-7f5937dfe000 r-xp 00000000 08:03 53551958                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libjava.so
+7f5937dfe000-7f5937ffd000 ---p 00029000 08:03 53551958                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libjava.so
+7f5937ffd000-7f5937ffe000 r--p 00028000 08:03 53551958                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libjava.so
+7f5937ffe000-7f5938000000 rw-p 00029000 08:03 53551958                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libjava.so
+7f5938000000-7f5938473000 rw-p 00000000 00:00 0 
+7f5938473000-7f593c000000 ---p 00000000 00:00 0 
+7f593c000000-7f593c002000 r--s 00002000 08:03 33563945                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/eigenbase-properties-1.1.0.10924.jar
+7f593c002000-7f593c005000 r--s 0000d000 08:03 33563952                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/batik-script.jar
+7f593c005000-7f593c006000 r--s 00002000 08:03 33564014                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/batik-ext.jar
+7f593c006000-7f593c007000 r--s 0000c000 08:03 33563936                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/commons-logging-1.1.jar
+7f593c007000-7f593c00a000 r--s 0000a000 08:03 33564039                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/ejb3-persistence.jar
+7f593c00a000-7f593c00b000 r--s 00002000 08:03 33564040                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/png-encoder-1.5.jar
+7f593c00b000-7f593c00f000 r--s 0003b000 08:03 53551227                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/ext/sunpkcs11.jar
+7f593c00f000-7f593c013000 r--s 00085000 08:03 53551226                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/ext/localedata.jar
+7f593c013000-7f593c04c000 rw-p 00000000 00:00 0 
+7f593c04c000-7f593c087000 rw-p 00000000 00:00 0 
+7f593c087000-7f593c095000 r-xp 00000000 08:03 53552020                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libverify.so
+7f593c095000-7f593c294000 ---p 0000e000 08:03 53552020                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libverify.so
+7f593c294000-7f593c296000 r--p 0000d000 08:03 53552020                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libverify.so
+7f593c296000-7f593c297000 rw-p 0000f000 08:03 53552020                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/libverify.so
+7f593c297000-7f593c29e000 r-xp 00000000 08:03 28607254                   /lib/x86_64-linux-gnu/librt-2.15.so
+7f593c29e000-7f593c49d000 ---p 00007000 08:03 28607254                   /lib/x86_64-linux-gnu/librt-2.15.so
+7f593c49d000-7f593c49e000 r--p 00006000 08:03 28607254                   /lib/x86_64-linux-gnu/librt-2.15.so
+7f593c49e000-7f593c49f000 rw-p 00007000 08:03 28607254                   /lib/x86_64-linux-gnu/librt-2.15.so
+7f593c49f000-7f593c4b4000 r-xp 00000000 08:03 28607044                   /lib/x86_64-linux-gnu/libgcc_s.so.1
+7f593c4b4000-7f593c6b3000 ---p 00015000 08:03 28607044                   /lib/x86_64-linux-gnu/libgcc_s.so.1
+7f593c6b3000-7f593c6b4000 r--p 00014000 08:03 28607044                   /lib/x86_64-linux-gnu/libgcc_s.so.1
+7f593c6b4000-7f593c6b5000 rw-p 00015000 08:03 28607044                   /lib/x86_64-linux-gnu/libgcc_s.so.1
+7f593c6b5000-7f593c7b0000 r-xp 00000000 08:03 28607258                   /lib/x86_64-linux-gnu/libm-2.15.so
+7f593c7b0000-7f593c9af000 ---p 000fb000 08:03 28607258                   /lib/x86_64-linux-gnu/libm-2.15.so
+7f593c9af000-7f593c9b0000 r--p 000fa000 08:03 28607258                   /lib/x86_64-linux-gnu/libm-2.15.so
+7f593c9b0000-7f593c9b1000 rw-p 000fb000 08:03 28607258                   /lib/x86_64-linux-gnu/libm-2.15.so
+7f593c9b1000-7f593ca93000 r-xp 00000000 08:03 53019941                   /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.16
+7f593ca93000-7f593cc92000 ---p 000e2000 08:03 53019941                   /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.16
+7f593cc92000-7f593cc9a000 r--p 000e1000 08:03 53019941                   /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.16
+7f593cc9a000-7f593cc9c000 rw-p 000e9000 08:03 53019941                   /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.16
+7f593cc9c000-7f593ccb1000 rw-p 00000000 00:00 0 
+7f593ccb1000-7f593d76c000 r-xp 00000000 08:03 53552003                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/server/libjvm.so
+7f593d76c000-7f593d96c000 ---p 00abb000 08:03 53552003                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/server/libjvm.so
+7f593d96c000-7f593da04000 r--p 00abb000 08:03 53552003                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/server/libjvm.so
+7f593da04000-7f593da27000 rw-p 00b53000 08:03 53552003                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/server/libjvm.so
+7f593da27000-7f593da54000 rw-p 00000000 00:00 0 
+7f593da54000-7f593da6a000 r-xp 00000000 08:03 28607123                   /lib/x86_64-linux-gnu/libz.so.1.2.3.4
+7f593da6a000-7f593dc69000 ---p 00016000 08:03 28607123                   /lib/x86_64-linux-gnu/libz.so.1.2.3.4
+7f593dc69000-7f593dc6a000 r--p 00015000 08:03 28607123                   /lib/x86_64-linux-gnu/libz.so.1.2.3.4
+7f593dc6a000-7f593dc6b000 rw-p 00016000 08:03 28607123                   /lib/x86_64-linux-gnu/libz.so.1.2.3.4
+7f593dc6b000-7f593dc83000 r-xp 00000000 08:03 28607256                   /lib/x86_64-linux-gnu/libpthread-2.15.so
+7f593dc83000-7f593de82000 ---p 00018000 08:03 28607256                   /lib/x86_64-linux-gnu/libpthread-2.15.so
+7f593de82000-7f593de83000 r--p 00017000 08:03 28607256                   /lib/x86_64-linux-gnu/libpthread-2.15.so
+7f593de83000-7f593de84000 rw-p 00018000 08:03 28607256                   /lib/x86_64-linux-gnu/libpthread-2.15.so
+7f593de84000-7f593de88000 rw-p 00000000 00:00 0 
+7f593de88000-7f593de8a000 r-xp 00000000 08:03 28607262                   /lib/x86_64-linux-gnu/libdl-2.15.so
+7f593de8a000-7f593e08a000 ---p 00002000 08:03 28607262                   /lib/x86_64-linux-gnu/libdl-2.15.so
+7f593e08a000-7f593e08b000 r--p 00002000 08:03 28607262                   /lib/x86_64-linux-gnu/libdl-2.15.so
+7f593e08b000-7f593e08c000 rw-p 00003000 08:03 28607262                   /lib/x86_64-linux-gnu/libdl-2.15.so
+7f593e08c000-7f593e241000 r-xp 00000000 08:03 28607247                   /lib/x86_64-linux-gnu/libc-2.15.so
+7f593e241000-7f593e441000 ---p 001b5000 08:03 28607247                   /lib/x86_64-linux-gnu/libc-2.15.so
+7f593e441000-7f593e445000 r--p 001b5000 08:03 28607247                   /lib/x86_64-linux-gnu/libc-2.15.so
+7f593e445000-7f593e447000 rw-p 001b9000 08:03 28607247                   /lib/x86_64-linux-gnu/libc-2.15.so
+7f593e447000-7f593e44c000 rw-p 00000000 00:00 0 
+7f593e44c000-7f593e459000 r-xp 00000000 08:03 53552013                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/jli/libjli.so
+7f593e459000-7f593e658000 ---p 0000d000 08:03 53552013                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/jli/libjli.so
+7f593e658000-7f593e659000 r--p 0000c000 08:03 53552013                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/jli/libjli.so
+7f593e659000-7f593e65a000 rw-p 0000d000 08:03 53552013                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/amd64/jli/libjli.so
+7f593e65a000-7f593e67c000 r-xp 00000000 08:03 28607259                   /lib/x86_64-linux-gnu/ld-2.15.so
+7f593e67c000-7f593e67e000 r--s 00009000 08:03 33563984                   /home/simba/openerp-7/openerp/addons/jasper_reports/java/lib/js-mongodb-datasource-1.0.0.jar
+7f593e67e000-7f593e67f000 r--s 00007000 08:03 53379457                   /usr/share/java/java-atk-wrapper.jar
+7f593e67f000-7f593e682000 r--s 00032000 08:03 53551225                   /usr/lib/jvm/java-7-openjdk-amd64/jre/lib/ext/sunjce_provider.jar
+7f593e682000-7f593e6bc000 rw-p 00000000 00:00 0 
+7f593e6bc000-7f593e76a000 rw-p 00000000 00:00 0 
+7f593e76a000-7f593e76d000 ---p 00000000 00:00 0 
+7f593e76d000-7f593e870000 rw-p 00000000 00:00 0 
+7f593e870000-7f593e878000 rw-s 00000000 08:03 18252372                   /tmp/hsperfdata_simba/17875
+7f593e878000-7f593e879000 rw-p 00000000 00:00 0 
+7f593e879000-7f593e87a000 ---p 00000000 00:00 0 
+7f593e87a000-7f593e87c000 rw-p 00000000 00:00 0 
+7f593e87c000-7f593e87d000 r--p 00022000 08:03 28607259                   /lib/x86_64-linux-gnu/ld-2.15.so
+7f593e87d000-7f593e87f000 rw-p 00023000 08:03 28607259                   /lib/x86_64-linux-gnu/ld-2.15.so
+7fff4ca19000-7fff4ca3d000 rw-p 00000000 00:00 0                          [stack]
+7fff4cbcb000-7fff4cbcc000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+VM Arguments:
+jvm_args: -Djava.awt.headless=true 
+java_command: com.nantic.jasperreports.JasperServer 8096
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+SHELL=/bin/bash
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0x8f6cc0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGBUS: [libjvm.so+0x8f6cc0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGFPE: [libjvm.so+0x77ae40], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGPIPE: [libjvm.so+0x77ae40], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGXFSZ: [libjvm.so+0x77ae40], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGILL: [libjvm.so+0x77ae40], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGUSR1: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGUSR2: [libjvm.so+0x77afd0], sa_mask[0]=0x00000000, sa_flags=0x10000004
+SIGHUP: [libjvm.so+0x77b140], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGINT: [libjvm.so+0x77b140], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGTERM: [libjvm.so+0x77b140], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGQUIT: [libjvm.so+0x77b140], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+
+
+---------------  S Y S T E M  ---------------
+
+OS:Ubuntu 12.04 (precise)
+uname:Linux 3.2.0-39-generic #62-Ubuntu SMP Thu Feb 28 00:28:53 UTC 2013 x86_64
+libc:glibc 2.15 NPTL 2.15 
+rlimit: STACK 8192k, CORE 0k, NPROC 192486, NOFILE 4096, AS infinity
+load average:1.80 2.69 2.39
+
+/proc/meminfo:
+MemTotal:       24656468 kB
+MemFree:          177736 kB
+Buffers:            8912 kB
+Cached:           661440 kB
+SwapCached:       159128 kB
+Active:         21236768 kB
+Inactive:        2624408 kB
+Active(anon):   21188148 kB
+Inactive(anon):  2579048 kB
+Active(file):      48620 kB
+Inactive(file):    45360 kB
+Unevictable:           0 kB
+Mlocked:               0 kB
+SwapTotal:       1999868 kB
+SwapFree:              0 kB
+Dirty:                 0 kB
+Writeback:           804 kB
+AnonPages:      23034716 kB
+Mapped:           575024 kB
+Shmem:            576448 kB
+Slab:             138484 kB
+SReclaimable:      43032 kB
+SUnreclaim:        95452 kB
+KernelStack:        4096 kB
+PageTables:       156876 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:    14328100 kB
+Committed_AS:   12836140 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:      337140 kB
+VmallocChunk:   34350749500 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+DirectMap4k:       90236 kB
+DirectMap2M:     4069376 kB
+DirectMap1G:    20971520 kB
+
+
+CPU:total 24 (6 cores per cpu, 2 threads per core) family 6 model 62 stepping 4, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, aes, erms, ht, tsc, tscinvbit
+
+/proc/cpuinfo:
+processor	: 0
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz
+stepping	: 4
+microcode	: 0x416
+cpu MHz		: 2101.000
+cache size	: 15360 KB
+physical id	: 0
+siblings	: 12
+core id		: 0
+cpu cores	: 6
+apicid		: 0
+initial apicid	: 0
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 4200.44
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 1
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz
+stepping	: 4
+microcode	: 0x416
+cpu MHz		: 2101.000
+cache size	: 15360 KB
+physical id	: 0
+siblings	: 12
+core id		: 1
+cpu cores	: 6
+apicid		: 2
+initial apicid	: 2
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 4199.87
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 2
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz
+stepping	: 4
+microcode	: 0x416
+cpu MHz		: 2101.000
+cache size	: 15360 KB
+physical id	: 0
+siblings	: 12
+core id		: 2
+cpu cores	: 6
+apicid		: 4
+initial apicid	: 4
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 4199.88
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 3
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz
+stepping	: 4
+microcode	: 0x416
+cpu MHz		: 2101.000
+cache size	: 15360 KB
+physical id	: 0
+siblings	: 12
+core id		: 3
+cpu cores	: 6
+apicid		: 6
+initial apicid	: 6
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 4199.87
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 4
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz
+stepping	: 4
+microcode	: 0x416
+cpu MHz		: 1200.000
+cache size	: 15360 KB
+physical id	: 0
+siblings	: 12
+core id		: 4
+cpu cores	: 6
+apicid		: 8
+initial apicid	: 8
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 4199.87
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 5
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz
+stepping	: 4
+microcode	: 0x416
+cpu MHz		: 1200.000
+cache size	: 15360 KB
+physical id	: 0
+siblings	: 12
+core id		: 5
+cpu cores	: 6
+apicid		: 10
+initial apicid	: 10
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 4199.88
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 6
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz
+stepping	: 4
+microcode	: 0x416
+cpu MHz		: 1200.000
+cache size	: 15360 KB
+physical id	: 1
+siblings	: 12
+core id		: 0
+cpu cores	: 6
+apicid		: 32
+initial apicid	: 32
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 4199.92
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 7
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz
+stepping	: 4
+microcode	: 0x416
+cpu MHz		: 2101.000
+cache size	: 15360 KB
+physical id	: 1
+siblings	: 12
+core id		: 1
+cpu cores	: 6
+apicid		: 34
+initial apicid	: 34
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 4199.92
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 8
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz
+stepping	: 4
+microcode	: 0x416
+cpu MHz		: 2101.000
+cache size	: 15360 KB
+physical id	: 1
+siblings	: 12
+core id		: 2
+cpu cores	: 6
+apicid		: 36
+initial apicid	: 36
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 4199.92
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 9
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz
+stepping	: 4
+microcode	: 0x416
+cpu MHz		: 1200.000
+cache size	: 15360 KB
+physical id	: 1
+siblings	: 12
+core id		: 3
+cpu cores	: 6
+apicid		: 38
+initial apicid	: 38
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 4199.92
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 10
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz
+stepping	: 4
+microcode	: 0x416
+cpu MHz		: 1200.000
+cache size	: 15360 KB
+physical id	: 1
+siblings	: 12
+core id		: 4
+cpu cores	: 6
+apicid		: 40
+initial apicid	: 40
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 4199.94
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 11
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz
+stepping	: 4
+microcode	: 0x416
+cpu MHz		: 2101.000
+cache size	: 15360 KB
+physical id	: 1
+siblings	: 12
+core id		: 5
+cpu cores	: 6
+apicid		: 42
+initial apicid	: 42
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 4199.92
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 12
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz
+stepping	: 4
+microcode	: 0x416
+cpu MHz		: 2101.000
+cache size	: 15360 KB
+physical id	: 0
+siblings	: 12
+core id		: 0
+cpu cores	: 6
+apicid		: 1
+initial apicid	: 1
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 4199.92
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 13
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz
+stepping	: 4
+microcode	: 0x416
+cpu MHz		: 2101.000
+cache size	: 15360 KB
+physical id	: 0
+siblings	: 12
+core id		: 1
+cpu cores	: 6
+apicid		: 3
+initial apicid	: 3
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 4199.98
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 14
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz
+stepping	: 4
+microcode	: 0x416
+cpu MHz		: 2101.000
+cache size	: 15360 KB
+physical id	: 0
+siblings	: 12
+core id		: 2
+cpu cores	: 6
+apicid		: 5
+initial apicid	: 5
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 4199.99
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 15
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz
+stepping	: 4
+microcode	: 0x416
+cpu MHz		: 2101.000
+cache size	: 15360 KB
+physical id	: 0
+siblings	: 12
+core id		: 3
+cpu cores	: 6
+apicid		: 7
+initial apicid	: 7
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 4199.98
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 16
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz
+stepping	: 4
+microcode	: 0x416
+cpu MHz		: 2101.000
+cache size	: 15360 KB
+physical id	: 0
+siblings	: 12
+core id		: 4
+cpu cores	: 6
+apicid		: 9
+initial apicid	: 9
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 4199.97
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 17
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz
+stepping	: 4
+microcode	: 0x416
+cpu MHz		: 2101.000
+cache size	: 15360 KB
+physical id	: 0
+siblings	: 12
+core id		: 5
+cpu cores	: 6
+apicid		: 11
+initial apicid	: 11
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 4199.93
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 18
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz
+stepping	: 4
+microcode	: 0x416
+cpu MHz		: 1200.000
+cache size	: 15360 KB
+physical id	: 1
+siblings	: 12
+core id		: 0
+cpu cores	: 6
+apicid		: 33
+initial apicid	: 33
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 4199.92
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 19
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz
+stepping	: 4
+microcode	: 0x416
+cpu MHz		: 1200.000
+cache size	: 15360 KB
+physical id	: 1
+siblings	: 12
+core id		: 1
+cpu cores	: 6
+apicid		: 35
+initial apicid	: 35
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 4199.92
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 20
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz
+stepping	: 4
+microcode	: 0x416
+cpu MHz		: 2101.000
+cache size	: 15360 KB
+physical id	: 1
+siblings	: 12
+core id		: 2
+cpu cores	: 6
+apicid		: 37
+initial apicid	: 37
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 4199.92
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 21
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz
+stepping	: 4
+microcode	: 0x416
+cpu MHz		: 1200.000
+cache size	: 15360 KB
+physical id	: 1
+siblings	: 12
+core id		: 3
+cpu cores	: 6
+apicid		: 39
+initial apicid	: 39
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 4199.94
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 22
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz
+stepping	: 4
+microcode	: 0x416
+cpu MHz		: 1200.000
+cache size	: 15360 KB
+physical id	: 1
+siblings	: 12
+core id		: 4
+cpu cores	: 6
+apicid		: 41
+initial apicid	: 41
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 4199.92
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+processor	: 23
+vendor_id	: GenuineIntel
+cpu family	: 6
+model		: 62
+model name	: Intel(R) Xeon(R) CPU E5-2620 v2 @ 2.10GHz
+stepping	: 4
+microcode	: 0x416
+cpu MHz		: 2101.000
+cache size	: 15360 KB
+physical id	: 1
+siblings	: 12
+core id		: 5
+cpu cores	: 6
+apicid		: 43
+initial apicid	: 43
+fpu		: yes
+fpu_exception	: yes
+cpuid level	: 13
+wp		: yes
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm ida arat epb xsaveopt pln pts dtherm tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms
+bogomips	: 4199.93
+clflush size	: 64
+cache_alignment	: 64
+address sizes	: 46 bits physical, 48 bits virtual
+power management:
+
+
+
+Memory: 4k page, physical 24656468k(177736k free), swap 1999868k(0k free)
+
+vm_info: OpenJDK 64-Bit Server VM (24.51-b03) for linux-amd64 JRE (1.7.0_55-b14), built on Apr 25 2014 13:32:38 by "buildd" with gcc 4.6.3
+
+time: Wed Jul  2 13:46:51 2014
+elapsed time: 189 seconds
+

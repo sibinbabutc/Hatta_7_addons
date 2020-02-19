@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="purchase_matching_form" model="ir.ui.view">
+            <field name="name">Purchase Matching</field>
+            <field name="model">purchase.matching</field>
+            <field name="arch" type="xml">
+                <form string="Purchase Matching" version="7.0">
+                    <group>
+                        <field name="partner_id" readonly="True"/>
+                        <field name="invoice_id" readonly="True" string="Purchase Booking Number"/>
+                        <field name="invoice_amount" readonly="True"/>
+                        <field name="balance_amount" readonly="True" string="Unmatched Amount"/>
+                        <field name="invoice_move_line_id" invisible="True"/>
+                    </group>
+                    <field name="line_ids" on_change="onchange_lines(invoice_amount, line_ids)">
+                        <tree editable="bottom" create="0">
+                            <field name="move_line_id" readonly="True"/>
+                            <field name="account_id" readonly="True"/>
+                            <field name="date_original" readonly="True"/>
+                            <field name="date_due" readonly="True"/>
+                            <field name="amount_original" readonly="True"/>
+                            <field name="amount_unreconciled" readonly="True"/>
+                            <field name="untax_amount" invisible="True"/>
+                            <field name="type" invisible="True"/>
+                            <field name="account_analytic_id" invisible="True"/>
+                            <field name="reconcile" on_change="onchange_reconcile(reconcile, amount_unreconciled)"/>
+                            <field name="amount"/>
+                        </tree>
+                    </field>
+                    <field name="line_dr_ids" invisible="True">
+                        <tree editable="bottom" create="0">
+                            <field name="move_line_id" readonly="True"/>
+                            <field name="account_id" readonly="True"/>
+                            <field name="date_original" readonly="True"/>
+                            <field name="date_due" readonly="True"/>
+                            <field name="amount_original" readonly="True"/>
+                            <field name="amount_unreconciled" readonly="True"/>
+                            <field name="untax_amount" invisible="True"/>
+                            <field name="type" invisible="True"/>
+                            <field name="account_analytic_id" invisible="True"/>
+                            <field name="reconcile"/>
+                            <field name="amount"/>
+                        </tree>
+                    </field>
+                    <footer>
+                        <button name="match_payments" string="Match" type="object"
+                            class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_purchase_matching" model="ir.actions.act_window">
+            <field name="name">Purchase Matching</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.matching</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="purchase_matching_form" />
+            <field name="target">new</field>
+            <field name="multi">True</field>
+        </record>
+    </data>
+</openerp>

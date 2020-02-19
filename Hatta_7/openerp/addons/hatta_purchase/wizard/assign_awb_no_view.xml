@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    
+        <record id="assign_awb_no_form" model="ir.ui.view">
+          <field name="name">assign.awb.no.form</field>
+          <field name="model">assign.awb.no</field>
+          <field name="arch" type="xml">
+            <form string="Assign AWB Number" version="7.0">
+                <group cols="4">
+                    <field name="awb"/>
+                </group>
+                <footer>
+                   <button name="assign_awb_no" string="Add" type="object"  default_focus="1" class="oe_highlight"/>
+                    or
+                   <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+                </footer>
+            </form>
+          </field>
+       </record>
+       
+       <record id="action_assign_awb_no" model="ir.actions.act_window">
+          <field name="name">Assign AWB Number</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">assign.awb.no</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="assign_awb_no_form"/>
+          <field name="target">new</field>
+       </record>
+    </data>
+</openerp>

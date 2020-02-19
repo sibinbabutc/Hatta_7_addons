@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="action_convert_lead_to_opportunity" model="ir.actions.server">
+            <field name="name">Convert to Opportunity</field>
+            <field name="model_id" ref="model_crm_lead"/>
+            <field name="state">code</field>
+            <field name="condition">(object.type == 'lead') or (object.type == False)</field>
+            <field name="code">action = obj.convert_to_opportunity(context=context)</field>
+        </record>
+    </data>
+</openerp>

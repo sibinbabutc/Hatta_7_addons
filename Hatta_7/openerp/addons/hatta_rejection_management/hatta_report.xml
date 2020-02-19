@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+        <report id="hatta_rejection_report" 
+                model="rejection.report" 
+                name="rejection.report.jasper" 
+                string="Rejection Report" 
+                rml="hatta_rejection_management/report/rejection_report.jrxml"/>
+        
+        <report id="hatta_rejection_redel_report" 
+                model="rejection.report" 
+                name="rejection.redel.report.jasper" 
+                string="Rejection Re-Delivery Report" 
+                rml="hatta_rejection_management/report/rejection_redel_report.jrxml"/>
+    </data>
+</openerp>

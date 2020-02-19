@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_rejection_model,rejection.model.user,model_rejection_model,hatta_rejection_management.rejection_management_user,1,1,1,0
+access_rejection_model_manager,rejection.model.manager,model_rejection_model,hatta_rejection_management.rejection_management_manager,1,1,1,1
+access_rejection_line,rejection.line,model_rejection_line,hatta_rejection_management.rejection_management_user,1,1,1,0
+access_rejection_line_manager,rejection.line.manager,model_rejection_line,hatta_rejection_management.rejection_management_manager,1,1,1,1

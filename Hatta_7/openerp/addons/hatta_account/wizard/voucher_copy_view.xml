@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="voucher_copy_form" model="ir.ui.view">
+            <field name="name">voucher.copy.form</field>
+            <field name="model">voucher.copy</field>
+            <field name="arch" type="xml">
+                <form string="Voucher Copy" version="7.0">
+                    <group>
+                        <field name="move_id" required="True"
+                                domain="[('journal_id.display_in_voucher', '=', True), ('state', '=', 'posted'), ('skip_check', '=', False)]"
+                                options="{'create_edit': false}"/>
+                    </group>
+                    <footer>
+                        <button name="copy_voucher" string="Copy" type="object"
+                                class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_voucher_copy" model="ir.actions.act_window">
+            <field name="name">voucher.copy.action</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">voucher.copy</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="voucher_copy_form" />
+            <field name="target">new</field>
+            <field name="multi">True</field>
+        </record>
+        
+        <menuitem id="voucher_copy_menu" name="Voucher Copy" parent="menu_finance_vouchers"
+                    action="action_voucher_copy" sequence="6"
+                    groups="account.group_account_manager"/>
+    </data>
+</openerp>

@@ -1,0 +1,437 @@
+<openerp>
+    <data>
+        <!-- Purchase order: Form view inherit -->
+        <record id="purchase_order_form_inherit" model="ir.ui.view">
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                    <xpath expr="//field[@name='order_line']" position="attributes">
+                        <attribute name="context">{'default_exchange_rate': exchange_rate,'exchange_rate': exchange_rate}</attribute>
+                    </xpath>
+                    <xpath expr="//button[@name='wkf_send_rfq']" position="after">
+	                    <button name="send_po_mail" string="Send PO" type="object" class="oe_highlight" states="validated,approved,done"/>
+                	</xpath>
+                    <xpath expr="//form/sheet/notebook/page[@string='Purchase Order']/field[@name='order_line']/tree[@string='Purchase Order Lines']/field[@name='taxes_id']" position="replace">
+                    </xpath>
+                    <xpath expr="//form/sheet/notebook/page[@string='Purchase Order']/field[@name='order_line']/tree[@string='Purchase Order Lines']/field[@name='price_unit']" position="attributes">
+                        <attribute name="on_change">onchange_unit_price_fc(price_unit, exchange_rate, product_qty)</attribute>
+                        <attribute name="string">Unit Price FC</attribute>
+                    </xpath>
+                    <xpath expr="//form/sheet/notebook/page[@string='Purchase Order']/field[@name='order_line']/tree[@string='Purchase Order Lines']/field[@name='product_uom']" position="attributes">
+                        <attribute name="string">UOM</attribute>
+                    </xpath>
+                    <xpath expr="//form/sheet/notebook/page[@string='Purchase Order']/field[@name='order_line']/tree[@string='Purchase Order Lines']/field[@name='price_unit']" position="after">
+                        <field name="net_dist_cost" readonly="True"/>
+                    </xpath>
+                    <xpath expr="//form/sheet/group" position="attributes">
+                        <attribute name="col">3</attribute>
+                    </xpath>
+                    <xpath expr="//form/sheet/group/group" position="attributes">
+                        <attribute name="col">2</attribute>
+                    </xpath>
+                    <xpath expr="//form/sheet/group/group[last()]" position="attributes">
+                        <attribute name="col">2</attribute>
+                    </xpath>
+                    <xpath expr="//form/sheet/notebook/page[@string='Purchase Order']/field[@name='order_line']/tree[@string='Purchase Order Lines']/field[@name='product_qty']" position="after">
+                        <field name="exchange_rate" invisible="True"/>
+                        <field name="unit_price_lc" invisible="True"/>
+                        <field name="dist_cost" invisible="True"/>
+                    </xpath>
+                    <xpath expr="//form/sheet/notebook/page[@string='Purchase Order']/field[@name='order_line']/tree[@string='Purchase Order Lines']/field[@name='date_planned']" position="attributes">
+                        <attribute name="invisible">True</attribute>
+                    </xpath>
+                   <field name="location_id" position="attributes">
+                        <attribute name="required">0</attribute>
+                   </field>
+                   <field name="shipped" position="replace">
+                        
+                   </field>
+                    <field name="invoice_method" position="before">
+                        <field name="shipped"/>
+                   </field>
+                   <field name="payment_term_id" position="replace">
+                        
+                   </field>
+                   <field name="amount_untaxed" position="replace">
+                        <field name="discount" attrs="{'readonly': [('state', 'not in', ['draft', 'bid', 'sent'])]}"/>
+                        <field name="rounding" attrs="{'readonly': [('state', 'not in', ['draft', 'bid', 'sent'])]}"/>
+                   </field>
+                   <field name="amount_tax" position="replace"/>
+                   <xpath expr="//form/sheet/group" position="inside">
+                       <group col="2">
+                           <field name="enquiry" invisible="True"/>
+                           <field name="lead_id" string="Enquiry" readonly="True" on_change="onchange_lead_id(lead_id)"/>
+                           <field name="enquiry_date" readonly="True"/>
+                           <field name="enquiry_closing_date" readonly="True"/>
+                           <field name="display_final_destination"/>
+                    	   <field name="final_destination" 
+                    	   		  domain="['|', ('id', '=', customer_id), ('parent_id', '=', customer_id)]"
+                    			  attrs="{'invisible': [('display_final_destination', '=', False)], 'readonly': False}"/>
+                           <field name="cost_distributed" invisible="True"/>
+                           <field name="item"/>
+                           <field name="discount_applied" invisible="True"/>
+                       </group>
+                   </xpath>
+                   <xpath expr="//field[@name='order_line']/tree[@string='Purchase Order Lines']/field[@name='price_unit']" position="after">
+                       <field name="discount" groups="hatta_purchase.group_hatta_pol_discount"/>
+                   </xpath>
+                   <xpath expr="//field[@name='partner_ref']" position="attributes">
+                       <attribute name="string">Supplier Ref.</attribute>
+                   </xpath>
+<!--                    <field name="partner_ref" position="after"> -->
+<!--                         <field name="dest_address_id" string="Customer"/> -->
+<!--                         <field name="enquiry" invisible="True"/> -->
+<!--                         <field name="lead_id" string="Enquiry" readonly="True"/> -->
+<!--                         <field name="enquiry_date" readonly="True"/> -->
+<!--                         <field name="enquiry_closing_date" readonly="True"/> -->
+<!--                         <field name="customer_rfq"/> -->
+<!--                         <field name="cost_distributed" invisible="True"/> -->
+<!--                    </field> -->
+                   <field name="minimum_planned_date" position="replace">
+                        <field name="supplier_closing_date" attrs="{'readonly': [('state', 'not in', ['draft', 'bid', 'sent'])]}"/>
+<!--                         <field name="incoterms" attrs="{'readonly': [('state', 'not in', ['draft', 'bid', 'sent'])]}"/> -->
+                        <field name="supplier_country_id" widget="many2many_tags" attrs="{'readonly': [('state', 'not in', ['draft', 'bid', 'sent'])]}"/>
+                        <label for="quote_validity" attrs="{'readonly': [('state', 'not in', ['draft', 'bid', 'sent'])]}"/>
+                        <div>
+                            <field name="quote_validity" nolabel="1" class="oe_inline" attrs="{'readonly': [('state', 'not in', ['draft', 'bid', 'sent'])]}"/>
+                            <field name="quote_validity_type" nolabel="1" class="oe_inline" attrs="{'readonly': [('state', 'not in', ['draft', 'bid', 'sent'])]}"/>
+                        </div>
+                        <field name="delivery_weeks" on_change="onchange_weeks(payment_interest_ids)" attrs="{'readonly': [('state', 'not in', ['draft', 'bid', 'sent'])]}"/>
+                        <field name="manufacturer" widget="many2many_tags"
+                                    domain="[('is_manufac', '=', True)]"
+                                    context="{'default_customer': False, 'default_supplier': False, 'default_is_manufac': True, 'default_is_company': True}" attrs="{'readonly': [('state', 'not in', ['draft', 'bid', 'sent'])]}"/>
+                        <field name="product_type" attrs="{'readonly': [('state', 'not in', ['draft', 'bid', 'sent'])]}"/>
+                        <field name="weight" attrs="{'readonly': [('state', 'not in', ['draft', 'bid', 'sent'])]}"/>
+                        <field name="vol" attrs="{'readonly': [('state', 'not in', ['draft', 'bid', 'sent'])]}"/>
+                        <field name="need_certificate" attrs="{'readonly': [('state', 'not in', ['draft', 'bid', 'sent'])]}"/>
+                        <field name="payment_term_id" widget="selection" attrs="{'readonly': [('state', 'not in', ['draft', 'bid', 'sent'])]}"/>
+                   </field>
+                   <xpath expr="//field[@name='company_id']" position="after">
+                       <field name="customer_id" string="Customer" readonly="True"/>
+                       <field name="customer_rfq" readonly="True"/>
+                       <field name="minimum_planned_date"
+                                attrs="{'readonly': [('state', 'not in', ['draft', 'bid', 'sent'])]}"
+                                string="Delivery Date"/>
+                   </xpath>
+                   <xpath expr="//field[@name='notes']" position="replace">
+                        <field name="po_notes" attrs="{'readonly': [('state', 'not in', ['draft', 'sent', 'bid'])], 'invisible': [('state', '=', 'draft'), ('lead_id', '!=', False)]}"
+                                placeholder="Notes....."/>
+                        <separator string="Special Notes ..."/>
+                        <field name="special_notes" plcaceholder="Special Notes....."/>
+                        <separator string="Special Notes for Duty Exemption"/>
+                        <field name="sp_note_duty_exemption" plcaceholder="Notes for Duty Exemption"/>
+                        <separator string="Liquidated Damages Note" colspan="4"/>
+                    	<field name="liquid_damage_note" plcaceholder="Liquidated Damages Note"/>
+                        <separator string="Remarks ..."/>
+                        <field name="remark"  attrs="{'readonly': [('state', 'not in', ['draft', 'sent', 'bid'])]}"
+                                widget="text_ckeditor4"/>
+                        <separator string="PO Datasheet Remark" colspan="4"/>
+                        <field name="datasheet_remark" plcaceholder="Data sheet remark...."/>
+                   </xpath>
+                   <xpath expr="//field[@name='currency_id']" position="replace"/>
+                   <xpath expr="//form/sheet/notebook/page[@string='Incoming Shipments &amp; Invoices']" position="after">
+                        <page string="Cost Sheet">
+<!--                           <div class="oe_right oe_button_box" name="buttons"> -->
+<!--                               <button name="recompute_cost_price" type="object" string="Recompute Cost" attrs="{'invisible': [('state', '!=', 'draft')]}"/> -->
+<!--                           </div> -->
+                          <group colspan="4" col="4">
+                                <group>
+                                    <field name="foreign_currency"
+                                        required="True"
+                                        attrs="{'readonly': [('cost_distributed', '=', True)]}"
+                                        on_change="onchange_currency(foreign_currency, currency_id)"
+                                        string="Cost sheet base currency"/>
+                                    <field name="currency_id" on_change="onchange_currency(foreign_currency, currency_id)" style="width: 200px" readonly="True"/>
+                                    <label for="exchange_rate"/>
+                                    <div>
+                                        <field name="exchange_rate" nolabel="1" readonly="True" class="oe_inline"/>
+                                        <button name="%(action_change_exchange_rate)d" string="Update Exchange Rate" type="action" class="oe_link" attrs="{'invisible': ['|', ('state', 'not in', ['draft', 'sent', 'bid']), ('sale_calculated', '=', True)]}"/>
+                                    </div>
+                                    <field name="shipment_method_id" widget="selection"
+                                            on_change="onchange_shipment(shipment_method_id, cost_distributed)"/>
+                                    <field name="duty_required" attrs="{'readonly': [('cost_distributed', '=', True)]}"/>
+                                    <field name="collected_by_hatta"
+                                            on_change="onchange_coll_hatta(collected_by_hatta)"/>
+                                    <field name="delivered_by_supplier"
+                                            on_change="onchange_del_supp(delivered_by_supplier)"/>
+                                    <field name="revision_date" attrs="{'readonly':[('state','in',('done'))]}"/>
+                                </group>
+                                <group>
+                                    <field name="product_landed_cost" readonly="True"/>
+                                </group>
+                          </group>
+                          <group colspan="4" col="4" string="Equipment Cost">
+                                <group>
+                                    <field name="total_products_cost" readonly="True" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <field name="freight_charges"
+                                            attrs="{'readonly': [('cost_distributed', '=', True)]}"
+                                            widget="monetary" options="{'currency_field': 'currency_id'}"
+                                            context="{'fc_change': True}"
+                                            on_change="onchange_freight(freight_charges, freight_charges_lc, exchange_rate, context)"/>
+                                    <field name="fob_charges"
+                                            attrs="{'readonly': [('cost_distributed', '=', True)]}"
+                                            widget="monetary" options="{'currency_field': 'currency_id'}"
+                                            context="{'fc_change': True}"
+                                            on_change="onchange_fob(fob_charges, fob_charges_lc, exchange_rate, context)"/>
+                                    <field name="other_charges"
+                                            attrs="{'readonly': [('cost_distributed', '=', True)]}"
+                                            widget="monetary" options="{'currency_field': 'currency_id'}"
+                                            context="{'fc_change': True}"
+                                            on_change="onchange_other_ch(other_charges, other_charges_lc, exchange_rate, context)"/>
+                                    <field name="total_equipment_cost_fc" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    <field name="total_amount_fc" readonly="True" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                </group>
+                                <group>
+                                    <field name="total_products_cost_lc" readonly="True" widget="monetary" options="{'currency_field': 'foreign_currency'}"/>
+                                    <field name="freight_charges_lc"
+                                            attrs="{'readonly': [('cost_distributed', '=', True)]}"
+                                            widget="monetary" options="{'currency_field': 'foreign_currency'}"
+                                            context="{'lc_change': True}"
+                                            on_change="onchange_freight(freight_charges, freight_charges_lc, exchange_rate, context)"/>
+                                    <field name="fob_charges_lc"
+                                            attrs="{'readonly': [('cost_distributed', '=', True)]}"
+                                            context="{'lc_change': True}"
+                                            on_change="onchange_fob(fob_charges, fob_charges_lc, exchange_rate, context)"
+                                            widget="monetary" options="{'currency_field': 'foreign_currency'}"/>
+                                    <field name="other_charges_lc"
+                                            attrs="{'readonly': [('cost_distributed', '=', True)]}"
+                                            context="{'lc_change': True}"
+                                            on_change="onchange_other_ch(other_charges, other_charges_lc, exchange_rate, context)"
+                                            widget="monetary" options="{'currency_field': 'foreign_currency'}"/>
+                                    <field name="total_equipment_cost_lc" widget="monetary" options="{'currency_field': 'foreign_currency'}"/>
+                                    <field name="total_amount_lc" readonly="True" widget="monetary" options="{'currency_field': 'foreign_currency'}"/>
+                                </group>
+                          </group>
+                          <group>
+                              <group>
+                              </group>
+                              <group>
+                                  <button name="button_dummy" string="Update" type="object" class="oe_link" attrs="{'invisible': ['|', ('state', 'not in', ['bid']), ('cost_distributed', '=', True)]}"/>
+                              </group>
+                          </group>
+                          <group>
+                            <group>
+                                <group string="Local Currency Cost">
+                                   <field name="communication_charges" attrs="{'readonly': [('cost_distributed', '=', True)]}" widget="monetary" options="{'currency_field': 'foreign_currency'}"/>
+                                   <field name="bank_charges" attrs="{'readonly': [('cost_distributed', '=', True)]}" widget="monetary" options="{'currency_field': 'foreign_currency'}"/>
+                                   <label for="bank_interest"/>
+                                   <div>
+                                        <field name="bank_interest" attrs="{'readonly': [('cost_distributed', '=', True)]}" widget="monetary" options="{'currency_field': 'foreign_currency'}" class="oe_inline"/>
+                                        <button name="%(action_bank_charge_calc)d" string="Update" type="action" class="oe_link" attrs="{'invisible': ['|', ('state', 'not in', ['bid']), ('cost_distributed', '=', True)]}"/>
+                                        (<field name="bank_int_rate" nolabel="1" class="oe_inline" readonly="True"/>%%)
+                                        <field name="real_bank_interest" nolabel="1" class="oe_inline" readonly="True"/>
+                                   </div>
+                                   <field name="insurance_charges" attrs="{'readonly': [('cost_distributed', '=', True)]}" widget="monetary" options="{'currency_field': 'foreign_currency'}"/>
+                                   <label for="customs_duty"/>
+                                   <div>
+                                        <field name="customs_duty" attrs="{'readonly': [('cost_distributed', '=', True)]}" widget="monetary" options="{'currency_field': 'foreign_currency'}" class="oe_inline"/>
+                                        <button name="update_cust_duty" string="Update" type="object" class="oe_link" attrs="{'invisible': ['|', ('state', 'not in', ['bid']), ('cost_distributed', '=', True)]}"/>
+                                        (<field name="custom_duty_rate" nolabel="1" class="oe_inline" readonly="True"/>%%)
+                                        <field name="real_customs_duty" nolabel="1" class="oe_inline" readonly="True"/>
+                                   </div>
+                                   <field name="clg_agent_charges" attrs="{'readonly': [('cost_distributed', '=', True)]}" widget="monetary" options="{'currency_field': 'foreign_currency'}"/>
+                                   <field name="clearing_expenses" attrs="{'readonly': [('cost_distributed', '=', True)]}" widget="monetary" options="{'currency_field': 'foreign_currency'}"/>
+                                   <field name="transport_delivery_expenses" attrs="{'readonly': [('cost_distributed', '=', True)]}" widget="monetary" options="{'currency_field': 'foreign_currency'}"/>
+                                   <field name="misc_expenses" attrs="{'readonly': [('cost_distributed', '=', True)]}" widget="monetary" options="{'currency_field': 'foreign_currency'}"/>
+                                   <field name="total_expenses" widget="monetary" options="{'currency_field': 'foreign_currency'}"/>
+<!--                                   <field name="total_amount_lc" readonly="True"/> -->
+                                </group>
+                                <group string="Shipment Charge Details">
+                                    <field name="weight" placeholder="Weight...." attrs="{'readonly': [('cost_distributed', '=', True)]}"/>
+                                    <field name="volume" placeholder="Volume..." attrs="{'readonly': [('cost_distributed', '=', True)]}"/>
+                                    <field name="dimension" placeholder="Dimension..." attrs="{'readonly': [('cost_distributed', '=', True)]}"/>
+                                    <field name="zone" placeholder="Zone..." attrs="{'readonly': [('cost_distributed', '=', True)]}"/>
+                                </group>
+                            </group>
+                          </group>
+                          <group string="Notes">
+                              <field name="notes" nolabel="1" placeholder="Internal Notes ....."/>
+                          </group>
+                          <group>
+                              <group>
+                                    <field name="margin" readonly="True"/>
+                                    <field name="factor" readonly="True"/>
+                              </group>
+                          </group>
+                        </page>
+                    </xpath>
+                    <xpath expr="//page[@string='Incoming Shipments &amp; Invoices']" position="inside">
+                        <group>
+                            <label for="payment_interest_ids" string="Bank Interest"/>
+                            <field name="payment_interest_ids" nolabel="1" colspan="4" readonly="1" context="{'exchange_rate': exchange_rate}">
+                                <tree string="Bank Interest" editable="bottom">
+                                    <field name="amount" required="True"/>
+                                    <field name="days" required="True"/>
+                                    <field name="int_amount"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </xpath>
+                    <xpath expr="//field[@name='datasheet_remark']" position="after">
+                    	<separator string="Cancellation Notes"/>
+                    	<field name="cancel_note" plcaceholder="Cancellation Notes....."/>
+                    </xpath>
+                    <xpath expr="//group[@string='Notes']" position="before">
+                    	<separator string="Shipping Quotations"
+                    	           attrs="{'invisible': ['|', ('collected_by_hatta', '=', True), ('delivered_by_supplier', '=', True)]}"/>
+						<field name="shipping_ids"
+						           context="{'default_account_analytic_id': analytic_account_id}"
+			                       attrs="{'invisible': ['|', ('collected_by_hatta', '=', True), ('delivered_by_supplier', '=', True)]}">
+							<tree editable="top">
+								<field name="carrier_id"/>
+								<field name="account_analytic_id" required="True"/>
+								<field name="awb_date"/>
+				                <field name="awb"/>
+				                <field name="invoice_number"/>
+				                <field name="duty_invoice_number"/>
+				                <field name="carrier_freight"/>
+				                <field name="carrier_duty"/>
+				                <field name="total"/>
+				                <field name="movement_state"/>
+				                <field name="state" readonly="True"/>
+				                <button name="action_select" icon="gtk-apply" string="Select Quotation" type="object" states="new"/>
+				                <button name="action_cancel" icon="gtk-cancel" string="Cancel" type="object" states="selected"/> 
+							</tree>
+						</field>
+                    </xpath>
+             </field>  
+        </record>
+        <!-- Purchase order: Filter view inherit -->
+        <record id="view_purchase_order_filter_inherit" model="ir.ui.view">
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+            <field name="arch" type="xml">
+                    <xpath expr="//field[@name='name']" position="after">
+                        <field name="lead_id"/>
+                    </xpath>
+                    <xpath expr="//search/group[@string='Group By...']/filter[@string='Supplier']" position="before">
+                        <filter string="Customer" icon="terp-partner" domain="[]" context="{'group_by':'customer_id'}" name="group_customer"/>
+                        <filter string="Enquiry" icon="terp-partner" domain="[]" context="{'group_by':'lead_id'}" name="group_enquiry"/>
+                        <filter string="Customer RFQ" icon="terp-partner" domain="[]" context="{'group_by':'customer_rfq'}" name="group_customer_rfq"/>
+                        <filter string="Closing Date" icon="terp-partner" domain="[]" context="{'group_by':'minimum_planned_date'}" name="group_closing_date"/>
+                    </xpath>
+                    <xpath expr="//search/group[@string='Group By...']/filter[@string='Expected Date']" position="replace"></xpath>
+             </field>  
+        </record>
+        <!-- Purchase order: Tree view inherit -->
+        <record id="purchase_order_tree_inherit" model="ir.ui.view">
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+            <field name="arch" type="xml">
+                    <field name="minimum_planned_date" position="before">
+                    
+                        <field name="customer_id" string="Customer"/>
+                        <field name="customer_rfq"/>
+                        <field name="enquiry" invisible="True"/>
+                        <field name="lead_id"/>
+                    </field>
+                    <field name="minimum_planned_date" position="after">
+                        <field name="supplier_closing_date"/>
+                    </field>
+                    <field name="minimum_planned_date" position="attributes">
+                        <attribute name="invisible">True</attribute>
+                   </field>
+                   <field name="origin" position="replace"/>
+                   <field name="amount_untaxed" position="replace"/>
+                   <xpath expr="//field[@name='state']" position="before">
+                        <field name="shipped"/>
+                   </xpath>
+             </field>  
+        </record>
+        <!-- Purchase order line: Form view inherit -->
+        <record id="purchase_order_line_form_inherit" model="ir.ui.view">
+            <field name="model">purchase.order.line</field>
+            <field name="inherit_id" ref="purchase.purchase_order_line_form"/>
+            <field name="arch" type="xml">
+               <field name="taxes_id" position="replace"/>
+               <xpath expr="//field[@name='price_unit']" position="attributes">
+                <attribute name="string">Unit Price FC</attribute>
+                <attribute name="on_change"> onchange_unit_price_fc(price_unit, exchange_rate, product_qty)</attribute>
+                </xpath>
+                <xpath expr="//field[@name='price_unit']" position="after">
+                    <field name="unit_price_lc" readonly="True"/>
+                    <field name="dist_cost" readonly="True"/>
+                </xpath>
+                <xpath expr="//field[@name='date_planned']" position="after">
+                    <field name="amount_total_lc"/>
+                    <field name="net_dist_cost" readonly="True"/>
+                </xpath>
+                <xpath expr="//field[@name='price_unit']" position="before">
+                    <field name="discount" groups="hatta_purchase.group_hatta_pol_discount"/>
+                </xpath>
+                <xpath expr="//page[@string='Notes']" position="after">
+                    <page string="Cost Sheet">
+                        <separator string="Other RFQ Level Cost" colspan="4"/>
+                        <group colspan="4" col="4">
+                            <field name="currency_id" style="width: 200px" readonly="True"/>
+                        </group>
+                        <group colspan="4" col="4" string="Equipment Cost">
+                            <group>
+                                <field name="freight_charges" readonly="True"/>
+                                <field name="fob_charges" readonly="True"/>
+                                <field name="other_charges" readonly="True"/>
+                            </group>
+                            <group>
+                                <field name="freight_charges_lc" readonly="True"/>
+                                <field name="fob_charges_lc" readonly="True"/>
+                                <field name="other_charges_lc" readonly="True"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Local Currency Cost">
+                               <field name="communication_charges" readonly="True"/>
+                               <field name="bank_charges" readonly="True"/>
+                               <field name="bank_interest" readonly="True"/>
+                               <field name="insurance_charges" readonly="True"/>
+                               <field name="customs_duty" readonly="True"/>
+                               <field name="clg_agent_charges" readonly="True"/>
+                               <field name="clearing_expenses" readonly="True"/>
+                               <field name="transport_delivery_expenses" readonly="True"/>
+                               <field name="misc_expenses" readonly="True"/>
+                               <label for="exchange_rate"/>
+                                <div>
+                                    <field name="exchange_rate" nolabel="1" readonly="True" class="oe_inline"/>
+                                    <button name="%(action_change_exchange_rate)d" string="Update Exchange Rate" type="action" class="oe_link" attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                                </div>
+                            </group>
+                            
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='product_id']" position="attributes">
+                    <attribute name="attrs">{'readonlt': [('state', 'not in', ['draft', 'bid'])]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='date_planned']" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                </xpath>
+             </field>  
+        </record>
+         <!-- Purchase order: Action View-->
+        <record id="purchase.purchase_rfq" model="ir.actions.act_window">
+            <field name="name">Request For Quotations</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.order</field>
+            <field name="context">{'search_default_group_enquiry':1}</field>
+            <field name="domain">[('state','in',('draft','sent','confirmed'))]</field>
+            <field name="view_mode">tree,form,graph,calendar</field>
+            <field name="search_view_id" ref="view_purchase_order_filter_inherit"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a request for quotation.
+              </p><p>
+                The quotation contains the history of the discussion/negociation
+                you had with your supplier. Once confirmed, a request for
+                quotation is converted into a purchase order.
+              </p><p>
+                Most propositions of purchase orders are created automatically
+                by OpenERP based on inventory needs.
+              </p>
+            </field>
+        </record>
+        
+        <menuitem action="purchase.purchase_rfq" id="purchase.menu_purchase_rfq" string="Request For Quotations"
+            parent="purchase.menu_procurement_management"
+            sequence="0"/>
+        
+    </data>
+</openerp>

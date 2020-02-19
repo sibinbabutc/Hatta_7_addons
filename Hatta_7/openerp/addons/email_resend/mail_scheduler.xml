@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="1">
+        <record model="ir.cron" id="action_mail_retry">
+            <field name="name">Mail Retry</field>
+            <field name="interval_number">30</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="model" eval="'mail.mail'"/>
+            <field name="function" eval="'retry_mail_sending'"/>
+            <field name="args" eval="'()'" />
+        </record>
+    </data>
+</openerp>

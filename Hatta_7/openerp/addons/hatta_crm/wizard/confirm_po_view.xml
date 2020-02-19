@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="hatta_confirm_po" model="ir.ui.view">
+          <field name="name">hatta.confirm.po.form</field>
+          <field name="model">confirm.po</field>
+          <field name="arch" type="xml">
+            <form string="Confirm RFQ" version="7.0">
+            <label string="Purchase Order Number"/>
+                <h1>
+                    <field name="po_name" required="True" readonly="True"/>
+                </h1>
+                <group>
+                    <group>
+                        <field name="pricelist_id" readonly="True" widget="selection"/>
+                        <field name="payment_term_id" attrs="{'required': [('direct_purchase', '=', False)]}"/>
+                        <field name="delivery_term"/>
+                        <field name="delivery_inco"/>
+                        <field name="minimum_planned_date" required="True"/>
+                        <field name="supplier_quote_ref"/>
+                        <field name="quote_send_by"/>
+                        <field name="quote_date" required="False"/>
+                        <field name="direct_purchase" invisible="True"/>
+                    </group>
+                    <group>
+                        <field name="display_end_user"/>
+                        <field name="direct_delivery"/>
+<!--                         <field name="supplier_shipping"/> -->
+                        <field name="po_id" invisible="True"/>
+                        <field name="direct_del_address" attrs="{'required': [('direct_delivery', '=', True)], 'invisible': [('direct_delivery', '=', False)]}"/>
+                    </group>
+                    <separator string="Notes" colspan="4"/>
+                    <field name="note" colspan="4" nolabel="1"/>
+                </group>
+                <footer>
+                   <button icon="gtk-execute" name="confirm_po"
+                                confirm="Are you sure you want to continue?"
+                                string="Continue" type="object"  default_focus="1" class="oe_highlight"/>
+                    or
+                   <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+                </footer>
+            </form>
+          </field>
+       </record>
+       
+       <record id="hatta_confirm_po_action" model="ir.actions.act_window">
+          <field name="name">Confirm RFQ</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">confirm.po</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="hatta_confirm_po"/>
+          <field name="target">new</field>
+       </record>
+    </data>
+</openerp>

@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+        <record id="view_create_data_tempate_form" model="ir.ui.view">
+            <field name="name">create.data.template</field>
+            <field name="model">jasper.data.template</field>
+            <field name="arch" type="xml">
+                <form string="Create Date Template" version="7.0">
+                    <p class="oe_grey">
+                        Create a data template of the selected model with the selected depth
+                    </p>
+                    <group colspan="4" col="2">
+                        <field name="model_id" attrs="{'readonly': [('state','=','end')]}"/>
+                        <field name="depth" attrs="{'readonly': [('state','=','end')]}"/>
+                    </group>
+                    <field name="data" filename="filename" attrs="{'invisible': [('state','=','create')]}" colspan="4"/>
+                    <field name="filename" invisible="1"/>
+                    <field name="state" invisible="1"/>
+                    <footer>
+                        <group colspan="4" col="2">
+                            <button name="action_create" string="Create" icon="gtk-ok" type="object" attrs="{'invisible': [('state','=','end')]}"/>
+                            <button special="cancel" string="Cancel" icon="gtk-cancel" attrs="{'invisible': [('state','=','end')]}"/>
+                            <button special="cancel" string="Accept" icon="gtk-ok" attrs="{'invisible': [('state','=','create')]}"/>
+                        </group>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_jasper_create_template" model="ir.actions.act_window">
+            <field name="name">Create Data Template</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">jasper.data.template</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        
+        <menuitem parent="base.menu_custom" name="Jasper Reports" id="jasper_reports_menu"/>
+        <menuitem parent="jasper_reports_menu"
+            action="action_jasper_create_template" id="jasper_create_data_template_menu"/>
+    </data>
+</openerp>

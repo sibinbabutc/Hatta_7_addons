@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="sale_confirmation_wizard_form" model="ir.ui.view">
+          <field name="name">sale.confirmation.wizard.form</field>
+          <field name="model">sale.confirm.wizard</field>
+          <field name="arch" type="xml">
+            <form string="Confirm Sale" version="7.0">
+                <field name="name" widget="html" class="oe_view_only" readonly="True"/>
+                <field name="sale_id" invisible="True"/>
+                <footer>
+                   <button name="confirm_sale" string="Proceed" type="object"  default_focus="1" class="oe_highlight"/>
+                    or
+                   <button string="Cancel" type="object" special="cancel" class="oe_link"/>
+                    
+                </footer>
+            </form>
+          </field>
+       </record>
+       
+       <record id="action_sale_confirmation" model="ir.actions.act_window">
+          <field name="name">Confirm Sale</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">sale.confirm.wizard</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="sale_confirmation_wizard_form"/>
+          <field name="target">new</field>
+       </record>
+    </data>
+</openerp>

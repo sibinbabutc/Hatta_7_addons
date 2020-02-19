@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+    
+    <report id="report_telex_transfer_baroda" 
+                model="telex.transfer" 
+                auto="True"
+                name="telex_transfer_baroda_jasper" 
+                string="Telex Transfer Report" 
+                rml="zb_telex_transfer/report/telex_transfer_baroda_jasper.jrxml"/>
+                
+   <report id="report_telex_transfer_al_rostamani" 
+                model="telex.transfer" 
+                auto="True"
+                name="telex_transfer_al_rostamani_jasper" 
+                string="Telex Transfer Report" 
+                rml="zb_telex_transfer/report/telex_transfer_al_rostamani_jasper.jrxml"/>
+     
+  <report id="report_telex_transfer_emirates_india" 
+                model="telex.transfer" 
+                auto="True"
+                name="telex_transfer_emirates_india_jasper" 
+                string="Telex Transfer Report" 
+                rml="zb_telex_transfer/report/telex_transfer_emirates_india_jasper.jrxml"/>
+                
+  <report id="report_telex_transfer_euro_iban" 
+                model="telex.transfer" 
+                auto="True"
+                name="telex_transfer_euro_iban_jasper" 
+                string="Telex Transfer Report" 
+                rml="zb_telex_transfer/report/telex_transfer_euro_iban_jasper.jrxml"/>
+    
+    </data>
+</openerp>

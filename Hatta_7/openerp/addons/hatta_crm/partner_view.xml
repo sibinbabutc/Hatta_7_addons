@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <menuitem id="base.menu_partner_form" parent="base.menu_sales" action="base.action_partner_form"
+                    sequence="1" string="Customer / Client"/>
+        
+        <record id="base.action_partner_customer_form" model="ir.actions.act_window">
+            <field name="name">Customer / Client</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="domain">[('customer','=',1)]</field>
+            <field name="context">{'default_customer':1, 'search_default_customer':1}</field>
+            <field name="filter" eval="True"/>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to add a contact in your address book.
+              </p><p>
+                OpenERP helps you easily track all activities related to
+                a customer: discussions, history of business opportunities,
+                documents, etc.
+              </p>
+            </field>
+        </record>
+        
+        <record id="res_partner_form_view_inherit" model="ir.ui.view">
+            <field name="name">Partner Form View</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+            	<xpath expr="//div[@name='buttons']" position="inside">
+                    <button name="review_user" type="object" 
+                    string="Reviewed" icon="STOCK_OK" groups="hatta_crm.group_partner_duplicate"/>
+            	</xpath>
+                <xpath expr="//field[@name='website']" position="after">
+                    <field name="partner_code"/>
+                    <field name="reviewed"/>
+		    <field name="trn_code"/>
+                </xpath>
+                <xpath expr="//page[@string='Sales &amp; Purchases']/group/group[2]" position="inside">
+                    <field name="is_manufac"/>
+                    <field name="pric_supplier"/>
+                </xpath>
+                <xpath expr="//field[@name='child_ids']" position="attributes">
+                    <attribute name="context">{'default_parent_id': active_id, 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_country_id': country_id, 'default_supplier': False, 'default_customer': False}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='comment']" position="after">
+                	<separator string="Special Notes for Duty Exemption"/>
+                    <field name="sp_note_duty_exemption" placeholder="Notes for Duty Exemption"/>
+                </xpath>
+                <xpath expr="//page[@string='Contacts']" position="after">
+                    <page string="Suppling Manufacturer(s)" attrs="{'invisible': [('supplier', '=', False)]}">
+                        <field name="manufacturer_ids" colspan="4" nolabel="1"
+                                domain="[('is_manufac', '=', True)]"/>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        
+       <!--  <record id="res_partner_search_view_inherit" model="ir.ui.view">
+            <field name="name">Partner Search View</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//filter[@string='Customers']" position="after">
+                    <filter string="Manufacturer" name="manufacturer" domain="[('is_manufac','=',1)]" help="Manufacturer Partners"/>
+                </xpath>
+            </field>
+        </record> -->
+        
+        <record model='ir.ui.view' id='view_user_review_board'>
+            <field name="name">user.review.board</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <tree string="Partner">
+                    <field name="name"/>
+                    <field name="create_uid"/>
+                    <field name="customer" string="Is a Customer ?"/>
+                    <field name="supplier" string="Is a Supplier ?"/>
+                    <field name="reviewed"/>
+                    <button name="review_user" type="object" string="Reviewed" icon="STOCK_OK"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="action_partner_review_board" model="ir.actions.act_window">
+            <field name="name">Review Partner Creation</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_user_review_board"/>
+            <field name="domain">[('reviewed','=',False),'|',('customer', '=', True), ('supplier', '=', 'True')]</field>
+        </record>
+        
+        <record id="board_my_dash_inherit" model="ir.ui.view">
+            <field name="name">board.my.dash.inherit</field>
+            <field name="model">board.board</field>
+            <field name="inherit_id" ref="board.board_my_dash_view"/>
+            <field name="groups_id" eval="[(4,ref('account.group_account_manager'))]"/>
+            <field name="arch" type="xml">
+                <xpath expr="/form/board/column" position="inside">
+                    <action name="%(action_partner_review_board)d" string="Created Partner To Review"/>
+                </xpath>
+            </field>
+        </record>
+
+	<record id="view_hatta_company_form" model="ir.ui.view">
+            <field name="name">hatta.res.company.form</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <field name="parent_id"  groups="base.group_multi_company" position="after">
+                    <field name="trn_code"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

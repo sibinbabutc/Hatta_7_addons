@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model='ir.ui.view' id='view_job_account_form'>
+            <field name="name">job.account.form</field>
+            <field name="model">job.account</field>
+            <field name="arch" type="xml">
+                <form string="Job Account" version="7.0">
+                    <sheet>
+                        <label for="name" string="Job No."/>
+                        <h1>
+                            <field name="name" required="True" readonly="False"/>
+                        </h1>
+                        <group>
+                            <group>
+                                <field name="lead_id" readonly="True"/>
+                                <field name="cust_po_num" readonly="True"/>
+                            </group>
+                            <group>
+                                <field name="partner_id" readonly="True"/>
+                                <field name="manual_job_description"/>
+                                <field name="job_short_desc"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Accounting Entries" groups="account.group_account_manager">
+                                <field name="move_line_ids" nolabel="1" colspan="4">
+                                    <tree>
+                                        <field name="date" string="Date"/>
+                                        <field name="doc_no"/>
+                                        <field name="currency_id"/>
+                                        <field name="amount_currency"/>
+                                        <field name="debit" sum="Debit"/>
+                                        <field name="credit" sum="Credit"/>
+                                        <field name="result" sum="Balance"/>
+                                        <field name="name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Sales , Purchases &amp; Invoices">
+                                <separator string="Sale Order(s)"/>
+                                <field name="sale_ids" nolabel="1" colspan="4" readonly="True">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="date_order"/>
+                                        <field name="partner_id"/>
+                                        <field name="client_order_ref" string="Customer PO Number" groups="account.group_account_manager"/>
+                                        <field name="user_id" groups="account.group_account_manager"/>
+                                        <field name="currency_id"/>
+                                        <field name="amount_total"/>
+                                        <field name="state" groups="account.group_account_manager"/>
+                                    </tree>
+                                </field>
+                                <separator string="Purchase Order(s)"/>
+                                <field name="purchase_ids" nolabel="1" colspan="4" readonly="True">
+                                    <tree>
+                                        <field name="name" string="PO Number"/>
+                                        <field name="partner_id"/>
+                                        <field name="amount_total" groups="account.group_account_manager"/>
+                                        <field name="state" groups="account.group_account_manager"/>
+                                    </tree>
+                                </field>
+                                <separator string="Delivery Order(s)"/>
+                                <field name="picking_ids" readonly="True"
+                                        context="{'tree_view_ref': 'view_picking_out_tree', 'form_view_ref': 'view_picking_out_form'}"
+                                        colspan="4" nolabel="1"/>
+                                <separator string="Invoice(s)"/>
+                                <field name="invoice_ids" readonly="True"
+                                        context="{'form_view_ref': 'invoice_form'}"
+                                        colspan="4" nolabel="1"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='view_job_account_tree'>
+            <field name="name">job.account.tree</field>
+            <field name="model">job.account</field>
+            <field name="arch" type="xml">
+                <tree string="Job Account">
+                    <field name="name" string="Job No."/>
+                    <field name="partner_id"/>
+                    <field name="lead_id"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record model='ir.ui.view' id='view_job_account_search'>
+            <field name="name">job.account.search</field>
+            <field name="model">job.account</field>
+            <field name="arch" type="xml">
+                <search string="Job Account">
+                    <field name="name"/>
+                    <field name="lead_id"/>
+                    <field name="partner_id"/>
+                </search>
+            </field>
+        </record>
+        
+        <record model='ir.actions.act_window' id='view_job_account_action'>
+            <field name="name">Job Account</field>
+            <field name="res_model">job.account</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_job_account_search"/>
+        </record>
+        
+        <menuitem name="Job Account" id="menu_job_account"
+            parent="account.menu_finance_configuration" action="view_job_account_action" sequence="1"/>
+    </data>
+</openerp>
