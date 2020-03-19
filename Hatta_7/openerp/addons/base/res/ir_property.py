@@ -157,10 +157,8 @@ class ir_property(osv.osv):
 
     def get(self, cr, uid, name, model, res_id=False, context=None):
         domain = self._get_domain(cr, uid, name, model, context=context)
-        print domain
         if domain is not None:
             domain = [('res_id', '=', res_id)] + domain
-            print domain,"---------------->New Doamin"
             nid = self.search(cr, uid, domain, context=context)
             if not nid: return False
             record = self.browse(cr, uid, nid[0], context=context)

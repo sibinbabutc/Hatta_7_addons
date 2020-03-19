@@ -292,9 +292,6 @@ class stock_move(osv.osv):
                 #goods return from customer
                 if move.location_id.usage == 'customer':
                     account_moves += [(journal_id, self._create_account_move_line(cr, uid, move, acc_dest, acc_valuation, reference_amount, reference_currency_id, context))]
-                else:
-                    print "Removed To match Hatta Process"
-#                     account_moves += [(journal_id, self._create_account_move_line(cr, uid, move, acc_src, acc_valuation, reference_amount, reference_currency_id, context))]
 
             move_obj = self.pool.get('account.move')
             for j_id, move_lines in account_moves:

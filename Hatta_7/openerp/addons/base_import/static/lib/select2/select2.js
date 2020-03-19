@@ -309,6 +309,7 @@ the specific language governing permissions and limitations under the Apache Lic
 
     function measureTextWidth(e) {
         if (!sizer){
+        	conosle.log("window",window);
             var style = e[0].currentStyle || window.getComputedStyle(e[0], null);
             sizer = $(document.createElement("div")).css({
                 position: "absolute",

@@ -3,6 +3,15 @@
     <data noupdate="1">
         <menuitem id="hatta_inv_report" name="Inventory Reports" sequence="3" parent="hatta_crm.hatta_reporting"/>
         
+        
+		<report	id="hatta_qual_just_docx"
+				model="sale.order"
+				string="Sample Sale Docx"
+				report_type="docx"
+				name="hatta_trading.qual.docx"
+				file="hatta_trading.qual.docx"
+		/>
+        
         <report id="report_po_status" 
                 model="purchase.analysis.report" 
                 name="po.status.jasper" 

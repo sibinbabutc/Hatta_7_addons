@@ -320,7 +320,6 @@ def intersperse(string, counts, separator=''):
 # TODO rewrite this with a unit test library
 def _group_examples():
     for g in [original_group, intersperse]:
-        # print "asserts on", g.func_name
         assert g("", []) == ("", 0)
         assert g("0", []) == ("0", 0)
         assert g("012", []) == ("012", 0)

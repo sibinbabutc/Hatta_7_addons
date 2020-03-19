@@ -759,8 +759,6 @@ class purchase_order_line(osv.osv):
                                                   relation="res.partner", string="Customer", store=True),
                 'customer_enq': fields.related('order_id', 'lead_id', type="many2one",
                                                relation="crm.lead", string="Customer Enq", store=True),
-                'date_order': fields.related('order_id', 'date_order', string='Order Date',
-                                             readonly=True, type="date", store=True),
                 'select_line': fields.boolean('Select'),
                 'cost_distributed': fields.boolean('Cost Distributed'),
                 'remark': fields.text('Remarks', pad_content_field='remark'),

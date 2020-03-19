@@ -406,9 +406,6 @@ In case of any changes in the quantities, please contact us for confirmation of 
                 'target': 'current',
                 'domain': [('lead_id', '=', lead.id)],
                 'res_id': lead_po_ids and lead_po_ids[0] or False,
-                
-                
-                'context': context,
                 }
         else:
             raise osv.except_osv(_('Warning!'),_('No requests for quotations'))
@@ -431,9 +428,6 @@ In case of any changes in the quantities, please contact us for confirmation of 
                 'target': 'current',
                 'domain': [('lead_id', 'in', ids)],
                 'res_id': lead_so_ids and lead_so_ids or False,
-                
-                
-                'context': context,
                 }
         else:
             raise osv.except_osv(_('Warning!'),_('No Sales Quotations'))

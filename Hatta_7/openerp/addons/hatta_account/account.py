@@ -98,7 +98,6 @@ class account_invoice(osv.osv):
         user_pool = self.pool.get('res.users')
         user_obj = user_pool.browse(cr, uid, uid, context=context)
         company_curr_obj = user_obj.company_id.currency_id
-        print company_curr_obj
         if currency_id:
             currency_obj = currency_pool.browse(cr, uid, currency_id, context=context)
             rate = currency_pool._get_conversion_rate(cr, uid, currency_obj, company_curr_obj,
@@ -298,7 +297,6 @@ class account_invoice(osv.osv):
                     'target': 'new',
                     'context': ctx,
                     }
-        print "Coming HEERERERER\n\n\n",ids
         self.assign_number(cr, uid, ids, context=context)
         res = super(account_invoice, self).invoice_open(cr, uid, ids, context=context)
         return res
@@ -568,7 +566,6 @@ class account_invoice(osv.osv):
                     i[2]['period_id'] = period_id
 
             ctx.update(invoice=inv)
-            print move
             move_id = move_obj.create(cr, uid, move, context=ctx)
             new_move_name = move_obj.browse(cr, uid, move_id, context=ctx).name
             # make the invoice point to that move
@@ -924,20 +921,22 @@ class account_move(osv.osv):
     
     def onchange_ref(self, cr, uid, ids, ref, line_id, context=None):
         res = {'value': {}}
-        new_line = []
-        for line in line_id:
-            if line[0] == 0:
-                data = line[2]
-                data['name'] = ref
-                new_line.append((0, 0, data))
-            elif line[0] == 4:
-                id = line[1]
-                new_line.append((1, id, {'name': ref}))
-            elif line[0] == 1:
-                data = line[2]
-                data.update({'name': ref})
-                new_line.append((1, line[1], data))
-            res['value']['line_id'] = new_line
+#         new_line = []
+#         for line in line_id:
+#             if line[0] == 0:
+#                 data = line[2]
+#                 data['name'] = ref
+#                 new_line.append((0, 0, data))
+#             elif line[0] == 4:
+#                 id = line[1]
+#                 new_line.append((1, id, {'name': ref}))
+#             elif line[0] == 1:
+#                 data = line[2]
+#                 data.update({'name': ref})
+#                 new_line.append((1, line[1], data))
+#             res['value']['line_id'] = new_line
+#             print"iiiiiiiiiiiiiiiiiiiiii"
+#         print"yyyyyyyyyyyyy"
         return res
     
     def onchange_date(self, cr, uid, ids, date, context=None):
@@ -1764,7 +1763,6 @@ class account_voucher(osv.osv):
         res = super(account_voucher, self).writeoff_move_line_get(cr, uid, voucher_id, line_total,
                                                                   move_id, name, company_currency,
                                                                   current_currency, context=context)
-        print res,">>>>>>>>>>>>>>>>>\n\n\n"
         if voucher_obj.reference and res:
             res['name'] = voucher_obj.reference
             res['date'] = voucher_obj.date
@@ -1864,7 +1862,6 @@ class account_voucher(osv.osv):
         account_pool = self.pool.get('account.account')
         tot_line = line_total
         rec_lst_ids = []
-
         date = self.read(cr, uid, voucher_id, ['date'], context=context)['date']
         ctx = context.copy()
         ctx.update({'date': date})
@@ -1888,9 +1885,7 @@ class account_voucher(osv.osv):
                 if not line.move_line_id:
                     raise osv.except_osv(_('Wrong voucher line'),_("The invoice you are willing to pay is not valid anymore."))
                 sign = voucher.type in ('payment', 'purchase') and -1 or 1
-                print line.move_line_id.amount_residual,"---------------",amount,"\n\n\n"
                 currency_rate_difference = sign * (line.move_line_id.amount_residual - amount)
-                print currency_rate_difference
             else:
                 currency_rate_difference = 0.0
             
@@ -2099,7 +2094,7 @@ class account_voucher(osv.osv):
                                      _("Invalid Matching!!!!. Please check difference amount."))
         res = super(account_voucher, self).proforma_voucher(cr, uid, ids, context=context)
         return res
-     
+    
 account_voucher()
 
 class account_analytic_account(osv.osv):

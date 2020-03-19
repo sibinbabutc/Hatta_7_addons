@@ -677,7 +677,7 @@ class ir_model_access(osv.osv):
                         JOIN res_groups g ON (a.group_id=g.id)
                         LEFT JOIN ir_module_category c ON (c.id=g.category_id)
                       WHERE
-                        m.model=%s AND
+                        m.model=%s AND 
                         a.active IS True AND
                         a.perm_''' + access_mode, (model_name,))
         return [('%s/%s' % x) if x[0] else x[1] for x in cr.fetchall()]
@@ -714,7 +714,6 @@ class ir_model_access(osv.osv):
                    , (model_name, uid,)
                    )
         r = cr.fetchone()[0]
-        print r
         if r is None:
             # there is no specific rule. We check the generic rule
             cr.execute('SELECT MAX(CASE WHEN perm_' + mode + ' THEN 1 ELSE 0 END) '
@@ -726,7 +725,6 @@ class ir_model_access(osv.osv):
                        , (model_name,)
                        )
             r = cr.fetchone()[0]
-        print r,"---->r"
         if not r and raise_exception:
             groups = '\n\t'.join('- %s' % g for g in self.group_names_with_access(cr, model_name, mode))
             msg_heads = {

@@ -31,7 +31,7 @@
     'images': [],
     'depends': ['sale', 'hatta_crm', 'hatta_account', 'hatta_purchase',
                 'sale_crm', 'jasper_reports',
-                'report_webkit',
+                'report_webkit', 'report_docx',
                 'hatta_rejection_management'],
     'data': [
              'security/hatta_security.xml',
