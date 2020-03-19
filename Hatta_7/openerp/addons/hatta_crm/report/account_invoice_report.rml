@@ -67,7 +67,7 @@
     <initialize>
       <paraStyle name="all" alignment="justify"/>
     </initialize>
-    <paraStyle name="P1" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="3.0" spaceAfter="3.0"/>
+    <paraStyle name="P1" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="3.0" spaceAfter="3.0"/>
     <paraStyle name="P2" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="3.0" spaceAfter="3.0"/>
     <paraStyle name="P3" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="CENTER" spaceBefore="6.0" spaceAfter="6.0"/>
     <paraStyle name="P4" rightIndent="0.0" leftIndent="35.0" fontName="Helvetica" fontSize="9.0" leading="11" spaceBefore="9.0" spaceAfter="0.0"/>
@@ -79,7 +79,7 @@
     <paraStyle name="P10" fontName="Helvetica-Bold" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
     <paraStyle name="P11" fontName="Helvetica" fontSize="8.0" leading="10" alignment="LEFT"/>
     <paraStyle name="P12" fontName="Helvetica" fontSize="8.0" leading="10" alignment="RIGHT"/>
-    <paraStyle name="P13" textColor="#337ab7" rightIndent="0.0" leftIndent="0.0" fontName="Helvetica" fontSize="8.0" leading="10" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
+    <paraStyle name="P13" rightIndent="0.0" leftIndent="0.0" fontName="Helvetica" fontSize="8.0" leading="10" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
     <paraStyle name="P14" rightIndent="0.0" leftIndent="0.0" fontName="Helvetica-Bold" fontSize="18.0" leading="22" alignment="CENTER" spaceBefore="0.0" spaceAfter="30.0"/>
     <paraStyle name="P15" fontName="Helvetica" fontSize="9.0" leading="11" alignment="RIGHT" spaceBefore="0.0" spaceAfter="0.0"/>
     <paraStyle name="P16" fontName="Helvetica" fontSize="9.0" leading="11" alignment="LEFT" spaceBefore="1.0" spaceAfter="1.0"/>
@@ -125,7 +125,7 @@
   <story>
     <para style="P13">
       <font face="Helvetica" size="6.0">[[repeatIn(objects,'o')]]</font>
-      <font face="Helvetica" size="8.0">COMPANY TRN : [[ (o.company_id.trn_code) ]] </font>
+      <font face="Helvetica-Bold" size="8.0">COMPANY TRN : [[ (o.company_id.trn_code) ]] </font>
     </para>
     <para style="P14">[[ (o.state == 'draft' and 'DRAFT' or '') ]] TAX INVOICE</para>
     <blockTable colWidths="334.0,81.0,122.0" style="Table1">
